@@ -46,3 +46,106 @@
             cursor: pointer;
             width: 50px;
             height: 50px;
+            border-radius: 50%;
+            transition: 0.3s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #btnSubir:hover { background-color: white; transform: scale(1.1); }
+
+        @media (max-width: 900px) {
+            header { grid-template-columns: 1fr; padding: 20px; }
+            .social-icons { justify-content: center !important; margin: 10px 0; order: 2; }
+            .header-center { order: 1; }
+            .seccion-comentarios { margin: 20px 15px 60px; }
+            #btnSubir { bottom: 20px; right: 20px; width: 45px; height: 45px; font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_ES/sdk.js#xfbml=1&version=v19.0" nonce="rockrock"></script>
+
+<header>
+    <div class="social-icons" style="display: flex; justify-content: flex-start;">
+        <a href="https://open.spotify.com/intl-es/artist/5PGFsB4rJcNb9h5gBOKnWw/discography/all" target="_blank"><i class="fa-brands fa-spotify"></i></a>
+        <a href="https://music.apple.com/es/artist/tony-vazquez/1497948014" target="_blank"><i class="fa-brands fa-apple"></i></a>
+        <a href="https://music.youtube.com/channel/UCFNdFbrM3s0kznhCGpRJ3GA" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+    </div>
+    <div class="header-center">
+        <h1>TONY VÁZQUEZ</h1>
+        <p>ROCK · ALMA · LEYENDA</p>
+    </div>
+    <div class="social-icons" style="display: flex; justify-content: flex-end;">
+        <a href="https://music.amazon.es/artists/B07NFBKRHJ/tony-vazquez" target="_blank"><i class="fa-brands fa-amazon"></i></a>
+        <a href="https://instagram.com/tonykubo" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://www.facebook.com/tonisampler/" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+    </div>
+</header>
+
+<nav class="nav-menu">
+    <a href="index.html" class="btn">Inicio</a>
+    <a href="galeria.html" class="btn">Galería</a>
+    <a href="videos.html" class="btn">Vídeos</a>
+</nav>
+
+<div class="container">
+    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/jbRyfHEIujA" frameborder="0" allowfullscreen></iframe></div>
+    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/8-qVdj1VhF0" frameborder="0" allowfullscreen></iframe></div>
+    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/QTxNLOtnekQ" frameborder="0" allowfullscreen></iframe></div>
+    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/T9QqKk1GckI" frameborder="0" allowfullscreen></iframe></div>
+    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/tgPovfSXLq4?si=El7MNag5RcmalrLR" frameborder="0" allowfullscreen></iframe></div>
+    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/DzHDuS5s8BE?si=jRWAbBKVO87Pa9i4" frameborder="0" allowfullscreen></iframe></div>
+    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/G5ELIs5Y_ic?si=dzn8i_WYlVfPkGgD" frameborder="0" allowfullscreen></iframe></div>
+    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/EjwgkDtwJNI?si=3YdQAJpowqSTCXy5" frameborder="0" allowfullscreen></iframe></div>
+    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/QWkJ0TpyNuY?si=02mzzyfa7ZSP5FHA" frameborder="0" allowfullscreen></iframe></div>
+    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/LbUzsYG0kjw?si=ZWunJBqM7OM9TzgE" frameborder="0" allowfullscreen></iframe></div>
+    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/2yz9kGwK3sg?si=U5iNCoJa7y5mi4As" frameborder="0" allowfullscreen></iframe></div>
+    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/1leI7UNl2PM?si=smKRC769OgwNQ6lP" frameborder="0" allowfullscreen></iframe></div>
+    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/ki7KxsOskz4?si=IsumVyB4RnGpZy7e" frameborder="0" allowfullscreen></iframe></div>
+    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/sDD30k7cPrE?si=ynEtAo2xtGUe7h8H" frameborder="0" allowfullscreen></iframe></div>
+    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/A7HKU9L8oWs?si=x0_wRLqmxNNUsPsL" frameborder="0" allowfullscreen></iframe></div>
+    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/ol4rdn9OKqo?si=KovzqnV06Kn8MP-l" frameborder="0" allowfullscreen></iframe></div>
+    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/rT-Xge-hauY?si=5kYj8qo2h71fSQQZ" frameborder="0" allowfullscreen></iframe></div>
+</div>
+
+<div class="seccion-comentarios">
+    <h3>Deja tu comentario, Rocker 🤘</h3>
+    <div class="fb-comments" data-href="https://tonivazquez4.github.io/videos.html" data-width="100%" data-numposts="5"></div>
+</div>
+
+<footer>
+    <p>© 2026 Tony Vázquez. Todos los derechos reservados.</p>
+</footer>
+
+<button id="btnSubir" onclick="subirArriba()" title="Volver arriba">
+    <i class="fa-solid fa-arrow-up"></i>
+</button>
+
+<script>
+    // LÓGICA DEL BOTÓN DE SUBIR
+    let miBoton = document.getElementById("btnSubir");
+
+    // Cuando el usuario hace scroll hacia abajo 300px, mostramos el botón
+    window.onscroll = function() {
+        if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+            miBoton.style.display = "flex";
+        } else {
+            miBoton.style.display = "none";
+        }
+    };
+
+    // Cuando el usuario hace clic, subimos suavemente al tope
+    function subirArriba() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth' /* Movimiento suave */
+        });
+    }
+</script>
+
+</body>
+</html>
