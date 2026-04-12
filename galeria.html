@@ -22,12 +22,13 @@
         }
 
         header { 
-            height: 100px; 
+            min-height: 100px; 
             display: flex; 
             justify-content: space-between; 
             align-items: center; 
             border-bottom: 2px solid var(--gold);
-            padding: 0 40px;
+            padding: 10px 40px;
+            background: rgba(0,0,0,0.6);
         }
 
         h1 { font-size: clamp(1.5rem, 5vw, 2.5rem); color: white; text-transform: uppercase; margin: 0; }
@@ -39,25 +40,49 @@
         .social-icons a { color: white; font-size: 1.4rem; text-decoration: none; transition: 0.3s; }
         .social-icons a:hover { color: var(--gold); }
 
-        /* TÍTULO Y MENÚ */
         .page-title { text-align: center; margin-top: 30px; }
         .page-title h2 { color: var(--gold); text-transform: uppercase; font-size: 2.2rem; border-bottom: 2px solid var(--gold); display: inline-block; padding-bottom: 5px; margin: 0; }
         
         .nav-menu { text-align: center; margin: 20px 0 40px; }
-        .btn { background: var(--gold); color: black; padding: 8px 20px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block; margin: 5px; font-size: 0.9rem; }
+        .btn { background: var(--gold); color: black; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block; margin: 5px; font-size: 0.9rem; transition: 0.3s; }
+        .btn:hover { transform: scale(1.05); background: white; }
 
-        .container { padding: 0 15px 40px; max-width: 1200px; margin: auto; }
+        .container { padding: 0 15px 60px; max-width: 1300px; margin: auto; }
         
+        /* CUADRÍCULA DE FOTOS */
         .grid-galeria { 
             display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
             gap: 20px; 
         }
 
-        .foto-card { background: rgba(0,0,0,0.5); border: 1px solid #444; border-radius: 10px; overflow: hidden; }
-        .foto-card img { width: 100%; height: 350px; object-fit: contain; display: block; padding: 10px; }
+        .foto-card { 
+            background: rgba(255,255,255,0.05); 
+            border: 1px solid #333; 
+            border-radius: 8px; 
+            overflow: hidden; 
+            transition: 0.4s;
+        }
 
-        footer { padding: 20px; text-align: center; background: rgba(0,0,0,0.9); font-size: 0.8rem; border-top: 1px solid #222; }
+        .foto-card:hover { 
+            border-color: var(--gold); 
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .foto-card img { 
+            width: 100%; 
+            height: 300px; 
+            object-fit: cover; /* Todas las fotos iguales como un mosaico */
+            display: block; 
+            cursor: pointer;
+            filter: grayscale(30%); /* Efecto rockero */
+            transition: 0.3s;
+        }
+
+        .foto-card:hover img { filter: grayscale(0%); }
+
+        footer { padding: 30px; text-align: center; background: rgba(0,0,0,0.9); font-size: 0.8rem; border-top: 1px solid #222; }
 
         @media (max-width: 768px) {
             header { flex-direction: column; height: auto; padding: 20px; gap: 10px; }
@@ -69,9 +94,9 @@
 
 <header>
     <div class="social-icons icons-left">
-        <a href="https://open.spotify.com/intl-es/artist/5PGFsB4rJcNb9h5gBOKnWw/discography/all" target="_blank"><i class="fa-brands fa-spotify"></i></a>
-        <a href="#" target="_blank"><i class="fa-brands fa-apple"></i></a>
-        <a href="#" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+        <a href="#"><i class="fa-brands fa-spotify"></i></a>
+        <a href="#"><i class="fa-brands fa-apple"></i></a>
+        <a href="#"><i class="fa-brands fa-youtube"></i></a>
     </div>
 
     <div>
@@ -80,8 +105,8 @@
     </div>
 
     <div class="social-icons icons-right">
-        <a href="#" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-        <a href="#" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#"><i class="fa-brands fa-facebook"></i></a>
     </div>
 </header>
 
@@ -91,24 +116,34 @@
 
 <nav class="nav-menu">
     <a href="index.html" class="btn">Inicio</a>
-    <a href="galeria.html" class="btn">Galería de Fotos</a>
+    <a href="galeria.html" class="btn">Galería</a>
     <a href="videos.html" class="btn">Vídeos</a>
 </nav>
 
 <div class="container">
-    <div class="grid-galeria">
-        <div class="foto-card"><img src="foto1.jpg" alt="Foto 1"></div>
-        <div class="foto-card"><img src="foto2.jpg" alt="Foto 2"></div>
-        <div class="foto-card"><img src="foto3.jpg" alt="Foto 3"></div>
-        <div class="foto-card"><img src="foto4.jpg" alt="Foto 4"></div>
-        <div class="foto-card"><img src="foto5.jpg" alt="Foto 5"></div>
-        <div class="foto-card"><img src="foto6.jpg" alt="Foto 6"></div>
-    </div>
+    <div id="galeria-dinamica" class="grid-galeria"></div>
 </div>
 
 <footer>
     <p>© 2026 Tony Vázquez. Todos los derechos reservados.</p>
 </footer>
+
+<script>
+    // Configuración: pon aquí el número de fotos que tienes en la carpeta
+    const numeroDeFotos = 50; 
+    const contenedor = document.getElementById('galeria-dinamica');
+
+    // Bucle para crear las 50 fotos automáticamente
+    for (let i = 1; i <= numeroDeFotos; i++) {
+        const card = document.createElement('div');
+        card.className = 'foto-card';
+        
+        // Asumimos que tus fotos se llaman foto1.jpg, foto2.jpg, etc.
+        card.innerHTML = `<img src="foto${i}.jpg" alt="Tony Vázquez Foto ${i}" loading="lazy">`;
+        
+        contenedor.appendChild(card);
+    }
+</script>
 
 </body>
 </html>
