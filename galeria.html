@@ -45,8 +45,12 @@
             transition: 0.4s;
         }
         .foto-card:hover { border-color: var(--gold); transform: translateY(-5px); }
-        .foto-card img { width: 100%; height: 480px; /* Aquí es donde cambias el largo */  object-fit: cover; 
-            display: block; 
+        .foto-card img { 
+           width: 100%; 
+           height: 480px; /* Mantenemos el largo que elegiste */
+           object-fit: contain; /* ¡ESTA ES LA CLAVE! Muestra la foto entera sin recortar */
+           background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro para los huecos que deje la foto horizontal */
+           display: block; 
         }
 
         /* Visor Modal */
