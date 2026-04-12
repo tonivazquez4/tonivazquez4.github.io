@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tony Vázquez | Web Oficial</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        :root { --rock-red: #b31d1d; --gold: #d4af37; }
+        
+        body { 
+            font-family: 'Arial Black', sans-serif; 
+            margin: 0; 
+            padding: 0;
+            color: white;
+            background: url('IMG_5432.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.75);
+            z-index: -1;
+        }
+
+        /* CABECERA CON ICONOS EN EXTREMOS */
+        header { 
+            height: 20vh; 
+            display: flex; 
+            flex-direction: row; 
+            justify-content: space-between; 
+            align-items: center; 
+            text-align: center;
+            border-bottom: 2px solid var(--gold);
+            padding: 0 40px;
+        }
+
+        h1 { font-size: clamp(1.8rem, 6vw, 3.5rem); color: white; text-transform: uppercase; margin: 0; text-shadow: 2px 2px 10px black; }
+        header p { margin: 5px 0 0; letter-spacing: 2px; font-size: 0.9rem; color: var(--gold); }
+        
+        /* Contenedores de Iconos */
+        .social-icons {
+            display: flex;
+            gap: 20px;
+            width: 200px; /* Ancho fijo para equilibrar el centro */
+        }
+        
+        .icons-right { justify-content: flex-end; }
+        .icons-left { justify-content: flex-start; }
+
+        .social-icons a {
+            color: white;
+            font-size: 1.8rem;
+            transition: 0.3s;
+            text-decoration: none;
+        }
+
+        .social-icons a:hover {
+            color: var(--gold);
+            transform: scale(1.2);
+        }
+
+        /* Responsive: En móviles se apilan */
+        @media (max-width: 768px) {
+            header { flex-direction: column; height: auto; padding: 20px; gap: 15px; }
+            .social-icons { width: auto; justify-content: center; }
+        }
+
+        .container { padding: 40px 15px; max-width: 1200px; margin: auto; }
+        .section-title { text-align: center; font-size: 2.2rem; color: var(--gold); margin-bottom: 30px; text-transform: uppercase; border-bottom: 2px solid var(--gold); padding-bottom: 5px;}
+        
+        .discografia { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .album-card { background: rgba(26, 26, 26, 0.9); border-radius: 10px; overflow: hidden; transition: 0.3s; border: 1px solid #444; text-align: center; }
+        .album-card:hover { transform: scale(1.03); border-color: var(--gold); }
+        .album-img { width: 100%; height: 350px; object-fit: cover; }
+        .album-info { padding: 15px; }
+        .album-info h3 { margin: 5px 0; font-size: 1.5rem; }
+        
+        .btn { background: var(--gold); color: black; padding: 12px 20px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block; margin-top: 10px; }
+        
+        .bio { background: rgba(0, 0, 0, 0.8); padding: 60px 20px; text-align: center; border-top: 1px solid #333; }
+        .bio-content { max-width: 850px; margin: auto; font-family: 'Segoe UI', sans-serif; font-size: 1.1rem; line-height: 1.6; color: #ccc; }
+        
+        footer { padding: 30px; text-align: center; background: rgba(0,0,0,0.9); font-size: 0.8rem; border-top: 1px solid #222; }
+    </style>
+</head>
+<body>
+
+<header>
+        <div class="social-icons icons-left">
+        <a href="https://open.spotify.com/intl-es/artist/5PGFsB4rJcNb9h5gBOKnWw/discography/all" target="_blank" title="Spotify"><i class="fa-brands fa-spotify"></i></a>
+        <a href="https://music.apple.com/es/artist/tony-vazquez/1497948014" target="_blank" title="Apple Music"><i class="fa-brands fa-apple"></i></a>
+        <a href="https://music.youtube.com/channel/UCFNdFbrM3s0kznhCGpRJ3GA" target="_blank" title="YouTube Music"><i class="fa-brands fa-youtube"></i></a>
+    </div>
+
+    <div>
+        <h1>TONY VÁZQUEZ</h1>
+        <p>ROCK · ALMA · LEYENDA</p>
+    </div>
+
+    <div class="social-icons icons-right">
+        <a href="https://music.amazon.es/artists/B07NFBKRHJ/tony-vazquez" target="_blank" title="Amazon Music"><i class="fa-brands fa-amazon"></i></a>
+        <a href="https://instagram.com/tonykubo" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://www.facebook.com/tonisampler/" target="_blank" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+    </div>
+</header>
+
+<div class="container">
+    <div class="section-title">Discografía</div>
+    <div class="discografia">
+        <div class="album-card">
+            <img src="IMG_5432.jpg" alt="Alma de Rock" class="album-img">
+            <div class="album-info">
+                <p style="color: var(--rock-red); font-weight: bold; margin-bottom: 5px; font-size: 0.8rem;">ESTRENO abril 2026</p>
+                <h3>Alma de Rock</h3>
+                <p>9 temas de puro rock.</p>
+                <a href="#" class="btn">Escuchar ahora</a>
+            </div>
+        </div>
+
+        <div class="album-card">
+            <img src="Carátula delantera.jpg" alt="Sueños de papel" class="album-img">
+            <div class="album-info">
+                <h3>Sueños de papel</h3>
+                <p>La esencia más íntima y melódica del pop.</p>
+                <a href="#" class="btn">Escuchar ahora</a>
+            </div>
+        </div>
+
+        <div class="album-card">
+           <img src="La magia de la vida.jpg" alt="La magia de la vida" class="album-img">
+            <div class="album-info">
+                <h3>La magia de la vida</h3>
+                <p>Un recorrido musical por las emociones más profundas.</p>
+                <a href="#" class="btn">Escuchar ahora</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="bio">
+    <div class="bio-content">
+        <h2 style="color: var(--gold); margin-top: 0;">Trayectoria Profesional</h2>
+        <p>
+            Con una carrera forjada durante más de <strong>25 años</strong> en la mítica banda de rock <strong>Astarot</strong>, Tony Vázquez ha recorrido escenarios con el <strong>Grupo América</strong> y el <strong>Grupo Limón</strong>. Desde 2017, destaca como teclista y cantante en la <strong>Orquesta Kubo</strong>.
+        </p>
+    </div>
+</div>
+
+<footer>
+    <p>© 2026 Tony Vázquez. Todos los derechos reservados.</p>
+</footer>
+
+</body>
+</html>
