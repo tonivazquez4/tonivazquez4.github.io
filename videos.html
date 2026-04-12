@@ -5,67 +5,103 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vídeos | Tony Vázquez</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
     <style>
-        :root { --gold: #d4af37; }
-        body { font-family: 'Arial Black', sans-serif; margin: 0; padding: 0; color: white; background: url('Alma de Rock.jpg') no-repeat center center fixed; background-size: cover; }
-        body::before { content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); z-index: -1; }
+        :root { --rock-red: #b31d1d; --gold: #d4af37; }
         
-        header { height: 100px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--gold); padding: 0 40px; }
+        body { 
+            font-family: 'Arial Black', sans-serif; 
+            margin: 0; padding: 0; color: white;
+            background: url('Alma de Rock.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        body::before {
+            content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.85); z-index: -1;
+        }
+
+        header { 
+            height: 100px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            border-bottom: 2px solid var(--gold);
+            padding: 0 40px;
+        }
+
         h1 { font-size: clamp(1.5rem, 5vw, 2.5rem); color: white; text-transform: uppercase; margin: 0; }
         header p { margin: 2px 0 0; letter-spacing: 2px; font-size: 0.8rem; color: var(--gold); }
+        
         .social-icons { display: flex; gap: 15px; width: 200px; }
-        .social-icons a { color: white; font-size: 1.4rem; text-decoration: none; }
+        .icons-right { justify-content: flex-end; }
+        .icons-left { justify-content: flex-start; }
+        .social-icons a { color: white; font-size: 1.4rem; text-decoration: none; transition: 0.3s; }
 
         .page-title { text-align: center; margin-top: 30px; }
-        .page-title h2 { color: var(--gold); text-transform: uppercase; font-size: 2.2rem; border-bottom: 2px solid var(--gold); display: inline-block; padding-bottom: 5px; }
+        .page-title h2 { color: var(--gold); text-transform: uppercase; font-size: 2.2rem; border-bottom: 2px solid var(--gold); display: inline-block; padding-bottom: 5px; margin: 0; }
         
         .nav-menu { text-align: center; margin: 20px 0 40px; }
         .btn { background: var(--gold); color: black; padding: 8px 20px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block; margin: 5px; font-size: 0.9rem; }
 
-        .container { padding: 0 15px 40px; max-width: 1000px; margin: auto; }
+        /* CONTENEDOR PRINCIPAL */
+        .container { 
+            padding: 0 15px 60px; 
+            max-width: 900px; 
+            margin: auto; 
+            display: flex;
+            flex-direction: column; /* Esto obliga a que los vídeos vayan uno DEBAJO de otro */
+            gap: 40px; /* Esto crea un hueco de 40px entre vídeos automáticamente */
+        }
         
-        /* CONTENEDOR DE VÍDEO REPSONSIVE */
-      /* ESTO SEPARA LOS VÍDEOS PARA QUE NO SE AMONTONEN */
-.video-wrapper { 
-    position: relative; 
-    padding-bottom: 56.25%; /* Esto mantiene el formato 16:9 */
-    height: 0; 
-    overflow: hidden; 
-    margin-bottom: 50px; /* <--- ESTO ES LO QUE DA EL ESPACIO ENTRE ELLOS */
-    border: 2px solid var(--gold); 
-    border-radius: 10px; 
-    background: black; /* Fondo negro mientras carga */
-}
+        /* CADA VÍDEO */
+        .video-wrapper { 
+            position: relative; 
+            padding-bottom: 56.25%; /* Formato 16:9 */
+            height: 0; 
+            overflow: hidden; 
+            border: 2px solid var(--gold); 
+            border-radius: 10px; 
+            background: black;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
 
-.video-wrapper iframe { 
-    position: absolute; 
-    top: 0; 
-    left: 0; 
-    width: 100%; 
-    height: 100%; 
-}
+        .video-wrapper iframe { 
+            position: absolute; 
+            top: 0; left: 0; width: 100%; height: 100%; 
+        }
 
         footer { padding: 20px; text-align: center; background: rgba(0,0,0,0.9); font-size: 0.8rem; border-top: 1px solid #222; }
+
+        @media (max-width: 768px) {
+            header { flex-direction: column; height: auto; padding: 20px; gap: 10px; }
+            .social-icons { width: auto; justify-content: center; }
+        }
     </style>
 </head>
 <body>
 
 <header>
-    <div class="social-icons">
-        <a href="#"><i class="fa-brands fa-spotify"></i></a>
-        <a href="#"><i class="fa-brands fa-youtube"></i></a>
+    <div class="social-icons icons-left">
+        <a href="https://open.spotify.com/intl-es/artist/5PGFsB4rJcNb9h5gBOKnWw/discography/all" target="_blank"><i class="fa-brands fa-spotify"></i></a>
+        <a href="#" target="_blank"><i class="fa-brands fa-apple"></i></a>
+        <a href="#" target="_blank"><i class="fa-brands fa-youtube"></i></a>
     </div>
+
     <div>
         <h1>TONY VÁZQUEZ</h1>
         <p>ROCK · ALMA · LEYENDA</p>
     </div>
-    <div><h1><p>VÍDEOS</p></div>
-    <div class="social-icons" style="justify-content: flex-end;">
-        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+
+    <div class="social-icons icons-right">
+        <a href="#" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" target="_blank"><i class="fa-brands fa-facebook"></i></a>
     </div>
 </header>
 
-<div class="page-title"><h2>Actuaciones</h2></div>
+<div class="page-title">
+    <h2>Actuaciones</h2>
+</div>
 
 <nav class="nav-menu">
     <a href="index.html" class="btn">Inicio</a>
@@ -74,34 +110,24 @@
 </nav>
 
 <div class="container">
-    <div class="video-wrapper">
-        <iframe src="https://www.youtube.com/embed/jbRyfHEIujA?si=p69x2wNJ8HhjMI9i" frameborder="0" allowfullscreen></iframe><div class="container">
-    <div class="video-wrapper">
-        <iframe src="https://www.youtube.com/embed/8-qVdj1VhF0?si=vTxg3akw0HKBXFeC" frameborder="0" allowfullscreen></iframe>
     
     <div class="video-wrapper">
-        <iframe src="https://www.youtube.com/embed/QTxNLOtnekQ?si=lx5TL7Hn4NzCew3O" frameborder="0" allowfullscreen></iframe>
-   
-    <div class="video-wrapper">
-        <iframe src="https://www.youtube.com/embed/T9QqKk1GckI?si=Jo74AVjUvVVL2ZYj" frameborder="0" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/Q9N9M4_8m-A" frameborder="0" allowfullscreen></iframe>
+    </div>
 
     <div class="video-wrapper">
-        <iframe src="https://https://www.youtube.com/embed/eZm8CZC_WjI?si=-UihFEn4IIbT48XH" frameborder="0" allowfullscreen></iframe>
-        <div class="container">
+        <iframe src="https://www.youtube.com/embed/S2pP3h_P0p8" frameborder="0" allowfullscreen></iframe>
+    </div>
+
     <div class="video-wrapper">
-        <iframe src="https://www.youtube.com/embed/4qo76tgNnbI?si=Yz1MIxbKhF5mHqJA" frameborder="0" allowfullscreen></iframe>
-    
-    <div class="video-wrapper">
-        <iframe src="https://www.youtube.com/embed/EjwgkDtwJNI?si=TXGIW8-6frGZ7BX_" frameborder="0" allowfullscreen></iframe>
-    
-    <div class="video-wrapper">
-        <iframe src="https://www.youtube.com/embed/QWkJ0TpyNuY?si=GEoSUxy-0cnIlTqV" frameborder="0" allowfullscreen></iframe>
-    <div class="video-wrapper">
-        <iframe src="https://www.youtube.com/embed/5t_0REr_g7o?si=-JGfs3jQytixNe9n" frameborder="0" allowfullscreen></iframe>
-       
+        <iframe src="https://www.youtube.com/embed/9XInD7_E6_Y" frameborder="0" allowfullscreen></iframe>
+    </div>
+
 </div>
 
-<footer><p>© 2026 Tony Vázquez. Todos los derechos reservados.</p></footer>
+<footer>
+    <p>© 2026 Tony Vázquez. Todos los derechos reservados.</p>
+</footer>
 
 </body>
 </html>
