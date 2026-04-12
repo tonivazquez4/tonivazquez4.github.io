@@ -121,18 +121,32 @@
 </footer>
 
 <script>
-    const totalFotos = 50;
+      const totalFotos = 50;
     const contenedor = document.getElementById('galeria-fotos');
+    const modal = document.getElementById('modal-galeria');
+    const imgAmpliada = document.getElementById('imagen-ampliada');
 
+    // Bucle para generar las fotos
     for (let i = 1; i <= totalFotos; i++) {
         const div = document.createElement('div');
         div.className = 'foto-card';
         
-        // El secreto está aquí: encodeURIComponent maneja el espacio entre "foto" y el número
-        const nombreArchivo = `foto ${i}.jpg`;
+        // CORRECCIÓN AQUÍ: "Foto" con F mayúscula y espacio
+        const nombreArchivo = `Foto ${i}.jpg`; 
         
-        div.innerHTML = `<img src="${nombreArchivo}" alt="Tony Vázquez - Foto ${i}">`;
+        // Usamos encodeURI por seguridad con el espacio
+        div.innerHTML = `<img src="${encodeURI(nombreArchivo)}" alt="Foto ${i}" onclick="ampliar(this)">`;
+        
         contenedor.appendChild(div);
+    }
+
+    function ampliar(elemento) {
+        modal.style.display = "block";
+        imgAmpliada.src = elemento.src;
+    }
+
+    modal.onclick = function() {
+        modal.style.display = "none";
     }
 </script>
 
