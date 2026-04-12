@@ -5,70 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vídeos | Tony Vázquez</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
     <style>
         :root { --gold: #d4af37; }
+        body { font-family: 'Arial Black', sans-serif; margin: 0; padding: 0; color: white; background: #000 url('Alma de Rock.jpg') no-repeat center center fixed; background-size: cover; }
+        body::before { content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); z-index: -1; }
         
-        body { 
-            font-family: 'Arial Black', sans-serif; 
-            margin: 0; padding: 0; color: white;
-            background: url('Alma de Rock.jpg') no-repeat center center fixed;
-            background-size: cover;
-        }
-
-        body::before {
-            content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.85); z-index: -1;
-        }
-
-        /* HEADER ÚNICO Y LIMPIO */
-        header { 
-            display: grid; 
-            grid-template-columns: 200px 1fr 200px; 
-            align-items: center; 
-            border-bottom: 2px solid var(--gold);
-            padding: 15px 40px;
-            background: rgba(0,0,0,0.6);
-        }
-
+        header { display: grid; grid-template-columns: 200px 1fr 200px; align-items: center; border-bottom: 2px solid var(--gold); padding: 15px 40px; background: rgba(0,0,0,0.6); }
         .social-icons a { color: white; font-size: 1.4rem; text-decoration: none; margin: 0 7px; transition: 0.3s; }
-        .social-icons a:hover { color: var(--gold); }
-
         .header-center { text-align: center; }
         .header-center h1 { font-size: clamp(1.5rem, 4vw, 2.5rem); margin: 0; text-transform: uppercase; }
-        .header-center p { margin: 5px 0 0 0; color: var(--gold); letter-spacing: 4px; font-weight: bold; font-size: 0.8rem; text-transform: uppercase; }
-        
+        .header-center p { margin: 5px 0 0 0; color: var(--gold); letter-spacing: 4px; font-weight: bold; font-size: 0.8rem; }
+
         .nav-menu { text-align: center; margin: 30px 0; }
-        .btn { background: var(--gold); color: black; padding: 10px 25px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block; margin: 5px; transition: 0.3s; }
-        .btn:hover { background: white; transform: scale(1.05); }
+        .btn { background: var(--gold); color: black; padding: 10px 25px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block; margin: 5px; }
 
-        /* CONTENEDOR DE VÍDEOS */
-        .container { 
-            padding: 0 15px 60px; 
-            max-width: 900px; 
-            margin: auto; 
-            display: flex;
-            flex-direction: column;
-            gap: 40px; 
-        }
-        
-        .video-wrapper { 
-            position: relative; 
-            padding-bottom: 56.25%; 
-            height: 0; 
-            overflow: hidden; 
-            border: 2px solid var(--gold); 
-            border-radius: 10px; 
-            background: black;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-
-        .video-wrapper iframe { 
-            position: absolute; 
-            top: 0; left: 0; width: 100%; height: 100%; 
-        }
-
-        footer { padding: 30px; text-align: center; background: rgba(0,0,0,0.9); border-top: 1px solid #222; }
+        .container { padding: 0 15px 60px; max-width: 900px; margin: auto; display: flex; flex-direction: column; gap: 40px; }
+        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border: 2px solid var(--gold); border-radius: 10px; background: black; }
+        .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
         @media (max-width: 900px) {
             header { grid-template-columns: 1fr; padding: 20px; }
@@ -78,24 +31,32 @@
     </style>
 </head>
 <body>
-
 <header>
     <div class="social-icons" style="display: flex; justify-content: flex-start;">
-        <a href="https://open.spotify.com/intl-es/artist/5PGFsB4rJcNb9h5gBOKnWw/discography/all" target="_blank"><i class="fa-brands fa-spotify"></i></a>
-        <a href="https://music.apple.com/es/artist/tony-vazquez/1497948014" target="_blank"><i class="fa-brands fa-apple"></i></a>
-        <a href="https://music.youtube.com/channel/UCFNdFbrM3s0kznhCGpRJ3GA" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+        <a href="https://open.spotify.com" target="_blank"><i class="fa-brands fa-spotify"></i></a>
+        <a href="https://music.apple.com" target="_blank"><i class="fa-brands fa-apple"></i></a>
+        <a href="https://youtube.com" target="_blank"><i class="fa-brands fa-youtube"></i></a>
     </div>
-
     <div class="header-center">
         <h1>TONY VÁZQUEZ</h1>
         <p>ROCK · ALMA · LEYENDA</p>
     </div>
-
     <div class="social-icons" style="display: flex; justify-content: flex-end;">
-        <a href="https://music.amazon.es/artists/B07NFBKRHJ/tony-vazquez" target="_blank"><i class="fa-brands fa-amazon"></i></a>
+        <a href="https://amazon.es" target="_blank"><i class="fa-brands fa-amazon"></i></a>
         <a href="https://instagram.com/tonykubo" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-        <a href="https://www.facebook.com/tonisampler/" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+        <a href="https://facebook.com/tonisampler" target="_blank"><i class="fa-brands fa-facebook"></i></a>
     </div>
 </header>
-
 <nav class="nav-menu">
+    <a href="index.html" class="btn">Inicio</a>
+    <a href="galeria.html" class="btn">Galería</a>
+    <a href="videos.html" class="btn">Vídeos</a>
+</nav>
+<div class="container">
+    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/jbRyfHEIujA" frameborder="0" allowfullscreen></iframe></div>
+    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/8-qVdj1VhF0" frameborder="0" allowfullscreen></iframe></div>
+    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/QTxNLOtnekQ" frameborder="0" allowfullscreen></iframe></div>
+    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/T9QqKk1GckI" frameborder="0" allowfullscreen></iframe></div>
+</div>
+</body>
+</html>
