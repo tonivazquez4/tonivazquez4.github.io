@@ -45,61 +45,61 @@
         .foto-card { 
             background: rgba(0,0,0,0.5); border: 1px solid #444; 
             border-radius: 10px; overflow: hidden; transition: 0.4s;
+            cursor: zoom-in;
         }
 
         .foto-card:hover { border-color: var(--gold); transform: translateY(-5px); }
 
         .foto-card img { 
             width: 100%; height: 320px; 
-            object-fit: cover; /* Esto hace que todas las fotos encajen perfectas */
+            object-fit: cover; 
             display: block; 
-            loading: lazy; /* Mejora la velocidad al ser 50 fotos */
         }
 
         footer { padding: 30px; text-align: center; background: rgba(0,0,0,0.9); border-top: 1px solid #222; }
-        /* Diseño del visor oscuro */
-.modal {
-    display: none; 
-    position: fixed;
-    z-index: 1000;
-    padding-top: 50px;
-    left: 0; top: 0;
-    width: 100%; height: 100%;
-    background-color: rgba(0,0,0,0.95);
-    cursor: zoom-out;
-}
 
-.contenido-modal {
-    margin: auto;
-    display: block;
-    max-width: 90%;
-    max-height: 85vh;
-    border: 2px solid var(--gold);
-    animation: zoom 0.3s;
-}
+        /* Estilos del Visor (Modal) */
+        .modal {
+            display: none; 
+            position: fixed;
+            z-index: 1000;
+            padding-top: 50px;
+            left: 0; top: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.95);
+            cursor: zoom-out;
+        }
 
-@keyframes zoom {
-    from {transform: scale(0.7); opacity: 0;} 
-    to {transform: scale(1); opacity: 1;}
-}
+        .contenido-modal {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 85vh;
+            border: 2px solid var(--gold);
+            animation: zoom 0.3s;
+        }
 
-.cerrar-modal {
-    position: absolute;
-    top: 20px;
-    right: 35px;
-    color: white;
-    font-size: 50px;
-    font-weight: bold;
-    cursor: pointer;
-}
+        @keyframes zoom {
+            from {transform: scale(0.7); opacity: 0;} 
+            to {transform: scale(1); opacity: 1;}
+        }
 
-.foto-card img { cursor: zoom-in; }
+        .cerrar-modal {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: white;
+            font-size: 50px;
+            font-weight: bold;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
 
 <header>
-    <div style="width: 200px;"></div> <div style="text-align: center;">
+    <div style="width: 200px;"></div> 
+    <div style="text-align: center;">
         <h1>TONY VÁZQUEZ</h1>
         <p>ROCK · ALMA · LEYENDA</p>
     </div>
@@ -120,22 +120,25 @@
     <p>© 2026 Tony Vázquez. Todos los derechos reservados.</p>
 </footer>
 
+<div id="modal-galeria" class="modal">
+    <span class="cerrar-modal">&times;</span>
+    <img class="contenido-modal" id="imagen-ampliada">
+</div>
+
 <script>
-      const totalFotos = 50;
+    const totalFotos = 50;
     const contenedor = document.getElementById('galeria-fotos');
     const modal = document.getElementById('modal-galeria');
     const imgAmpliada = document.getElementById('imagen-ampliada');
 
-    // Bucle para generar las fotos
     for (let i = 1; i <= totalFotos; i++) {
         const div = document.createElement('div');
         div.className = 'foto-card';
         
-        // CORRECCIÓN AQUÍ: "Foto" con F mayúscula y espacio
+        // Aseguramos "Foto" con F mayúscula y espacio
         const nombreArchivo = `Foto ${i}.jpg`; 
         
-        // Usamos encodeURI por seguridad con el espacio
-        div.innerHTML = `<img src="${encodeURI(nombreArchivo)}" alt="Foto ${i}" onclick="ampliar(this)">`;
+        div.innerHTML = `<img src="${encodeURI(nombreArchivo)}" alt="Foto ${i}" onclick="ampliar(this)" loading="lazy">`;
         
         contenedor.appendChild(div);
     }
@@ -150,9 +153,5 @@
     }
 </script>
 
-    <div id="modal-galeria" class="modal">
-    <span class="cerrar-modal">&times;</span>
-    <img class="contenido-modal" id="imagen-ampliada">
-</div>
 </body>
 </html>
