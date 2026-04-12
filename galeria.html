@@ -5,59 +5,66 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Galería | Tony Vázquez</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
     <style>
         :root { --gold: #d4af37; }
-        
         body { 
             font-family: 'Arial Black', sans-serif; 
-            margin: 0; padding: 0; color: white;
-            background: url('Alma de Rock.jpg') no-repeat center center fixed;
-            background-size: cover;
+            margin: 0; padding: 0; color: white; 
+            background: #000 url('Alma de Rock.jpg') no-repeat center center fixed; 
+            background-size: cover; 
         }
-
-        body::before {
-            content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.85); z-index: -1;
+        body::before { 
+            content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: rgba(0, 0, 0, 0.85); z-index: -1; 
         }
-
         header { 
-            display: flex; justify-content: space-between; align-items: center; 
-            border-bottom: 2px solid var(--gold); padding: 15px 40px;
-            background: rgba(0,0,0,0.6);
+            display: flex; justify-content: center; align-items: center; 
+            border-bottom: 2px solid var(--gold); padding: 20px; 
+            background: rgba(0,0,0,0.6); text-align: center; 
         }
-
-        h1 { font-size: clamp(1.5rem, 5vw, 2.5rem); margin: 0; color: white; }
-        header p { margin: 0; color: var(--gold); letter-spacing: 2px; font-size: 0.8rem; }
+        h1 { font-size: 2.5rem; margin: 0; color: white; text-transform: uppercase; }
         
         .nav-menu { text-align: center; margin: 30px 0; }
-        .btn { background: var(--gold); color: black; padding: 10px 25px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block; margin: 5px; transition: 0.3s; }
+        .btn { 
+            background: var(--gold); color: black; padding: 10px 20px; 
+            text-decoration: none; border-radius: 5px; font-weight: bold; 
+            display: inline-block; margin: 5px; transition: 0.3s;
+        }
         .btn:hover { background: white; transform: scale(1.05); }
 
         .container { padding: 0 20px 60px; max-width: 1400px; margin: auto; }
-        .grid-galeria { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
-        .foto-card { background: rgba(0,0,0,0.5); border: 1px solid #444; border-radius: 10px; overflow: hidden; transition: 0.4s; cursor: zoom-in; }
+        .grid-galeria { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
+            gap: 20px; 
+        }
+        .foto-card { 
+            background: rgba(0,0,0,0.5); border: 1px solid #444; 
+            border-radius: 10px; overflow: hidden; cursor: zoom-in; 
+            transition: 0.4s;
+        }
         .foto-card:hover { border-color: var(--gold); transform: translateY(-5px); }
         .foto-card img { width: 100%; height: 320px; object-fit: cover; display: block; }
 
-        footer { padding: 30px; text-align: center; background: rgba(0,0,0,0.9); border-top: 1px solid #222; }
-
         /* Visor Modal */
-        .modal { display: none; position: fixed; z-index: 1000; padding-top: 50px; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.95); cursor: zoom-out; }
-        .contenido-modal { margin: auto; display: block; max-width: 90%; max-height: 85vh; border: 2px solid var(--gold); animation: zoom 0.3s; }
-        @keyframes zoom { from {transform: scale(0.7); opacity: 0;} to {transform: scale(1); opacity: 1;} }
-        .cerrar-modal { position: absolute; top: 20px; right: 35px; color: white; font-size: 50px; font-weight: bold; cursor: pointer; }
+        .modal { 
+            display: none; position: fixed; z-index: 1000; 
+            padding-top: 50px; left: 0; top: 0; width: 100%; height: 100%; 
+            background: rgba(0,0,0,0.95); cursor: zoom-out;
+        }
+        .contenido-modal { 
+            margin: auto; display: block; max-width: 90%; 
+            max-height: 85vh; border: 2px solid var(--gold); 
+        }
     </style>
 </head>
 <body>
 
 <header>
-    <div style="width: 200px;"></div> 
-    <div style="text-align: center;">
+    <div>
         <h1>TONY VÁZQUEZ</h1>
-        <p>ROCK · ALMA · LEYENDA</p>
+        <p style="color:var(--gold); margin:0; letter-spacing:2px; font-weight: bold;">ROCK · ALMA · LEYENDA</p>
     </div>
-    <div style="width: 200px;"></div>
 </header>
 
 <nav class="nav-menu">
@@ -70,36 +77,29 @@
     <div id="galeria-fotos" class="grid-galeria"></div>
 </div>
 
-<footer>
-    <p>© 2026 Tony Vázquez. Todos los derechos reservados.</p>
-</footer>
-
-<div id="modal-galeria" class="modal">
-    <span class="cerrar-modal">&times;</span>
+<div id="modal-galeria" class="modal" onclick="this.style.display='none'">
     <img class="contenido-modal" id="imagen-ampliada">
 </div>
 
 <script>
     const totalFotos = 50;
     const contenedor = document.getElementById('galeria-fotos');
-    const modal = document.getElementById('modal-galeria');
-    const imgAmpliada = document.getElementById('imagen-ampliada');
 
     for (let i = 1; i <= totalFotos; i++) {
         const div = document.createElement('div');
         div.className = 'foto-card';
-        const nombreArchivo = `Foto ${i}.jpg`; 
-        div.innerHTML = `<img src="${encodeURI(nombreArchivo)}" alt="Foto ${i}" onclick="ampliar(this)" loading="lazy">`;
+        
+        // CORRECCIÓN DE RUTA: Entramos en la carpeta "Fotos"
+        // Asegúrate de que la carpeta en GitHub se llame "Fotos" (con F mayúscula)
+        const nombreRuta = "Fotos/Foto " + i + ".jpg";
+        
+        div.innerHTML = '<img src="' + encodeURI(nombreRuta) + '" alt="Tony Vázquez ' + i + '" loading="lazy" onclick="abrirModal(this.src); event.stopPropagation();">';
         contenedor.appendChild(div);
     }
 
-    function ampliar(elemento) {
-        modal.style.display = "block";
-        imgAmpliada.src = elemento.src;
-    }
-
-    modal.onclick = function() {
-        modal.style.display = "none";
+    function abrirModal(src) {
+        document.getElementById('imagen-ampliada').src = src;
+        document.getElementById('modal-galeria').style.display = 'block';
     }
 </script>
 
