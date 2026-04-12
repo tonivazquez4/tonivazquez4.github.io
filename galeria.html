@@ -37,6 +37,30 @@
 
         footer { padding: 30px; text-align: center; background: rgba(0,0,0,0.9); border-top: 1px solid #222; }
 
+        /* ESTILOS DEL BOTÓN DE SUBIR */
+        #btnSubir {
+            display: none; /* Oculto por defecto, sale con javascript */
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 99;
+            font-size: 1.5rem;
+            border: none;
+            outline: none;
+            background-color: var(--gold);
+            color: black;
+            cursor: pointer;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            transition: 0.3s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #btnSubir:hover { background-color: white; transform: scale(1.1); }
+
         @media (max-width: 900px) {
             header { grid-template-columns: 1fr; padding: 20px; }
             .social-icons { justify-content: center !important; margin: 10px 0; order: 2; }
@@ -45,6 +69,7 @@
             /* Ajuste de altura a 250px para móviles */
             .foto-card img { height: 250px; }
             .seccion-comentarios { margin: 20px 15px 60px; }
+            #btnSubir { bottom: 20px; right: 20px; width: 45px; height: 45px; font-size: 1.2rem; }
         }
     </style>
 </head>
@@ -93,7 +118,12 @@
     <img class="contenido-modal" id="imagen-ampliada">
 </div>
 
+<button id="btnSubir" onclick="subirArriba()" title="Volver arriba">
+    <i class="fa-solid fa-arrow-up"></i>
+</button>
+
 <script>
+    // GENERADOR DE FOTOS
     const totalFotos = 50;
     const contenedor = document.getElementById('galeria-fotos');
     for (let i = 1; i <= totalFotos; i++) {
@@ -103,9 +133,31 @@
         div.innerHTML = `<img src="${encodeURI(ruta)}" loading="lazy" onclick="abrirModal(this.src); event.stopPropagation();">`;
         contenedor.appendChild(div);
     }
+
+    // VISOR DE IMÁGENES
     function abrirModal(src) {
         document.getElementById('imagen-ampliada').src = src;
         document.getElementById('modal-galeria').style.display = 'block';
+    }
+
+    // LÓGICA DEL BOTÓN DE SUBIR
+    let miBoton = document.getElementById("btnSubir");
+
+    // Cuando el usuario hace scroll hacia abajo 300px, mostramos el botón
+    window.onscroll = function() {
+        if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+            miBoton.style.display = "flex";
+        } else {
+            miBoton.style.display = "none";
+        }
+    };
+
+    // Cuando el usuario hace clic, subimos suavemente al tope
+    function subirArriba() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth' /* Esto hace que suba con un efecto de deslizamiento elegante */
+        });
     }
 </script>
 
