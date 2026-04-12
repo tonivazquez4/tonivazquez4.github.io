@@ -35,9 +35,9 @@
         .container { padding: 0 20px 60px; max-width: 1400px; margin: auto; }
         .grid-galeria { 
             display: grid; 
-               /* Bajamos de 280px a 220px para que quepan 5 fotos por fila en pantallas grandes */
-          grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); 
-           gap: 15px; /* Reducimos un poco el espacio entre fotos para que respiren mejor */
+            /* Esto le dice: "Haz exactamente 5 columnas iguales" */
+            grid-template-columns: repeat(5, 1fr); 
+            gap: 15px; 
         }
         .foto-card { 
             background: rgba(0,0,0,0.5); border: 1px solid #444; 
