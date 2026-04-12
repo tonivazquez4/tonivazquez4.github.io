@@ -18,58 +18,83 @@
         .header-center p { margin: 5px 0 0 0; color: var(--gold); letter-spacing: 3px; font-weight: bold; font-size: 0.8rem; }
 
         .nav-menu { text-align: center; margin: 30px 0; }
-        .btn { background: var(--gold); color: black; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block; margin: 5px; }
+        .btn { background: var(--gold); color: black; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block; margin: 5px; transition: 0.3s; }
+        .btn:hover { background: white; transform: scale(1.05); }
 
-        .container { padding: 0 20px 60px; max-width: 1400px; margin: auto; }
+        .container { padding: 0 20px 20px; max-width: 1400px; margin: auto; }
         .grid-galeria { display: grid; grid-template-columns: repeat(5, 1fr); gap: 15px; }
         .foto-card { background: rgba(0,0,0,0.5); border: 1px solid #444; border-radius: 10px; overflow: hidden; cursor: zoom-in; }
-        .foto-card img { width: 100%; height: 300px; /* Reducimos la altura a 300px para que el recuadro no sea tan largo */
-         object-fit: contain; background-color: #000; display: block; 
-       }
+        
+        /* Ajuste de altura a 300px para ordenador */
+        .foto-card img { width: 100%; height: 300px; object-fit: contain; background-color: #000; display: block; }
+
+        /* Estilos del cajón de comentarios */
+        .seccion-comentarios { max-width: 900px; margin: 40px auto 60px; padding: 20px; background: rgba(255, 255, 255, 0.95); border-radius: 10px; border: 2px solid var(--gold); }
+        .seccion-comentarios h3 { color: black; text-align: center; margin-top: 0; font-size: 1.5rem; text-transform: uppercase; border-bottom: 2px solid #ccc; padding-bottom: 10px; }
 
         .modal { display: none; position: fixed; z-index: 1000; padding-top: 50px; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); cursor: zoom-out; }
         .contenido-modal { margin: auto; display: block; max-width: 90%; max-height: 85vh; border: 2px solid var(--gold); }
+
+        footer { padding: 30px; text-align: center; background: rgba(0,0,0,0.9); border-top: 1px solid #222; }
 
         @media (max-width: 900px) {
             header { grid-template-columns: 1fr; padding: 20px; }
             .social-icons { justify-content: center !important; margin: 10px 0; order: 2; }
             .header-center { order: 1; }
             .grid-galeria { grid-template-columns: repeat(2, 1fr); }
-            /* AQUÍ ESTÁ EL AJUSTE PARA MÓVILES */
+            /* Ajuste de altura a 250px para móviles */
             .foto-card img { height: 250px; }
+            .seccion-comentarios { margin: 20px 15px 60px; }
         }
     </style>
 </head>
 <body>
+
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_ES/sdk.js#xfbml=1&version=v19.0" nonce="rockrock"></script>
+
 <header>
     <div class="social-icons" style="display: flex; justify-content: flex-start;">
-        <a href="https://open.spotify.com" target="_blank"><i class="fa-brands fa-spotify"></i></a>
-        <a href="https://music.apple.com" target="_blank"><i class="fa-brands fa-apple"></i></a>
-        <a href="https://youtube.com" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+        <a href="https://open.spotify.com/intl-es/artist/5PGFsB4rJcNb9h5gBOKnWw/discography/all" target="_blank"><i class="fa-brands fa-spotify"></i></a>
+        <a href="https://music.apple.com/es/artist/tony-vazquez/1497948014" target="_blank"><i class="fa-brands fa-apple"></i></a>
+        <a href="https://music.youtube.com/channel/UCFNdFbrM3s0kznhCGpRJ3GA" target="_blank"><i class="fa-brands fa-youtube"></i></a>
     </div>
     <div class="header-center">
         <h1>TONY VÁZQUEZ</h1>
         <p>ROCK · ALMA · LEYENDA</p>
     </div>
     <div class="social-icons" style="display: flex; justify-content: flex-end;">
-        <a href="https://amazon.es" target="_blank"><i class="fa-brands fa-amazon"></i></a>
+        <a href="https://music.amazon.es/artists/B07NFBKRHJ/tony-vazquez" target="_blank"><i class="fa-brands fa-amazon"></i></a>
         <a href="https://instagram.com/tonykubo" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-        <a href="https://facebook.com/tonisampler" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+        <a href="https://www.facebook.com/tonisampler/" target="_blank"><i class="fa-brands fa-facebook"></i></a>
     </div>
 </header>
+
 <nav class="nav-menu">
     <a href="index.html" class="btn">Inicio</a>
     <a href="galeria.html" class="btn">Galería</a>
     <a href="videos.html" class="btn">Vídeos</a>
 </nav>
+
 <div class="container">
     <div id="galeria-fotos" class="grid-galeria"></div>
 </div>
+
+<div class="seccion-comentarios">
+    <h3>Deja tu comentario sobre las fotos 📸</h3>
+    <div class="fb-comments" data-href="https://tonivazquez4.github.io/galeria.html" data-width="100%" data-numposts="5"></div>
+</div>
+
+<footer>
+    <p>© 2026 Tony Vázquez. Todos los derechos reservados.</p>
+</footer>
+
 <div id="modal-galeria" class="modal" onclick="this.style.display='none'">
     <img class="contenido-modal" id="imagen-ampliada">
 </div>
+
 <script>
-    const totalFotos = 75;
+    const totalFotos = 50;
     const contenedor = document.getElementById('galeria-fotos');
     for (let i = 1; i <= totalFotos; i++) {
         const div = document.createElement('div');
@@ -83,5 +108,6 @@
         document.getElementById('modal-galeria').style.display = 'block';
     }
 </script>
+
 </body>
 </html>
