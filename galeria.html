@@ -57,6 +57,43 @@
         }
 
         footer { padding: 30px; text-align: center; background: rgba(0,0,0,0.9); border-top: 1px solid #222; }
+        /* Diseño del visor oscuro */
+.modal {
+    display: none; 
+    position: fixed;
+    z-index: 1000;
+    padding-top: 50px;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.95);
+    cursor: zoom-out;
+}
+
+.contenido-modal {
+    margin: auto;
+    display: block;
+    max-width: 90%;
+    max-height: 85vh;
+    border: 2px solid var(--gold);
+    animation: zoom 0.3s;
+}
+
+@keyframes zoom {
+    from {transform: scale(0.7); opacity: 0;} 
+    to {transform: scale(1); opacity: 1;}
+}
+
+.cerrar-modal {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: white;
+    font-size: 50px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.foto-card img { cursor: zoom-in; }
     </style>
 </head>
 <body>
