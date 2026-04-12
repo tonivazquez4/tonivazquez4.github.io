@@ -12,65 +12,76 @@
         
         header { display: grid; grid-template-columns: 200px 1fr 200px; align-items: center; border-bottom: 2px solid var(--gold); padding: 15px 40px; background: rgba(0,0,0,0.6); }
         .social-icons a { color: white; font-size: 1.4rem; text-decoration: none; margin: 0 7px; transition: 0.3s; }
+        .social-icons a:hover { color: var(--gold); }
         .header-center { text-align: center; }
         .header-center h1 { font-size: clamp(1.5rem, 4vw, 2.5rem); margin: 0; text-transform: uppercase; }
         .header-center p { margin: 5px 0 0 0; color: var(--gold); letter-spacing: 4px; font-weight: bold; font-size: 0.8rem; }
 
         .nav-menu { text-align: center; margin: 30px 0; }
-        .btn { background: var(--gold); color: black; padding: 10px 25px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block; margin: 5px; }
+        .btn { background: var(--gold); color: black; padding: 10px 25px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block; margin: 5px; transition: 0.3s; }
+        .btn:hover { background: white; transform: scale(1.05); }
 
-        .container { padding: 0 15px 60px; max-width: 900px; margin: auto; display: flex; flex-direction: column; gap: 40px; }
-        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border: 2px solid var(--gold); border-radius: 10px; background: black; }
+        .container { padding: 0 15px 20px; max-width: 900px; margin: auto; display: flex; flex-direction: column; gap: 40px; }
+        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border: 2px solid var(--gold); border-radius: 10px; background: black; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+
+        /* Estilos del cajón de comentarios */
+        .seccion-comentarios { max-width: 900px; margin: 20px auto 60px; padding: 20px; background: rgba(255, 255, 255, 0.95); border-radius: 10px; border: 2px solid var(--gold); }
+        .seccion-comentarios h3 { color: black; text-align: center; margin-top: 0; font-size: 1.5rem; text-transform: uppercase; border-bottom: 2px solid #ccc; padding-bottom: 10px; }
+
+        footer { padding: 30px; text-align: center; background: rgba(0,0,0,0.9); border-top: 1px solid #222; }
 
         @media (max-width: 900px) {
             header { grid-template-columns: 1fr; padding: 20px; }
             .social-icons { justify-content: center !important; margin: 10px 0; order: 2; }
             .header-center { order: 1; }
+            .seccion-comentarios { margin: 20px 15px 60px; }
         }
     </style>
 </head>
 <body>
+
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_ES/sdk.js#xfbml=1&version=v19.0" nonce="rockrock"></script>
+
 <header>
     <div class="social-icons" style="display: flex; justify-content: flex-start;">
-        <a href="https://open.spotify.com" target="_blank"><i class="fa-brands fa-spotify"></i></a>
-        <a href="https://music.apple.com" target="_blank"><i class="fa-brands fa-apple"></i></a>
-        <a href="https://youtube.com" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+        <a href="https://open.spotify.com/intl-es/artist/5PGFsB4rJcNb9h5gBOKnWw/discography/all" target="_blank"><i class="fa-brands fa-spotify"></i></a>
+        <a href="https://music.apple.com/es/artist/tony-vazquez/1497948014" target="_blank"><i class="fa-brands fa-apple"></i></a>
+        <a href="https://music.youtube.com/channel/UCFNdFbrM3s0kznhCGpRJ3GA" target="_blank"><i class="fa-brands fa-youtube"></i></a>
     </div>
     <div class="header-center">
         <h1>TONY VÁZQUEZ</h1>
         <p>ROCK · ALMA · LEYENDA</p>
     </div>
     <div class="social-icons" style="display: flex; justify-content: flex-end;">
-        <a href="https://amazon.es" target="_blank"><i class="fa-brands fa-amazon"></i></a>
+        <a href="https://music.amazon.es/artists/B07NFBKRHJ/tony-vazquez" target="_blank"><i class="fa-brands fa-amazon"></i></a>
         <a href="https://instagram.com/tonykubo" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-        <a href="https://facebook.com/tonisampler" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+        <a href="https://www.facebook.com/tonisampler/" target="_blank"><i class="fa-brands fa-facebook"></i></a>
     </div>
 </header>
+
 <nav class="nav-menu">
     <a href="index.html" class="btn">Inicio</a>
     <a href="galeria.html" class="btn">Galería</a>
     <a href="videos.html" class="btn">Vídeos</a>
 </nav>
+
 <div class="container">
     <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/jbRyfHEIujA" frameborder="0" allowfullscreen></iframe></div>
     <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/8-qVdj1VhF0" frameborder="0" allowfullscreen></iframe></div>
     <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/QTxNLOtnekQ" frameborder="0" allowfullscreen></iframe></div>
     <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/T9QqKk1GckI" frameborder="0" allowfullscreen></iframe></div>
-    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/tgPovfSXLq4?si=El7MNag5RcmalrLR" frameborder="0" allowfullscreen></iframe></div>
-    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/DzHDuS5s8BE?si=jRWAbBKVO87Pa9i4" frameborder="0" allowfullscreen></iframe></div>
-    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/G5ELIs5Y_ic?si=dzn8i_WYlVfPkGgD" frameborder="0" allowfullscreen></iframe></div>
-    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/EjwgkDtwJNI?si=3YdQAJpowqSTCXy5" frameborder="0" allowfullscreen></iframe></div>
-    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/QWkJ0TpyNuY?si=02mzzyfa7ZSP5FHA" frameborder="0" allowfullscreen></iframe></div>
-    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/LbUzsYG0kjw?si=ZWunJBqM7OM9TzgE" frameborder="0" allowfullscreen></iframe></div>
-    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/2yz9kGwK3sg?si=U5iNCoJa7y5mi4As" frameborder="0" allowfullscreen></iframe></div>
-    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/1leI7UNl2PM?si=smKRC769OgwNQ6lP" frameborder="0" allowfullscreen></iframe></div>
-    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/ki7KxsOskz4?si=IsumVyB4RnGpZy7e" frameborder="0" allowfullscreen></iframe></div>
-    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/sDD30k7cPrE?si=ynEtAo2xtGUe7h8H" frameborder="0" allowfullscreen></iframe></div>
-    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/A7HKU9L8oWs?si=x0_wRLqmxNNUsPsL" frameborder="0" allowfullscreen></iframe></div>
-    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/ol4rdn9OKqo?si=KovzqnV06Kn8MP-l" frameborder="0" allowfullscreen></iframe></div>
-    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/rT-Xge-hauY?si=5kYj8qo2h71fSQQZ" frameborder="0" allowfullscreen></iframe></div>
-  
 </div>
+
+<div class="seccion-comentarios">
+    <h3>Deja tu comentario, Rocker 🤘</h3>
+    <div class="fb-comments" data-href="https://tonivazquez4.github.io/videos.html" data-width="100%" data-numposts="5"></div>
+</div>
+
+<footer>
+    <p>© 2026 Tony Vázquez. Todos los derechos reservados.</p>
+</footer>
+
 </body>
 </html>
