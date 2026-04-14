@@ -51,6 +51,12 @@
             text-decoration: none;
         }
 
+        /* NUEVOS ESTILOS PARA LOS LOGOS DE LA CABECERA */
+        .header-logo {
+            height: 60px; /* Tamaño del logo en el header */
+            width: auto; /* Mantener proporción */
+        }
+
         .nav-menu {
             text-align: center;
             margin: 25px 0;
@@ -94,7 +100,7 @@
         footer { padding: 20px; text-align: center; background: rgba(0,0,0,0.9); font-size: 0.8rem; border-top: 1px solid #222; }
 
         @media (max-width: 768px) {
-            header { flex-direction: column; height: auto; padding: 20px; gap: 10px; }
+            header { flex-direction: column; height: auto; padding: 20px; gap: 15px; } /* Gap aumentado para 5 elementos */
             .social-icons { width: auto; justify-content: center; }
         }
     </style>
@@ -102,6 +108,8 @@
 <body>
 
 <header>
+    <img src="image_0.png" alt="Tony Vázquez Logo" class="header-logo"> 
+
     <div class="social-icons icons-left">
         <a href="https://open.spotify.com/intl-es/artist/5PGFsB4rJcNb9h5gBOKnWw/discography/all" target="_blank" title="Spotify"><i class="fa-brands fa-spotify"></i></a>
         <a href="https://music.apple.com/es/artist/tony-vazquez/1497948014" target="_blank" title="Apple Music"><i class="fa-brands fa-apple"></i></a>
@@ -118,6 +126,8 @@
         <a href="https://instagram.com/tonykubo" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
         <a href="https://www.facebook.com/tonisampler/" target="_blank" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
     </div>
+
+    <img src="image_0.png" alt="Tony Vázquez Logo" class="header-logo">
 </header>
 
 <nav class="nav-menu">
@@ -149,7 +159,7 @@
         </div>
 
         <div class="album-card">
-           <img src="La magia.jpg" alt="La magia de la vida" class="album-img">
+            <img src="La magia.jpg" alt="La magia de la vida" class="album-img">
             <div class="album-info">
                 <h3>La magia de la vida</h3>
                 <p>Un recorrido musical por las emociones más profundas.</p>
