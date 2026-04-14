@@ -71,10 +71,19 @@
         
         .contenido-modal { 
             display: block; 
-            max-width: 85%; 
-            max-height: 85vh; 
-            border: 2px solid var(--gold); 
-            box-shadow: 0 0 20px rgba(0,0,0,0.8);
+            /* 1. Obligamos a la imagen a intentar llenar toda la pantalla */
+            width: 100vw; 
+            height: 100vh; 
+            /* 2. Le ponemos un tope del 95% para que respire un poco y no pise las flechas */
+            max-width: 95vw; 
+            max-height: 95vh; 
+            /* 3. Magia: permite que la foto crezca al máximo sin achatarse ni recortarse */
+            object-fit: contain; 
+            
+            /* (Recomendado) Quitamos el borde y la sombra */
+            border: none; 
+            box-shadow: none;
+       
         }
 
         /* Botón de cerrar */
