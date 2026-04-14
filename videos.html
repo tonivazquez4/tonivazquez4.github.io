@@ -10,15 +10,44 @@
         body { font-family: 'Arial Black', sans-serif; margin: 0; padding: 0; color: white; background: #000 url('Alma de Rock.jpg') no-repeat center center fixed; background-size: cover; }
         body::before { content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: -1; }
         
-        header { display: grid; grid-template-columns: 200px 1fr 200px; align-items: center; border-bottom: 2px solid var(--gold); padding: 15px 40px; background: rgba(0,0,0,0.6); }
-        .social-icons a { color: white; font-size: 1.4rem; text-decoration: none; margin: 0 7px; transition: 0.3s; }
+        /* CABECERA CON FLEXBOX Y LOGOS */
+        header { 
+            display: flex; 
+            flex-direction: row; 
+            justify-content: space-between; 
+            align-items: center; 
+            border-bottom: 2px solid var(--gold); 
+            padding: 15px 40px; 
+            background: rgba(0,0,0,0.6); 
+        }
+        
+        .header-logo { height: 60px; width: auto; }
+        
+        .social-icons { display: flex; gap: 15px; width: 200px; }
+        .icons-left { justify-content: flex-start; }
+        .icons-right { justify-content: flex-end; }
+        
+        .social-icons a { color: white; font-size: 1.4rem; text-decoration: none; transition: 0.3s; }
         .social-icons a:hover { color: var(--gold); }
+        
         .header-center { text-align: center; }
         .header-center h1 { font-size: clamp(1.5rem, 4vw, 2.5rem); margin: 0; text-transform: uppercase; }
         .header-center p { margin: 5px 0 0 0; color: var(--gold); letter-spacing: 4px; font-weight: bold; font-size: 0.8rem; }
 
+        /* MENÚ DE NAVEGACIÓN ESTILO INICIO */
         .nav-menu { text-align: center; margin: 30px 0; }
-        .btn { background: var(--gold); color: black; padding: 10px 25px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block; margin: 5px; transition: 0.3s; }
+        .btn { 
+            background: var(--gold); 
+            color: black; 
+            padding: 8px 18px; 
+            text-decoration: none; 
+            border-radius: 5px; 
+            font-weight: bold; 
+            display: inline-block; 
+            margin: 5px; 
+            font-size: 0.9rem; 
+            transition: 0.3s; 
+        }
         .btn:hover { background: white; transform: scale(1.05); }
 
         .container { padding: 0 15px 20px; max-width: 900px; margin: auto; display: flex; flex-direction: column; gap: 40px; }
@@ -33,7 +62,7 @@
 
         /* ESTILOS DEL BOTÓN DE SUBIR */
         #btnSubir {
-            display: none; /* Oculto por defecto, sale con javascript */
+            display: none;
             position: fixed;
             bottom: 30px;
             right: 30px;
@@ -49,16 +78,32 @@
             border-radius: 50%;
             transition: 0.3s;
             box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-            display: flex;
             justify-content: center;
             align-items: center;
         }
         #btnSubir:hover { background-color: white; transform: scale(1.1); }
 
+        /* AJUSTES PARA DISPOSITIVOS MÓVILES */
         @media (max-width: 900px) {
-            header { grid-template-columns: 1fr; padding: 20px; }
-            .social-icons { justify-content: center !important; margin: 10px 0; order: 2; }
-            .header-center { order: 1; }
+            header { flex-direction: column; padding: 20px; gap: 15px; }
+            .social-icons { width: auto; justify-content: center; }
+            
+            /* MENÚ MÓVIL ALINEADO EN HORIZONTAL */
+            .nav-menu {
+                display: flex;
+                flex-direction: row; 
+                justify-content: center;
+                flex-wrap: nowrap; 
+                gap: 5px; 
+            }
+            .nav-menu .btn {
+                width: auto;
+                max-width: none;
+                margin: 0;
+                padding: 8px 10px; 
+                font-size: 0.8rem; 
+            }
+
             .seccion-comentarios { margin: 20px 15px 60px; }
             #btnSubir { bottom: 20px; right: 20px; width: 45px; height: 45px; font-size: 1.2rem; }
         }
@@ -70,20 +115,26 @@
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_ES/sdk.js#xfbml=1&version=v19.0&appId=1282552559929333"></script>
 
 <header>
-    <div class="social-icons" style="display: flex; justify-content: flex-start;">
+    <img src="image_0.png" alt="Tony Vázquez Logo" class="header-logo"> 
+
+    <div class="social-icons icons-left">
         <a href="https://open.spotify.com/intl-es/artist/5PGFsB4rJcNb9h5gBOKnWw/discography/all" target="_blank"><i class="fa-brands fa-spotify"></i></a>
         <a href="https://music.apple.com/es/artist/tony-vazquez/1497948014" target="_blank"><i class="fa-brands fa-apple"></i></a>
         <a href="https://music.youtube.com/channel/UCFNdFbrM3s0kznhCGpRJ3GA" target="_blank"><i class="fa-brands fa-youtube"></i></a>
     </div>
+    
     <div class="header-center">
         <h1>TONY VÁZQUEZ</h1>
         <p>ROCK · ALMA · LEYENDA</p>
     </div>
-    <div class="social-icons" style="display: flex; justify-content: flex-end;">
+    
+    <div class="social-icons icons-right">
         <a href="https://music.amazon.es/artists/B07NFBKRHJ/tony-vazquez" target="_blank"><i class="fa-brands fa-amazon"></i></a>
         <a href="https://instagram.com/tonykubo" target="_blank"><i class="fa-brands fa-instagram"></i></a>
         <a href="https://www.facebook.com/tonisampler/" target="_blank"><i class="fa-brands fa-facebook"></i></a>
     </div>
+
+    <img src="image_0.png" alt="Tony Vázquez Logo" class="header-logo">
 </header>
 
 <nav class="nav-menu">
@@ -137,10 +188,8 @@
 </button>
 
 <script>
-    // LÓGICA DEL BOTÓN DE SUBIR
     let miBoton = document.getElementById("btnSubir");
 
-    // Cuando el usuario hace scroll hacia abajo 300px, mostramos el botón
     window.onscroll = function() {
         if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
             miBoton.style.display = "flex";
@@ -149,11 +198,10 @@
         }
     };
 
-    // Cuando el usuario hace clic, subimos suavemente al tope
     function subirArriba() {
         window.scrollTo({
             top: 0,
-            behavior: 'smooth' /* Movimiento suave */
+            behavior: 'smooth' 
         });
     }
 </script>
