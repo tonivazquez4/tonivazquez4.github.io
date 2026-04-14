@@ -12,16 +12,17 @@
         
         /* CABECERA CON FLEXBOX Y LOGOS */
         header { 
+            height: 120px; /* Altura ajustada para el logo grande */
             display: flex; 
             flex-direction: row; 
             justify-content: space-between; 
             align-items: center; 
             border-bottom: 2px solid var(--gold); 
-            padding: 15px 40px; 
+            padding: 0 40px; 
             background: rgba(0,0,0,0.6); 
         }
         
-        .header-logo { height: 60px; width: auto; }
+        .header-logo { height: 100px; width: auto; } /* Logo a 100px en ordenador */
         
         .social-icons { display: flex; gap: 15px; width: 200px; }
         .icons-left { justify-content: flex-start; }
@@ -85,7 +86,11 @@
 
         /* AJUSTES PARA DISPOSITIVOS MÓVILES */
         @media (max-width: 900px) {
-            header { flex-direction: column; padding: 20px; gap: 15px; }
+            header { flex-direction: column; height: auto; padding: 20px; gap: 15px; }
+            
+            /* Esta regla oculta los logos en móvil */
+            .header-logo { display: none; }
+            
             .social-icons { width: auto; justify-content: center; }
             
             /* MENÚ MÓVIL ALINEADO EN HORIZONTAL */
@@ -115,7 +120,7 @@
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_ES/sdk.js#xfbml=1&version=v19.0&appId=1282552559929333"></script>
 
 <header>
-    <img src="image_0.png" alt="Tony Vázquez Logo" class="header-logo"> 
+    <img src="LogoTV.jpg" alt="Tony Vázquez Logo" class="header-logo"> 
 
     <div class="social-icons icons-left">
         <a href="https://open.spotify.com/intl-es/artist/5PGFsB4rJcNb9h5gBOKnWw/discography/all" target="_blank"><i class="fa-brands fa-spotify"></i></a>
@@ -134,7 +139,7 @@
         <a href="https://www.facebook.com/tonisampler/" target="_blank"><i class="fa-brands fa-facebook"></i></a>
     </div>
 
-    <img src="image_0.png" alt="Tony Vázquez Logo" class="header-logo">
+    <img src="LogoTV.jpg" alt="Tony Vázquez Logo" class="header-logo">
 </header>
 
 <nav class="nav-menu">
