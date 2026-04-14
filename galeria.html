@@ -10,7 +10,6 @@
         body { font-family: 'Arial Black', sans-serif; margin: 0; padding: 0; color: white; background: #000 url('Alma de Rock.jpg') no-repeat center center fixed; background-size: cover; }
         body::before { content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: -1; }
         
-        /* CABECERA UNIFICADA CON FLEXBOX Y LOGOS */
         header { 
             height: 120px; 
             display: flex; 
@@ -22,7 +21,7 @@
             background: rgba(0,0,0,0.6); 
         }
         
-        .header-logo { height: 100px; width: auto; } /* Logo a 100px en ordenador */
+        .header-logo { height: 100px; width: auto; } 
         
         .social-icons { display: flex; gap: 15px; width: 200px; }
         .icons-left { justify-content: flex-start; }
@@ -43,11 +42,9 @@
         .grid-galeria { display: grid; grid-template-columns: repeat(5, 1fr); gap: 15px; }
         .foto-card { background: rgba(0,0,0,0.5); border: 1px solid #444; border-radius: 10px; overflow: hidden; cursor: zoom-in; }
         
-        /* Ajuste de altura a 300px para ordenador */
         .foto-card img { width: 100%; height: 300px; object-fit: contain; background-color: #000; display: block; transition: 0.3s; }
         .foto-card img:hover { opacity: 0.8; }
 
-        /* Estilos del cajón de comentarios */
         .seccion-comentarios { max-width: 900px; margin: 40px auto 60px; padding: 20px; background: rgba(255, 255, 255, 0.95); border-radius: 10px; border: 2px solid var(--gold); }
         .seccion-comentarios h3 { color: black; text-align: center; margin-top: 0; font-size: 1.5rem; text-transform: uppercase; border-bottom: 2px solid #ccc; padding-bottom: 10px; }
 
@@ -56,7 +53,6 @@
 
         footer { padding: 30px; text-align: center; background: rgba(0,0,0,0.9); border-top: 1px solid #222; }
 
-        /* ESTILOS DEL BOTÓN DE SUBIR */
         #btnSubir {
             display: none; 
             position: fixed;
@@ -79,30 +75,13 @@
         }
         #btnSubir:hover { background-color: white; transform: scale(1.1); }
 
-        /* AJUSTES PARA DISPOSITIVOS MÓVILES */
         @media (max-width: 900px) {
             header { flex-direction: column; height: auto; padding: 20px; gap: 15px; }
-            .header-logo { display: none; } /* Oculta logos en móvil */
+            .header-logo { display: none; } 
             .social-icons { width: auto; justify-content: center; margin: 0; }
-            
-            /* Menú móvil adaptado */
-            .nav-menu {
-                display: flex;
-                flex-direction: row; 
-                justify-content: center;
-                flex-wrap: nowrap; 
-                gap: 5px; 
-            }
-            .nav-menu .btn {
-                width: auto;
-                max-width: none;
-                margin: 0;
-                padding: 8px 10px; 
-                font-size: 0.8rem; 
-            }
-
+            .nav-menu { display: flex; flex-direction: row; justify-content: center; flex-wrap: nowrap; gap: 5px; }
+            .nav-menu .btn { width: auto; max-width: none; margin: 0; padding: 8px 10px; font-size: 0.8rem; }
             .grid-galeria { grid-template-columns: repeat(2, 1fr); }
-            /* Ajuste de altura a 250px para móviles */
             .foto-card img { height: 250px; }
             .seccion-comentarios { margin: 20px 15px 60px; }
             #btnSubir { bottom: 20px; right: 20px; width: 45px; height: 45px; font-size: 1.2rem; }
@@ -165,7 +144,6 @@
 </button>
 
 <script>
-    // GENERADOR DE FOTOS
     const totalFotos = 75;
     const contenedor = document.getElementById('galeria-fotos');
     for (let i = 1; i <= totalFotos; i++) {
@@ -176,16 +154,12 @@
         contenedor.appendChild(div);
     }
 
-    // VISOR DE IMÁGENES
     function abrirModal(src) {
         document.getElementById('imagen-ampliada').src = src;
         document.getElementById('modal-galeria').style.display = 'block';
     }
 
-    // LÓGICA DEL BOTÓN DE SUBIR
     let miBoton = document.getElementById("btnSubir");
-
-    // Cuando el usuario hace scroll hacia abajo 300px, mostramos el botón
     window.onscroll = function() {
         if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
             miBoton.style.display = "flex";
@@ -193,14 +167,7 @@
             miBoton.style.display = "none";
         }
     };
-
-    // Cuando el usuario hace clic, subimos suavemente al tope
-    function subirArriba() {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth' /* Esto hace que suba con un efecto de deslizamiento elegante */
-        });
-    }
+    function subirArriba() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
 </script>
 
 </body>
