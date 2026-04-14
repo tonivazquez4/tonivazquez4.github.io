@@ -54,8 +54,64 @@
         .seccion-comentarios { max-width: 900px; margin: 40px auto 60px; padding: 20px; background: rgba(255, 255, 255, 0.95); border-radius: 10px; border: 2px solid var(--gold); }
         .seccion-comentarios h3 { color: black; text-align: center; margin-top: 0; font-size: 1.5rem; text-transform: uppercase; border-bottom: 2px solid #ccc; padding-bottom: 10px; }
 
-        .modal { display: none; position: fixed; z-index: 1000; padding-top: 50px; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); cursor: zoom-out; }
-        .contenido-modal { margin: auto; display: block; max-width: 90%; max-height: 85vh; border: 2px solid var(--gold); }
+        /* --- ESTILOS DEL MODAL MODIFICADOS --- */
+        .modal { 
+            display: none; 
+            position: fixed; 
+            z-index: 1000; 
+            left: 0; 
+            top: 0; 
+            width: 100%; 
+            height: 100%; 
+            background: rgba(0,0,0,0.95); 
+            /* Usamos flexbox para centrar perfectamente la imagen */
+            align-items: center; 
+            justify-content: center;
+        }
+        
+        .contenido-modal { 
+            display: block; 
+            max-width: 85%; 
+            max-height: 85vh; 
+            border: 2px solid var(--gold); 
+            box-shadow: 0 0 20px rgba(0,0,0,0.8);
+        }
+
+        /* Botón de cerrar */
+        .cerrar { 
+            position: absolute; 
+            top: 20px; 
+            right: 35px; 
+            color: white; 
+            font-size: 40px; 
+            font-weight: bold; 
+            cursor: pointer; 
+            transition: 0.3s;
+            z-index: 1001;
+        }
+        .cerrar:hover { color: var(--gold); }
+
+        /* Flechas de navegación */
+        .nav-modal {
+            cursor: pointer; 
+            position: absolute; 
+            top: 50%; 
+            transform: translateY(-50%);
+            width: auto; 
+            padding: 16px; 
+            color: white; 
+            font-weight: bold; 
+            font-size: 40px; 
+            transition: 0.3s ease; 
+            user-select: none; 
+            background: rgba(0,0,0,0.5); 
+            border: none;
+            z-index: 1001;
+            border-radius: 5px;
+        }
+        .nav-modal:hover { background-color: var(--gold); color: black; }
+        .prev { left: 20px; }
+        .next { right: 20px; }
 
         footer { padding: 30px; text-align: center; background: rgba(0,0,0,0.9); border-top: 1px solid #222; }
 
@@ -91,6 +147,11 @@
             .foto-card img { height: 250px; }
             .seccion-comentarios { margin: 20px 15px 60px; }
             #btnSubir { bottom: 20px; right: 20px; width: 45px; height: 45px; font-size: 1.2rem; }
+            /* Ajustes para los botones del modal en móviles */
+            .nav-modal { font-size: 25px; padding: 10px; }
+            .prev { left: 5px; }
+            .next { right: 5px; }
+            .cerrar { top: 10px; right: 20px; font-size: 30px; }
         }
     </style>
 </head>
@@ -141,8 +202,11 @@
     <p>© 2026 Tony Vázquez. Todos los derechos reservados.</p>
 </footer>
 
-<div id="modal-galeria" class="modal" onclick="this.style.display='none'">
-    <img class="contenido-modal" id="imagen-ampliada">
+<div id="modal-galeria" class="modal" onclick="cerrarModal(event)">
+    <span class="cerrar" onclick="cerrarModal(event, true)">&times;</span>
+    <button class="nav-modal prev" onclick="cambiarImagen(-1, event)">&#10094;</button>
+    <img class="contenido-modal" id="imagen-ampliada" onclick="event.stopPropagation()">
+    <button class="nav-modal next" onclick="cambiarImagen(1, event)">&#10095;</button>
 </div>
 
 <button id="btnSubir" onclick="subirArriba()" title="Volver arriba">
@@ -151,19 +215,71 @@
 
 <script>
     const totalFotos = 125;
+    let indiceActual = 1; // Guardamos el número de foto actual
     const contenedor = document.getElementById('galeria-fotos');
+    
+    // Al generar las fotos, pasamos el número "i" a la función en lugar de la ruta src
     for (let i = 1; i <= totalFotos; i++) {
         const div = document.createElement('div');
         div.className = 'foto-card';
         const ruta = "Fotos/Foto " + i + ".jpg";
-        div.innerHTML = `<img src="${encodeURI(ruta)}" loading="lazy" onclick="abrirModal(this.src); event.stopPropagation();">`;
+        div.innerHTML = `<img src="${encodeURI(ruta)}" loading="lazy" onclick="abrirModal(${i}); event.stopPropagation();">`;
         contenedor.appendChild(div);
     }
 
-    function abrirModal(src) {
-        document.getElementById('imagen-ampliada').src = src;
-        document.getElementById('modal-galeria').style.display = 'block';
+    // Función para abrir el modal cargando la imagen según su índice
+    function abrirModal(index) {
+        indiceActual = index;
+        actualizarImagenModal();
+        // Usamos display flex para que la imagen quede centrada con los nuevos estilos
+        document.getElementById('modal-galeria').style.display = 'flex';
     }
+
+    // Función que carga la imagen en base al indiceActual
+    function actualizarImagenModal() {
+        const ruta = "Fotos/Foto " + indiceActual + ".jpg";
+        document.getElementById('imagen-ampliada').src = encodeURI(ruta);
+    }
+
+    // Función para cambiar la imagen (hacia adelante o atrás)
+    function cambiarImagen(direccion, event) {
+        if(event) event.stopPropagation(); // Evitar que el clic cierre el modal
+        
+        indiceActual += direccion;
+        
+        // Si nos pasamos de la última, volvemos a la primera
+        if (indiceActual > totalFotos) {
+            indiceActual = 1;
+        } 
+        // Si retrocedemos desde la primera, vamos a la última
+        else if (indiceActual < 1) {
+            indiceActual = totalFotos;
+        }
+        
+        actualizarImagenModal();
+    }
+
+    // Función para cerrar el modal de forma controlada
+    function cerrarModal(event, forzar = false) {
+        // Cierra si hemos pinchado en la X o si hemos pinchado en el fondo oscuro
+        if (forzar || event.target.id === 'modal-galeria') {
+            document.getElementById('modal-galeria').style.display = 'none';
+        }
+    }
+
+    // EXTRA: Navegación con el teclado (flechas y Esc)
+    document.addEventListener('keydown', function(event) {
+        const modal = document.getElementById('modal-galeria');
+        if (modal.style.display === 'flex') {
+            if (event.key === 'ArrowRight') {
+                cambiarImagen(1);
+            } else if (event.key === 'ArrowLeft') {
+                cambiarImagen(-1);
+            } else if (event.key === 'Escape') {
+                cerrarModal(event, true);
+            }
+        }
+    });
 
     let miBoton = document.getElementById("btnSubir");
     window.onscroll = function() {
