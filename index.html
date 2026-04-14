@@ -22,12 +22,12 @@
             content: "";
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.5); /* Capa mucho más suave */
+            background: rgba(0, 0, 0, 0.5); 
             z-index: -1;
         }
 
         header { 
-            height: 120px; /* Altura ajustada para el logo de 100px */
+            height: 120px; 
             display: flex; 
             flex-direction: row; 
             justify-content: space-between; 
@@ -51,10 +51,9 @@
             text-decoration: none;
         }
 
-        /* NUEVOS ESTILOS PARA LOS LOGOS DE LA CABECERA */
         .header-logo {
-            height: 100px; /* Tamaño del logo en ordenador */
-            width: auto; /* Mantener proporción */
+            height: 100px; 
+            width: auto; 
         }
 
         .nav-menu {
@@ -81,12 +80,11 @@
         .discografia { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
         .album-card { background: rgba(26, 26, 26, 0.9); border-radius: 10px; overflow: hidden; transition: 0.3s; border: 1px solid #444; text-align: center; }
         
-        /* AQUÍ ESTÁ EL CAMBIO PARA QUE NO SE RECORTEN */
         .album-img { 
             width: 100%; 
             height: 350px; 
-            object-fit: contain; /* Esto hace que la foto se vea COMPLETA */
-            background-color: #000; /* Fondo negro para rellenar si la foto es distinta */
+            object-fit: contain; 
+            background-color: #000; 
             margin-top: 10px;
         }
 
@@ -107,24 +105,13 @@
                 gap: 15px; 
             }
             
-            /* Esta es la regla clave que oculta TODOS los logos en móvil */
             .header-logo {
                 display: none;
             }
 
-            h1 { 
-                font-size: 2rem; 
-            }
-            
-            header p {
-                margin-bottom: 10px;
-            }
-
-            .social-icons { 
-                width: 100%; 
-                justify-content: center; 
-                gap: 20px;
-            }
+            h1 { font-size: 2rem; }
+            header p { margin-bottom: 10px; }
+            .social-icons { width: 100%; justify-content: center; gap: 20px; }
         }
     </style>
 </head>
