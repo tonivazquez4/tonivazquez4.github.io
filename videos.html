@@ -21,7 +21,13 @@
             background: rgba(0,0,0,0.6); 
         }
         
-        .header-logo { height: 100px; width: auto; } 
+        .header-logo {
+            height: 105px; 
+            width: auto; 
+            
+            /* TRUCO PARA BLANCO PURO AL 100% */
+            filter: brightness(0) invert(100%);
+        } 
         
         .social-icons { display: flex; gap: 15px; width: 200px; }
         .icons-left { justify-content: flex-start; }
