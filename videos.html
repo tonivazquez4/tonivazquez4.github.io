@@ -6,7 +6,6 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'G-1YS8QY8TXN');
     </script>
 
@@ -33,7 +32,6 @@
         .header-logo {
             height: 105px; 
             width: auto; 
-            /* TRUCO PARA BLANCO PURO AL 100% */
             filter: brightness(0) invert(100%);
         } 
         
@@ -89,21 +87,16 @@
             .social-icons { width: auto; justify-content: center; }
             .nav-menu { display: flex; flex-direction: row; justify-content: center; flex-wrap: nowrap; gap: 5px; }
             .nav-menu .btn { width: auto; max-width: none; margin: 0; padding: 8px 10px; font-size: 0.8rem; }
-            .seccion-comentarios { margin: 20px 15px 60px; }
-            #btnSubir { bottom: 20px; right: 20px; width: 45px; height: 45px; font-size: 1.2rem; }
         }
     </style>
 </head>
 <body>
 
-<div id="fb-root"></div>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_ES/sdk.js#xfbml=1&version=v19.0"></script>
-
 <header>
     <img src="logoTV.png" alt="Tony Vázquez Logo" class="header-logo"> 
 
     <div class="social-icons icons-left">
-        <a href="https://open.spotify.com/intl-es/artist/5PGFsB4rJcNb9h5gBOKnWw/discography/all" target="_blank"><i class="fa-brands fa-spotify"></i></a>
+        <a href="http://googleusercontent.com/spotify.com/5" target="_blank"><i class="fa-brands fa-spotify"></i></a>
         <a href="https://music.apple.com/es/artist/tony-vazquez/1497948014" target="_blank"><i class="fa-brands fa-apple"></i></a>
         <a href="https://music.youtube.com/channel/UCFNdFbrM3s0kznhCGpRJ3GA" target="_blank"><i class="fa-brands fa-youtube"></i></a>
     </div>
@@ -158,7 +151,19 @@
 
 <div class="seccion-comentarios">
     <h3>Deja tu comentario, Rocker 🤘</h3>
-    <div class="fb-comments" data-href="https://www.tonyvazquez.es/videos.html" data-width="100%" data-numposts="5"></div>
+    <div id="disqus_thread"></div>
+    <script>
+        var disqus_config = function () {
+            this.page.url = "https://www.tonyvazquez.es/videos.html";  
+            this.page.identifier = "videos_tony_vazquez"; 
+        };
+        (function() { 
+            var d = document, s = d.createElement('script');
+            s.src = 'https://tonyvazquez-oficial.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
 </div>
 
 <footer>
