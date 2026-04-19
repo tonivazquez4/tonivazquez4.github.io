@@ -79,10 +79,12 @@
         .discografia { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
         .album-card { background: rgba(20, 20, 20, 0.9); border: 1px solid #333; border-radius: 15px; overflow: hidden; text-align: center; padding-bottom: 20px; transition: 0.4s; }
         .album-card:hover { transform: translateY(-10px); border-color: var(--gold); }
-        .album-img { width: 100%; height: 350px; object-fit: contain; background: black; padding-top: 10px; }
+        .album-img { width: 100%; height: 350px; object-fit: contain; background: black; padding-top: 10px; cursor: pointer; transition: 0.3s; }
+        .album-img:hover { filter: brightness(1.2); }
 
+        /* BIOGRAFÍA OPTIMIZADA */
         .bio { background: rgba(0,0,0,0.8); padding: 60px 20px; text-align: center; border-top: 1px solid #333; border-bottom: 1px solid #333; margin-top: 50px; }
-        .bio-content { max-width: 800px; margin: auto; font-size: 1.1rem; line-height: 1.8; color: #ddd; }
+        .bio-content { max-width: 950px; margin: auto; font-size: 1.15rem; line-height: 1.8; color: #ddd; text-wrap: balance; }
         .bio-content strong { color: var(--gold); }
 
         .seccion-comentarios { max-width: 800px; margin: 50px auto; padding: 20px; background: white; border-radius: 12px; border: 2px solid var(--gold); }
@@ -97,6 +99,17 @@
 
         footer { padding: 25px; text-align: center; background: #000; border-top: 2px solid #222; }
 
+        /* MODAL IMAGEN GRANDE */
+        #imageModal {
+            display: none; position: fixed; z-index: 10001; padding-top: 60px; left: 0; top: 0; 
+            width: 100%; height: 100%; background-color: rgba(0,0,0,0.95); cursor: zoom-out;
+        }
+        #imgFull {
+            margin: auto; display: block; max-width: 90%; max-height: 80vh; 
+            border: 3px solid var(--gold); border-radius: 10px; 
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.4);
+        }
+
         @media (max-width: 768px) {
             header { flex-direction: column; padding: 20px; gap: 15px; }
             .header-logo { display: none; }
@@ -110,24 +123,20 @@
 
 <header>
     <img src="logoTV.png" alt="Logo Izquierda" class="header-logo" id="logo-izq">
-    
     <div class="social-icons icons-left">
-        <a href="spotify:artist:5PGFsB4rJcNb9h5gBOKnWw" target="_blank"><i class="fa-brands fa-spotify"></i></a>
+        <a href="https://open.spotify.com/artist/1497948014" target="_blank"><i class="fa-brands fa-spotify"></i></a>
         <a href="https://music.apple.com/es/artist/tony-vazquez/1497948014" target="_blank"><i class="fa-brands fa-apple"></i></a>
         <a href="https://music.youtube.com/channel/UCFNdFbrM3s0kznhCGpRJ3GA" target="_blank"><i class="fa-brands fa-youtube"></i></a>
     </div>
-
     <div class="header-center">
         <h1>TONY VÁZQUEZ</h1>
         <p>ROCK · ALMA · LEYENDA</p>
     </div>
-
     <div class="social-icons icons-right">
         <a href="https://music.amazon.es/artists/B07NFBKRHJ/tony-vazquez" target="_blank"><i class="fa-brands fa-amazon"></i></a>
         <a href="https://instagram.com/tonykubo" target="_blank"><i class="fa-brands fa-instagram"></i></a>
         <a href="https://www.facebook.com/tonisampler/" target="_blank"><i class="fa-brands fa-facebook"></i></a>
     </div>
-
     <img src="logoTV.png" alt="Logo Derecha" class="header-logo" id="logo-der">
 </header>
 
@@ -140,32 +149,32 @@
 <div class="container">
     <div class="discografia">
         <div class="album-card">
-            <img src="Alma de Rock.jpg" class="album-img">
+            <img src="Alma de Rock.jpg" class="album-img" onclick="abrirImagen(this.src)">
             <h3>Alma de Rock</h3>
-            <a href="https://open.spotify.com/album/tu_id_1" target="_blank" class="btn">Escuchar ahora</a>
+            <a href="#" target="_blank" class="btn">Escuchar ahora</a>
         </div>
         <div class="album-card">
-            <img src="Carátula delantera.jpg" class="album-img">
+            <img src="Carátula delantera.jpg" class="album-img" onclick="abrirImagen(this.src)">
             <h3>Sueños de papel</h3>
-            <a href="https://open.spotify.com/album/tu_id_2" target="_blank" class="btn">Escuchar ahora</a>
+            <a href="#" target="_blank" class="btn">Escuchar ahora</a>
         </div>
         <div class="album-card">
-            <img src="La magia.jpg" class="album-img">
+            <img src="La magia.jpg" class="album-img" onclick="abrirImagen(this.src)">
             <h3>La magia de la vida</h3>
-            <a href="https://open.spotify.com/album/tu_id_3" target="_blank" class="btn">Escuchar ahora</a>
+            <a href="#" target="_blank" class="btn">Escuchar ahora</a>
         </div>
     </div>
 </div>
 
 <div class="bio">
-    <div class="bio-content" style="max-width: 950px; margin: auto; font-size: 1.1rem; line-height: 1.8; color: #ddd; text-align: center;">
-        <h2 style="color: var(--gold); margin-top: 0;">Trayectoria Profesional</h2>
+    <div class="bio-content">
+        <h2 style="color: var(--gold); margin-top: 0; margin-bottom: 25px;">Trayectoria Profesional</h2>
         
-        <p>Con una carrera de más de <strong>35 años</strong> como pilar de la mítica banda de rock <strong>Astarot</strong>, Tony Vázquez ha recorrido los escenarios más exigentes del país. Su solvencia musical se ha consolidado también en formaciones de gran prestigio como el <strong>Grupo América</strong> y el <strong>Grupo Limón</strong>.</p>
+        <p>Con una carrera de más de <strong>25 años</strong> como pilar de la mítica banda de rock <strong>Astarot</strong>, Tony Vázquez ha recorrido los escenarios más exigentes del país. Su solvencia musical se ha consolidado también en formaciones de gran prestigio como el <strong>Grupo América</strong> y el <strong>Grupo Limón</strong>.</p>
 
         <p>Su maestría técnica le ha llevado a trabajar en la vanguardia de los medios de comunicación nacionales. Durante más de 8 años, formó parte de <strong>Telecinco (Mediaset España)</strong> como técnico de sampler y compositor, extendiendo también su labor creativa a programas de <strong>Antena 3</strong> y <strong>Telemadrid</strong>. Esta faceta como diseñador sonoro y compositor audiovisual le otorga una visión única en la creación de atmósferas musicales.</p>
 
-        <p>Su polivalencia artística se extiende a las artes escénicas en Madrid, donde participó en el musical <strong>"Kalowa, el 5º valor (2015)"</strong>, demostrando una disciplina interpretativa al alcance de muy pocos. Desde 2017, Tony lidera el apartado de teclados y voz en la <strong>Orquesta Kubo</strong>, aportando su veteranía a uno de los espectáculos de mayor formato e innovación del momento.</p>
+        <p>Su polivalencia artística se extiende a las artes escénicas en Madrid, donde participó en el musical <strong>"Kalowa, el 5º valor"</strong>, demostrando una disciplina interpretativa al alcance de muy pocos. Desde 2017, Tony lidera el apartado de teclados y voz en la <strong>Orquesta Kubo</strong>, aportando su veteranía a uno de los espectáculos de mayor formato e innovación del momento.</p>
     </div>
 </div>
 
@@ -186,14 +195,28 @@
     <i class="fa-solid fa-arrow-up"></i>
 </button>
 
+<div id="imageModal" onclick="this.style.display='none'">
+    <img id="imgFull">
+    <p style="text-align: center; color: var(--gold); margin-top: 15px;">Pulsar para cerrar</p>
+</div>
+
 <div id="cookie-banner" style="display: none; position: fixed; bottom: 0; width: 100%; background: rgba(0,0,0,0.95); border-top: 2px solid var(--gold); padding: 20px; z-index: 10000; text-align: center;">
     <p style="color:white; margin-bottom:10px;">Usamos cookies para mejorar tu experiencia. 🤘</p>
     <button onclick="aceptarCookies()" style="background: var(--gold); border: none; padding: 10px 25px; border-radius: 5px; cursor: pointer; font-weight: bold; color:black;">Aceptar</button>
 </div>
 
 <script>
+    // Función para abrir imagen
+    function abrirImagen(src) {
+        document.getElementById("imgFull").src = src;
+        document.getElementById("imageModal").style.display = "block";
+    }
+
+    // Cookies
     if (!localStorage.getItem("cookiesAceptadas")) document.getElementById("cookie-banner").style.display = "block";
     function aceptarCookies() { localStorage.setItem("cookiesAceptadas", "true"); document.getElementById("cookie-banner").style.display = "none"; }
+    
+    // Botón Subir
     window.onscroll = function() { 
         let btn = document.getElementById("btnSubir");
         if (document.documentElement.scrollTop > 400) { btn.style.display = "flex"; } else { btn.style.display = "none"; }
