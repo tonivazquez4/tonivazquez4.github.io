@@ -12,7 +12,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tony Vázquez | Web Oficial</title>
-    <meta name="description" content="Web oficial de Tony Vázquez. Discografía, fotos y vídeos del rockero español.">
+    <meta name="description" content="Web oficial de Tony Vázquez. Descubre su discografía, vídeos y sus más de 25 años de trayectoria en el mundo del rock, Astarot y la Orquesta Kubo.">
     
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -33,6 +33,8 @@
             z-index: -1; 
         }
 
+        h1, h2, h3 { font-family: 'Arial Black', sans-serif; }
+
         header { 
             height: auto; display: flex; justify-content: space-between; align-items: center; 
             border-bottom: 2px solid var(--gold); padding: 10px 40px; 
@@ -45,15 +47,9 @@
             filter: brightness(0) saturate(100%) invert(75%) sepia(50%) saturate(600%) hue-rotate(5deg) brightness(90%) contrast(100%);
             cursor: pointer; transition: 0.3s;
         }
-
         #logo-izq { animation: giro-3d 6s linear infinite; }
         #logo-der { animation: giro-3d 6s linear infinite reverse; }
-
-        @keyframes giro-3d {
-            from { transform: perspective(1000px) rotateY(0deg); }
-            to { transform: perspective(1000px) rotateY(360deg); }
-        }
-
+        @keyframes giro-3d { from { transform: perspective(1000px) rotateY(0deg); } to { transform: perspective(1000px) rotateY(360deg); } }
         .header-logo:hover { animation-play-state: paused; filter: brightness(1.1); }
 
         .header-center { text-align: center; }
@@ -70,13 +66,12 @@
             padding: 10px 22px; text-decoration: none; border-radius: 8px; font-weight: 700; 
             display: inline-block; margin: 5px; transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.5); 
         }
-        .btn:hover, .btn.activo { background: linear-gradient(45deg, #ffffff, #e0e0e0); transform: scale(1.05); }
+        .btn:hover, .btn.activo { background: white; transform: scale(1.05); }
 
         .container { padding: 0 20px 40px; max-width: 1200px; margin: auto; }
         
         .discografia { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
             gap: 30px; margin-top: 20px;
         }
 
@@ -85,9 +80,17 @@
             border-radius: 15px; overflow: hidden; text-align: center; padding-bottom: 20px;
             transition: 0.4s;
         }
-        .album-card:hover { transform: translateY(-10px); border-color: var(--gold); box-shadow: 0 10px 20px rgba(212,175,55,0.2); }
-        
+        .album-card:hover { transform: translateY(-10px); border-color: var(--gold); }
         .album-img { width: 100%; height: 350px; object-fit: contain; background: black; padding-top: 10px; }
+
+        /* SECCIÓN BIOGRAFÍA */
+        .bio { 
+            background: linear-gradient(to right, rgba(0,0,0,0.95), rgba(25,25,25,0.9), rgba(0,0,0,0.95)); 
+            padding: 60px 20px; text-align: center; border-top: 1px solid #333; border-bottom: 1px solid #333; 
+            margin-top: 50px; box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
+        }
+        .bio-content { max-width: 800px; margin: auto; font-size: 1.1rem; line-height: 1.8; color: #ddd; }
+        .bio-content strong { color: var(--gold); }
 
         .seccion-comentarios { 
             max-width: 800px; margin: 50px auto; padding: 20px; 
@@ -95,7 +98,7 @@
         }
         .seccion-comentarios h3 { color: black; text-align: center; text-transform: uppercase; margin-top: 0; }
 
-        footer { padding: 25px; text-align: center; background: #000; border-top: 1px solid #222; font-size: 0.9rem; }
+        footer { padding: 25px; text-align: center; background: #000; border-top: 1px solid #222; }
 
         @media (max-width: 768px) {
             header { flex-direction: column; padding: 20px; gap: 15px; }
@@ -133,20 +136,27 @@
 <div class="container">
     <div class="discografia">
         <div class="album-card">
-            <img src="Alma de Rock.jpg" class="album-img" alt="Alma de Rock">
+            <img src="Alma de Rock.jpg" class="album-img">
             <h3>Alma de Rock</h3>
-            <a href="https://open.spotify.com/album/43N8nCizv0Vv2C9mX75uOa" target="_blank" class="btn">Escuchar</a>
+            <a href="#" class="btn">Escuchar ahora</a>
         </div>
         <div class="album-card">
-            <img src="Carátula delantera.jpg" class="album-img" alt="Sueños de papel">
+            <img src="Carátula delantera.jpg" class="album-img">
             <h3>Sueños de papel</h3>
-            <a href="https://open.spotify.com/album/28T6mZ7I79Z9oXyKk9" target="_blank" class="btn">Escuchar</a>
+            <a href="#" class="btn">Escuchar ahora</a>
         </div>
         <div class="album-card">
-            <img src="La magia.jpg" class="album-img" alt="La magia de la vida">
+            <img src="La magia.jpg" class="album-img">
             <h3>La magia de la vida</h3>
-            <a href="https://open.spotify.com/album/19uX9H9" target="_blank" class="btn">Escuchar</a>
+            <a href="#" class="btn">Escuchar ahora</a>
         </div>
+    </div>
+</div>
+
+<div class="bio">
+    <div class="bio-content">
+        <h2 style="color: var(--gold); margin-top: 0;">Trayectoria Profesional</h2>
+        <p>Con una carrera forjada durante más de <strong>25 años</strong> en la mítica banda de rock <strong>Astarot</strong>, Tony Vázquez ha recorrido escenarios con el <strong>Grupo América</strong> y el <strong>Grupo Limón</strong>. Desde 2017, destaca como teclista y cantante en la <strong>Orquesta Kubo</strong>.</p>
     </div>
 </div>
 
@@ -154,16 +164,8 @@
     <h3>¡Deja tu mensaje Rockero! 🎸</h3>
     <div id="disqus_thread"></div>
     <script>
-        var disqus_config = function () {
-            this.page.url = "https://www.tonyvazquez.es/index.html";  
-            this.page.identifier = "inicio_tony_vazquez"; 
-        };
-        (function() { 
-            var d = document, s = d.createElement('script');
-            s.src = 'https://tony-vazquez.disqus.com/embed.js';
-            s.setAttribute('data-timestamp', +new Date());
-            (d.head || d.body).appendChild(s);
-        })();
+        var disqus_config = function () { this.page.url = "https://www.tonyvazquez.es/index.html"; this.page.identifier = "inicio_tony_vazquez"; };
+        (function() { var d = document, s = d.createElement('script'); s.src = 'https://tony-vazquez.disqus.com/embed.js'; s.setAttribute('data-timestamp', +new Date()); (d.head || d.body).appendChild(s); })();
     </script>
 </div>
 
@@ -171,7 +173,7 @@
 
 <div id="cookie-banner" style="display: none; position: fixed; bottom: 0; width: 100%; background: rgba(0,0,0,0.95); border-top: 2px solid var(--gold); padding: 20px; z-index: 10000; text-align: center;">
     <p>Usamos cookies para mejorar tu experiencia. 🤘</p>
-    <button onclick="aceptarCookies()" style="background: var(--gold); border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold;">Aceptar</button>
+    <button onclick="aceptarCookies()" style="background: var(--gold); border: none; padding: 10px 25px; border-radius: 5px; cursor: pointer; font-weight: bold;">Aceptar</button>
 </div>
 
 <script>
