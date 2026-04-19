@@ -30,10 +30,12 @@
 
         h1, h2, h3 { font-family: 'Arial Black', sans-serif; }
 
-        header { 
-            display: flex; justify-content: space-between; align-items: center; 
-            border-bottom: 2px solid var(--gold); padding: 10px 40px; 
-            background: rgba(0,0,0,0.9);
+        header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--gold); padding: 10px 40px; background: rgba(0,0,0,0.9); }
+        
+        .header-logo { 
+            height: 105px; width: auto; 
+            filter: brightness(0) saturate(100%) invert(75%) sepia(50%) saturate(600%) hue-rotate(5deg) brightness(90%) contrast(100%); 
+            cursor: pointer; transition: 0.3s; 
         }
 
         /* LOGOS GIRATORIOS ORIGINALES */
