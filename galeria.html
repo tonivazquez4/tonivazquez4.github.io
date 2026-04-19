@@ -235,5 +235,30 @@
     function subirArriba() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
     window.onscroll = function() { document.getElementById("btnSubir").style.display = (window.scrollY > 300) ? "flex" : "none"; };
 </script>
+<div id="cookie-banner" style="display: none; position: fixed; bottom: 0; left: 0; width: 100%; background: rgba(10, 10, 10, 0.98); border-top: 2px solid var(--gold); padding: 20px; box-sizing: border-box; z-index: 10000; text-align: center; font-family: 'Montserrat', sans-serif; box-shadow: 0 -10px 30px rgba(0,0,0,0.8);">
+    <p style="margin: 0 0 15px 0; color: #ddd; font-size: 0.95rem; line-height: 1.6;">
+        Usamos cookies propias y de terceros (Google Analytics y Disqus) para analizar el tráfico y mejorar tu experiencia rockera. 🤘<br>
+        Al hacer clic en "Aceptar", das tu consentimiento para el uso de todas las cookies.
+    </p>
+    <div style="display: flex; justify-content: center; align-items: center; gap: 20px;">
+        <button onclick="aceptarCookies()" style="background: linear-gradient(45deg, var(--gold), #f9d976); border: none; padding: 10px 25px; border-radius: 8px; cursor: pointer; font-weight: bold; color: black; font-size: 0.95rem; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4); transition: transform 0.3s ease;">Aceptar todo</button>
+        <a href="#" style="color: var(--gold); text-decoration: underline; font-size: 0.85rem; transition: color 0.3s;">Política de Privacidad</a>
+    </div>
+</div>
+
+<script>
+    // Mostrar el banner si el usuario no ha aceptado antes
+    document.addEventListener("DOMContentLoaded", function() {
+        if (!localStorage.getItem("cookiesAceptadas")) {
+            document.getElementById("cookie-banner").style.display = "block";
+        }
+    });
+
+    // Función al hacer clic en Aceptar
+    function aceptarCookies() {
+        localStorage.setItem("cookiesAceptadas", "true");
+        document.getElementById("cookie-banner").style.display = "none";
+    }
+</script>
 </body>
 </html>
