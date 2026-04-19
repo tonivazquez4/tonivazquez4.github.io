@@ -77,33 +77,41 @@
 
         /* Estilo del logo con animación */
 /* Estilo del logo: Dorado y Giro Vertical 3D */
+/* Estilo base para ambos logos */
 .header-logo { 
     height: 105px; 
     width: auto; 
-    /* Filtro para color dorado */
     filter: brightness(0) saturate(100%) invert(75%) sepia(50%) saturate(600%) hue-rotate(5deg) brightness(90%) contrast(100%);
-    
-    /* Animación de giro vertical */
-    animation: giro-vertical 6s linear infinite; 
-    /* Añadimos perspectiva para que el efecto 3D se vea real */
-    perspective: 1000px;
+    cursor: pointer;
+    transition: filter 0.3s ease;
 }
 
-/* Definición de la animación sobre el eje Y */
-@keyframes giro-vertical {
-    from {
-        transform: rotateY(0deg);
-    }
-    to {
-        transform: rotateY(360deg);
-    }
+/* El primero (izquierda) gira normal */
+.header-logo:first-of-type {
+    animation: giro-vertical-derecha 6s linear infinite;
 }
 
-/* El logo brilla y se detiene al pasar el ratón */
+/* El último (derecha) gira al revés */
+.header-logo:last-of-type {
+    animation: giro-vertical-izquierda 6s linear infinite;
+}
+
+/* Animación: Giro hacia la derecha */
+@keyframes giro-vertical-derecha {
+    from { transform: perspective(1000px) rotateY(0deg); }
+    to { transform: perspective(1000px) rotateY(360deg); }
+}
+
+/* Animación: Giro hacia la izquierda (invertido) */
+@keyframes giro-vertical-izquierda {
+    from { transform: perspective(1000px) rotateY(360deg); }
+    to { transform: perspective(1000px) rotateY(0deg); }
+}
+
+/* Pausar ambos al pasar el ratón y darles más brillo */
 .header-logo:hover {
     filter: brightness(0) saturate(100%) invert(85%) sepia(30%) saturate(1000%) hue-rotate(10deg) brightness(110%) contrast(110%);
     animation-play-state: paused;
-    cursor: pointer;
 }
         
         .nav-menu { text-align: center; margin: 25px 0; }
