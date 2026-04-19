@@ -35,19 +35,28 @@
         .btn { background: linear-gradient(45deg, var(--gold), var(--gold-light)); color: black; padding: 10px 22px; text-decoration: none; border-radius: 8px; font-weight: 700; display: inline-block; margin: 5px; transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
         .btn:hover, .btn.activo { background: white; transform: scale(1.05); }
 
-        /* GALERÍA */
         .grid-galeria { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; padding: 20px; }
         .foto-card img { width: 100%; height: 300px; object-fit: cover; background: #000; border-radius: 10px; cursor: pointer; transition: 0.3s; border: 1px solid #333; }
         .foto-card img:hover { transform: scale(1.02); border-color: var(--gold); }
 
-        /* MODAL / VISOR */
-        #imageModal { display: none; position: fixed; z-index: 10001; padding-top: 50px; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.95); cursor: zoom-out; }
-        #imgFull { margin: auto; display: block; max-width: 90%; max-height: 85vh; border: 2px solid var(--gold); border-radius: 10px; box-shadow: 0 0 20px rgba(212, 175, 55, 0.5); }
+        /* MODAL / VISOR CON FLECHAS */
+        #imageModal { display: none; position: fixed; z-index: 10001; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.95); align-items: center; justify-content: center; }
+        #imgFull { max-width: 90%; max-height: 85vh; border: 2px solid var(--gold); border-radius: 10px; box-shadow: 0 0 20px rgba(212, 175, 55, 0.5); }
+        
+        .modal-btn { position: absolute; background: none; border: none; color: white; font-size: 3rem; cursor: pointer; transition: 0.3s; padding: 20px; z-index: 10002; }
+        .modal-btn:hover { color: var(--gold); scale: 1.2; }
+        #prevBtn { left: 10px; }
+        #nextBtn { right: 10px; }
+        #closeBtn { top: 10px; right: 20px; font-size: 2.5rem; }
 
         .seccion-comentarios { max-width: 800px; margin: 30px auto; padding: 20px; background: white; color: black; border-radius: 10px; border: 2px solid var(--gold); }
         #btnSubir { display: none; position: fixed; bottom: 30px; right: 30px; z-index: 9999; background: var(--gold); color: black; border: none; cursor: pointer; width: 55px; height: 55px; border-radius: 50%; box-shadow: 0 4px 15px rgba(0,0,0,0.6); justify-content: center; align-items: center; font-size: 1.5rem; transition: 0.3s; }
 
-        @media (max-width: 768px) { header { flex-direction: column; padding: 20px; gap: 15px; } .header-logo { display: none; } .social-icons { width: auto; justify-content: center; } .nav-menu { display: flex; justify-content: center; flex-wrap: nowrap; gap: 5px; } .btn { font-size: 0.75rem; padding: 8px 10px; } }
+        @media (max-width: 768px) { 
+            header { flex-direction: column; padding: 20px; gap: 15px; } 
+            .header-logo { display: none; } 
+            .modal-btn { font-size: 2rem; padding: 10px; }
+        }
     </style>
 </head>
 <body>
@@ -55,7 +64,7 @@
 <header>
     <img src="logoTV.png" class="header-logo" id="logo-izq">
     <div class="social-icons icons-left">
-        <a href="https://open.spotify.com/intl-es/album/708rurqxThgsJPR8aClRAD1" target="_blank"><i class="fa-brands fa-spotify"></i></a>
+        <a href="https://open.spotify.com/intl-es/album/708rurqxThgsJPR8aClRAD2" target="_blank"><i class="fa-brands fa-spotify"></i></a>
         <a href="https://music.apple.com/es/artist/tony-vazquez/1497948014" target="_blank"><i class="fa-brands fa-apple"></i></a>
         <a href="https://music.youtube.com/channel/UCFNdFbrM3s0kznhCGpRJ3GA" target="_blank"><i class="fa-brands fa-youtube"></i></a>
     </div>
@@ -87,30 +96,63 @@
 
 <button id="btnSubir" onclick="window.scrollTo({top: 0, behavior: 'smooth'})"><i class="fa-solid fa-arrow-up"></i></button>
 
-<div id="imageModal" onclick="this.style.display='none'">
+<div id="imageModal">
+    <span class="modal-btn" id="closeBtn" onclick="cerrarModal()">&times;</span>
+    <button class="modal-btn" id="prevBtn" onclick="cambiarFoto(-1)">&#10094;</button>
     <img id="imgFull">
-    <p style="text-align: center; color: var(--gold); font-family: sans-serif; margin-top: 15px;">Pulsa en cualquier lugar para cerrar</p>
+    <button class="modal-btn" id="nextBtn" onclick="cambiarFoto(1)">&#10095;</button>
 </div>
 
 <script>
     const totalFotos = 177;
     const contenedor = document.getElementById('galeria-fotos');
-    
-    // Generar fotos con la función de abrir al hacer clic
+    let fotoActual = 1;
+
+    // Generar las 177 fotos
     for (let i = 1; i <= totalFotos; i++) { 
         contenedor.innerHTML += `
             <div class="foto-card">
-                <img src="Fotos/Foto ${i}.jpg" loading="lazy" onclick="abrirImagen(this.src)">
+                <img src="Fotos/Foto ${i}.jpg" loading="lazy" onclick="abrirImagen(${i})">
             </div>`; 
     }
 
-    // Función para mostrar la imagen en el modal
-    function abrirImagen(src) {
-        document.getElementById("imgFull").src = src;
-        document.getElementById("imageModal").style.display = "block";
+    function abrirImagen(indice) {
+        fotoActual = indice;
+        actualizarImagenModal();
+        document.getElementById("imageModal").style.display = "flex";
     }
 
-    // Lógica del botón subir
+    function cerrarModal() {
+        document.getElementById("imageModal").style.display = "none";
+    }
+
+    function cambiarFoto(direccion) {
+        fotoActual += direccion;
+        // Si llegas al final vuelve a la primera, si vas atrás desde la primera vas a la última
+        if (fotoActual > totalFotos) fotoActual = 1;
+        if (fotoActual < 1) fotoActual = totalFotos;
+        actualizarImagenModal();
+    }
+
+    function actualizarImagenModal() {
+        document.getElementById("imgFull").src = `Fotos/Foto ${fotoActual}.jpg`;
+    }
+
+    // Cerrar si haces clic fuera de la imagen
+    window.onclick = function(event) {
+        let modal = document.getElementById("imageModal");
+        if (event.target == modal) cerrarModal();
+    }
+
+    // Soporte para flechas del teclado
+    document.addEventListener('keydown', function(event) {
+        if (document.getElementById("imageModal").style.display === "flex") {
+            if (event.key === "ArrowLeft") cambiarFoto(-1);
+            if (event.key === "ArrowRight") cambiarFoto(1);
+            if (event.key === "Escape") cerrarModal();
+        }
+    });
+
     window.onscroll = function() { 
         let btn = document.getElementById("btnSubir");
         if (document.documentElement.scrollTop > 400) { btn.style.display = "flex"; } else { btn.style.display = "none"; }
