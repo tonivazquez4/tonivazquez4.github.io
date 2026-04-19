@@ -156,7 +156,29 @@
         gap: 15px; 
         height: auto; 
     }
-    .header-logo { display: none; }
+    /* Estilo del logo con animación */
+.header-logo { 
+    height: 105px; 
+    width: auto; 
+    filter: brightness(0) invert(100%); 
+    /* Activamos la animación: nombre, duración, infinita y lineal */
+    animation: giro-lento 10s linear infinite; 
+}
+
+/* Definición de la animación de giro */
+@keyframes giro-lento {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Si quieres que se detenga al poner el ratón encima (opcional) */
+.header-logo:hover {
+    animation-play-state: paused;
+}
     .social-icons { width: auto; justify-content: center; }
     
     /* ESTO ARREGLA EL MENÚ EN MÓVIL */
