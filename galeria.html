@@ -11,159 +11,58 @@
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
     <title>Galería de Fotos | Tony Vázquez</title>
-    <meta name="description" content="Explora la galería de fotos oficial de Tony Vázquez. Imágenes exclusivas de conciertos, giras con Astarot, Orquesta Kubo y más.">
-    <meta name="author" content="Tony Vázquez">
+    <meta name="description" content="Explora la galería de fotos oficial de Tony Vázquez. Imágenes exclusivas de conciertos y giras.">
     
-    <meta property="og:title" content="Galería de Fotos | Tony Vázquez">
-    <meta property="og:description" content="Explora la galería de fotos oficial de Tony Vázquez. Imágenes exclusivas de conciertos, giras con Astarot, Orquesta Kubo y más.">
-    <meta property="og:image" content="https://www.tonyvazquez.es/Alma%20de%20Rock.jpg"> 
-    <meta property="og:url" content="https://www.tonyvazquez.es/galeria.html">
-    <meta property="og:type" content="website">
-
     <link rel="icon" type="image/png" href="favicon.png">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     
     <style>
-        :root { 
-            --gold: #d4af37; 
-            --gold-light: #f9d976; 
-        }
-        
-        body { 
-            font-family: 'Montserrat', sans-serif; 
-            margin: 0; 
-            padding: 0; 
-            color: white; 
-            background: #000 url('Alma de Rock.jpg') no-repeat center center fixed; 
-            background-size: cover; 
-        }
-        
-        body::before { 
-            content: ""; 
-            position: fixed; 
-            top: 0; left: 0; width: 100%; height: 100%; 
-            background: radial-gradient(circle at center, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.85) 100%); 
-            z-index: -1; 
-        }
-
-        h1, h2, h3, .section-title { font-family: 'Arial Black', sans-serif; }
-        
-        header { 
-            height: 120px; 
-            display: flex; 
-            flex-direction: row; 
-            justify-content: space-between; 
-            align-items: center; 
-            border-bottom: 2px solid var(--gold); 
-            padding: 0 40px; 
-            background: linear-gradient(to bottom, rgba(0,0,0,0.9), rgba(0,0,0,0.5)); 
-        }
-        
+        :root { --gold: #d4af37; --gold-light: #f9d976; }
+        body { font-family: 'Montserrat', sans-serif; margin: 0; padding: 0; color: white; background: #000 url('Alma de Rock.jpg') no-repeat center center fixed; background-size: cover; }
+        body::before { content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.85) 100%); z-index: -1; }
+        h1, h2, h3 { font-family: 'Arial Black', sans-serif; }
+        header { height: 120px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--gold); padding: 0 40px; background: linear-gradient(to bottom, rgba(0,0,0,0.9), rgba(0,0,0,0.5)); }
         .header-logo { height: 105px; width: auto; filter: brightness(0) invert(100%); }
         .social-icons { display: flex; gap: 15px; width: 200px; }
-        .icons-left { justify-content: flex-start; }
-        .icons-right { justify-content: flex-end; }
-        .social-icons a { color: white; font-size: 1.4rem; text-decoration: none; transition: transform 0.3s, color 0.3s; }
+        .social-icons a { color: white; font-size: 1.4rem; transition: transform 0.3s; text-decoration: none; }
         .social-icons a:hover { color: var(--gold); transform: translateY(-3px); }
         .header-center { text-align: center; }
-        .header-center h1 { font-size: clamp(1.5rem, 4vw, 2.5rem); margin: 0; text-transform: uppercase; text-shadow: 2px 2px 10px black;}
+        .header-center h1 { font-size: clamp(1.2rem, 4vw, 2.5rem); margin: 0; text-transform: uppercase; }
         .header-center p { margin: 5px 0 0 0; color: var(--gold); letter-spacing: 3px; font-weight: 700; font-size: 0.8rem; }
-        
         .nav-menu { text-align: center; margin: 30px 0; }
+        .btn { background: linear-gradient(45deg, var(--gold), var(--gold-light)); color: black; padding: 10px 22px; text-decoration: none; border-radius: 8px; font-weight: 700; display: inline-block; margin: 5px; transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+        .btn:hover, .btn.activo { background: linear-gradient(45deg, #ffffff, #e0e0e0); transform: scale(1.05); }
         
-        .btn { 
-            background: linear-gradient(45deg, var(--gold), var(--gold-light)); 
-            color: black; 
-            padding: 10px 22px; 
-            text-decoration: none; 
-            border-radius: 8px; 
-            font-weight: 700; 
-            display: inline-block; 
-            margin: 5px; 
-            font-size: 0.95rem; 
-            transition: all 0.3s ease; 
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-            border: 1px solid transparent;
-        }
-        
-        .btn:hover { 
-            background: linear-gradient(45deg, #ffffff, #e0e0e0); 
-            transform: translateY(-3px) scale(1.02); 
-            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4); 
-        }
-
-        .btn.activo { 
-            background: linear-gradient(45deg, #ffffff, #e0e0e0); 
-            color: black; 
-            transform: scale(1.05); 
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
-        }
-
         .container { padding: 0 20px 20px; max-width: 1400px; margin: auto; }
-        .grid-galeria { display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; }
-        
-        /* Efecto 3D en Tarjetas de Galería */
-        .foto-card { 
-            background: linear-gradient(135deg, rgba(30, 30, 30, 0.95), rgba(10, 10, 10, 0.95)); 
-            border: 1px solid #444; 
-            border-radius: 10px; 
-            overflow: hidden; 
-            cursor: zoom-in; 
-            transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
-        }
-        
-        .foto-card:hover { 
-            transform: translateY(-10px); 
-            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.4); 
-            border-color: var(--gold); 
-        }
+        .grid-galeria { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .foto-card { background: #111; border: 1px solid #444; border-radius: 10px; overflow: hidden; cursor: zoom-in; transition: 0.4s; }
+        .foto-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(212, 175, 55, 0.4); border-color: var(--gold); }
+        .foto-card img { width: 100%; height: 300px; object-fit: contain; background: black; display: block; }
 
-        .foto-card img { width: 100%; height: 300px; object-fit: contain; background-color: #000; display: block; transition: 0.3s; }
-        
         .seccion-comentarios { 
-            max-width: 900px; margin: 40px auto 60px; padding: 30px; 
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(240, 240, 240, 0.95)); 
-            border-radius: 12px; 
-            border: 2px solid var(--gold); 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            max-width: 800px; margin: 30px auto 50px; padding: 15px 20px; 
+            background-color: #ffffff; 
+            background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(240, 240, 240, 0.95)); 
+            border-radius: 10px; border: 2px solid var(--gold); box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
-        
-        .seccion-comentarios h3 { color: black; text-align: center; margin-top: 0; font-size: 1.5rem; text-transform: uppercase; border-bottom: 2px solid #ccc; padding-bottom: 10px; }
+        .seccion-comentarios h3 { color: black; text-align: center; margin-top: 0; font-size: 1.3rem; text-transform: uppercase; border-bottom: 2px solid #ccc; padding-bottom: 10px; }
 
+        footer { padding: 25px; text-align: center; background: #000; border-top: 2px solid #222; }
         .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); align-items: center; justify-content: center; }
-        .contenido-modal { display: block; width: 100vw; height: 100vh; max-width: 95vw; max-height: 95vh; object-fit: contain; }
-        .cerrar { position: absolute; top: 20px; right: 35px; color: white; font-size: 40px; font-weight: bold; cursor: pointer; z-index: 1001; }
-        .nav-modal { cursor: pointer; position: absolute; top: 50%; transform: translateY(-50%); padding: 16px; color: white; font-size: 40px; background: rgba(0,0,0,0.5); border: none; z-index: 1001; }
-        .prev { left: 20px; } .next { right: 20px; }
-        
-        footer { padding: 25px; text-align: center; background: linear-gradient(to top, rgba(0,0,0,1), rgba(0,0,0,0.8)); font-size: 0.9rem; border-top: 2px solid #222; }
-        
-        #btnSubir { 
-            display: none; position: fixed; bottom: 30px; right: 30px; z-index: 99; 
-            background: linear-gradient(45deg, var(--gold), var(--gold-light)); color: black; cursor: pointer; 
-            width: 55px; height: 55px; border-radius: 50%; border:none; box-shadow: 0 4px 15px rgba(0,0,0,0.6);
-            justify-content: center; align-items: center; font-size: 1.5rem; transition: all 0.3s;
-        }
-        
-        #btnSubir:hover { background: linear-gradient(45deg, #ffffff, #e0e0e0); transform: scale(1.15) translateY(-5px); box-shadow: 0 10px 20px rgba(212, 175, 55, 0.5); }
+        .contenido-modal { width: 95vw; height: 95vh; object-fit: contain; }
+        .cerrar { position: absolute; top: 20px; right: 35px; color: white; font-size: 40px; cursor: pointer; }
+        #btnSubir { display: none; position: fixed; bottom: 30px; right: 30px; z-index: 99; background: var(--gold); border-radius: 50%; width: 50px; height: 50px; border: none; cursor: pointer; }
 
-        @media (max-width: 900px) {
-            header { flex-direction: column; padding: 20px 10px; gap: 15px; height: auto; }
-            .header-logo { display: none; }
-            .social-icons { width: 100%; justify-content: center; }
-            .grid-galeria { grid-template-columns: repeat(2, 1fr); gap: 15px; }
-        }
+        @media (max-width: 900px) { header { flex-direction: column; height: auto; padding: 20px; } .header-logo { display: none; } .grid-galeria { grid-template-columns: repeat(2, 1fr); } }
     </style>
 </head>
 <body>
 
 <header>
-    <img src="logoTV.png" alt="Tony Vázquez Logo" class="header-logo"> 
-    <div class="social-icons icons-left">
+    <img src="logoTV.png" alt="Logo" class="header-logo">
+    <div class="social-icons">
         <a href="https://open.spotify.com/intl-es/artist/5PGFsB4rJcNb9h5gBOKnWw" target="_blank"><i class="fa-brands fa-spotify"></i></a>
         <a href="https://music.apple.com/es/artist/tony-vazquez/1497948014" target="_blank"><i class="fa-brands fa-apple"></i></a>
         <a href="https://music.youtube.com/channel/UCFNdFbrM3s0kznhCGpRJ3GA" target="_blank"><i class="fa-brands fa-youtube"></i></a>
@@ -172,12 +71,11 @@
         <h1>TONY VÁZQUEZ</h1>
         <p>ROCK · ALMA · LEYENDA</p>
     </div>
-    <div class="social-icons icons-right">
-        <a href="https://music.amazon.es/artists/B07NFBKRHJ/tony-vazquez" target="_blank"><i class="fa-brands fa-amazon"></i></a>
+    <div class="social-icons" style="justify-content: flex-end;">
         <a href="https://instagram.com/tonykubo" target="_blank"><i class="fa-brands fa-instagram"></i></a>
         <a href="https://www.facebook.com/tonisampler/" target="_blank"><i class="fa-brands fa-facebook"></i></a>
     </div>
-    <img src="logoTV.png" alt="Tony Vázquez Logo" class="header-logo">
+    <img src="logoTV.png" alt="Logo" class="header-logo">
 </header>
 
 <nav class="nav-menu">
@@ -186,79 +84,47 @@
     <a href="videos.html" class="btn">Vídeos</a>
 </nav>
 
-<div class="container">
-    <div id="galeria-fotos" class="grid-galeria"></div>
-</div>
+<div class="container"><div id="galeria-fotos" class="grid-galeria"></div></div>
 
 <div class="seccion-comentarios">
     <h3>Deja tu comentario sobre las fotos 📸</h3>
     <div id="disqus_thread"></div>
-<script>
-    var disqus_config = function () {
-        this.page.url = "https://www.tonyvazquez.es/galeria.html";  
-        this.page.identifier = "galeria_tony_vazquez"; 
-    };
-    (function() { 
-        var d = document, s = d.createElement('script');
-        s.src = 'https://tony-vazquez.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
+    <script>
+        var disqus_config = function () { this.page.url = "https://www.tonyvazquez.es/galeria.html"; this.page.identifier = "galeria_tony_vazquez"; };
+        (function() { var d = document, s = d.createElement('script'); s.src = 'https://tony-vazquez.disqus.com/embed.js'; s.setAttribute('data-timestamp', +new Date()); (d.head || d.body).appendChild(s); })();
+    </script>
 </div>
 
 <footer><p>© 2026 Tony Vázquez. Todos los derechos reservados.</p></footer>
 
-<div id="modal-galeria" class="modal" onclick="cerrarModal(event)">
-    <span class="cerrar" onclick="cerrarModal(event, true)">×</span>
-    <button class="nav-modal prev" onclick="cambiarImagen(-1, event)">❮</button>
-    <img class="contenido-modal" id="imagen-ampliada" onclick="event.stopPropagation()">
-    <button class="nav-modal next" onclick="cambiarImagen(1, event)">❯</button>
+<div id="modal-galeria" class="modal" onclick="this.style.display='none'">
+    <span class="cerrar">×</span>
+    <img class="contenido-modal" id="imagen-ampliada">
 </div>
 
-<button id="btnSubir" onclick="subirArriba()"><i class="fa-solid fa-arrow-up"></i></button>
+<button id="btnSubir" onclick="window.scrollTo({top: 0, behavior: 'smooth'})"><i class="fa-solid fa-arrow-up"></i></button>
 
 <script>
     const totalFotos = 177;
-    let indiceActual = 1;
     const contenedor = document.getElementById('galeria-fotos');
     for (let i = 1; i <= totalFotos; i++) {
         const div = document.createElement('div');
         div.className = 'foto-card';
-        div.innerHTML = `<img src="Fotos/Foto ${i}.jpg" loading="lazy" onclick="abrirModal(${i}); event.stopPropagation();">`;
+        div.innerHTML = `<img src="Fotos/Foto ${i}.jpg" loading="lazy" onclick="abrirModal(${i})">`;
         contenedor.appendChild(div);
     }
-    function abrirModal(index) { indiceActual = index; actualizarImagenModal(); document.getElementById('modal-galeria').style.display = 'flex'; }
-    function actualizarImagenModal() { document.getElementById('imagen-ampliada').src = "Fotos/Foto " + indiceActual + ".jpg"; }
-    function cambiarImagen(dir, e) { if(e) e.stopPropagation(); indiceActual += dir; if (indiceActual > totalFotos) indiceActual = 1; if (indiceActual < 1) indiceActual = totalFotos; actualizarImagenModal(); }
-    function cerrarModal(e, f = false) { if (f || e.target.id === 'modal-galeria') document.getElementById('modal-galeria').style.display = 'none'; }
-    function subirArriba() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
-    window.onscroll = function() { document.getElementById("btnSubir").style.display = (window.scrollY > 300) ? "flex" : "none"; };
+    function abrirModal(i) { document.getElementById('imagen-ampliada').src = `Fotos/Foto ${i}.jpg`; document.getElementById('modal-galeria').style.display = 'flex'; }
+    window.onscroll = function() { document.getElementById("btnSubir").style.display = (window.scrollY > 300) ? "block" : "none"; };
 </script>
-<div id="cookie-banner" style="display: none; position: fixed; bottom: 0; left: 0; width: 100%; background: rgba(10, 10, 10, 0.98); border-top: 2px solid var(--gold); padding: 20px; box-sizing: border-box; z-index: 10000; text-align: center; font-family: 'Montserrat', sans-serif; box-shadow: 0 -10px 30px rgba(0,0,0,0.8);">
-    <p style="margin: 0 0 15px 0; color: #ddd; font-size: 0.95rem; line-height: 1.6;">
-        Usamos cookies propias y de terceros (Google Analytics y Disqus) para analizar el tráfico y mejorar tu experiencia rockera. 🤘<br>
-        Al hacer clic en "Aceptar", das tu consentimiento para el uso de todas las cookies.
-    </p>
-    <div style="display: flex; justify-content: center; align-items: center; gap: 20px;">
-        <button onclick="aceptarCookies()" style="background: linear-gradient(45deg, var(--gold), #f9d976); border: none; padding: 10px 25px; border-radius: 8px; cursor: pointer; font-weight: bold; color: black; font-size: 0.95rem; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4); transition: transform 0.3s ease;">Aceptar todo</button>
-        <a href="#" style="color: var(--gold); text-decoration: underline; font-size: 0.85rem; transition: color 0.3s;">Política de Privacidad</a>
-    </div>
+
+<div id="cookie-banner" style="display: none; position: fixed; bottom: 0; left: 0; width: 100%; background: rgba(10, 10, 10, 0.98); border-top: 2px solid var(--gold); padding: 20px; z-index: 10000; text-align: center;">
+    <p style="color: #ddd; margin-bottom: 15px;">Usamos cookies para mejorar tu experiencia rockera. 🤘</p>
+    <button onclick="aceptarCookies()" style="background: var(--gold); border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: bold;">Aceptar todo</button>
 </div>
-
 <script>
-    // Mostrar el banner si el usuario no ha aceptado antes
-    document.addEventListener("DOMContentLoaded", function() {
-        if (!localStorage.getItem("cookiesAceptadas")) {
-            document.getElementById("cookie-banner").style.display = "block";
-        }
-    });
-
-    // Función al hacer clic en Aceptar
-    function aceptarCookies() {
-        localStorage.setItem("cookiesAceptadas", "true");
-        document.getElementById("cookie-banner").style.display = "none";
-    }
+    if (!localStorage.getItem("cookiesAceptadas")) document.getElementById("cookie-banner").style.display = "block";
+    function aceptarCookies() { localStorage.setItem("cookiesAceptadas", "true"); document.getElementById("cookie-banner").style.display = "none"; }
 </script>
+
 </body>
 </html>
