@@ -55,7 +55,31 @@
         .cerrar { position: absolute; top: 20px; right: 35px; color: white; font-size: 40px; cursor: pointer; }
         #btnSubir { display: none; position: fixed; bottom: 30px; right: 30px; z-index: 99; background: var(--gold); border-radius: 50%; width: 50px; height: 50px; border: none; cursor: pointer; }
 
-        @media (max-width: 900px) { header { flex-direction: column; height: auto; padding: 20px; } .header-logo { display: none; } .grid-galeria { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 768px) {
+    header { 
+        flex-direction: column; 
+        padding: 20px 10px; 
+        gap: 15px; 
+        height: auto; 
+    }
+    .header-logo { display: none; }
+    .social-icons { width: auto; justify-content: center; }
+    
+    /* ESTO ARREGLA EL MENÚ EN MÓVIL */
+    .nav-menu { 
+        display: flex; 
+        flex-direction: row; 
+        justify-content: center; 
+        flex-wrap: nowrap; /* Obliga a que no se bajen */
+        gap: 5px; 
+        padding: 0 5px;
+    }
+    .nav-menu .btn { 
+        width: auto; 
+        margin: 0; 
+        padding: 8px 10px; /* Botones un poco más estrechos para que quepan los tres */
+        font-size: 0.75rem; /* Letra un pelín más pequeña en móvil */
+    }
     </style>
 </head>
 <body>
