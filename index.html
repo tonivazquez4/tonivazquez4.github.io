@@ -176,11 +176,30 @@
         #btnSubir:hover { background: linear-gradient(45deg, #ffffff, #e0e0e0); transform: scale(1.15) translateY(-5px); box-shadow: 0 10px 20px rgba(212, 175, 55, 0.5); }
 
         @media (max-width: 768px) {
-            header { flex-direction: column; padding: 20px 10px; gap: 15px; }
-            .header-logo { display: none; }
-            .social-icons { width: 100%; justify-content: center; }
-            .discografia { gap: 20px; }
-        }
+    header { 
+        flex-direction: column; 
+        padding: 20px 10px; 
+        gap: 15px; 
+        height: auto; 
+    }
+    .header-logo { display: none; }
+    .social-icons { width: auto; justify-content: center; }
+    
+    /* ESTO ARREGLA EL MENÚ EN MÓVIL */
+    .nav-menu { 
+        display: flex; 
+        flex-direction: row; 
+        justify-content: center; 
+        flex-wrap: nowrap; /* Obliga a que no se bajen */
+        gap: 5px; 
+        padding: 0 5px;
+    }
+    .nav-menu .btn { 
+        width: auto; 
+        margin: 0; 
+        padding: 8px 10px; /* Botones un poco más estrechos para que quepan los tres */
+        font-size: 0.75rem; /* Letra un pelín más pequeña en móvil */
+    }
     </style>
 </head>
 <body>
