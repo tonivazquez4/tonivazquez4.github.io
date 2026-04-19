@@ -63,26 +63,40 @@
         height: auto; 
     }
     /* Estilo del logo con animación */
+/* Estilo base para ambos logos */
 .header-logo { 
     height: 105px; 
     width: auto; 
-    filter: brightness(0) invert(100%); 
-    /* Activamos la animación: nombre, duración, infinita y lineal */
-    animation: giro-lento 10s linear infinite; 
+    filter: brightness(0) saturate(100%) invert(75%) sepia(50%) saturate(600%) hue-rotate(5deg) brightness(90%) contrast(100%);
+    cursor: pointer;
+    transition: filter 0.3s ease;
 }
 
-/* Definición de la animación de giro */
-@keyframes giro-lento {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+/* El primero (izquierda) gira normal */
+.header-logo:first-of-type {
+    animation: giro-vertical-derecha 6s linear infinite;
 }
 
-/* Si quieres que se detenga al poner el ratón encima (opcional) */
+/* El último (derecha) gira al revés */
+.header-logo:last-of-type {
+    animation: giro-vertical-izquierda 6s linear infinite;
+}
+
+/* Animación: Giro hacia la derecha */
+@keyframes giro-vertical-derecha {
+    from { transform: perspective(1000px) rotateY(0deg); }
+    to { transform: perspective(1000px) rotateY(360deg); }
+}
+
+/* Animación: Giro hacia la izquierda (invertido) */
+@keyframes giro-vertical-izquierda {
+    from { transform: perspective(1000px) rotateY(360deg); }
+    to { transform: perspective(1000px) rotateY(0deg); }
+}
+
+/* Pausar ambos al pasar el ratón y darles más brillo */
 .header-logo:hover {
+    filter: brightness(0) saturate(100%) invert(85%) sepia(30%) saturate(1000%) hue-rotate(10deg) brightness(110%) contrast(110%);
     animation-play-state: paused;
 }
     .social-icons { width: auto; justify-content: center; }
