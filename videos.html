@@ -8,189 +8,101 @@
       gtag('js', new Date());
       gtag('config', 'G-1YS8QY8TXN');
     </script>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
     <title>Vídeos Oficiales | Tony Vázquez</title>
-    <meta name="description" content="Disfruta de los mejores vídeos musicales y actuaciones en directo de Tony Vázquez, la voz del rock.">
-    
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
-    
     <style>
         :root { --gold: #d4af37; --gold-light: #f9d976; }
-        
-        body { 
-            font-family: 'Montserrat', sans-serif; margin: 0; padding: 0; color: white; 
-            background: #000 url('Alma de Rock.jpg') no-repeat center center fixed; 
-            background-size: cover; 
-        }
-        
-        body::before { 
-            content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-            background: radial-gradient(circle at center, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.85) 100%); 
-            z-index: -1; 
-        }
-
-        header { 
-            height: auto; display: flex; justify-content: space-between; align-items: center; 
-            border-bottom: 2px solid var(--gold); padding: 10px 40px; 
-            background: linear-gradient(to bottom, rgba(0,0,0,0.9), rgba(0,0,0,0.5)); 
-        }
-        
-        /* LOGOS DORADOS CON GIRO ENCONTRADO */
-        .header-logo { 
-            height: 105px; width: auto; 
-            filter: brightness(0) saturate(100%) invert(75%) sepia(50%) saturate(600%) hue-rotate(5deg) brightness(90%) contrast(100%);
-            cursor: pointer; transition: 0.3s;
-        }
-
+        body { font-family: 'Montserrat', sans-serif; margin: 0; padding: 0; color: white; background: #000 url('Alma de Rock.jpg') no-repeat center center fixed; background-size: cover; }
+        body::before { content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.85) 100%); z-index: -1; }
+        header { height: auto; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--gold); padding: 10px 40px; background: rgba(0,0,0,0.9); }
+        .header-logo { height: 105px; width: auto; filter: brightness(0) saturate(100%) invert(75%) sepia(50%) saturate(600%) hue-rotate(5deg) brightness(90%) contrast(100%); cursor: pointer; transition: 0.3s; }
         #logo-izq { animation: giro-3d 6s linear infinite; }
         #logo-der { animation: giro-3d 6s linear infinite reverse; }
-
-        @keyframes giro-3d {
-            from { transform: perspective(1000px) rotateY(0deg); }
-            to { transform: perspective(1000px) rotateY(360deg); }
-        }
-
-        .header-logo:hover { animation-play-state: paused; filter: brightness(1.1) contrast(1.1); }
-
-        .header-center { text-align: center; }
-        .header-center h1 { font-size: clamp(1.5rem, 4vw, 2.5rem); margin: 0; text-transform: uppercase; text-shadow: 2px 2px 10px black;}
-        .header-center p { margin: 5px 0 0 0; color: var(--gold); letter-spacing: 4px; font-weight: 700; font-size: 0.8rem; }
-
+        @keyframes giro-3d { from { transform: perspective(1000px) rotateY(0deg); } to { transform: perspective(1000px) rotateY(360deg); } }
         .social-icons { display: flex; gap: 15px; width: 200px; }
+        .icons-left { justify-content: flex-start; }
+        .icons-right { justify-content: flex-end; }
         .social-icons a { color: white; font-size: 1.4rem; text-decoration: none; transition: 0.3s; }
         .social-icons a:hover { color: var(--gold); transform: translateY(-3px); }
-
         .nav-menu { text-align: center; margin: 30px 0; }
-        .btn { 
-            background: linear-gradient(45deg, var(--gold), var(--gold-light)); color: black; 
-            padding: 10px 22px; text-decoration: none; border-radius: 8px; font-weight: 700; 
-            display: inline-block; margin: 5px; font-size: 0.95rem; transition: 0.3s; 
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5); 
-        }
-        .btn:hover, .btn.activo { background: linear-gradient(45deg, #ffffff, #e0e0e0); transform: scale(1.05); }
-
-        .container { padding: 0 15px 20px; max-width: 900px; margin: auto; display: flex; flex-direction: column; gap: 50px; }
-        
-        .video-wrapper { 
-            position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; 
-            border: 2px solid #444; border-radius: 12px; background: black; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5); transition: 0.4s;
-        }
-        .video-wrapper:hover { transform: translateY(-10px); border-color: var(--gold); box-shadow: 0 15px 30px rgba(212, 175, 55, 0.4); }
+        .btn { background: linear-gradient(45deg, var(--gold), var(--gold-light)); color: black; padding: 10px 22px; text-decoration: none; border-radius: 8px; font-weight: 700; display: inline-block; margin: 5px; transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+        .btn:hover, .btn.activo { background: white; transform: scale(1.05); }
+        .container { padding: 0 15px 20px; max-width: 900px; margin: auto; display: flex; flex-direction: column; gap: 40px; }
+        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border: 2px solid #444; border-radius: 12px; background: black; transition: 0.4s; }
+        .video-wrapper:hover { transform: translateY(-5px); border-color: var(--gold); }
         .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
-
-        .seccion-comentarios { 
-            max-width: 800px; margin: 40px auto 60px; padding: 15px 20px; 
-            background-color: #ffffff; 
-            background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(240, 240, 240, 0.95)); 
-            border-radius: 12px; border: 2px solid var(--gold); box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-        .seccion-comentarios h3 { color: black; text-align: center; margin-top: 0; font-size: 1.3rem; text-transform: uppercase; border-bottom: 2px solid #ccc; padding-bottom: 10px; }
-
-        footer { padding: 25px; text-align: center; background: #000; border-top: 2px solid #222; }
-
-        #btnSubir { 
-            display: none; position: fixed; bottom: 30px; right: 30px; z-index: 99; 
-            background: var(--gold); color: black; width: 55px; height: 55px; border-radius: 50%; border:none; cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.6); justify-content: center; align-items: center;
-        }
-
-        @media (max-width: 768px) {
-            header { flex-direction: column; padding: 20px 10px; gap: 15px; height: auto; }
-            .header-logo { display: none; }
-            .nav-menu { display: flex; justify-content: center; flex-wrap: nowrap; gap: 5px; }
-            .btn { font-size: 0.75rem; padding: 8px 10px; }
-        }
+        .seccion-comentarios { max-width: 800px; margin: 40px auto; padding: 20px; background: white; color: black; border-radius: 12px; border: 2px solid var(--gold); }
+        #btnSubir { display: none; position: fixed; bottom: 30px; right: 30px; z-index: 9999; background: var(--gold); color: black; border: none; cursor: pointer; width: 55px; height: 55px; border-radius: 50%; box-shadow: 0 4px 15px rgba(0,0,0,0.6); justify-content: center; align-items: center; font-size: 1.5rem; transition: 0.3s; }
+        @media (max-width: 768px) { header { flex-direction: column; padding: 20px; gap: 15px; } .header-logo { display: none; } .social-icons { width: auto; justify-content: center; } .nav-menu { display: flex; justify-content: center; flex-wrap: nowrap; gap: 5px; } .btn { font-size: 0.75rem; padding: 8px 10px; } }
     </style>
 </head>
 <body>
-
 <header>
-    <img src="logoTV.png" alt="Logo" class="header-logo" id="logo-izq"> 
-    <div class="social-icons">
+    <img src="logoTV.png" class="header-logo" id="logo-izq">
+    <div class="social-icons icons-left">
         <a href="https://open.spotify.com/intl-es/artist/5PGFsB4rJcNb9h5gBOKnWw" target="_blank"><i class="fa-brands fa-spotify"></i></a>
         <a href="https://music.apple.com/es/artist/tony-vazquez/1497948014" target="_blank"><i class="fa-brands fa-apple"></i></a>
         <a href="https://music.youtube.com/channel/UCFNdFbrM3s0kznhCGpRJ3GA" target="_blank"><i class="fa-brands fa-youtube"></i></a>
     </div>
-    <div class="header-center">
-        <h1>TONY VÁZQUEZ</h1>
-        <p>ROCK · ALMA · LEYENDA</p>
-    </div>
-    <div class="social-icons" style="justify-content: flex-end;">
+    <div style="text-align:center"><h1>TONY VÁZQUEZ</h1><p style="color:var(--gold); letter-spacing:4px; font-weight:700;">VÍDEOS</p></div>
+    <div class="social-icons icons-right">
+        <a href="https://music.amazon.es/artists/B07NFBKRHJ/tony-vazquez" target="_blank"><i class="fa-brands fa-amazon"></i></a>
         <a href="https://instagram.com/tonykubo" target="_blank"><i class="fa-brands fa-instagram"></i></a>
         <a href="https://www.facebook.com/tonisampler/" target="_blank"><i class="fa-brands fa-facebook"></i></a>
     </div>
-    <img src="logoTV.png" alt="Logo" class="header-logo" id="logo-der">
+    <img src="logoTV.png" class="header-logo" id="logo-der">
 </header>
-
 <nav class="nav-menu">
     <a href="index.html" class="btn">Inicio</a>
     <a href="galeria.html" class="btn">Galería</a>
     <a href="videos.html" class="btn activo">Vídeos</a>
 </nav>
-
 <div class="container">
     <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/jbRyfHEIujA" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
     <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/8-qVdj1VhF0" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
     <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/QTxNLOtnekQ" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
     <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/T9QqKk1GckI" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
-    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/tgPovfSXLq4?si=El7MNag5RcmalrLR" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
-    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/DzHDuS5s8BE?si=jRWAbBKVO87Pa9i4" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
-    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/G5ELIs5Y_ic?si=dzn8i_WYlVfPkGgD" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
-    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/EjwgkDtwJNI?si=3YdQAJpowqSTCXy5" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
-    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/QWkJ0TpyNuY?si=02mzzyfa7ZSP5FHA" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
-    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/LbUzsYG0kjw?si=ZWunJBqM7OM9TzgE" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
-    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/2yz9kGwK3sg?si=U5iNCoJa7y5mi4As" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
-    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/1leI7UNl2PM?si=smKRC769OgwNQ6lP" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
-    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/ki7KxsOskz4?si=IsumVyB4RnGpZy7e" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
-    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/sDD30k7cPrE?si=ynEtAo2xtGUe7h8H" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
-    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/A7HKU9L8oWs?si=x0_wRLqmxNNUsPsL" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
-    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/ol4rdn9OKqo?si=KovzqnV06Kn8MP-l" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
-    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/rT-Xge-hauY?si=5kYj8qo2h71fSQQZ" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
-    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/ohLpUUvWu48?si=cIO43jzRac625Qv0" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
-    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/3Tts6eJL6uo?si=QCGrsSz_Myu5dpkk" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
-    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/c39P7vcHmvE?si=bZVF8d-ms2eEuvnq" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
-    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/SLOh-Uf7H7A?si=QhHTgitQ8g192SG2" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
-    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/Ggnf36obnoE?si=9Jvxw5QfNf5eX20v" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
-    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/vj_B8wSrSAA?si=Z8N7rOTh-3Vq-zs7" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
-    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/vgEwErlfZOM?si=7WSt4-SAlcRLut-V" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
-    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/eVdZSx_8P3Y?si=6_UsRxTXDxkkOqN4" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
-    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/bxZT2-eyfGQ?si=xhnijuywX2ChlZI" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
+    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/tgPovfSXLq4" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
+    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/DzHDuS5s8BE" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
+    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/G5ELIs5Y_ic" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
+    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/EjwgkDtwJNI" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
+    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/QWkJ0TpyNuY" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
+    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/LbUzsYG0kjw" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
+    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/2yz9kGwK3sg" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
+    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/1leI7UNl2PM" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
+    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/ki7KxsOskz4" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
+    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/sDD30k7cPrE" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
+    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/A7HKU9L8oWs" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
+    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/ol4rdn9OKqo" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
+    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/rT-Xge-hauY" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
+    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/ohLpUUvWu48" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
+    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/3Tts6eJL6uo" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
+    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/c39P7vcHmvE" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
+    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/SLOh-Uf7H7A" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
+    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/Ggnf36obnoE" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
+    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/vj_B8wSrSAA" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
+    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/vgEwErlfZOM" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
+    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/eVdZSx_8P3Y" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
+    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/bxZT2-eyfGQ" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
 </div>
-
 <div class="seccion-comentarios">
-    <h3>¡Deja tu comentario! 🤘</h3>
+    <h3>¿Alguna petición especial? 🤘</h3>
     <div id="disqus_thread"></div>
-<script>
-    var disqus_config = function () { this.page.url = "https://www.tonyvazquez.es/videos.html"; this.page.identifier = "videos_tony_vazquez"; };
-    (function() { var d = document, s = d.createElement('script'); s.src = 'https://tony-vazquez.disqus.com/embed.js'; s.setAttribute('data-timestamp', +new Date()); (d.head || d.body).appendChild(s); })();
-</script>
+    <script>
+        var disqus_config = function () { this.page.url = "https://www.tonyvazquez.es/videos.html"; this.page.identifier = "videos_tony_vazquez"; };
+        (function() { var d = document, s = d.createElement('script'); s.src = 'https://tony-vazquez.disqus.com/embed.js'; s.setAttribute('data-timestamp', +new Date()); (d.head || d.body).appendChild(s); })();
+    </script>
 </div>
-
-<footer><p>© 2026 Tony Vázquez. Todos los derechos reservados.</p></footer>
-
 <button id="btnSubir" onclick="window.scrollTo({top: 0, behavior: 'smooth'})"><i class="fa-solid fa-arrow-up"></i></button>
-
 <script>
     window.onscroll = function() { 
         let btn = document.getElementById("btnSubir");
-        if (window.scrollY > 300) { btn.style.display = "flex"; } else { btn.style.display = "none"; }
+        if (document.documentElement.scrollTop > 400) { btn.style.display = "flex"; } else { btn.style.display = "none"; }
     };
-</script>
-
-<div id="cookie-banner" style="display: none; position: fixed; bottom: 0; left: 0; width: 100%; background: rgba(0,0,0,0.9); border-top: 2px solid var(--gold); padding: 20px; z-index: 10000; text-align: center;">
-    <p style="color: #ddd; margin-bottom: 15px;">Usamos cookies para mejorar tu experiencia rockera. 🤘</p>
-    <button onclick="aceptarCookies()" style="background: var(--gold); border: none; padding: 10px 25px; border-radius: 8px; cursor: pointer; font-weight: bold;">Aceptar todo</button>
-</div>
-
-<script>
-    if (!localStorage.getItem("cookiesAceptadas")) document.getElementById("cookie-banner").style.display = "block";
-    function aceptarCookies() { localStorage.setItem("cookiesAceptadas", "true"); document.getElementById("cookie-banner").style.display = "none"; }
 </script>
 </body>
 </html>
