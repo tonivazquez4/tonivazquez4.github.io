@@ -76,27 +76,34 @@
         .social-icons a:hover { color: var(--gold); transform: translateY(-3px); }
 
         /* Estilo del logo con animación */
+/* Estilo del logo: Dorado y Giro Vertical 3D */
 .header-logo { 
     height: 105px; 
     width: auto; 
-    filter: brightness(0) invert(100%); 
-    /* Activamos la animación: nombre, duración, infinita y lineal */
-    animation: giro-lento 10s linear infinite; 
+    /* Filtro para color dorado */
+    filter: brightness(0) saturate(100%) invert(75%) sepia(50%) saturate(600%) hue-rotate(5deg) brightness(90%) contrast(100%);
+    
+    /* Animación de giro vertical */
+    animation: giro-vertical 6s linear infinite; 
+    /* Añadimos perspectiva para que el efecto 3D se vea real */
+    perspective: 1000px;
 }
 
-/* Definición de la animación de giro */
-@keyframes giro-lento {
+/* Definición de la animación sobre el eje Y */
+@keyframes giro-vertical {
     from {
-        transform: rotate(0deg);
+        transform: rotateY(0deg);
     }
     to {
-        transform: rotate(360deg);
+        transform: rotateY(360deg);
     }
 }
 
-/* Si quieres que se detenga al poner el ratón encima (opcional) */
+/* El logo brilla y se detiene al pasar el ratón */
 .header-logo:hover {
+    filter: brightness(0) saturate(100%) invert(85%) sepia(30%) saturate(1000%) hue-rotate(10deg) brightness(110%) contrast(110%);
     animation-play-state: paused;
+    cursor: pointer;
 }
         
         .nav-menu { text-align: center; margin: 25px 0; }
