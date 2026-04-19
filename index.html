@@ -31,11 +31,10 @@
         :root { 
             --rock-red: #b31d1d; 
             --gold: #d4af37; 
-            --gold-light: #f9d976; /* Nuevo color para degradados */
+            --gold-light: #f9d976; 
         }
         
         body { 
-            /* TIPOGRAFÍA LIMPIA PARA EL TEXTO GENERAL */
             font-family: 'Montserrat', sans-serif; 
             margin: 0; 
             padding: 0;
@@ -48,12 +47,10 @@
             content: "";
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            /* EFECTO DEGRADADO EN EL FONDO (Más oscuro en los bordes) */
             background: radial-gradient(circle at center, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.85) 100%); 
             z-index: -1;
         }
 
-        /* TIPOGRAFÍA ARIAL BLACK SOLO PARA TÍTULOS */
         h1, h2, h3, .section-title {
             font-family: 'Arial Black', sans-serif;
         }
@@ -66,7 +63,6 @@
             align-items: center; 
             border-bottom: 2px solid var(--gold);
             padding: 10px 40px;
-            /* DEGRADADO SUTIL EN LA CABECERA */
             background: linear-gradient(to bottom, rgba(0,0,0,0.9), rgba(0,0,0,0.5));
         }
 
@@ -83,7 +79,6 @@
         
         .nav-menu { text-align: center; margin: 25px 0; }
         
-        /* BOTONES PREMIUM CON DEGRADADOS Y EFECTOS */
         .btn { 
             background: linear-gradient(45deg, var(--gold), var(--gold-light)); 
             color: black; 
@@ -102,7 +97,7 @@
         .btn:hover { 
             background: linear-gradient(45deg, #ffffff, #e0e0e0); 
             transform: translateY(-3px) scale(1.02); 
-            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4); /* Brillo dorado */
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4); 
         }
 
         .btn.activo { 
@@ -117,7 +112,6 @@
         
         .discografia { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; }
         
-        /* TARJETAS 3D */
         .album-card { 
             background: linear-gradient(135deg, rgba(30, 30, 30, 0.95), rgba(10, 10, 10, 0.95)); 
             border-radius: 12px; 
@@ -132,7 +126,7 @@
 
         .album-card:hover {
             transform: translateY(-12px);
-            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.3); /* Sombra dorada flotante */
+            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.3); 
             border-color: var(--gold);
         }
 
@@ -159,13 +153,17 @@
         .bio-content { max-width: 800px; margin: auto; font-size: 1.05rem; line-height: 1.8; color: #ddd; }
         .bio-content strong { color: var(--gold); font-weight: 700; }
         
+        /* CAJA DE COMENTARIOS REDUCIDA */
         .seccion-comentarios { 
-            max-width: 900px; margin: 50px auto 60px; padding: 30px; 
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(240, 240, 240, 0.95)); 
-            border-radius: 12px; 
+            max-width: 800px; 
+            margin: 30px auto 50px; 
+            padding: 15px 20px; 
+            background: rgba(255, 255, 255, 0.98); 
+            border-radius: 10px; 
             border: 2px solid var(--gold); 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
+        .seccion-comentarios h3 { color: black; text-align: center; margin-top: 0; font-size: 1.3rem; text-transform: uppercase; border-bottom: 2px solid #ccc; padding-bottom: 10px; }
 
         footer { padding: 25px; text-align: center; background: linear-gradient(to top, rgba(0,0,0,1), rgba(0,0,0,0.8)); font-size: 0.9rem; border-top: 2px solid #222; }
 
@@ -249,7 +247,7 @@
 </div>
 
 <div class="seccion-comentarios">
-    <h3 style="color: black; text-align: center; margin-top: 0; text-transform: uppercase; border-bottom: 2px solid #ccc; padding-bottom: 10px;">¡Deja tu mensaje para Tony! 🎸</h3>
+    <h3>¡Deja tu mensaje para Tony! 🎸</h3>
     <div id="disqus_thread"></div>
     <script>
         var disqus_config = function () {
