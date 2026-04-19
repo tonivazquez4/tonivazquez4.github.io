@@ -29,7 +29,6 @@
     
     <style>
         :root { 
-            --rock-red: #b31d1d; 
             --gold: #d4af37; 
             --gold-light: #f9d976; 
         }
@@ -51,9 +50,7 @@
             z-index: -1;
         }
 
-        h1, h2, h3, .section-title {
-            font-family: 'Arial Black', sans-serif;
-        }
+        h1, h2, h3, .section-title { font-family: 'Arial Black', sans-serif; }
 
         header { 
             height: auto; 
@@ -75,44 +72,32 @@
         .social-icons a { color: white; font-size: 1.4rem; transition: transform 0.3s, color 0.3s; text-decoration: none; }
         .social-icons a:hover { color: var(--gold); transform: translateY(-3px); }
 
-        /* Estilo del logo con animación */
-/* Estilo del logo: Dorado y Giro Vertical 3D */
-/* Estilo base para ambos logos */
-.header-logo { 
-    height: 105px; 
-    width: auto; 
-    filter: brightness(0) saturate(100%) invert(75%) sepia(50%) saturate(600%) hue-rotate(5deg) brightness(90%) contrast(100%);
-    cursor: pointer;
-    transition: filter 0.3s ease;
-}
+        /* ESTILO LOGOS DORADOS Y GIRO OPUESTO */
+        .header-logo { 
+            height: 105px; 
+            width: auto; 
+            filter: brightness(0) saturate(100%) invert(75%) sepia(50%) saturate(600%) hue-rotate(5deg) brightness(90%) contrast(100%);
+            cursor: pointer;
+            transition: filter 0.3s ease;
+        }
 
-/* El primero (izquierda) gira normal */
-.header-logo:first-of-type {
-    animation: giro-vertical-derecha 6s linear infinite;
-}
+        #logo-izq { animation: giro-derecha 6s linear infinite; }
+        #logo-der { animation: giro-izquierda 6s linear infinite; }
 
-/* El último (derecha) gira al revés */
-.header-logo:last-of-type {
-    animation: giro-vertical-izquierda 6s linear infinite;
-}
+        @keyframes giro-derecha {
+            from { transform: perspective(1000px) rotateY(0deg); }
+            to { transform: perspective(1000px) rotateY(360deg); }
+        }
 
-/* Animación: Giro hacia la derecha */
-@keyframes giro-vertical-derecha {
-    from { transform: perspective(1000px) rotateY(0deg); }
-    to { transform: perspective(1000px) rotateY(360deg); }
-}
+        @keyframes giro-izquierda {
+            from { transform: perspective(1000px) rotateY(360deg); }
+            to { transform: perspective(1000px) rotateY(0deg); }
+        }
 
-/* Animación: Giro hacia la izquierda (invertido) */
-@keyframes giro-vertical-izquierda {
-    from { transform: perspective(1000px) rotateY(360deg); }
-    to { transform: perspective(1000px) rotateY(0deg); }
-}
-
-/* Pausar ambos al pasar el ratón y darles más brillo */
-.header-logo:hover {
-    filter: brightness(0) saturate(100%) invert(85%) sepia(30%) saturate(1000%) hue-rotate(10deg) brightness(110%) contrast(110%);
-    animation-play-state: paused;
-}
+        .header-logo:hover {
+            filter: brightness(0) saturate(100%) invert(85%) sepia(30%) saturate(1000%) hue-rotate(10deg) brightness(110%) contrast(110%);
+            animation-play-state: paused;
+        }
         
         .nav-menu { text-align: center; margin: 25px 0; }
         
@@ -190,12 +175,12 @@
         .bio-content { max-width: 800px; margin: auto; font-size: 1.05rem; line-height: 1.8; color: #ddd; }
         .bio-content strong { color: var(--gold); font-weight: 700; }
         
-        /* CAJA DE COMENTARIOS REDUCIDA */
         .seccion-comentarios { 
             max-width: 800px; 
             margin: 30px auto 50px; 
             padding: 15px 20px; 
-            background: rgba(255, 255, 255, 0.98); 
+            background-color: #ffffff;
+            background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(240, 240, 240, 0.95));
             border-radius: 10px; 
             border: 2px solid var(--gold); 
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
@@ -213,42 +198,24 @@
         #btnSubir:hover { background: linear-gradient(45deg, #ffffff, #e0e0e0); transform: scale(1.15) translateY(-5px); box-shadow: 0 10px 20px rgba(212, 175, 55, 0.5); }
 
         @media (max-width: 768px) {
-    header { 
-        flex-direction: column; 
-        padding: 20px 10px; 
-        gap: 15px; 
-        height: auto; 
-    }
-    .header-logo { display: none; }
-    .social-icons { width: auto; justify-content: center; }
-    
-    /* ESTO ARREGLA EL MENÚ EN MÓVIL */
-    .nav-menu { 
-        display: flex; 
-        flex-direction: row; 
-        justify-content: center; 
-        flex-wrap: nowrap; /* Obliga a que no se bajen */
-        gap: 5px; 
-        padding: 0 5px;
-    }
-    .nav-menu .btn { 
-        width: auto; 
-        margin: 0; 
-        padding: 8px 10px; /* Botones un poco más estrechos para que quepan los tres */
-        font-size: 0.75rem; /* Letra un pelín más pequeña en móvil */
-    }
+            header { flex-direction: column; padding: 20px 10px; gap: 15px; height: auto; }
+            .header-logo { display: none; }
+            .social-icons { width: auto; justify-content: center; }
+            .nav-menu { display: flex; flex-direction: row; justify-content: center; flex-wrap: nowrap; gap: 5px; padding: 0 5px; }
+            .nav-menu .btn { width: auto; margin: 0; padding: 8px 10px; font-size: 0.75rem; }
+        }
     </style>
 </head>
 <body>
 
 <header>
-    <img src="logoTV.png" alt="Tony Vázquez Logo" class="header-logo"> 
+    <img src="logoTV.png" alt="Tony Vázquez Logo" class="header-logo" id="logo-izq"> 
     <div class="social-icons icons-left">
         <a href="https://open.spotify.com/intl-es/artist/5PGFsB4rJcNb9h5gBOKnWw" target="_blank"><i class="fa-brands fa-spotify"></i></a>
         <a href="https://music.apple.com/es/album/alma-de-rock/1891940465" target="_blank"><i class="fa-brands fa-apple"></i></a>
         <a href="https://music.youtube.com/channel/UCFNdFbrM3s0kznhCGpRJ3GA" target="_blank"><i class="fa-brands fa-youtube"></i></a>
     </div>
-    <div>
+    <div class="header-center">
         <h1>TONY VÁZQUEZ</h1>
         <p>ROCK · ALMA · LEYENDA</p>
     </div>
@@ -257,7 +224,7 @@
         <a href="https://instagram.com/tonykubo" target="_blank"><i class="fa-brands fa-instagram"></i></a>
         <a href="https://facebook.com/tonisampler/" target="_blank"><i class="fa-brands fa-facebook"></i></a>
     </div>
-    <img src="logoTV.png" alt="Tony Vázquez Logo" class="header-logo">
+    <img src="logoTV.png" alt="Tony Vázquez Logo" class="header-logo" id="logo-der">
 </header>
 
 <nav class="nav-menu">
@@ -276,7 +243,6 @@
                 <a href="https://open.spotify.com/intl-es/album/4rs6iGjMuaWskxs9FkEEt7" target="_blank" class="btn">Escuchar ahora</a>
             </div>
         </div>
-
         <div class="album-card">
             <img src="Carátula delantera.jpg" alt="Sueños de papel" class="album-img">
             <div class="album-info">
@@ -284,7 +250,6 @@
                 <a href="https://open.spotify.com/intl-es/album/708rurqxThgsJPR8aClRAD" target="_blank" class="btn">Escuchar ahora</a>
             </div>
         </div>
-
         <div class="album-card">
             <img src="La magia.jpg" alt="La magia de la vida" class="album-img">
             <div class="album-info">
@@ -334,10 +299,7 @@
             btn.style.display = "none";
         }
     };
-
-    function subirArriba() {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+    function subirArriba() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
 </script>
 
 <div id="cookie-banner" style="display: none; position: fixed; bottom: 0; left: 0; width: 100%; background: rgba(10, 10, 10, 0.98); border-top: 2px solid var(--gold); padding: 20px; box-sizing: border-box; z-index: 10000; text-align: center; font-family: 'Montserrat', sans-serif; box-shadow: 0 -10px 30px rgba(0,0,0,0.8);">
@@ -352,14 +314,11 @@
 </div>
 
 <script>
-    // Mostrar el banner si el usuario no ha aceptado antes
     document.addEventListener("DOMContentLoaded", function() {
         if (!localStorage.getItem("cookiesAceptadas")) {
             document.getElementById("cookie-banner").style.display = "block";
         }
     });
-
-    // Función al hacer clic en Aceptar
     function aceptarCookies() {
         localStorage.setItem("cookiesAceptadas", "true");
         document.getElementById("cookie-banner").style.display = "none";
