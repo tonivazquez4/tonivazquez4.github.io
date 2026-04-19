@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página no encontrada | Tony Vázquez</title>
+    
+    <link rel="icon" type="image/png" href="favicon.png">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root { 
+            --gold: #d4af37; 
+            --gold-light: #f9d976; 
+        }
+        
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            margin: 0; 
+            padding: 0;
+            color: white;
+            background: #000 url('Alma de Rock.jpg') no-repeat center center fixed;
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at center, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.9) 100%); 
+            z-index: -1;
+        }
+
+        .error-container {
+            max-width: 600px;
+            padding: 40px;
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid var(--gold);
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.2);
+        }
+
+        h1 {
+            font-family: 'Arial Black', sans-serif;
+            font-size: 80px;
+            margin: 0;
+            color: var(--gold);
+            line-height: 1;
+        }
+
+        h2 {
+            font-family: 'Arial Black', sans-serif;
+            text-transform: uppercase;
+            margin: 10px 0 20px;
+            font-size: 1.5rem;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #ccc;
+            margin-bottom: 30px;
+        }
+
+        .btn { 
+            background: linear-gradient(45deg, var(--gold), var(--gold-light)); 
+            color: black; 
+            padding: 12px 30px; 
+            text-decoration: none; 
+            border-radius: 8px; 
+            font-weight: 700; 
+            display: inline-block; 
+            transition: all 0.3s ease; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            text-transform: uppercase;
+        }
+        
+        .btn:hover { 
+            background: linear-gradient(45deg, #ffffff, #e0e0e0); 
+            transform: translateY(-3px); 
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4); 
+        }
+
+        .icon-rock {
+            font-size: 50px;
+            margin-bottom: 20px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+<div class="error-container">
+    <span class="icon-rock">🤘🎸</span>
+    <h1>404</h1>
+    <h2>¡Vaya solo de guitarra desafinado!</h2>
+    <p>Parece que la página que buscas se ha ido de gira o nunca existió. No te preocupes, el escenario principal sigue encendido.</p>
+    <a href="index.html" class="btn">Volver al Inicio</a>
+</div>
+
+</body>
+</html>
