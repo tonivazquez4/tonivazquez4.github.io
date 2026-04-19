@@ -9,18 +9,38 @@
       gtag('config', 'G-1YS8QY8TXN');
     </script>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Galería de Fotos | Tony Vázquez</title>
+    
     <link rel="icon" type="image/png" href="favicon.png">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    
     <style>
         :root { --gold: #d4af37; --gold-light: #f9d976; }
-        body { font-family: 'Montserrat', sans-serif; margin: 0; padding: 0; color: white; background: #000 url('Alma de Rock.jpg') no-repeat center center fixed; background-size: cover; }
-        body::before { content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.85) 100%); z-index: -1; }
         
-        header { height: auto; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--gold); padding: 10px 40px; background: rgba(0,0,0,0.9); }
-        .header-logo { height: 105px; width: auto; filter: brightness(0) saturate(100%) invert(75%) sepia(50%) saturate(600%) hue-rotate(5deg) brightness(90%) contrast(100%); cursor: pointer; transition: 0.3s; }
+        body { 
+            font-family: 'Montserrat', sans-serif; margin: 0; padding: 0; color: white; 
+            background: #000 url('Alma de Rock.jpg') no-repeat center center fixed; 
+            background-size: cover; 
+            overflow-x: hidden;
+        }
+        
+        body::before { 
+            content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: radial-gradient(circle at center, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.85) 100%); 
+            z-index: -1; 
+        }
+
+        header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--gold); padding: 10px 40px; background: rgba(0,0,0,0.9); }
+        
+        .header-logo { 
+            height: 105px; width: auto; 
+            filter: brightness(0) saturate(100%) invert(75%) sepia(50%) saturate(600%) hue-rotate(5deg) brightness(90%) contrast(100%); 
+            cursor: pointer; transition: 0.3s; 
+        }
+        
         #logo-izq { animation: giro-3d 6s linear infinite; }
         #logo-der { animation: giro-3d 6s linear infinite reverse; }
         @keyframes giro-3d { from { transform: perspective(1000px) rotateY(0deg); } to { transform: perspective(1000px) rotateY(360deg); } }
@@ -32,30 +52,112 @@
         .social-icons a:hover { color: var(--gold); transform: translateY(-3px); }
 
         .nav-menu { text-align: center; margin: 30px 0; }
-        .btn { background: linear-gradient(45deg, var(--gold), var(--gold-light)); color: black; padding: 10px 22px; text-decoration: none; border-radius: 8px; font-weight: 700; display: inline-block; margin: 5px; transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+        .btn { 
+            background: linear-gradient(45deg, var(--gold), var(--gold-light)); color: black; 
+            padding: 10px 22px; text-decoration: none; border-radius: 8px; font-weight: 700; 
+            display: inline-block; margin: 5px; transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.5); 
+        }
         .btn:hover, .btn.activo { background: white; transform: scale(1.05); }
 
-        .grid-galeria { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; padding: 20px; }
-        .foto-card img { width: 100%; height: 300px; object-fit: cover; background: #000; border-radius: 10px; cursor: pointer; transition: 0.3s; border: 1px solid #333; }
-        .foto-card img:hover { transform: scale(1.02); border-color: var(--gold); }
+        /* REJILLA GALERÍA */
+        .grid-galeria { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+            gap: 15px; 
+            padding: 20px; 
+            max-width: 1300px; 
+            margin: auto;
+        }
 
-        /* MODAL / VISOR CON FLECHAS */
-        #imageModal { display: none; position: fixed; z-index: 10001; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.95); align-items: center; justify-content: center; }
-        #imgFull { max-width: 90%; max-height: 85vh; border: 2px solid var(--gold); border-radius: 10px; box-shadow: 0 0 20px rgba(212, 175, 55, 0.5); }
+        .foto-card { 
+            position: relative; 
+            aspect-ratio: 1 / 1; 
+            overflow: hidden; 
+            border-radius: 10px; 
+            border: 1px solid #333; 
+            background: #111;
+        }
+
+        .foto-card img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            cursor: pointer; 
+            transition: 0.4s; 
+            display: block;
+            touch-action: manipulation;
+        }
+
+        .foto-card img:hover { transform: scale(1.1); filter: brightness(1.2); }
+
+        /* MODAL / VISOR PROFESIONAL */
+        #imageModal { 
+            display: none; 
+            position: fixed; 
+            z-index: 99999; 
+            left: 0; 
+            top: 0; 
+            width: 100%; 
+            height: 100%; 
+            background-color: rgba(0,0,0,0.98); 
+            align-items: center; 
+            justify-content: center;
+            touch-action: none;
+        }
+
+        #imgFull { 
+            max-width: 95%; 
+            max-height: 80vh; 
+            border: 2px solid var(--gold); 
+            border-radius: 5px; 
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+            object-fit: contain;
+        }
+
+        /* Botones del Modal */
+        .modal-btn { 
+            position: absolute; 
+            background: rgba(0,0,0,0.5); 
+            border: 1px solid var(--gold); 
+            color: white; 
+            font-size: 2.5rem; 
+            cursor: pointer; 
+            transition: 0.3s; 
+            padding: 10px 20px; 
+            z-index: 100000;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
         
-        .modal-btn { position: absolute; background: none; border: none; color: white; font-size: 3rem; cursor: pointer; transition: 0.3s; padding: 20px; z-index: 10002; }
-        .modal-btn:hover { color: var(--gold); scale: 1.2; }
-        #prevBtn { left: 10px; }
-        #nextBtn { right: 10px; }
-        #closeBtn { top: 10px; right: 20px; font-size: 2.5rem; }
+        .modal-btn:hover { background: var(--gold); color: black; }
+        
+        #prevBtn { left: 20px; }
+        #nextBtn { right: 20px; }
+        #closeBtn { top: 20px; right: 20px; font-size: 2rem; width: 50px; height: 50px; }
 
         .seccion-comentarios { max-width: 800px; margin: 30px auto; padding: 20px; background: white; color: black; border-radius: 10px; border: 2px solid var(--gold); }
-        #btnSubir { display: none; position: fixed; bottom: 30px; right: 30px; z-index: 9999; background: var(--gold); color: black; border: none; cursor: pointer; width: 55px; height: 55px; border-radius: 50%; box-shadow: 0 4px 15px rgba(0,0,0,0.6); justify-content: center; align-items: center; font-size: 1.5rem; transition: 0.3s; }
+        
+        #btnSubir { 
+            display: none; position: fixed; bottom: 30px; right: 30px; z-index: 9999; 
+            background: var(--gold); color: black; border: none; cursor: pointer; 
+            width: 55px; height: 55px; border-radius: 50%; box-shadow: 0 4px 15px rgba(0,0,0,0.6); 
+            justify-content: center; align-items: center; font-size: 1.5rem; 
+        }
 
+        /* AJUSTES MÓVIL */
         @media (max-width: 768px) { 
             header { flex-direction: column; padding: 20px; gap: 15px; } 
             .header-logo { display: none; } 
-            .modal-btn { font-size: 2rem; padding: 10px; }
+            .social-icons { width: auto; justify-content: center; } 
+            .nav-menu { display: flex; justify-content: center; flex-wrap: nowrap; gap: 5px; } 
+            .btn { font-size: 0.7rem; padding: 8px 10px; }
+            
+            .modal-btn { font-size: 1.8rem; padding: 10px; background: rgba(0,0,0,0.7); }
+            #prevBtn { left: 10px; }
+            #nextBtn { right: 10px; }
+            #imgFull { max-height: 60vh; }
         }
     </style>
 </head>
@@ -68,7 +170,10 @@
         <a href="https://music.apple.com/es/artist/tony-vazquez/1497948014" target="_blank"><i class="fa-brands fa-apple"></i></a>
         <a href="https://music.youtube.com/channel/UCFNdFbrM3s0kznhCGpRJ3GA" target="_blank"><i class="fa-brands fa-youtube"></i></a>
     </div>
-    <div style="text-align:center"><h1>TONY VÁZQUEZ</h1><p style="color:var(--gold); letter-spacing:4px; font-weight:700;">GALERÍA</p></div>
+    <div style="text-align:center">
+        <h1 style="margin:0; font-size: 1.8rem;">TONY VÁZQUEZ</h1>
+        <p style="color:var(--gold); letter-spacing:4px; font-weight:700; margin:5px 0 0 0;">GALERÍA</p>
+    </div>
     <div class="social-icons icons-right">
         <a href="https://music.amazon.es/artists/B07NFBKRHJ/tony-vazquez" target="_blank"><i class="fa-brands fa-amazon"></i></a>
         <a href="https://instagram.com/tonykubo" target="_blank"><i class="fa-brands fa-instagram"></i></a>
@@ -83,7 +188,8 @@
     <a href="videos.html" class="btn">Vídeos</a>
 </nav>
 
-<div class="grid-galeria" id="galeria-fotos"></div>
+<div class="grid-galeria" id="galeria-fotos">
+    </div>
 
 <div class="seccion-comentarios">
     <h3>¿Qué te parece la galería? 📸</h3>
@@ -97,10 +203,10 @@
 <button id="btnSubir" onclick="window.scrollTo({top: 0, behavior: 'smooth'})"><i class="fa-solid fa-arrow-up"></i></button>
 
 <div id="imageModal">
-    <span class="modal-btn" id="closeBtn" onclick="cerrarModal()">&times;</span>
-    <button class="modal-btn" id="prevBtn" onclick="cambiarFoto(-1)">&#10094;</button>
-    <img id="imgFull">
-    <button class="modal-btn" id="nextBtn" onclick="cambiarFoto(1)">&#10095;</button>
+    <button class="modal-btn" id="closeBtn" onclick="cerrarModal()">×</button>
+    <button class="modal-btn" id="prevBtn" onclick="cambiarFoto(-1)">❮</button>
+    <img id="imgFull" src="">
+    <button class="modal-btn" id="nextBtn" onclick="cambiarFoto(1)">❯</button>
 </div>
 
 <script>
@@ -108,55 +214,67 @@
     const contenedor = document.getElementById('galeria-fotos');
     let fotoActual = 1;
 
-    // Generar las 177 fotos
-    for (let i = 1; i <= totalFotos; i++) { 
-        contenedor.innerHTML += `
-            <div class="foto-card">
-                <img src="Fotos/Foto ${i}.jpg" loading="lazy" onclick="abrirImagen(${i})">
-            </div>`; 
+    // Generar fotos de forma eficiente
+    function cargarGaleria() {
+        let contenido = "";
+        for (let i = 1; i <= totalFotos; i++) { 
+            contenido += `
+                <div class="foto-card">
+                    <img src="Fotos/Foto ${i}.jpg" 
+                         loading="lazy" 
+                         alt="Tony Vázquez - Foto ${i}" 
+                         onclick="abrirImagen(${i})">
+                </div>`; 
+        }
+        contenedor.innerHTML = contenido;
     }
 
     function abrirImagen(indice) {
         fotoActual = indice;
         actualizarImagenModal();
         document.getElementById("imageModal").style.display = "flex";
+        document.body.style.overflow = "hidden"; // Bloquea scroll fondo
     }
 
     function cerrarModal() {
         document.getElementById("imageModal").style.display = "none";
+        document.body.style.overflow = "auto"; // Libera scroll fondo
     }
 
     function cambiarFoto(direccion) {
         fotoActual += direccion;
-        // Si llegas al final vuelve a la primera, si vas atrás desde la primera vas a la última
         if (fotoActual > totalFotos) fotoActual = 1;
         if (fotoActual < 1) fotoActual = totalFotos;
         actualizarImagenModal();
     }
 
     function actualizarImagenModal() {
-        document.getElementById("imgFull").src = `Fotos/Foto ${fotoActual}.jpg`;
+        const imagenFull = document.getElementById("imgFull");
+        imagenFull.src = `Fotos/Foto ${fotoActual}.jpg`;
     }
 
-    // Cerrar si haces clic fuera de la imagen
-    window.onclick = function(event) {
-        let modal = document.getElementById("imageModal");
-        if (event.target == modal) cerrarModal();
-    }
+    // Cerrar al hacer clic fuera de la foto
+    document.getElementById("imageModal").onclick = function(e) {
+        if (e.target.id === "imageModal") cerrarModal();
+    };
 
-    // Soporte para flechas del teclado
-    document.addEventListener('keydown', function(event) {
+    // Soporte para teclado
+    document.addEventListener('keydown', function(e) {
         if (document.getElementById("imageModal").style.display === "flex") {
-            if (event.key === "ArrowLeft") cambiarFoto(-1);
-            if (event.key === "ArrowRight") cambiarFoto(1);
-            if (event.key === "Escape") cerrarModal();
+            if (e.key === "ArrowLeft") cambiarFoto(-1);
+            if (e.key === "ArrowRight") cambiarFoto(1);
+            if (e.key === "Escape") cerrarModal();
         }
     });
 
+    // Botón subir
     window.onscroll = function() { 
         let btn = document.getElementById("btnSubir");
         if (document.documentElement.scrollTop > 400) { btn.style.display = "flex"; } else { btn.style.display = "none"; }
     };
+
+    // Iniciar
+    cargarGaleria();
 </script>
 
 </body>
