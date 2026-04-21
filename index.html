@@ -9,14 +9,15 @@
     <title>Tony Vázquez | Web Oficial</title>
     
     <link rel="icon" type="image/png" href="favicon.png">
-    <meta property="og:title" content="Tony Vázquez | Web Oficial">
-    <meta property="og:description" content="Más de 25 años de trayectoria en el rock, composición audiovisual y teatro musical. Descubre la discografía y galería de Tony Vázquez.">
+
+    <meta property="og:title" content="Tony Vázquez | Alma de Rock 🎸">
+    <meta property="og:description" content="Escucha mi música y descubre más de 35 años de trayectoria en el rock. ¡Únete al Backstage!">
     <meta property="og:image" content="https://www.tonyvazquez.es/Alma de Rock.jpg">
     <meta property="og:url" content="https://www.tonyvazquez.es/index.html">
     <meta property="og:type" content="website">
 
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Tony Vázquez | Web Oficial">
+    <meta name="twitter:title" content="Tony Vázquez | Alma de Rock 🤘">
     <meta name="twitter:description" content="Trayectoria profesional y discografía de Tony Vázquez.">
     <meta name="twitter:image" content="https://www.tonyvazquez.es/Alma de Rock.jpg">
     
@@ -277,7 +278,11 @@
 
     function compartirWeb() {
         if (navigator.share) {
-            navigator.share({ title: 'Tony Vázquez | Web Oficial', url: window.location.href });
+            navigator.share({ 
+                title: 'Tony Vázquez | Alma de Rock 🎸', 
+                text: 'Escucha mi música y descubre más de 35 años de trayectoria en el rock. 🤘',
+                url: window.location.href 
+            });
         } else {
             navigator.clipboard.writeText(window.location.href);
             alert("Enlace copiado al portapapeles 🤘");
