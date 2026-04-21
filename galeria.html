@@ -1,9 +1,16 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1YS8QY8TXN"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-1YS8QY8TXN');
+    </script>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Galería | Tony Vázquez</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Galería de Fotos | Tony Vázquez</title>
     
     <link rel="icon" type="image/png" href="favicon.png">
     
@@ -17,6 +24,7 @@
             font-family: 'Montserrat', sans-serif; margin: 0; padding: 0; color: white; 
             background: #000 url('Alma de Rock.jpg') no-repeat center center fixed; 
             background-size: cover; 
+            overflow-x: hidden;
         }
         
         body::before { 
@@ -25,7 +33,6 @@
             z-index: -1; 
         }
 
-        /* HEADER */
         header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--gold); padding: 10px 40px; background: rgba(0,0,0,0.9); }
         
         .header-logo { 
@@ -38,25 +45,12 @@
         #logo-der { animation: giro-3d 6s linear infinite reverse; }
         @keyframes giro-3d { from { transform: perspective(1000px) rotateY(0deg); } to { transform: perspective(1000px) rotateY(360deg); } }
 
-        .header-center { text-align: center; flex-grow: 1; }
-        .header-center h1 { font-size: clamp(1.2rem, 3vw, 1.8rem); margin: 0; text-transform: uppercase; text-shadow: 2px 2px 10px black; }
-        .header-center p { margin: 5px 0 0 0; color: var(--gold); letter-spacing: 4px; font-weight: 700; font-size: 0.8rem; }
-
-        .btn-share {
-            background: linear-gradient(45deg, var(--gold), var(--gold-light));
-            color: black; border: none; padding: 6px 14px; border-radius: 8px; font-weight: 700;
-            cursor: pointer; font-size: 0.75rem; display: inline-flex; align-items: center; gap: 8px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5); transition: 0.3s; margin-top: 10px; text-transform: uppercase;
-        }
-        .btn-share:hover { background: white; transform: scale(1.05); }
-
         .social-icons { display: flex; gap: 15px; width: 200px; }
         .icons-left { justify-content: flex-start; }
         .icons-right { justify-content: flex-end; }
         .social-icons a { color: white; font-size: 1.4rem; text-decoration: none; transition: 0.3s; }
         .social-icons a:hover { color: var(--gold); transform: translateY(-3px); }
 
-        /* MENÚ */
         .nav-menu { text-align: center; margin: 30px 0; }
         .btn { 
             background: linear-gradient(45deg, var(--gold), var(--gold-light)); color: black; 
@@ -65,40 +59,85 @@
         }
         .btn:hover, .btn.activo { background: white; transform: scale(1.05); }
 
-        /* GALERÍA - AQUÍ ESTÁ EL ARREGLO PARA QUE NO SE CORTEN */
-        .container { padding: 20px; max-width: 1200px; margin: auto; }
-        .galeria-grid { 
+        /* REJILLA GALERÍA - CORREGIDA */
+        .grid-galeria { 
             display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
-            gap: 20px; 
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+            gap: 15px; 
+            padding: 20px; 
+            max-width: 1300px; 
+            margin: auto;
         }
-        .galeria-item { 
-            background: rgba(20,20,20,0.8); 
-            border: 1px solid #333; 
-            border-radius: 12px; 
+
+        .foto-card { 
+            position: relative; 
+            height: 250px; /* Altura fija para orden */
             overflow: hidden; 
-            transition: 0.3s;
-            height: 300px; /* Altura fija para que la cuadrícula sea simétrica */
+            border-radius: 10px; 
+            border: 1px solid #333; 
+            background: #111;
             display: flex;
             align-items: center;
             justify-content: center;
         }
-        .galeria-item img { 
+
+        .foto-card img { 
             max-width: 100%; 
             max-height: 100%; 
-            object-fit: contain; /* ESTA ES LA CLAVE: Muestra la foto entera sin recortar */
+            object-fit: contain; /* CLAVE: Muestra la foto entera sin cortes */
             cursor: pointer; 
-            transition: 0.5s; 
+            transition: 0.4s; 
+            display: block;
+            touch-action: manipulation;
         }
-        .galeria-item:hover { border-color: var(--gold); transform: translateY(-5px); }
-        .galeria-item:hover img { transform: scale(1.05); }
 
-        /* MODAL PARA VER FOTO GRANDE */
-        #imageModal {
-            display: none; position: fixed; z-index: 10001; padding-top: 50px; left: 0; top: 0; width: 100%; height: 100%; 
-            background-color: rgba(0,0,0,0.9); cursor: zoom-out;
+        .foto-card img:hover { transform: scale(1.08); filter: brightness(1.1); }
+
+        /* MODAL / VISOR PROFESIONAL */
+        #imageModal { 
+            display: none; 
+            position: fixed; 
+            z-index: 99999; 
+            left: 0; 
+            top: 0; 
+            width: 100%; 
+            height: 100%; 
+            background-color: rgba(0,0,0,0.98); 
+            align-items: center; 
+            justify-content: center;
+            touch-action: none;
         }
-        #imgFull { margin: auto; display: block; max-width: 90%; max-height: 85vh; border: 2px solid var(--gold); border-radius: 10px; }
+
+        #imgFull { 
+            max-width: 95%; 
+            max-height: 85vh; 
+            border: 2px solid var(--gold); 
+            border-radius: 5px; 
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+            object-fit: contain;
+        }
+
+        .modal-btn { 
+            position: absolute; 
+            background: rgba(0,0,0,0.5); 
+            border: 1px solid var(--gold); 
+            color: white; 
+            font-size: 2.5rem; 
+            cursor: pointer; 
+            transition: 0.3s; 
+            padding: 10px 20px; 
+            z-index: 100000;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-btn:hover { background: var(--gold); color: black; }
+        
+        #prevBtn { left: 20px; }
+        #nextBtn { right: 20px; }
+        #closeBtn { top: 20px; right: 20px; font-size: 2rem; width: 50px; height: 50px; }
 
         /* SECCIÓN BACKSTAGE */
         .backstage-box {
@@ -122,45 +161,46 @@
             background: var(--gold); color: black; border: none; padding: 12px 25px;
             border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s; text-transform: uppercase;
         }
-        .btn-subscribe:hover { background: white; transform: scale(1.05); }
 
+        .seccion-comentarios { max-width: 800px; margin: 30px auto; padding: 20px; background: white; color: black; border-radius: 10px; border: 2px solid var(--gold); }
+        
         #btnSubir { 
             display: none; position: fixed; bottom: 30px; right: 30px; z-index: 9999; 
             background: var(--gold); color: black; border: none; cursor: pointer; 
             width: 55px; height: 55px; border-radius: 50%; box-shadow: 0 4px 15px rgba(0,0,0,0.6); 
-            justify-content: center; align-items: center; font-size: 1.5rem; transition: 0.3s; 
+            justify-content: center; align-items: center; font-size: 1.5rem; 
         }
 
         @media (max-width: 768px) { 
             header { flex-direction: column; padding: 20px; gap: 15px; } 
             .header-logo { display: none; } 
             .social-icons { width: auto; justify-content: center; } 
-            .nav-menu { display: flex; justify-content: center; flex-wrap: wrap; gap: 5px; } 
+            .btn { font-size: 0.7rem; padding: 8px 10px; }
+            .modal-btn { font-size: 1.8rem; padding: 10px; background: rgba(0,0,0,0.7); }
+            #imgFull { max-height: 70vh; }
+            .backstage-input { width: 100%; }
         }
     </style>
 </head>
 <body>
 
 <header>
-    <img src="logoTV.png" class="header-logo" id="logo-izq" alt="Logo Izquierda">
+    <img src="logoTV.png" class="header-logo" id="logo-izq" alt="Logo Tony Vázquez">
     <div class="social-icons icons-left">
-        <a href="https://open.spotify.com/intl-es/artist/5PGFsB4rJcNb9h5gBOKnWw" target="_blank"><i class="fa-brands fa-spotify"></i></a>
+        <a href="http://googleusercontent.com/spotify.com/4" target="_blank"><i class="fa-brands fa-spotify"></i></a>
         <a href="https://music.apple.com/es/artist/tony-vazquez/1497948014" target="_blank"><i class="fa-brands fa-apple"></i></a>
         <a href="https://music.youtube.com/channel/UCFNdFbrM3s0kznhCGpRJ3GA" target="_blank"><i class="fa-brands fa-youtube"></i></a>
     </div>
-    <div class="header-center">
-        <h1>TONY VÁZQUEZ</h1>
-        <p>GALERÍA</p>
-        <button class="btn-share" onclick="compartirWeb()">
-            <i class="fa-solid fa-share-nodes"></i> Compartir
-        </button>
+    <div style="text-align:center">
+        <h1 style="margin:0; font-size: 1.8rem;">TONY VÁZQUEZ</h1>
+        <p style="color:var(--gold); letter-spacing:4px; font-weight:700; margin:5px 0 0 0;">GALERÍA</p>
     </div>
     <div class="social-icons icons-right">
         <a href="https://music.amazon.es/artists/B07NFBKRHJ/tony-vazquez" target="_blank"><i class="fa-brands fa-amazon"></i></a>
         <a href="https://instagram.com/tonykubo" target="_blank"><i class="fa-brands fa-instagram"></i></a>
         <a href="https://www.facebook.com/tonisampler/" target="_blank"><i class="fa-brands fa-facebook"></i></a>
     </div>
-    <img src="logoTV.png" class="header-logo" id="logo-der" alt="Logo Derecha">
+    <img src="logoTV.png" class="header-logo" id="logo-der" alt="Logo Tony Vázquez">
 </header>
 
 <nav class="nav-menu">
@@ -170,18 +210,9 @@
     <a href="conciertos.html" class="btn">Conciertos</a>
 </nav>
 
-<div class="container">
-    <div class="galeria-grid">
-        <div class="galeria-item"><img src="foto1.jpg" alt="Tony Vázquez" onclick="abrirImagen(this.src)"></div>
-        <div class="galeria-item"><img src="foto2.jpg" alt="Tony Vázquez" onclick="abrirImagen(this.src)"></div>
-        <div class="galeria-item"><img src="foto3.jpg" alt="Tony Vázquez" onclick="abrirImagen(this.src)"></div>
-        <div class="galeria-item"><img src="foto4.jpg" alt="Tony Vázquez" onclick="abrirImagen(this.src)"></div>
-        <div class="galeria-item"><img src="foto5.jpg" alt="Tony Vázquez" onclick="abrirImagen(this.src)"></div>
-        <div class="galeria-item"><img src="foto6.jpg" alt="Tony Vázquez" onclick="abrirImagen(this.src)"></div>
-    </div>
-</div>
+<div class="grid-galeria" id="galeria-fotos"></div>
 
-<div class="container">
+<div class="container" style="padding: 0 20px;">
     <div class="backstage-box">
         <h2>Únete al Backstage 🤘</h2>
         <p>Sé el primero en enterarte de nuevas fechas y lanzamientos.</p>
@@ -193,33 +224,89 @@
     </div>
 </div>
 
-<footer style="text-align:center; padding: 40px;"><p>© 2026 Tony Vázquez</p></footer>
-
-<div id="imageModal" onclick="this.style.display='none'">
-    <img id="imgFull">
+<div class="seccion-comentarios">
+    <h3>¿Qué te parece la galería? 📸</h3>
+    <div id="disqus_thread"></div>
+    <script>
+        var disqus_config = function () { this.page.url = "https://www.tonyvazquez.es/galeria.html"; this.page.identifier = "galeria_tony_vazquez"; };
+        (function() { var d = document, s = d.createElement('script'); s.src = 'https://tony-vazquez.disqus.com/embed.js'; s.setAttribute('data-timestamp', +new Date()); (d.head || d.body).appendChild(s); })();
+    </script>
 </div>
+
+<footer style="text-align:center; padding: 25px; border-top: 1px solid #222;">
+    <p>© 2026 Tony Vázquez. Todos los derechos reservados.</p>
+</footer>
 
 <button id="btnSubir" onclick="window.scrollTo({top: 0, behavior: 'smooth'})"><i class="fa-solid fa-arrow-up"></i></button>
 
+<div id="imageModal">
+    <button class="modal-btn" id="closeBtn" onclick="cerrarModal()">×</button>
+    <button class="modal-btn" id="prevBtn" onclick="cambiarFoto(-1)">❮</button>
+    <img id="imgFull" src="" alt="Vista ampliada">
+    <button class="modal-btn" id="nextBtn" onclick="cambiarFoto(1)">❯</button>
+</div>
+
 <script>
-    function abrirImagen(src) {
-        document.getElementById("imgFull").src = src;
-        document.getElementById("imageModal").style.display = "block";
+    const totalFotos = 178;
+    const contenedor = document.getElementById('galeria-fotos');
+    let fotoActual = 1;
+
+    function cargarGaleria() {
+        let contenido = "";
+        for (let i = 1; i <= totalFotos; i++) { 
+            contenido += `
+                <div class="foto-card">
+                    <img src="Fotos/Foto ${i}.jpg" 
+                         loading="lazy" 
+                         alt="Tony Vázquez - Foto ${i}" 
+                         onclick="abrirImagen(${i})">
+                </div>`; 
+        }
+        contenedor.innerHTML = contenido;
     }
 
-    function compartirWeb() {
-        if (navigator.share) {
-            navigator.share({ title: 'Tony Vázquez | Galería', url: window.location.href });
-        } else {
-            navigator.clipboard.writeText(window.location.href);
-            alert("Enlace copiado 🤘");
-        }
+    function abrirImagen(indice) {
+        fotoActual = indice;
+        actualizarImagenModal();
+        document.getElementById("imageModal").style.display = "flex";
+        document.body.style.overflow = "hidden";
     }
+
+    function cerrarModal() {
+        document.getElementById("imageModal").style.display = "none";
+        document.body.style.overflow = "auto";
+    }
+
+    function cambiarFoto(direccion) {
+        fotoActual += direccion;
+        if (fotoActual > totalFotos) fotoActual = 1;
+        if (fotoActual < 1) fotoActual = totalFotos;
+        actualizarImagenModal();
+    }
+
+    function actualizarImagenModal() {
+        const imagenFull = document.getElementById("imgFull");
+        imagenFull.src = `Fotos/Foto ${fotoActual}.jpg`;
+    }
+
+    document.getElementById("imageModal").onclick = function(e) {
+        if (e.target.id === "imageModal") cerrarModal();
+    };
+
+    document.addEventListener('keydown', function(e) {
+        if (document.getElementById("imageModal").style.display === "flex") {
+            if (e.key === "ArrowLeft") cambiarFoto(-1);
+            if (e.key === "ArrowRight") cambiarFoto(1);
+            if (e.key === "Escape") cerrarModal();
+        }
+    });
 
     window.onscroll = function() { 
         let btn = document.getElementById("btnSubir");
         if (document.documentElement.scrollTop > 400) { btn.style.display = "flex"; } else { btn.style.display = "none"; }
     };
+
+    cargarGaleria();
 </script>
 
 </body>
