@@ -128,6 +128,42 @@
             .btn { font-size: 0.75rem; padding: 8px 10px; }
             .social-icons { width: auto; justify-content: center; }
         }
+        /* SECCIÓN BACKSTAGE */
+        .backstage-box {
+            background: linear-gradient(45deg, #111, #222);
+            border: 2px solid var(--gold);
+            padding: 40px 20px;
+            text-align: center;
+            border-radius: 15px;
+            margin: 50px auto;
+            max-width: 800px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+        }
+        .backstage-box h2 { color: var(--gold); text-transform: uppercase; margin-top: 0; margin-bottom: 10px; }
+        .backstage-box p { color: #ccc; margin-bottom: 25px; font-size: 1.1rem; }
+        .backstage-form { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+        .backstage-input {
+            padding: 12px 20px;
+            border-radius: 8px;
+            border: 1px solid #444;
+            background: #000;
+            color: white;
+            width: 300px;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .backstage-input:focus { outline: none; border-color: var(--gold); }
+        .btn-subscribe {
+            background: var(--gold);
+            color: black;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+            text-transform: uppercase;
+        }
+        .btn-subscribe:hover { background: white; transform: scale(1.05); }
     </style>
 </head>
 <body>
