@@ -36,8 +36,29 @@
         .video-wrapper:hover { transform: translateY(-5px); border-color: var(--gold); }
         .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
         .seccion-comentarios { max-width: 800px; margin: 40px auto; padding: 20px; background: white; color: black; border-radius: 12px; border: 2px solid var(--gold); }
+        
+        /* ESTILOS DEL BACKSTAGE */
+        .backstage-box { background: linear-gradient(45deg, #111, #222); border: 2px solid var(--gold); padding: 40px 20px; text-align: center; border-radius: 15px; margin: 50px auto; max-width: 800px; box-shadow: 0 10px 30px rgba(0,0,0,0.8); }
+        .backstage-box h2 { color: var(--gold); text-transform: uppercase; margin-top: 0; margin-bottom: 10px; }
+        .backstage-box p { color: #ccc; margin-bottom: 25px; font-size: 1.1rem; }
+        .backstage-form { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+        .backstage-input { padding: 12px 20px; border-radius: 8px; border: 1px solid #444; background: #000; color: white; width: 300px; font-family: 'Montserrat', sans-serif; }
+        .backstage-input:focus { outline: none; border-color: var(--gold); }
+        .btn-subscribe { background: var(--gold); color: black; border: none; padding: 12px 25px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s; text-transform: uppercase; }
+        .btn-subscribe:hover { background: white; transform: scale(1.05); }
+
+        footer { padding: 25px; text-align: center; background: #000; border-top: 2px solid #222; margin-top: 40px; }
+        
         #btnSubir { display: none; position: fixed; bottom: 30px; right: 30px; z-index: 9999; background: var(--gold); color: black; border: none; cursor: pointer; width: 55px; height: 55px; border-radius: 50%; box-shadow: 0 4px 15px rgba(0,0,0,0.6); justify-content: center; align-items: center; font-size: 1.5rem; transition: 0.3s; }
-        @media (max-width: 768px) { header { flex-direction: column; padding: 20px; gap: 15px; } .header-logo { display: none; } .social-icons { width: auto; justify-content: center; } .nav-menu { display: flex; justify-content: center; flex-wrap: nowrap; gap: 5px; } .btn { font-size: 0.75rem; padding: 8px 10px; } }
+        
+        @media (max-width: 768px) { 
+            header { flex-direction: column; padding: 20px; gap: 15px; } 
+            .header-logo { display: none; } 
+            .social-icons { width: auto; justify-content: center; } 
+            .nav-menu { display: flex; justify-content: center; flex-wrap: nowrap; gap: 5px; } 
+            .btn { font-size: 0.75rem; padding: 8px 10px; } 
+            .backstage-input { width: 100%; margin-bottom: 10px; }
+        }
     </style>
 </head>
 <body>
@@ -56,12 +77,14 @@
     </div>
     <img src="logoTV.png" class="header-logo" id="logo-der" alt="Logo Tony Vázquez">
 </header>
+
 <nav class="nav-menu">
     <a href="index.html" class="btn">Inicio</a>
     <a href="galeria.html" class="btn">Galería</a>
     <a href="videos.html" class="btn activo">Vídeos</a>
     <a href="conciertos.html" class="btn">Conciertos</a>
 </nav>
+
 <div class="container">
     <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/jbRyfHEIujA" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
     <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/8-qVdj1VhF0" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
@@ -90,6 +113,7 @@
     <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/eVdZSx_8P3Y" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
     <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/bxZT2-eyfGQ" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
 </div>
+
 <div class="seccion-comentarios">
     <h3>¿Alguna petición especial? 🤘</h3>
     <div id="disqus_thread"></div>
@@ -98,7 +122,25 @@
         (function() { var d = document, s = d.createElement('script'); s.src = 'https://tony-vazquez.disqus.com/embed.js'; s.setAttribute('data-timestamp', +new Date()); (d.head || d.body).appendChild(s); })();
     </script>
 </div>
+
+<div class="container">
+    <div class="backstage-box">
+        <h2>Únete al Backstage 🤘</h2>
+        <p>Sé el primero en enterarte de nuevas fechas, lanzamientos y contenido exclusivo directamente en tu correo.</p>
+        <form action="https://tonyvazquez.us11.list-manage.com/subscribe/post?u=e028b891a2d01f15a859b80f0&id=c8b0de8308&f_id=00d1d7e3f0" method="post" class="backstage-form" target="_blank">
+            <input type="email" name="EMAIL" class="backstage-input" placeholder="Tu correo electrónico" required>
+            <div aria-hidden="true" style="position: absolute; left: -5000px;"><input type="text" name="b_e028b891a2d01f15a859b80f0_c8b0de8308" tabindex="-1" value=""></div>
+            <button type="submit" class="btn-subscribe">Suscribirme</button>
+        </form>
+    </div>
+</div>
+
+<footer>
+    <p>© 2026 Tony Vázquez. Todos los derechos reservados.</p>
+</footer>
+
 <button id="btnSubir" onclick="window.scrollTo({top: 0, behavior: 'smooth'})"><i class="fa-solid fa-arrow-up"></i></button>
+
 <script>
     window.onscroll = function() { 
         let btn = document.getElementById("btnSubir");
