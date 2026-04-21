@@ -65,10 +65,23 @@
         }
         .btn:hover, .btn.activo { background: white; transform: scale(1.05); }
 
-        /* CONTENIDO DE CONCIERTOS */
+        /* CONTENIDO DE CONCIERTOS (SEPARADO POR MESES) */
         .container { padding: 20px 20px 40px; max-width: 900px; margin: auto; }
+        
+        .mes-titulo {
+            color: var(--gold);
+            text-align: center;
+            font-size: 1.8rem;
+            margin: 40px 0 15px 0;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 10px black;
+        }
+        .mes-titulo:first-child { margin-top: 10px; }
+
         .tour-list { background: rgba(20,20,20,0.9); border-radius: 15px; border: 1px solid var(--gold); padding: 20px; }
         .tour-item { display: flex; justify-content: space-between; align-items: center; padding: 20px; border-bottom: 1px solid #333; }
+        .tour-item:last-child { border-bottom: none; padding-bottom: 0; } /* Quita la línea del último elemento de la caja */
         .tour-date { color: var(--gold); font-weight: bold; font-size: 1.2rem; min-width: 100px; text-align: center; }
         .tour-info { flex-grow: 1; padding: 0 20px; text-align: left; }
         .tour-info span { display: block; color: #aaa; font-size: 0.9rem; margin-top: 5px; }
@@ -131,34 +144,43 @@
 </nav>
 
 <div class="container">
+    
+    <h2 class="mes-titulo">Mayo 2026</h2>
     <div class="tour-list">
-        
         <div class="tour-item">
             <div class="tour-date">02 MAY</div>
             <div class="tour-info">Cantabria - Socobio-Piélagos<br><strong>Orquesta Kubo (Gira 2026)</strong><span>22:30h</span></div>
         </div>
-        
         <div class="tour-item">
             <div class="tour-date">09 MAY</div>
             <div class="tour-info">Ourense - Barrio de Follateira<br><strong>Orquesta Kubo (Gira 2026)</strong><span>22:00h</span></div>
         </div> 
-        
         <div class="tour-item">
             <div class="tour-date">21 MAY</div>
             <div class="tour-info">Pontevedra - Vilagarcía de Arousa<br><strong>Orquesta Kubo (Gira 2026)</strong><span>22:00h</span></div>
         </div>
-        
         <div class="tour-item">
             <div class="tour-date">29 MAY</div>
             <div class="tour-info">A Coruña - Arteixo<br><strong>Orquesta Kubo (Gira 2026)</strong><span>22:00h</span></div>
         </div>
-        
         <div class="tour-item">
             <div class="tour-date">30 MAY</div>
             <div class="tour-info">Pontevedra - Dornels-Mos<br><strong>Orquesta Kubo (Gira 2026)</strong><span>22:00h</span></div>
         </div>
-        
     </div>
+
+    <h2 class="mes-titulo">Junio 2026</h2>
+    <div class="tour-list">
+        <div class="tour-item">
+            <div class="tour-date">05 JUN</div>
+            <div class="tour-info">Pontevedra - Ciudad<br><strong>Orquesta Kubo (Gira 2026)</strong><span>23:00h</span></div>
+        </div>
+        <div class="tour-item">
+            <div class="tour-date">12 JUN</div>
+            <div class="tour-info">Lugo - Fiestas Patronales<br><strong>Orquesta Kubo (Gira 2026)</strong><span>22:30h</span></div>
+        </div>
+    </div>
+    
 </div>
 
 <div class="seccion-comentarios">
