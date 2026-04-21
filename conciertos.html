@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conciertos | Tony Vázquez</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --gold: #d4af37; --gold-light: #f9d976; }
+        body { font-family: 'Montserrat', sans-serif; margin: 0; color: white; background: #000 url('Alma de Rock.jpg') no-repeat center center fixed; background-size: cover; }
+        body::before { content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: -1; }
+        header { border-bottom: 2px solid var(--gold); padding: 20px; text-align: center; background: rgba(0,0,0,0.9); }
+        .nav-menu { text-align: center; margin: 30px 0; }
+        .btn { background: linear-gradient(45deg, var(--gold), var(--gold-light)); color: black; padding: 10px 22px; text-decoration: none; border-radius: 8px; font-weight: 700; display: inline-block; margin: 5px; }
+        .btn.activo { background: white; }
+        .container { padding: 40px 20px; max-width: 800px; margin: auto; }
+        .tour-list { background: rgba(20,20,20,0.9); border-radius: 15px; border: 1px solid var(--gold); padding: 20px; }
+        .tour-item { display: flex; justify-content: space-between; align-items: center; padding: 20px; border-bottom: 1px solid #333; }
+        .tour-date { color: var(--gold); font-weight: bold; font-size: 1.2rem; }
+        .tour-info { flex-grow: 1; padding-left: 30px; }
+        .tour-info span { display: block; color: #aaa; font-size: 0.9rem; }
+        @media (max-width: 600px) { .tour-item { flex-direction: column; text-align: center; } .tour-info { padding: 15px 0; } }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1 style="margin:0; color:var(--gold);">PRÓXIMAS FECHAS</h1>
+</header>
+
+<nav class="nav-menu">
+    <a href="index.html" class="btn">Inicio</a>
+    <a href="conciertos.html" class="btn activo">Conciertos</a>
+    <a href="galeria.html" class="btn">Galería</a>
+    <a href="videos.html" class="btn">Vídeos</a>
+</nav>
+
+<div class="container">
+    <div class="tour-list">
+        <div class="tour-item">
+            <div class="tour-date">15 MAY</div>
+            <div class="tour-info">Pontevedra - Plaza de España<strong>Orquesta Kubo (Gira 2026)</strong><span>22:30h - Entrada libre</span></div>
+        </div>
+        <div class="tour-item">
+            <div class="tour-date">22 MAY</div>
+            <div class="tour-info">Vigo - Teatro García Barbón<strong>Presentación Especial Solo</strong><span>21:00h - Entradas en taquilla</span></div>
+        </div>
+    </div>
+</div>
+
+<footer style="text-align:center; padding: 40px;"><p>© 2026 Tony Vázquez</p></footer>
+
+</body>
+</html>
