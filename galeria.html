@@ -9,7 +9,6 @@
       gtag('config', 'G-1YS8QY8TXN');
     </script>
     <meta charset="UTF-8">
-    
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
     <title>Galería de Fotos | Tony Vázquez</title>
@@ -20,15 +19,12 @@
     <style>
         :root { --gold: #d4af37; --gold-light: #f9d976; }
         
-        /* CLAVE: touch-action: pan-y 
-           Permite hacer scroll arriba y abajo, pero bloquea el "pellizco" (zoom) en toda la web.
-        */
         body { 
             font-family: 'Montserrat', sans-serif; margin: 0; padding: 0; color: white; 
             background: #000 url('Alma de Rock.jpg') no-repeat center center fixed; 
             background-size: cover; 
             overflow-x: hidden;
-            touch-action: pan-y; 
+            touch-action: pan-y; /* Bloquea el zoom en el fondo de la web */
         }
         
         body::before { 
@@ -53,25 +49,36 @@
         .btn { background: linear-gradient(45deg, var(--gold), var(--gold-light)); color: black; padding: 10px 22px; text-decoration: none; border-radius: 8px; font-weight: 700; display: inline-block; margin: 5px; transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
         .btn:hover, .btn.activo { background: white; transform: scale(1.05); }
 
-        /* REJILLA GALERÍA */
-        .grid-galeria { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; padding: 20px; max-width: 1300px; margin: auto; }
-        .foto-card { position: relative; aspect-ratio: 1 / 1; overflow: hidden; border-radius: 10px; border: 1px solid #333; background: #111; display: flex; align-items: center; justify-content: center; }
-        .foto-card img { max-width: 100%; max-height: 100%; object-fit: contain; cursor: pointer; transition: 0.4s; display: block; touch-action: manipulation; }
-        .foto-card img:hover { transform: scale(1.1); filter: brightness(1.2); }
+        /* REJILLA GALERÍA: Solución Anti-Recorte */
+        .grid-galeria { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+            gap: 15px; padding: 20px; max-width: 1300px; margin: auto; 
+        }
+        .foto-card { 
+            position: relative; aspect-ratio: 1 / 1; border-radius: 10px; 
+            border: 1px solid #333; background: #111; 
+            display: flex; align-items: center; justify-content: center; 
+        }
+        .foto-card img { 
+            width: 100%; height: 100%; object-fit: contain; /* Obliga a que la foto entre entera en la caja */
+            cursor: pointer; transition: 0.4s; display: block; touch-action: manipulation; 
+        }
+        .foto-card img:hover { transform: scale(1.05); filter: brightness(1.2); }
 
-        /* MODAL / VISOR PROFESIONAL */
+        /* MODAL / VISOR PROFESIONAL: Solución Anti-Recorte y Zoom */
         #imageModal { 
             display: none; position: fixed; z-index: 99999; left: 0; top: 0; width: 100%; height: 100%; 
-            background-color: rgba(0,0,0,0.98); align-items: center; justify-content: center;
-            overflow: auto;
+            background-color: rgba(0,0,0,0.98); align-items: center; justify-content: center; overflow: auto;
         }
         
         #imgFull { 
-            max-width: 95%; max-height: 80vh; border: 2px solid var(--gold); border-radius: 5px; 
-            box-shadow: 0 0 30px rgba(212, 175, 55, 0.3); object-fit: contain; 
-            /* CLAVE: Permite "pellizcar" SOLO en esta imagen */
-            touch-action: pinch-zoom; 
-            transition: transform 0.2s ease-out; /* Suaviza el zoom que vamos a hacer por JS */
+            width: 100%; height: 100%; max-height: 85vh; /* Se asegura de que entre en cualquier pantalla */
+            border: 2px solid var(--gold); border-radius: 5px; 
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.3); 
+            object-fit: contain; /* Evita cualquier recorte */
+            touch-action: pinch-zoom; /* Permite el zoom solo en esta imagen */
+            transition: transform 0.2s ease-out; 
             transform-origin: center center;
         }
 
@@ -174,7 +181,7 @@
     const totalFotos = 178;
     const contenedor = document.getElementById('galeria-fotos');
     let fotoActual = 1;
-    let escalaActual = 1; // Control de zoom inicial
+    let escalaActual = 1; 
 
     function cargarGaleria() {
         let contenido = "";
@@ -192,17 +199,17 @@
 
     function abrirImagen(indice) {
         fotoActual = indice;
-        escalaActual = 1; // Reiniciar zoom al abrir
+        escalaActual = 1; 
         document.getElementById("imgFull").style.transform = `scale(${escalaActual})`;
         actualizarImagenModal();
         document.getElementById("imageModal").style.display = "flex";
-        document.body.style.overflow = "hidden"; // Bloquea el scroll del fondo
+        document.body.style.overflow = "hidden"; 
     }
 
     function cerrarModal() {
         document.getElementById("imageModal").style.display = "none";
-        document.body.style.overflow = "auto"; // Devuelve el scroll al fondo
-        escalaActual = 1; // Reiniciar zoom
+        document.body.style.overflow = "auto"; 
+        escalaActual = 1; 
         document.getElementById("imgFull").style.transform = `scale(1)`;
     }
 
@@ -210,7 +217,7 @@
         fotoActual += direccion;
         if (fotoActual > totalFotos) fotoActual = 1;
         if (fotoActual < 1) fotoActual = totalFotos;
-        escalaActual = 1; // Reiniciar zoom al cambiar de foto
+        escalaActual = 1; 
         document.getElementById("imgFull").style.transform = `scale(1)`;
         actualizarImagenModal();
     }
@@ -220,7 +227,6 @@
         imagenFull.src = `Fotos/Foto ${fotoActual}.jpg`;
     }
 
-    // Cerrar al hacer clic fuera de la foto o en los botones (si el zoom es 1)
     document.getElementById("imageModal").onclick = function(e) {
         if (e.target.id === "imageModal" || e.target.id === "zoomContainer") {
             cerrarModal();
@@ -240,7 +246,6 @@
         if (document.documentElement.scrollTop > 400) { btn.style.display = "flex"; } else { btn.style.display = "none"; }
     };
 
-    // --- SCRIPT PARA EL ZOOM TÁCTIL (Pinch to Zoom) SOLO EN LA IMAGEN ---
     const imgElement = document.getElementById('imgFull');
     let inicioPellizco = 0;
 
@@ -255,17 +260,15 @@
 
     imgElement.addEventListener('touchmove', function(e) {
         if (e.touches.length === 2) {
-            e.preventDefault(); // Evitar el comportamiento nativo raro de Safari/Chrome
+            e.preventDefault(); 
             let pellizcoActual = Math.hypot(
                 e.touches[0].pageX - e.touches[1].pageX,
                 e.touches[0].pageY - e.touches[1].pageY
             );
             
-            // Calcular nueva escala (sensibilidad ajustada)
             let delta = (pellizcoActual - inicioPellizco) * 0.01; 
             escalaActual += delta;
             
-            // Limitar el zoom (entre 1x normal y 4x máximo)
             if(escalaActual < 1) escalaActual = 1;
             if(escalaActual > 4) escalaActual = 4;
             
