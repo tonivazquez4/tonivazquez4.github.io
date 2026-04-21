@@ -151,7 +151,7 @@
             header { flex-direction: column; padding: 20px; gap: 15px; } 
             .header-logo { display: none; } 
             .social-icons { width: auto; justify-content: center; } 
-            .nav-menu { display: flex; justify-content: center; flex-wrap: nowrap; gap: 5px; } 
+            .nav-menu { display: flex; justify-content: center; flex-wrap: wrap; gap: 5px; } 
             .btn { font-size: 0.7rem; padding: 8px 10px; }
             
             .modal-btn { font-size: 1.8rem; padding: 10px; background: rgba(0,0,0,0.7); }
@@ -164,7 +164,7 @@
 <body>
 
 <header>
-    <img src="logoTV.png" class="header-logo" id="logo-izq">
+    <img src="logoTV.png" class="header-logo" id="logo-izq" alt="Logo Tony Vázquez">
     <div class="social-icons icons-left">
         <a href="https://open.spotify.com/intl-es/album/708rurqxThgsJPR8aClRAD2" target="_blank"><i class="fa-brands fa-spotify"></i></a>
         <a href="https://music.apple.com/es/artist/tony-vazquez/1497948014" target="_blank"><i class="fa-brands fa-apple"></i></a>
@@ -179,13 +179,14 @@
         <a href="https://instagram.com/tonykubo" target="_blank"><i class="fa-brands fa-instagram"></i></a>
         <a href="https://www.facebook.com/tonisampler/" target="_blank"><i class="fa-brands fa-facebook"></i></a>
     </div>
-    <img src="logoTV.png" class="header-logo" id="logo-der">
+    <img src="logoTV.png" class="header-logo" id="logo-der" alt="Logo Tony Vázquez">
 </header>
 
 <nav class="nav-menu">
     <a href="index.html" class="btn">Inicio</a>
     <a href="galeria.html" class="btn activo">Galería</a>
     <a href="videos.html" class="btn">Vídeos</a>
+    <a href="conciertos.html" class="btn">Conciertos</a>
 </nav>
 
 <div class="grid-galeria" id="galeria-fotos">
@@ -205,7 +206,7 @@
 <div id="imageModal">
     <button class="modal-btn" id="closeBtn" onclick="cerrarModal()">×</button>
     <button class="modal-btn" id="prevBtn" onclick="cambiarFoto(-1)">❮</button>
-    <img id="imgFull" src="">
+    <img id="imgFull" src="" alt="Vista ampliada">
     <button class="modal-btn" id="nextBtn" onclick="cambiarFoto(1)">❯</button>
 </div>
 
