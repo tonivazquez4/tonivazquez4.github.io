@@ -10,7 +10,7 @@
     </script>
     <meta charset="UTF-8">
     
-    <meta name="viewport" id="viewportMeta" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
     <title>Galería de Fotos | Tony Vázquez</title>
     <link rel="icon" type="image/png" href="favicon.png">
@@ -20,11 +20,15 @@
     <style>
         :root { --gold: #d4af37; --gold-light: #f9d976; }
         
+        /* CLAVE: touch-action: pan-y 
+           Permite hacer scroll arriba y abajo, pero bloquea el "pellizco" (zoom) en toda la web.
+        */
         body { 
             font-family: 'Montserrat', sans-serif; margin: 0; padding: 0; color: white; 
             background: #000 url('Alma de Rock.jpg') no-repeat center center fixed; 
             background-size: cover; 
             overflow-x: hidden;
+            touch-action: pan-y; 
         }
         
         body::before { 
@@ -56,8 +60,20 @@
         .foto-card img:hover { transform: scale(1.1); filter: brightness(1.2); }
 
         /* MODAL / VISOR PROFESIONAL */
-        #imageModal { display: none; position: fixed; z-index: 99999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.98); align-items: center; justify-content: center; }
-        #imgFull { max-width: 95%; max-height: 80vh; border: 2px solid var(--gold); border-radius: 5px; box-shadow: 0 0 30px rgba(212, 175, 55, 0.3); object-fit: contain; }
+        #imageModal { 
+            display: none; position: fixed; z-index: 99999; left: 0; top: 0; width: 100%; height: 100%; 
+            background-color: rgba(0,0,0,0.98); align-items: center; justify-content: center;
+            overflow: auto;
+        }
+        
+        #imgFull { 
+            max-width: 95%; max-height: 80vh; border: 2px solid var(--gold); border-radius: 5px; 
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.3); object-fit: contain; 
+            /* CLAVE: Permite "pellizcar" SOLO en esta imagen */
+            touch-action: pinch-zoom; 
+            transition: transform 0.2s ease-out; /* Suaviza el zoom que vamos a hacer por JS */
+            transform-origin: center center;
+        }
 
         .modal-btn { position: absolute; background: rgba(0,0,0,0.5); border: 1px solid var(--gold); color: white; font-size: 2.5rem; cursor: pointer; transition: 0.3s; padding: 10px 20px; z-index: 100000; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
         .modal-btn:hover { background: var(--gold); color: black; }
@@ -146,7 +162,11 @@
 <div id="imageModal">
     <button class="modal-btn" id="closeBtn" onclick="cerrarModal()">×</button>
     <button class="modal-btn" id="prevBtn" onclick="cambiarFoto(-1)">❮</button>
-    <img id="imgFull" src="" alt="Vista ampliada">
+    
+    <div id="zoomContainer" style="display:flex; justify-content:center; align-items:center; width:100%; height:100%; touch-action: none;">
+        <img id="imgFull" src="" alt="Vista ampliada">
+    </div>
+    
     <button class="modal-btn" id="nextBtn" onclick="cambiarFoto(1)">❯</button>
 </div>
 
@@ -154,6 +174,7 @@
     const totalFotos = 178;
     const contenedor = document.getElementById('galeria-fotos');
     let fotoActual = 1;
+    let escalaActual = 1; // Control de zoom inicial
 
     function cargarGaleria() {
         let contenido = "";
@@ -169,27 +190,28 @@
         contenedor.innerHTML = contenido;
     }
 
-    // --- EL TRUCO ESTÁ AQUÍ ---
     function abrirImagen(indice) {
         fotoActual = indice;
+        escalaActual = 1; // Reiniciar zoom al abrir
+        document.getElementById("imgFull").style.transform = `scale(${escalaActual})`;
         actualizarImagenModal();
         document.getElementById("imageModal").style.display = "flex";
-        
-        // Activa el zoom (pellizcar) solo al abrir la foto
-        document.getElementById("viewportMeta").setAttribute("content", "width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes");
+        document.body.style.overflow = "hidden"; // Bloquea el scroll del fondo
     }
 
     function cerrarModal() {
         document.getElementById("imageModal").style.display = "none";
-        
-        // Desactiva el zoom y devuelve la pantalla a su tamaño normal al cerrar
-        document.getElementById("viewportMeta").setAttribute("content", "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no");
+        document.body.style.overflow = "auto"; // Devuelve el scroll al fondo
+        escalaActual = 1; // Reiniciar zoom
+        document.getElementById("imgFull").style.transform = `scale(1)`;
     }
 
     function cambiarFoto(direccion) {
         fotoActual += direccion;
         if (fotoActual > totalFotos) fotoActual = 1;
         if (fotoActual < 1) fotoActual = totalFotos;
+        escalaActual = 1; // Reiniciar zoom al cambiar de foto
+        document.getElementById("imgFull").style.transform = `scale(1)`;
         actualizarImagenModal();
     }
 
@@ -198,9 +220,11 @@
         imagenFull.src = `Fotos/Foto ${fotoActual}.jpg`;
     }
 
-    // Cerrar al hacer clic fuera de la foto o en los botones
+    // Cerrar al hacer clic fuera de la foto o en los botones (si el zoom es 1)
     document.getElementById("imageModal").onclick = function(e) {
-        if (e.target.id === "imageModal") cerrarModal();
+        if (e.target.id === "imageModal" || e.target.id === "zoomContainer") {
+            cerrarModal();
+        }
     };
 
     document.addEventListener('keydown', function(e) {
@@ -215,6 +239,40 @@
         let btn = document.getElementById("btnSubir");
         if (document.documentElement.scrollTop > 400) { btn.style.display = "flex"; } else { btn.style.display = "none"; }
     };
+
+    // --- SCRIPT PARA EL ZOOM TÁCTIL (Pinch to Zoom) SOLO EN LA IMAGEN ---
+    const imgElement = document.getElementById('imgFull');
+    let inicioPellizco = 0;
+
+    imgElement.addEventListener('touchstart', function(e) {
+        if (e.touches.length === 2) {
+            inicioPellizco = Math.hypot(
+                e.touches[0].pageX - e.touches[1].pageX,
+                e.touches[0].pageY - e.touches[1].pageY
+            );
+        }
+    }, {passive: false});
+
+    imgElement.addEventListener('touchmove', function(e) {
+        if (e.touches.length === 2) {
+            e.preventDefault(); // Evitar el comportamiento nativo raro de Safari/Chrome
+            let pellizcoActual = Math.hypot(
+                e.touches[0].pageX - e.touches[1].pageX,
+                e.touches[0].pageY - e.touches[1].pageY
+            );
+            
+            // Calcular nueva escala (sensibilidad ajustada)
+            let delta = (pellizcoActual - inicioPellizco) * 0.01; 
+            escalaActual += delta;
+            
+            // Limitar el zoom (entre 1x normal y 4x máximo)
+            if(escalaActual < 1) escalaActual = 1;
+            if(escalaActual > 4) escalaActual = 4;
+            
+            imgElement.style.transform = `scale(${escalaActual})`;
+            inicioPellizco = pellizcoActual;
+        }
+    }, {passive: false});
 
     cargarGaleria();
 </script>
