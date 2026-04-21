@@ -93,15 +93,17 @@
 
         .foto-card img:hover { transform: scale(1.1); filter: brightness(1.2); }
 
-        /* MODAL / VISOR PROFESIONAL */
+        /* MODAL / VISOR PROFESIONAL (Actualizado para zoom en móvil) */
         #imageModal { 
             display: none; position: fixed; z-index: 99999; left: 0; top: 0; width: 100%; height: 100%; 
-            background-color: rgba(0,0,0,0.98); align-items: center; justify-content: center; touch-action: none;
+            background-color: rgba(0,0,0,0.98); align-items: center; justify-content: center; 
+            overflow: auto; /* Permite el scroll si se hace zoom */
         }
 
         #imgFull { 
             max-width: 95%; max-height: 80vh; border: 2px solid var(--gold); border-radius: 5px; 
             box-shadow: 0 0 30px rgba(212, 175, 55, 0.3); object-fit: contain;
+            touch-action: pinch-zoom; /* Permite "pellizcar" en el móvil */
         }
 
         .modal-btn { 
@@ -153,8 +155,9 @@
             .header-logo { display: none; } 
             .social-icons { width: auto; justify-content: center; } 
             .btn { font-size: 0.7rem; padding: 8px 10px; }
-            .modal-btn { font-size: 1.8rem; padding: 10px; background: rgba(0,0,0,0.7); }
-            #imgFull { max-height: 60vh; }
+            /* Flechas más pequeñas para que no tapen la foto al hacer zoom */
+            .modal-btn { font-size: 1.5rem; padding: 8px; width: 40px; height: 40px; background: rgba(0,0,0,0.7); }
+            #imgFull { max-height: 70vh; margin-top: 50px; }
             .backstage-input { width: 100%; }
         }
     </style>
@@ -216,7 +219,9 @@
 <div id="imageModal">
     <button class="modal-btn" id="closeBtn" onclick="cerrarModal()">×</button>
     <button class="modal-btn" id="prevBtn" onclick="cambiarFoto(-1)">❮</button>
-    <img id="imgFull" src="" alt="Vista ampliada">
+    <div style="display:flex; justify-content:center; align-items:center; width:100%; height:100%;">
+        <img id="imgFull" src="" alt="Vista ampliada">
+    </div>
     <button class="modal-btn" id="nextBtn" onclick="cambiarFoto(1)">❯</button>
 </div>
 
@@ -243,12 +248,12 @@
         fotoActual = indice;
         actualizarImagenModal();
         document.getElementById("imageModal").style.display = "flex";
-        document.body.style.overflow = "hidden";
+        // Ya NO bloqueamos el scroll del body, para permitir el comportamiento natural en móviles
+        document.body.style.overflow = "auto"; 
     }
 
     function cerrarModal() {
         document.getElementById("imageModal").style.display = "none";
-        document.body.style.overflow = "auto";
     }
 
     function cambiarFoto(direccion) {
@@ -263,8 +268,11 @@
         imagenFull.src = `Fotos/Foto ${fotoActual}.jpg`;
     }
 
+    // Se ha modificado para que el clic fuera de la foto también cierre el modal
     document.getElementById("imageModal").onclick = function(e) {
-        if (e.target.id === "imageModal") cerrarModal();
+        if (e.target.id === "imageModal" || e.target.parentElement.id === "imageModal") {
+             cerrarModal();
+        }
     };
 
     document.addEventListener('keydown', function(e) {
