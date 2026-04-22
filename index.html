@@ -113,7 +113,7 @@
             justify-content: center; align-items: center; font-size: 1.5rem; 
         }
 
-        footer { padding: 25px; text-align: center; background: #000; border-top: 2px solid #222; }
+        footer { padding: 25px; text-align: center; background: #000; border-top: 2px solid #222; cursor: pointer; }
 
         #imageModal {
             display: none; position: fixed; z-index: 10001; padding-top: 50px; left: 0; top: 0; width: 100%; height: 100%; 
@@ -254,12 +254,16 @@
     </div>
 </div>
 
-<footer><p>© 2026 Tony Vázquez. Todos los derechos reservados.</p></footer>
+<footer onclick="revelarContador()"><p>© 2026 Tony Vázquez. Todos los derechos reservados.</p></footer>
 
 <button id="btnSubir" onclick="window.scrollTo({top: 0, behavior: 'smooth'})"><i class="fa-solid fa-arrow-up"></i></button>
 
 <div id="imageModal" onclick="this.style.display='none'">
     <img id="imgFull">
+</div>
+
+<div id="cajaContador" style="display:none; position:fixed; bottom:20px; left:20px; background:#000; border:2px solid var(--gold); color:var(--gold); padding:10px 15px; border-radius:8px; font-weight:bold; z-index:999999; box-shadow:0 4px 10px rgba(0,0,0,0.8);">
+    👀 Visitas totales: <span id="numeroVisitas">...</span>
 </div>
 
 <script>
@@ -285,6 +289,30 @@
         let btn = document.getElementById("btnSubir");
         if (document.documentElement.scrollTop > 400) { btn.style.display = "flex"; } else { btn.style.display = "none"; }
     };
+
+    // 1. Sumar la visita en silencio cada vez que alguien entra
+    fetch('https://api.counterapi.dev/v1/tonyvazquez_oficial/visitas/up')
+        .catch(err => console.log("")); // Falla en silencio para no molestar
+
+    // 2. El "Toque Secreto" del Jefe (3 toques rápidos)
+    let toques = 0;
+    let tiempoToque = 0;
+
+    function revelarContador() {
+        let ahora = new Date().getTime();
+        if (ahora - tiempoToque > 1500) { toques = 0; } // Reinicia si tardas más de 1.5s entre toques
+        tiempoToque = ahora;
+        toques++;
+
+        if (toques === 3) {
+            document.getElementById('cajaContador').style.display = 'block';
+            fetch('https://api.counterapi.dev/v1/tonyvazquez_oficial/visitas')
+                .then(res => res.json())
+                .then(data => document.getElementById('numeroVisitas').innerText = data.count)
+                .catch(err => document.getElementById('numeroVisitas').innerText = "Error");
+            toques = 0; 
+        }
+    }
 </script>
 
 </body>
