@@ -291,7 +291,7 @@
     };
 
     // 1. Sumar la visita en silencio cada vez que alguien entra
-    fetch('https://api.counterapi.dev/v1/tonyvazquez_oficial/visitas/up')
+    fetch('https://abacus.jasoncameron.dev/hit/tonyvazquez.es/visitas')
         .catch(err => console.log("")); // Falla en silencio para no molestar
 
     // 2. El "Toque Secreto" del Jefe (3 toques rápidos)
@@ -306,9 +306,19 @@
 
         if (toques === 3) {
             document.getElementById('cajaContador').style.display = 'block';
-            fetch('https://api.counterapi.dev/v1/tonyvazquez_oficial/visitas')
+            fetch('https://abacus.jasoncameron.dev/get/tonyvazquez.es/visitas')
                 .then(res => res.json())
-                .then(data => document.getElementById('numeroVisitas').innerText = data.count)
+                .then(data => {
+                    // Si algo falla y no hay .value, probamos haciendo "hit" de nuevo por seguridad
+                    if (data.value !== undefined) {
+                        document.getElementById('numeroVisitas').innerText = data.value;
+                    } else {
+                        fetch('https://abacus.jasoncameron.dev/hit/tonyvazquez.es/visitas')
+                            .then(r => r.json())
+                            .then(d => document.getElementById('numeroVisitas').innerText = d.value)
+                            .catch(e => document.getElementById('numeroVisitas').innerText = "Error");
+                    }
+                })
                 .catch(err => document.getElementById('numeroVisitas').innerText = "Error");
             toques = 0; 
         }
