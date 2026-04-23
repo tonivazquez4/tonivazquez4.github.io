@@ -281,7 +281,10 @@
     function trazarRuta(destino) {
         const destinoFinal = encodeURIComponent(destino);
         const url = 'https://www.google.com/maps/dir/?api=1&destination=' + destinoFinal;
-        window.open(url, '_blank');
+        
+        // Al usar href en lugar de window.open, forzamos a que el móvil 
+        // abra la App nativa de Maps directamente sin mostrar la pantalla intermedia.
+        window.location.href = url;
     }
 
     window.onscroll = function() { 
