@@ -24,7 +24,7 @@
             background: #000 url('Alma de Rock.jpg') no-repeat center center fixed; 
             background-size: cover; 
             overflow-x: hidden;
-            touch-action: pan-y; /* Bloquea el zoom en el fondo de la web */
+            touch-action: pan-y;
         }
         
         body::before { 
@@ -39,6 +39,11 @@
         #logo-der { animation: giro-3d 6s linear infinite reverse; }
         @keyframes giro-3d { from { transform: perspective(1000px) rotateY(0deg); } to { transform: perspective(1000px) rotateY(360deg); } }
 
+        /* CABECERA UNIFICADA */
+        .header-center { text-align: center; flex-grow: 1; }
+        .header-center h1 { font-size: clamp(1.2rem, 3vw, 1.8rem); margin: 0; text-transform: uppercase; text-shadow: 2px 2px 10px black; }
+        .header-center p { margin: 5px 0 0 0; color: var(--gold); letter-spacing: 4px; font-weight: 700; font-size: 0.8rem; }
+
         .social-icons { display: flex; gap: 15px; width: 200px; }
         .icons-left { justify-content: flex-start; }
         .icons-right { justify-content: flex-end; }
@@ -49,7 +54,6 @@
         .btn { background: linear-gradient(45deg, var(--gold), var(--gold-light)); color: black; padding: 10px 22px; text-decoration: none; border-radius: 8px; font-weight: 700; display: inline-block; margin: 5px; transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
         .btn:hover, .btn.activo { background: white; transform: scale(1.05); }
 
-        /* REJILLA GALERÍA: Solución Anti-Recorte */
         .grid-galeria { 
             display: grid; 
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
@@ -61,23 +65,22 @@
             display: flex; align-items: center; justify-content: center; 
         }
         .foto-card img { 
-            width: 100%; height: 100%; object-fit: contain; /* Obliga a que la foto entre entera en la caja */
+            width: 100%; height: 100%; object-fit: contain; 
             cursor: pointer; transition: 0.4s; display: block; touch-action: manipulation; 
         }
         .foto-card img:hover { transform: scale(1.05); filter: brightness(1.2); }
 
-        /* MODAL / VISOR PROFESIONAL: Solución Anti-Recorte y Zoom */
         #imageModal { 
             display: none; position: fixed; z-index: 99999; left: 0; top: 0; width: 100%; height: 100%; 
             background-color: rgba(0,0,0,0.98); align-items: center; justify-content: center; overflow: auto;
         }
         
         #imgFull { 
-            width: 100%; height: 100%; max-height: 85vh; /* Se asegura de que entre en cualquier pantalla */
+            width: 100%; height: 100%; max-height: 85vh; 
             border: 2px solid var(--gold); border-radius: 5px; 
             box-shadow: 0 0 30px rgba(212, 175, 55, 0.3); 
-            object-fit: contain; /* Evita cualquier recorte */
-            touch-action: pinch-zoom; /* Permite el zoom solo en esta imagen */
+            object-fit: contain; 
+            touch-action: pinch-zoom; 
             transition: transform 0.2s ease-out; 
             transform-origin: center center;
         }
@@ -88,10 +91,8 @@
         #nextBtn { right: 20px; }
         #closeBtn { top: 20px; right: 20px; font-size: 2rem; width: 50px; height: 50px; }
 
-        /* SECCIÓN COMENTARIOS */
         .seccion-comentarios { max-width: 800px; margin: 30px auto; padding: 20px; background: white; color: black; border-radius: 10px; border: 2px solid var(--gold); }
 
-        /* SECCIÓN BACKSTAGE */
         .backstage-box { background: linear-gradient(45deg, #111, #222); border: 2px solid var(--gold); padding: 40px 20px; text-align: center; border-radius: 15px; margin: 50px auto; max-width: 800px; box-shadow: 0 10px 30px rgba(0,0,0,0.8); }
         .backstage-box h2 { color: var(--gold); text-transform: uppercase; margin-top: 0; margin-bottom: 10px; }
         .backstage-box p { color: #ccc; margin-bottom: 25px; font-size: 1.1rem; }
@@ -108,7 +109,6 @@
             .btn { font-size: 0.7rem; padding: 8px 10px; }
             .modal-btn { font-size: 1.8rem; padding: 10px; width: 45px; height: 45px; background: rgba(0,0,0,0.7); }
             #imgFull { max-height: 70vh; }
-            .backstage-input { width: 100%; }
         }
     </style>
 </head>
@@ -121,10 +121,12 @@
         <a href="https://music.apple.com/es/artist/tony-vazquez/1497948014" target="_blank"><i class="fa-brands fa-apple"></i></a>
         <a href="https://music.youtube.com/channel/UCFNdFbrM3s0kznhCGpRJ3GA" target="_blank"><i class="fa-brands fa-youtube"></i></a>
     </div>
-    <div style="text-align:center">
-        <h1 style="margin:0; font-size: 1.8rem;">TONY VÁZQUEZ</h1>
-        <p style="color:var(--gold); letter-spacing:4px; font-weight:700; margin:5px 0 0 0;">GALERÍA</p>
+    
+    <div class="header-center">
+        <h1>TONY VÁZQUEZ</h1>
+        <p>GALERÍA</p>
     </div>
+
     <div class="social-icons icons-right">
         <a href="https://music.amazon.es/artists/B07NFBKRHJ/tony-vazquez" target="_blank"><i class="fa-brands fa-amazon"></i></a>
         <a href="https://instagram.com/tonykubo" target="_blank"><i class="fa-brands fa-instagram"></i></a>
