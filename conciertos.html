@@ -81,7 +81,6 @@
         .header-center h1 { font-size: clamp(1.2rem, 3vw, 1.8rem); margin: 0; text-transform: uppercase; text-shadow: 2px 2px 10px black; }
         .header-center p { margin: 5px 0 0 0; color: var(--gold); letter-spacing: 4px; font-weight: 700; font-size: 0.8rem; }
 
-        /* REGLAS DE SIMETRÍA RESTAURADAS */
         .social-icons { display: flex; gap: 15px; width: 200px; }
         .icons-left { justify-content: flex-start; }
         .icons-right { justify-content: flex-end; }
@@ -163,9 +162,11 @@
             justify-content: center; align-items: center; font-size: 1.5rem; transition: 0.3s; 
         }
 
+        /* ⚠️ AQUÍ ESTÁ LA MAGIA PARA EL MÓVIL ⚠️ */
         @media (max-width: 768px) { 
             header { flex-direction: column; padding: 20px; gap: 15px; } 
             .header-logo { display: none; } 
+            .social-icons { width: auto; justify-content: center; } /* Esta línea centra los iconos y evita que empujen el texto */
             .nav-menu { display: flex; justify-content: center; flex-wrap: wrap; gap: 5px; } 
             .btn { font-size: 0.75rem; padding: 8px 10px; } 
             .tour-item { flex-direction: column; text-align: center; gap: 15px; } 
