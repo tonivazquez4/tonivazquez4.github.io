@@ -6,6 +6,7 @@
     <title>Conciertos | Tony Vázquez</title>
     
     <link rel="icon" type="image/png" href="favicon.png">
+    
     <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -21,6 +22,26 @@
         "name": "Socobio-Piélagos",
         "address": { "@type": "PostalAddress", "addressLocality": "Cantabria", "addressCountry": "ES" }
       }
+    },
+    {
+      "@type": "Event",
+      "name": "Orquesta Kubo (Gira 2026) - Ourense",
+      "startDate": "2026-05-09T22:00",
+      "location": {
+        "@type": "Place",
+        "name": "Barrio de Follateira",
+        "address": { "@type": "PostalAddress", "addressLocality": "Ourense", "addressCountry": "ES" }
+      }
+    },
+    {
+      "@type": "Event",
+      "name": "Orquesta Kubo (Gira 2026) - Vilagarcía",
+      "startDate": "2026-05-21T22:00",
+      "location": {
+        "@type": "Place",
+        "name": "Vilagarcía de Arousa",
+        "address": { "@type": "PostalAddress", "addressLocality": "Pontevedra", "addressCountry": "ES" }
+      }
     }
   ]
 }
@@ -31,11 +52,27 @@
     
     <style>
         :root { --gold: #d4af37; --gold-light: #f9d976; }
-        body { font-family: 'Montserrat', sans-serif; margin: 0; padding: 0; color: white; background: #000 url('Alma de Rock.jpg') no-repeat center center fixed; background-size: cover; }
-        body::before { content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.85) 100%); z-index: -1; }
+        
+        body { 
+            font-family: 'Montserrat', sans-serif; margin: 0; padding: 0; color: white; 
+            background: #000 url('Alma de Rock.jpg') no-repeat center center fixed; 
+            background-size: cover; 
+        }
+        
+        body::before { 
+            content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: radial-gradient(circle at center, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.85) 100%); 
+            z-index: -1; 
+        }
 
         header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--gold); padding: 10px 40px; background: rgba(0,0,0,0.9); }
-        .header-logo { height: 105px; width: auto; filter: brightness(0) saturate(100%) invert(75%) sepia(50%) saturate(600%) hue-rotate(5deg) brightness(90%) contrast(100%); cursor: pointer; transition: 0.3s; }
+        
+        .header-logo { 
+            height: 105px; width: auto; 
+            filter: brightness(0) saturate(100%) invert(75%) sepia(50%) saturate(600%) hue-rotate(5deg) brightness(90%) contrast(100%); 
+            cursor: pointer; transition: 0.3s; 
+        }
+        
         #logo-izq { animation: giro-3d 6s linear infinite; }
         #logo-der { animation: giro-3d 6s linear infinite reverse; }
         @keyframes giro-3d { from { transform: perspective(1000px) rotateY(0deg); } to { transform: perspective(1000px) rotateY(360deg); } }
@@ -44,7 +81,12 @@
         .header-center h1 { font-size: clamp(1.2rem, 3vw, 1.8rem); margin: 0; text-transform: uppercase; text-shadow: 2px 2px 10px black; }
         .header-center p { margin: 5px 0 0 0; color: var(--gold); letter-spacing: 4px; font-weight: 700; font-size: 0.8rem; }
 
-        .btn-share { background: linear-gradient(45deg, var(--gold), var(--gold-light)); color: black; border: none; padding: 6px 14px; border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 0.75rem; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.5); transition: 0.3s; margin-top: 10px; text-transform: uppercase; }
+        .btn-share {
+            background: linear-gradient(45deg, var(--gold), var(--gold-light));
+            color: black; border: none; padding: 6px 14px; border-radius: 8px; font-weight: 700;
+            cursor: pointer; font-size: 0.75rem; display: inline-flex; align-items: center; gap: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5); transition: 0.3s; margin-top: 10px; text-transform: uppercase;
+        }
         .btn-share:hover { background: white; transform: scale(1.05); }
 
         .social-icons { display: flex; gap: 15px; width: 200px; }
@@ -52,38 +94,87 @@
         .social-icons a:hover { color: var(--gold); transform: translateY(-3px); }
 
         .nav-menu { text-align: center; margin: 30px 0; }
-        .btn { background: linear-gradient(45deg, var(--gold), var(--gold-light)); color: black; padding: 10px 22px; text-decoration: none; border-radius: 8px; font-weight: 700; display: inline-block; margin: 5px; transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+        .btn { 
+            background: linear-gradient(45deg, var(--gold), var(--gold-light)); color: black; 
+            padding: 10px 22px; text-decoration: none; border-radius: 8px; font-weight: 700; 
+            display: inline-block; margin: 5px; transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.5); 
+        }
         .btn:hover, .btn.activo { background: white; transform: scale(1.05); }
 
         .container { padding: 20px 20px 40px; max-width: 900px; margin: auto; }
-        .mes-titulo { color: var(--gold); text-align: center; font-size: 1.8rem; margin: 40px 0 15px 0; letter-spacing: 2px; text-transform: uppercase; text-shadow: 2px 2px 10px black; }
+        
+        .mes-titulo {
+            color: var(--gold);
+            text-align: center;
+            font-size: 1.8rem;
+            margin: 40px 0 15px 0;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 10px black;
+        }
+        .mes-titulo:first-child { margin-top: 10px; }
+
         .tour-list { background: rgba(20,20,20,0.9); border-radius: 15px; border: 1px solid var(--gold); padding: 20px; }
         .tour-item { display: flex; justify-content: space-between; align-items: center; padding: 20px; border-bottom: 1px solid #333; cursor: pointer; transition: background 0.3s; }
-        .tour-item:hover { background: rgba(212, 175, 55, 0.1); }
-        .tour-item:last-child { border-bottom: none; }
+        .tour-item:hover { background: rgba(212, 175, 55, 0.1); } 
+        .tour-item:last-child { border-bottom: none; } 
+
         .tour-date { color: var(--gold); font-weight: bold; font-size: 1.2rem; min-width: 100px; text-align: center; }
         .tour-info { flex-grow: 1; padding: 0 20px; text-align: left; }
         .tour-info span { display: block; color: #aaa; font-size: 0.9rem; margin-top: 5px; }
 
         .seccion-comentarios { max-width: 800px; margin: 40px auto; padding: 20px; background: white; color: black; border-radius: 12px; border: 2px solid var(--gold); }
         .seccion-comentarios h3 { text-align: center; margin-top: 0; text-transform: uppercase; }
-
-        .backstage-box { background: linear-gradient(45deg, #111, #222); border: 2px solid var(--gold); padding: 40px 20px; text-align: center; border-radius: 15px; margin: 50px auto; max-width: 800px; box-shadow: 0 10px 30px rgba(0,0,0,0.8); }
+        
+        .backstage-box {
+            background: linear-gradient(45deg, #111, #222);
+            border: 2px solid var(--gold);
+            padding: 40px 20px;
+            text-align: center;
+            border-radius: 15px;
+            margin: 50px auto;
+            max-width: 800px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+        }
         .backstage-box h2 { color: var(--gold); text-transform: uppercase; margin: 0 0 10px 0; }
         .backstage-box p { color: #ccc; margin-bottom: 25px; font-size: 1.1rem; }
         .backstage-form { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
-        .backstage-input { padding: 12px 20px; border-radius: 8px; border: 1px solid #444; background: #000; color: white; width: 300px; font-family: 'Montserrat', sans-serif; }
-        .btn-subscribe { background: var(--gold); color: black; border: none; padding: 12px 25px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s; text-transform: uppercase; }
+        .backstage-input {
+            padding: 12px 20px;
+            border-radius: 8px;
+            border: 1px solid #444;
+            background: #000;
+            color: white;
+            width: 300px;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .btn-subscribe {
+            background: var(--gold);
+            color: black;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+            text-transform: uppercase;
+        }
         .btn-subscribe:hover { background: white; transform: scale(1.05); }
 
-        #btnSubir { display: none; position: fixed; bottom: 30px; right: 30px; z-index: 9999; background: var(--gold); color: black; border: none; cursor: pointer; width: 55px; height: 55px; border-radius: 50%; box-shadow: 0 4px 15px rgba(0,0,0,0.6); justify-content: center; align-items: center; font-size: 1.5rem; transition: 0.3s; }
+        #btnSubir { 
+            display: none; position: fixed; bottom: 30px; right: 30px; z-index: 9999; 
+            background: var(--gold); color: black; border: none; cursor: pointer; 
+            width: 55px; height: 55px; border-radius: 50%; box-shadow: 0 4px 15px rgba(0,0,0,0.6); 
+            justify-content: center; align-items: center; font-size: 1.5rem; transition: 0.3s; 
+        }
 
-        @media (max-width: 768px) {
-            header { flex-direction: column; padding: 20px; gap: 15px; }
-            .header-logo { display: none; }
-            .nav-menu { display: flex; justify-content: center; flex-wrap: wrap; gap: 5px; }
-            .tour-item { flex-direction: column; text-align: center; gap: 15px; }
-            .tour-info { padding: 0; text-align: center; }
+        @media (max-width: 768px) { 
+            header { flex-direction: column; padding: 20px; gap: 15px; } 
+            .header-logo { display: none; } 
+            .nav-menu { display: flex; justify-content: center; flex-wrap: wrap; gap: 5px; } 
+            .btn { font-size: 0.75rem; padding: 8px 10px; } 
+            .tour-item { flex-direction: column; text-align: center; gap: 15px; } 
+            .tour-info { padding: 0; text-align: center; } 
         }
     </style>
 </head>
@@ -92,15 +183,17 @@
 <header>
     <img src="logoTV.png" class="header-logo" id="logo-izq" alt="Logo">
     <div class="social-icons">
-        <a href="https://open.spotify.com/artist/4X9z8E1X5n8X9Z"><i class="fa-brands fa-spotify"></i></a>
+        <a href="https://open.spotify.com/artist/B07NFBKRHJ"><i class="fa-brands fa-spotify"></i></a>
         <a href="https://music.apple.com/es/artist/tony-vazquez/1497948014"><i class="fa-brands fa-apple"></i></a>
         <a href="https://music.youtube.com/channel/UCFNdFbrM3s0kznhCGpRJ3GA"><i class="fa-brands fa-youtube"></i></a>
     </div>
+    
     <div class="header-center">
         <h1>TONY VÁZQUEZ</h1>
         <p>CONCIERTOS</p>
         <button class="btn-share" onclick="compartirWeb()"><i class="fa-solid fa-share-nodes"></i> Compartir</button>
     </div>
+    
     <div class="social-icons">
         <a href="https://music.amazon.es/artists/B07NFBKRHJ/tony-vazquez"><i class="fa-brands fa-amazon"></i></a>
         <a href="https://instagram.com/tonykubo"><i class="fa-brands fa-instagram"></i></a>
@@ -117,6 +210,7 @@
 </nav>
 
 <div class="container">
+    
     <h2 class="mes-titulo">Mayo 2026</h2>
     <div class="tour-list">
         <div class="tour-item" onclick="trazarRuta('Socobio-Piélagos, Cantabria')">
@@ -135,7 +229,24 @@
             <div class="tour-date">29 MAY</div>
             <div class="tour-info">A Coruña - Arteixo<br><strong>Orquesta Kubo (Gira Golden 2026)</strong><span>22:00h</span></div>
         </div>
+        <div class="tour-item" onclick="trazarRuta('Dornels-Mos, Pontevedra')">
+            <div class="tour-date">30 MAY</div>
+            <div class="tour-info">Pontevedra - Dornels-Mos<br><strong>Orquesta Kubo (Gira Golden 2026)</strong><span>22:00h</span></div>
+        </div>
     </div>
+
+    <h2 class="mes-titulo">Junio 2026</h2>
+    <div class="tour-list">
+        <div class="tour-item" onclick="trazarRuta('Burela, Lugo')">
+            <div class="tour-date">05 JUN</div>
+            <div class="tour-info">Lugo - Burela<br><strong>Orquesta Kubo (Gira Golden 2026)</strong><span>22:00h</span></div>
+        </div>
+        <div class="tour-item" onclick="trazarRuta('Corbelle-A Pastoriza, Lugo')">
+            <div class="tour-date">06 JUN</div>
+            <div class="tour-info">Lugo - Corbelle-A Pastoriza<br><strong>Orquesta Kubo (Gira Golden 2026)</strong><span>22:30h</span></div>
+        </div>
+    </div>
+    
 </div>
 
 <div class="seccion-comentarios">
@@ -147,21 +258,22 @@
     <div class="backstage-box">
         <h2>Únete al Backstage 🤘</h2>
         <p>Sé el primero en enterarte de nuevas fechas y contenido exclusivo.</p>
-        <form action="#" class="backstage-form">
-            <input type="email" class="backstage-input" placeholder="Tu correo electrónico" required>
+        <form action="https://tonyvazquez.us11.list-manage.com/subscribe/post?u=e028b891a2d01f15a859b80f0&id=c8b0de8308&f_id=00d1d7e3f0" method="post" class="backstage-form" target="_blank">
+            <input type="email" name="EMAIL" class="backstage-input" placeholder="Tu correo electrónico" required>
             <button type="submit" class="btn-subscribe">Suscribirme</button>
         </form>
     </div>
 </div>
 
 <footer style="text-align:center; padding: 40px;"><p>© 2026 Tony Vázquez. Todos los derechos reservados.</p></footer>
+
 <button id="btnSubir" onclick="window.scrollTo({top: 0, behavior: 'smooth'})"><i class="fa-solid fa-arrow-up"></i></button>
 
 <script>
-    // FUNCIÓN INTELIGENTE DE MAPAS
-    // Detecta la ubicación del usuario y traza la ruta al destino escrito
+    // FUNCIÓN DE MAPAS MEJORADA
     function trazarRuta(destino) {
-        const url = "https://www.google.com/maps/dir/?api=1&destination=" + encodeURIComponent(destino);
+        // Usamos origin=My+Location para intentar forzar al navegador a pedir el GPS actual
+        const url = "https://www.google.com/maps/dir/?api=1&origin=My+Location&destination=" + encodeURIComponent(destino);
         window.open(url, '_blank');
     }
 
@@ -180,7 +292,7 @@
     };
     
     // Disqus Config
-    var disqus_config = function () { this.page.url = window.location.href; this.page.identifier = "conciertos_tony_vazquez"; };
+    var disqus_config = function () { this.page.url = "https://www.tonyvazquez.es/conciertos.html"; this.page.identifier = "conciertos_tony_vazquez"; };
     (function() { var d = document, s = d.createElement('script'); s.src = 'https://tony-vazquez.disqus.com/embed.js'; s.setAttribute('data-timestamp', +new Date()); (d.head || d.body).appendChild(s); })();
 </script>
 
