@@ -34,14 +34,11 @@
         .btn { background: linear-gradient(45deg, var(--gold), var(--gold-light)); color: black; padding: 10px 22px; text-decoration: none; border-radius: 8px; font-weight: 700; display: inline-block; margin: 5px; transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
         .btn:hover, .btn.activo { background: white; transform: scale(1.05); }
         
-        /* ESTILOS DE LA TIENDA */
         .seccion-titulo { color: var(--gold); text-align: center; font-size: 2rem; margin: 20px 0; text-transform: uppercase; text-shadow: 2px 2px 10px black; }
         
-        /* ALERTA DE COMPRA */
         .alerta-tienda { background: rgba(212, 175, 55, 0.1); border: 2px solid var(--gold); padding: 20px; border-radius: 12px; max-width: 800px; margin: 0 auto 30px auto; text-align: center; box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
         .alerta-tienda h3 { color: var(--gold); margin-top: 0; text-transform: uppercase; font-size: 1.3rem; }
         .alerta-tienda p { margin-bottom: 0; line-height: 1.6; font-size: 1.05rem; }
-        .alerta-tienda strong { color: white; background: #000; padding: 2px 6px; border-radius: 4px; border: 1px solid #444; }
 
         .tienda-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; padding: 0 20px 20px; max-width: 1000px; margin: auto; }
         .producto-card { background: rgba(20, 20, 20, 0.95); border: 1px solid #333; border-radius: 15px; overflow: hidden; text-align: center; padding-bottom: 25px; transition: 0.4s; box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
@@ -50,7 +47,6 @@
         .producto-card h3 { font-size: 1.3rem; margin: 15px 10px 5px; text-transform: uppercase; color: white; }
         .precio { color: var(--gold); font-size: 1.6rem; font-weight: bold; margin: 10px 0 20px; display: block; }
         
-        /* BOTÓN DE PAGO */
         .btn-comprar { background: var(--gold); color: black; padding: 12px 30px; border: none; border-radius: 8px; font-weight: bold; font-size: 1.1rem; cursor: pointer; transition: 0.3s; text-transform: uppercase; text-decoration: none; display: inline-flex; align-items: center; gap: 10px; }
         .btn-comprar:hover { background: white; transform: scale(1.05); }
 
@@ -64,21 +60,13 @@
             .alerta-tienda { margin: 0 15px 30px 15px; }
         }
     </style>
-    
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#d4af37">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="Tony Vázquez">
-    <link rel="apple-touch-icon" href="favicon.png">
-    <script>if ('serviceWorker' in navigator) { window.addEventListener('load', function() { navigator.serviceWorker.register('/sw.js'); }); }</script>
 </head>
 <body>
 
 <header>
     <img src="logoTV.png" class="header-logo" id="logo-izq" alt="Logo">
     <div class="social-icons icons-left">
-        <a href="https://open.spotify.com/intl-es/artist/5PGFsB4rJcNb9h5gBOKnWw?si=SBjt7wSNRyKfW2ed2fkjzg2" target="_blank"><i class="fa-brands fa-spotify"></i></a>
+        <a href="https://open.spotify.com/intl-es/artist/4X9z6i8mO0a6e6T4X9z6i8" target="_blank"><i class="fa-brands fa-spotify"></i></a>
         <a href="https://music.apple.com/es/artist/tony-vazquez/1497948014" target="_blank"><i class="fa-brands fa-apple"></i></a>
         <a href="https://music.youtube.com/channel/UCFNdFbrM3s0kznhCGpRJ3GA" target="_blank"><i class="fa-brands fa-youtube"></i></a>
     </div>
@@ -102,8 +90,8 @@
 <h2 class="seccion-titulo">Equípate para la Gira</h2>
 
 <div class="alerta-tienda">
-    <h3>⚠️ ¡Aviso Importante! ⚠️</h3>
-    <p>Al pulsar en "Comprar", irás a la pasarela de PayPal. Es <strong>OBLIGATORIO</strong> que en el paso final uses la opción <em>"Añadir una nota"</em> para escribir tu <strong>TALLA</strong> (S, M, L, XL...) y tu <strong>DIRECCIÓN COMPLETA</strong> de envío. ¡Sin esos datos no podremos enviarte el paquete!</p>
+    <h3>⚠️ ¡Instrucciones de Compra! ⚠️</h3>
+    <p>Al pulsar "Comprar", irás a PayPal. En el último paso, usa <strong>"Añadir una nota"</strong> para escribir tu <strong>TALLA</strong> y tu <strong>DIRECCIÓN COMPLETA</strong>. ¡Es vital para enviarte el pedido!</p>
 </div>
 
 <div class="tienda-grid">
@@ -111,21 +99,21 @@
         <img src="camiseta-unisex.jpg" alt="Camiseta Unisex" class="producto-img" onerror="this.src='Alma de Rock.jpg'">
         <h3>Camiseta Unisex "Alma de Rock"</h3>
         <span class="precio">20.00 €</span>
-        <a href="https://paypal.me/TUPAYPAL/20" class="btn-comprar" target="_blank"><i class="fa-brands fa-paypal"></i> Comprar ahora</a>
+        <a href="https://paypal.me/tonyvazquezrock/20" class="btn-comprar" target="_blank"><i class="fa-brands fa-paypal"></i> Comprar ahora</a>
     </div>
 
     <div class="producto-card">
         <img src="camiseta-mujer.jpg" alt="Camiseta Mujer" class="producto-img" onerror="this.src='Alma de Rock.jpg'">
         <h3>Camiseta Mujer Relaxed</h3>
         <span class="precio">20.00 €</span>
-        <a href="https://paypal.me/TUPAYPAL/20" class="btn-comprar" target="_blank"><i class="fa-brands fa-paypal"></i> Comprar ahora</a>
+        <a href="https://paypal.me/tonyvazquezrock/20" class="btn-comprar" target="_blank"><i class="fa-brands fa-paypal"></i> Comprar ahora</a>
     </div>
 
     <div class="producto-card">
         <img src="gorra.jpg" alt="Gorra Oficial" class="producto-img" onerror="this.src='Alma de Rock.jpg'">
         <h3>Gorra "Dad Hat" Oficial</h3>
         <span class="precio">18.00 €</span>
-        <a href="https://paypal.me/TUPAYPAL/18" class="btn-comprar" target="_blank"><i class="fa-brands fa-paypal"></i> Comprar ahora</a>
+        <a href="https://paypal.me/tonyvazquezrock/18" class="btn-comprar" target="_blank"><i class="fa-brands fa-paypal"></i> Comprar ahora</a>
     </div>
 </div>
 
