@@ -255,7 +255,14 @@
 
 <div class="seccion-comentarios">
     <h3>¿Nos vemos en la gira? 🤘</h3>
-    <div id="disqus_thread"></div>
+    <div id="cusdis_thread"
+      data-host="https://cusdis.com"
+      data-app-id="b3a46067-e248-4f1a-8f3b-1d829f5606c3"
+      data-page-id="conciertos_tony_vazquez"
+      data-page-url="https://www.tonyvazquez.es/conciertos.html"
+      data-page-title="Conciertos Tony Vazquez">
+    </div>
+    <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
 </div>
 
 <div class="container">
@@ -296,10 +303,6 @@
         let btn = document.getElementById("btnSubir");
         if (document.documentElement.scrollTop > 400) { btn.style.display = "flex"; } else { btn.style.display = "none"; }
     };
-    
-    // Disqus Config
-    var disqus_config = function () { this.page.url = "https://www.tonyvazquez.es/conciertos.html"; this.page.identifier = "conciertos_tony_vazquez"; };
-    (function() { var d = document, s = d.createElement('script'); s.src = 'https://tony-vazquez.disqus.com/embed.js'; s.setAttribute('data-timestamp', +new Date()); (d.head || d.body).appendChild(s); })();
 </script>
 
 </body>
