@@ -119,7 +119,8 @@
         .mes-titulo:first-child { margin-top: 10px; }
 
         .tour-list { background: rgba(20,20,20,0.9); border-radius: 15px; border: 1px solid var(--gold); padding: 20px; }
-        .tour-item { display: flex; justify-content: space-between; align-items: center; padding: 20px; border-bottom: 1px solid #333; }
+        .tour-item { display: flex; justify-content: space-between; align-items: center; padding: 20px; border-bottom: 1px solid #333; cursor: pointer; transition: background 0.3s; }
+        .tour-item:hover { background: rgba(212, 175, 55, 0.1); } /* Efecto iluminación al pasar el ratón */
         .tour-item:last-child { border-bottom: none; padding-bottom: 0; } /* Quita la línea del último elemento de la caja */
         .tour-date { color: var(--gold); font-weight: bold; font-size: 1.2rem; min-width: 100px; text-align: center; }
         .tour-info { flex-grow: 1; padding: 0 20px; text-align: left; }
@@ -190,9 +191,9 @@
 <header>
     <img src="logoTV.png" class="header-logo" id="logo-izq" alt="Logo Izquierda">
     <div class="social-icons icons-left">
-        <a href="https://open.spotify.com/intl-es/artist/5PGFsB4rJcNb9h5gBOKnWw" target="_blank"><i class="fa-brands fa-spotify"></i></a>
-        <a href="https://music.apple.com/es/artist/tony-vazquez/1497948014" target="_blank"><i class="fa-brands fa-apple"></i></a>
-        <a href="https://music.youtube.com/channel/UCFNdFbrM3s0kznhCGpRJ3GA" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+        <a href="https://open.spotify.com/intl-es/artist/5PGFsB4rJcNb9h5gBOKnWw"><i class="fa-brands fa-spotify"></i></a>
+        <a href="https://music.apple.com/es/artist/tony-vazquez/1497948014"><i class="fa-brands fa-apple"></i></a>
+        <a href="https://music.youtube.com/channel/UCFNdFbrM3s0kznhCGpRJ3GA"><i class="fa-brands fa-youtube"></i></a>
     </div>
     
     <div class="header-center">
@@ -204,9 +205,9 @@
     </div>
     
     <div class="social-icons icons-right">
-        <a href="https://music.amazon.es/artists/B07NFBKRHJ/tony-vazquez" target="_blank"><i class="fa-brands fa-amazon"></i></a>
-        <a href="https://instagram.com/tonykubo" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-        <a href="https://www.facebook.com/tonisampler/" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+        <a href="https://music.amazon.es/artists/B07NFBKRHJ/tony-vazquez"><i class="fa-brands fa-amazon"></i></a>
+        <a href="https://instagram.com/tonykubo"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://www.facebook.com/tonisampler/"><i class="fa-brands fa-facebook"></i></a>
     </div>
     <img src="logoTV.png" class="header-logo" id="logo-der" alt="Logo Derecha">
 </header>
@@ -222,23 +223,23 @@
     
     <h2 class="mes-titulo">Mayo 2026</h2>
     <div class="tour-list">
-        <div class="tour-item">
+        <div class="tour-item" onclick="window.open('https://www.google.com/maps/search/?api=1&query=Socobio+Pielagos+Cantabria', '_blank')">
             <div class="tour-date">02 MAY</div>
             <div class="tour-info">Cantabria - Socobio-Piélagos<br><strong>Orquesta Kubo (Gira Golden 2026)</strong><span>22:30h</span></div>
         </div>
-        <div class="tour-item">
+        <div class="tour-item" onclick="window.open('https://www.google.com/maps/search/?api=1&query=Barrio+de+Follateira+Ourense', '_blank')">
             <div class="tour-date">09 MAY</div>
             <div class="tour-info">Ourense - Barrio de Follateira<br><strong>Orquesta Kubo (Gira Golden 2026)</strong><span>22:00h</span></div>
         </div> 
-        <div class="tour-item">
+        <div class="tour-item" onclick="window.open('https://www.google.com/maps/search/?api=1&query=Vilagarcia+de+Arousa+Pontevedra', '_blank')">
             <div class="tour-date">21 MAY</div>
             <div class="tour-info">Pontevedra - Vilagarcía de Arousa<br><strong>Orquesta Kubo (Gira Golden 2026)</strong><span>22:00h</span></div>
         </div>
-        <div class="tour-item">
+        <div class="tour-item" onclick="window.open('https://www.google.com/maps/search/?api=1&query=Arteixo+A+Coruna', '_blank')">
             <div class="tour-date">29 MAY</div>
             <div class="tour-info">A Coruña - Arteixo<br><strong>Orquesta Kubo (Gira Golden 2026)</strong><span>22:00h</span></div>
         </div>
-        <div class="tour-item">
+        <div class="tour-item" onclick="window.open('https://www.google.com/maps/search/?api=1&query=Dornelas+Mos+Pontevedra', '_blank')">
             <div class="tour-date">30 MAY</div>
             <div class="tour-info">Pontevedra - Dornels-Mos<br><strong>Orquesta Kubo (Gira Golden 2026)</strong><span>22:00h</span></div>
         </div>
@@ -246,11 +247,11 @@
 
     <h2 class="mes-titulo">Junio 2026</h2>
     <div class="tour-list">
-        <div class="tour-item">
+        <div class="tour-item" onclick="window.open('https://www.google.com/maps/search/?api=1&query=Burela+Lugo', '_blank')">
             <div class="tour-date">05 JUN</div>
             <div class="tour-info">Lugo - Burela<br><strong>Orquesta Kubo (Gira Golden 2026)</strong><span>22:00h</span></div>
         </div>
-        <div class="tour-item">
+        <div class="tour-item" onclick="window.open('https://www.google.com/maps/search/?api=1&query=Corbelle+A+Pastoriza+Lugo', '_blank')">
             <div class="tour-date">06 JUN</div>
             <div class="tour-info">Lugo - Corbelle-A Pastoriza<br><strong>Orquesta Kubo (Gira Golden 2026)</strong><span>22:30h</span></div>
         </div>
