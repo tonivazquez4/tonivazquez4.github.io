@@ -183,7 +183,7 @@
 <header>
     <img src="logoTV.png" class="header-logo" id="logo-izq" alt="Logo">
     <div class="social-icons">
-        <a href="https://open.spotify.com/artist/123456789"><i class="fa-brands fa-spotify"></i></a>
+        <a href="https://open.spotify.com/artist/23"><i class="fa-brands fa-spotify"></i></a>
         <a href="https://music.apple.com/es/artist/tony-vazquez/1497948014"><i class="fa-brands fa-apple"></i></a>
         <a href="https://music.youtube.com/channel/UCFNdFbrM3s0kznhCGpRJ3GA"><i class="fa-brands fa-youtube"></i></a>
     </div>
@@ -274,10 +274,10 @@
 <button id="btnSubir" onclick="window.scrollTo({top: 0, behavior: 'smooth'})"><i class="fa-solid fa-arrow-up"></i></button>
 
 <script>
-    // FUNCIÓN DE MAPAS LIMPIA Y OFICIAL
+    // FUNCIÓN DE MAPAS: FORMATO OFICIAL DE GOOGLE MAPS API
     function trazarRuta(destino) {
-        // Usa la URL oficial de rutas de Google Maps. 
-        // Al no poner "origen", Maps asume automáticamente tu ubicación actual real.
+        // La sintaxis 'dir/?api=1&destination=' le dice explícitamente a Google Maps 
+        // que abra el modo ruta usando tu ubicación actual como origen.
         const destinoFinal = encodeURIComponent(destino);
         const url = 'https://www.google.com/maps/dir/?api=1&destination=' + destinoFinal;
         window.open(url, '_blank');
