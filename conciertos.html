@@ -270,31 +270,13 @@
 <button id="btnSubir" onclick="window.scrollTo({top: 0, behavior: 'smooth'})"><i class="fa-solid fa-arrow-up"></i></button>
 
 <script>
-    // FUNCIÓN DE MAPAS DEFINITIVA CON GPS REAL
+    // FUNCIÓN DE MAPAS DEFINITIVA CON ENLACE OFICIAL DE GOOGLE MAPS
     function trazarRuta(destino) {
+        // Al usar este enlace, Google Maps (o la app en el móvil) calcula automáticamente
+        // la ruta desde tu ubicación actual hasta el destino indicado.
         const destinoFinal = encodeURIComponent(destino);
-
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(
-                function(posicion) {
-                    // Éxito: Tenemos tus coordenadas exactas del GPS
-                    let lat = posicion.coords.latitude;
-                    let lon = posicion.coords.longitude;
-                    let url = 'https://www.google.com/maps/dir/?api=1&origin=' + lat + ',' + lon + '&destination=' + destinoFinal;
-                    window.open(url, '_blank');
-                },
-                function(error) {
-                    // Si el usuario no da permiso o falla, dejamos que Maps intente buscarlo por su cuenta
-                    let url = 'https://www.google.com/maps/dir/?api=1&destination=' + destinoFinal;
-                    window.open(url, '_blank');
-                },
-                { enableHighAccuracy: true, timeout: 5000, maximumAge: 0 }
-            );
-        } else {
-            // Para navegadores antiguos
-            let url = 'https://www.google.com/maps/dir/?api=1&destination=' + destinoFinal;
-            window.open(url, '_blank');
-        }
+        const url = 'https://www.google.com/maps/dir/?api=1&destination=' + destinoFinal;
+        window.open(url, '_blank');
     }
 
     function compartirWeb() {
