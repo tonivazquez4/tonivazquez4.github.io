@@ -25,7 +25,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     
     <style>
-        :root { --gold: #d4af37; --gold-light: #f9d976; }
+        :root { --gold: #d4af37; --gold-light: #f9d976; --gold-bright: #ffcc33; }
         
         body { 
             font-family: 'Montserrat', sans-serif; margin: 0; padding: 0; color: white; 
@@ -64,27 +64,27 @@
 
         .header-logo:hover { animation-play-state: paused; filter: brightness(1.2); }
 
-        .header-center { text-align: center; flex-grow: 1; position: relative; }
-        .header-center h1 { font-size: clamp(1.2rem, 3vw, 1.8rem); margin: 0; text-transform: uppercase; text-shadow: 2px 2px 10px black; display: inline-block; vertical-align: middle; }
-        .header-center p { margin: 5px 0 0 0; color: var(--gold); letter-spacing: 4px; font-weight: 700; font-size: 0.8rem; }
-
-        /* ESTILO BOTÓN CARRITO CABECERA */
-        .btn-carrito-header {
-            display: inline-flex; align-items: center; justify-content: center;
-            background: var(--gold); color: black; width: 45px; height: 45px; 
-            border-radius: 50%; text-decoration: none; font-size: 1.2rem; 
-            transition: 0.3s; box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
-            vertical-align: middle; margin-left: 15px;
-        }
-        .btn-carrito-header:hover { background: white; transform: scale(1.1); }
+        .header-center { text-align: center; flex-grow: 1; }
+        .header-center h1 { font-size: clamp(1.2rem, 3vw, 1.8rem); margin: 0; text-transform: uppercase; text-shadow: 2px 2px 10px black; }
+        .header-center p { margin: 5px 0 10px 0; color: var(--gold); letter-spacing: 4px; font-weight: 700; font-size: 0.8rem; }
 
         .btn-share {
             background: linear-gradient(45deg, var(--gold), var(--gold-light));
-            color: black; border: none; padding: 6px 14px; border-radius: 8px; font-weight: 700;
+            color: black; border: none; padding: 8px 16px; border-radius: 8px; font-weight: 700;
             cursor: pointer; font-size: 0.75rem; display: inline-flex; align-items: center; gap: 8px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5); transition: 0.3s; margin-top: 10px; text-transform: uppercase;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5); transition: 0.3s; text-transform: uppercase;
         }
         .btn-share:hover { background: white; transform: scale(1.05); }
+
+        /* BOTÓN CARRITO NIVEL COMPARTIR */
+        .btn-carrito-nav {
+            display: inline-flex; align-items: center; justify-content: center;
+            background: var(--gold-bright); color: black; width: 35px; height: 35px; 
+            border-radius: 50%; text-decoration: none; font-size: 1rem; 
+            transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            margin-left: 15px; vertical-align: middle;
+        }
+        .btn-carrito-nav:hover { background: white; transform: scale(1.15); }
 
         .social-icons { display: flex; gap: 15px; width: 200px; }
         .icons-left { justify-content: flex-start; }
@@ -114,8 +114,6 @@
         .bio-content strong { color: var(--gold); }
 
         .seccion-comentarios { max-width: 800px; margin: 50px auto; padding: 20px; background: white; color: black; border-radius: 12px; border: 2px solid var(--gold); }
-        
-        /* ESTILOS REACCIONES */
         .caja-reacciones { display: flex; justify-content: center; gap: 15px; margin-bottom: 25px; flex-wrap: wrap; }
         .btn-reaccion { background: #f8f8f8; border: 2px solid var(--gold); border-radius: 20px; padding: 6px 15px; font-size: 1.4rem; cursor: pointer; transition: 0.3s; color: black; font-weight: bold; display: flex; align-items: center; gap: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
         .btn-reaccion:hover { transform: scale(1.1); background: var(--gold-light); }
@@ -143,7 +141,7 @@
             .nav-menu { display: flex; justify-content: center; flex-wrap: wrap; gap: 5px; }
             .btn { font-size: 0.75rem; padding: 8px 10px; }
             .social-icons { width: auto; justify-content: center; } 
-            .btn-carrito-header { margin: 10px 0 0 0; }
+            .btn-carrito-nav { margin: 10px 0; }
         }
         
         .backstage-box {
@@ -191,11 +189,7 @@
     <script>
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', function() {
-          navigator.serviceWorker.register('/sw.js').then(function(registration) {
-            console.log('ServiceWorker registrado con éxito: ', registration.scope);
-          }, function(err) {
-            console.log('Error al registrar el ServiceWorker: ', err);
-          });
+          navigator.serviceWorker.register('/sw.js');
         });
       }
     </script>
@@ -211,16 +205,14 @@
     </div>
 
     <div class="header-center">
-        <div style="display: inline-block; vertical-align: middle;">
-            <h1>TONY VÁZQUEZ</h1>
-        </div>
-        <a href="tienda.html" class="btn-carrito-header" title="tienda oficial de merchandising">
-            <i class="fa-solid fa-cart-shopping"></i>
-        </a>
+        <h1>TONY VÁZQUEZ</h1>
         <p>ROCK · ALMA · LEYENDA</p>
         <button class="btn-share" onclick="compartirWeb()">
             <i class="fa-solid fa-share-nodes"></i> Compartir
         </button>
+        <a href="tienda.html" class="btn-carrito-nav" title="tienda oficial de merchandising">
+            <i class="fa-solid fa-cart-shopping"></i>
+        </a>
     </div>
 
     <div class="social-icons icons-right">
@@ -273,17 +265,13 @@
 
 <div class="seccion-comentarios">
     <h3 style="color: black; text-align: center; text-transform: uppercase; margin-top: 0; font-size: 1.2rem;">¿Qué te parece? ¡Reacciona! 👇</h3>
-    
     <div class="caja-reacciones">
         <button class="btn-reaccion" onclick="sumarReaccion('fuego', this)">🔥 <span id="count-fuego">...</span></button>
         <button class="btn-reaccion" onclick="sumarReaccion('cuernos', this)">🤘 <span id="count-cuernos">...</span></button>
         <button class="btn-reaccion" onclick="sumarReaccion('corazon', this)">😍 <span id="count-corazon">...</span></button>
     </div>
-
     <hr style="border: 1px solid #ddd; margin: 30px 0;">
-
     <h3 style="color: black; text-align: center; text-transform: uppercase; margin-top: 0; font-size: 1.1rem;">O deja tu mensaje rockero 🎸</h3>
-    
     <div id="cusdis_thread"
       data-host="https://cusdis.com"
       data-app-id="b3a46067-e248-4f1a-8f3b-1d829f5606c3"
