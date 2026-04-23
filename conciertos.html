@@ -81,7 +81,10 @@
         .header-center h1 { font-size: clamp(1.2rem, 3vw, 1.8rem); margin: 0; text-transform: uppercase; text-shadow: 2px 2px 10px black; }
         .header-center p { margin: 5px 0 0 0; color: var(--gold); letter-spacing: 4px; font-weight: 700; font-size: 0.8rem; }
 
+        /* REGLAS DE SIMETRÍA RESTAURADAS */
         .social-icons { display: flex; gap: 15px; width: 200px; }
+        .icons-left { justify-content: flex-start; }
+        .icons-right { justify-content: flex-end; }
         .social-icons a { color: white; font-size: 1.4rem; text-decoration: none; transition: 0.3s; }
         .social-icons a:hover { color: var(--gold); transform: translateY(-3px); }
 
@@ -174,7 +177,7 @@
 
 <header>
     <img src="logoTV.png" class="header-logo" id="logo-izq" alt="Logo">
-    <div class="social-icons">
+    <div class="social-icons icons-left">
         <a href="https://open.spotify.com/artist/23"><i class="fa-brands fa-spotify"></i></a>
         <a href="https://music.apple.com/es/artist/tony-vazquez/1497948014"><i class="fa-brands fa-apple"></i></a>
         <a href="https://music.youtube.com/channel/UCFNdFbrM3s0kznhCGpRJ3GA"><i class="fa-brands fa-youtube"></i></a>
@@ -185,7 +188,7 @@
         <p>CONCIERTOS</p>
     </div>
     
-    <div class="social-icons">
+    <div class="social-icons icons-right">
         <a href="https://music.amazon.es/artists/B07NFBKRHJ/tony-vazquez"><i class="fa-brands fa-amazon"></i></a>
         <a href="https://instagram.com/tonykubo"><i class="fa-brands fa-instagram"></i></a>
         <a href="https://www.facebook.com/tonisampler/"><i class="fa-brands fa-facebook"></i></a>
