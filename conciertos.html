@@ -277,19 +277,26 @@
 <button id="btnSubir" onclick="window.scrollTo({top: 0, behavior: 'smooth'})"><i class="fa-solid fa-arrow-up"></i></button>
 
 <script>
-    // FUNCIÓN DE MAPAS: FORMATO OFICIAL DE GOOGLE MAPS API
+   // FUNCIÓN DE MAPAS INTELIGENTE (Bypass de pantallas intermedias)
     function trazarRuta(destino) {
         const destinoFinal = encodeURIComponent(destino);
-        const url = 'https://www.google.com/maps/dir/?api=1&destination=' + destinoFinal;
-        
-        // Al usar href en lugar de window.open, forzamos a que el móvil 
-        // abra la App nativa de Maps directamente sin mostrar la pantalla intermedia.
-        window.location.href = url;
-    }
+        const userAgent = navigator.userAgent || navigator.vendor || window.opera;
 
-    window.onscroll = function() { 
-        let btn = document.getElementById("btnSubir");
-        if (document.documentElement.scrollTop > 400) { btn.style.display = "flex"; } else { btn.style.display = "none"; }
+        // 1. Si es un iPhone o iPad
+        if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+            // Usa el protocolo nativo de Apple Maps (0% pantallas de carga, 100% directo)
+            window.location.href = 'maps://?daddr=' + destinoFinal;
+        } 
+        // 2. Si es un móvil Android
+        else if (/android/i.test(userAgent)) {
+            // Usa el protocolo nativo de la app de Google Maps
+            window.location.href = 'geo:0,0?q=' + destinoFinal;
+        } 
+        // 3. Si es un ordenador normal
+        else {
+            // Abre la web clásica de Google Maps en pestaña nueva
+            window.open('https://www.google.com/maps/dir/?api=1&destination=' + destinoFinal, '_blank');
+        }
     };
 </script>
 
