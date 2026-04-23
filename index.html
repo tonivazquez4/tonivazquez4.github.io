@@ -16,6 +16,11 @@
     <meta property="og:url" content="https://www.tonyvazquez.es/index.html">
     <meta property="og:type" content="website">
 
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Tony Vázquez | Alma de Rock 🤘">
+    <meta name="twitter:description" content="Trayectoria profesional y discografía de Tony Vázquez.">
+    <meta name="twitter:image" content="https://www.tonyvazquez.es/alma-de-rock.jpg">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     
@@ -42,13 +47,22 @@
             height: 105px; width: auto; 
             filter: brightness(0) saturate(100%) invert(75%) sepia(50%) saturate(600%) hue-rotate(5deg) brightness(90%) contrast(100%);
             cursor: pointer; transition: 0.3s;
+            backface-visibility: visible;
         }
         
         #logo-izq { animation: efecto-reloj 7s linear infinite; }
         #logo-der { animation: efecto-contra-reloj 7s linear infinite; }
 
-        @keyframes efecto-reloj { from { transform: perspective(1000px) rotateY(0deg); } to { transform: perspective(1000px) rotateY(360deg); } }
-        @keyframes efecto-contra-reloj { from { transform: perspective(1000px) rotateY(0deg); } to { transform: perspective(1000px) rotateY(-360deg); } }
+        @keyframes efecto-reloj { 
+            from { transform: perspective(1000px) rotateY(0deg); } 
+            to { transform: perspective(1000px) rotateY(360deg); } 
+        }
+        @keyframes efecto-contra-reloj { 
+            from { transform: perspective(1000px) rotateY(0deg); } 
+            to { transform: perspective(1000px) rotateY(-360deg); } 
+        }
+
+        .header-logo:hover { animation-play-state: paused; filter: brightness(1.2); }
 
         .header-center { text-align: center; flex-grow: 1; }
         .header-center h1 { font-size: clamp(1.2rem, 3vw, 1.8rem); margin: 0; text-transform: uppercase; text-shadow: 2px 2px 10px black;}
@@ -91,6 +105,7 @@
 
         .seccion-comentarios { max-width: 800px; margin: 50px auto; padding: 20px; background: white; color: black; border-radius: 12px; border: 2px solid var(--gold); }
         
+        /* ESTILOS REACCIONES */
         .caja-reacciones { display: flex; justify-content: center; gap: 15px; margin-bottom: 25px; flex-wrap: wrap; }
         .btn-reaccion { background: #f8f8f8; border: 2px solid var(--gold); border-radius: 20px; padding: 6px 15px; font-size: 1.4rem; cursor: pointer; transition: 0.3s; color: black; font-weight: bold; display: flex; align-items: center; gap: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
         .btn-reaccion:hover { transform: scale(1.1); background: var(--gold-light); }
@@ -121,14 +136,38 @@
         }
         
         .backstage-box {
-            background: linear-gradient(45deg, #111, #222); border: 2px solid var(--gold); padding: 40px 20px;
-            text-align: center; border-radius: 15px; margin: 50px auto; max-width: 800px; box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            background: linear-gradient(45deg, #111, #222);
+            border: 2px solid var(--gold);
+            padding: 40px 20px;
+            text-align: center;
+            border-radius: 15px;
+            margin: 50px auto;
+            max-width: 800px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
         }
         .backstage-box h2 { color: var(--gold); text-transform: uppercase; margin-top: 0; margin-bottom: 10px; }
         .backstage-box p { color: #ccc; margin-bottom: 25px; font-size: 1.1rem; }
         .backstage-form { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
-        .backstage-input { padding: 12px 20px; border-radius: 8px; border: 1px solid #444; background: #000; color: white; width: 300px; font-family: 'Montserrat', sans-serif; }
-        .btn-subscribe { background: var(--gold); color: black; border: none; padding: 12px 25px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s; text-transform: uppercase; }
+        .backstage-input {
+            padding: 12px 20px;
+            border-radius: 8px;
+            border: 1px solid #444;
+            background: #000;
+            color: white;
+            width: 300px;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .btn-subscribe {
+            background: var(--gold);
+            color: black;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+            text-transform: uppercase;
+        }
         .btn-subscribe:hover { background: white; transform: scale(1.05); }
     </style>
 
@@ -138,15 +177,26 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Tony Vázquez">
     <link rel="apple-touch-icon" href="favicon.png">
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('/sw.js').then(function(registration) {
+            console.log('ServiceWorker registrado con éxito: ', registration.scope);
+          }, function(err) {
+            console.log('Error al registrar el ServiceWorker: ', err);
+          });
+        });
+      }
+    </script>
 </head>
 <body>
 
 <header>
     <img src="logoTV.png" alt="Logo Tony Vázquez" class="header-logo" id="logo-izq">
     <div class="social-icons icons-left">
-        <a href="https://open.spotify.com/artist/1497948014" target="_blank"><i class="fa-brands fa-spotify"></i></a>
-        <a href="https://music.apple.com/es/artist/tony-vazquez/1497948014" target="_blank"><i class="fa-brands fa-apple"></i></a>
-        <a href="https://music.youtube.com/channel/UCFNdFbrM3s0kznhCGpRJ3GA" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+        <a href="https://open.spotify.com/intl-es/artist/5PGFsB4rJcNb9h5gBOKnWw?si=SBjt7wSNRyKfW2ed2fkjzg"><i class="fa-brands fa-spotify"></i></a>
+        <a href="https://music.apple.com/es/artist/tony-vazquez/1497948014"><i class="fa-brands fa-apple"></i></a>
+        <a href="https://music.youtube.com/channel/UCFNdFbrM3s0kznhCGpRJ3GA"><i class="fa-brands fa-youtube"></i></a>
     </div>
 
     <div class="header-center">
@@ -158,9 +208,9 @@
     </div>
 
     <div class="social-icons icons-right">
-        <a href="https://music.amazon.es/artists/B07NFBKRHJ/tony-vazquez" target="_blank"><i class="fa-brands fa-amazon"></i></a>
-        <a href="https://instagram.com/tonykubo" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-        <a href="https://www.facebook.com/tonisampler/" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+        <a href="https://music.amazon.es/artists/B07NFBKRHJ/tony-vazquez"><i class="fa-brands fa-amazon"></i></a>
+        <a href="https://instagram.com/tonykubo"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://www.facebook.com/tonisampler/"><i class="fa-brands fa-facebook"></i></a>
     </div>
     <img src="logoTV.png" alt="Logo Tony Vázquez" class="header-logo" id="logo-der">
 </header>
@@ -174,24 +224,24 @@
 
 <div class="container">
     <div class="spotify-container">
-        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/artist/1497948014?utm_source=generator" width="100%" height="80" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/artist/5PGFsB4rJcNb9h5gBOKnWw?utm_source=generator" width="100%" height="80" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
     </div>
 
     <div class="discografia">
         <div class="album-card">
             <img src="alma-de-rock.jpg" alt="Disco Alma de Rock" class="album-img" onclick="abrirImagen(this.src)">
             <h3>Alma de Rock</h3>
-            <a href="https://open.spotify.com/artist/1497948014" target="_blank" class="btn">Escuchar ahora</a>
+            <a href="https://open.spotify.com/intl-es/album/4rs6iGjMuaWskxs9FkEEt7?si=PzXKCwO0T1GDQSk4VFCCBQ" class="btn">Escuchar ahora</a>
         </div>
         <div class="album-card">
             <img src="Sueños de papel.jpg" alt="Disco Sueños de papel" class="album-img" onclick="abrirImagen(this.src)">
             <h3>Sueños de papel</h3>
-            <a href="https://open.spotify.com/artist/1497948014" target="_blank" class="btn">Escuchar ahora</a>
+            <a href="https://open.spotify.com/intl-es/album/708rurqxThgsJPR8aClRAD?si=o6eWGd1jQJSU7i1lwuh5JQ" class="btn">Escuchar ahora</a>
         </div>
         <div class="album-card">
             <img src="La magia.jpg" alt="Disco La magia de la vida" class="album-img" onclick="abrirImagen(this.src)">
             <h3>La magia de la vida</h3>
-            <a href="https://open.spotify.com/artist/1497948014" target="_blank" class="btn">Escuchar ahora</a>
+            <a href="https://open.spotify.com/intl-es/album/4UYMgk4jtxCj9GU6be8txk?si=qIYMH7C4R2WCRyfAOcUD2Q" class="btn">Escuchar ahora</a>
         </div>
     </div>
 </div>
@@ -207,14 +257,24 @@
 
 <div class="seccion-comentarios">
     <h3 style="color: black; text-align: center; text-transform: uppercase; margin-top: 0; font-size: 1.2rem;">¿Qué te parece? ¡Reacciona! 👇</h3>
+    
     <div class="caja-reacciones">
         <button class="btn-reaccion" onclick="sumarReaccion('fuego', this)">🔥 <span id="count-fuego">...</span></button>
         <button class="btn-reaccion" onclick="sumarReaccion('cuernos', this)">🤘 <span id="count-cuernos">...</span></button>
         <button class="btn-reaccion" onclick="sumarReaccion('corazon', this)">😍 <span id="count-corazon">...</span></button>
     </div>
+
     <hr style="border: 1px solid #ddd; margin: 30px 0;">
+
     <h3 style="color: black; text-align: center; text-transform: uppercase; margin-top: 0; font-size: 1.1rem;">O deja tu mensaje rockero 🎸</h3>
-    <div id="cusdis_thread" data-host="https://cusdis.com" data-app-id="b3a46067-e248-4f1a-8f3b-1d829f5606c3" data-page-id="inicio_tony_vazquez" data-page-url="https://www.tonyvazquez.es/index.html" data-page-title="Inicio Tony Vazquez"></div>
+    
+    <div id="cusdis_thread"
+      data-host="https://cusdis.com"
+      data-app-id="b3a46067-e248-4f1a-8f3b-1d829f5606c3"
+      data-page-id="inicio_tony_vazquez"
+      data-page-url="https://www.tonyvazquez.es/index.html"
+      data-page-title="Inicio Tony Vazquez">
+    </div>
     <script defer src="https://cusdis.com/js/widget/lang/es.js"></script>
     <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
 </div>
@@ -225,6 +285,7 @@
         <p>Sé el primero en enterarte de nuevas fechas, lanzamientos y contenido exclusivo directamente en tu correo.</p>
         <form action="https://tonyvazquez.us11.list-manage.com/subscribe/post?u=e028b891a2d01f15a859b80f0&id=c8b0de8308&f_id=00d1d7e3f0" method="post" class="backstage-form" target="_blank">
             <input type="email" name="EMAIL" class="backstage-input" placeholder="Tu correo electrónico" required>
+            <div aria-hidden="true" style="position: absolute; left: -5000px;"><input type="text" name="b_e028b891a2d01f15a859b80f0_c8b0de8308" tabindex="-1" value=""></div>
             <button type="submit" class="btn-subscribe">Suscribirme</button>
         </form>
     </div>
@@ -234,23 +295,122 @@
 
 <button id="btnSubir" onclick="window.scrollTo({top: 0, behavior: 'smooth'})"><i class="fa-solid fa-arrow-up"></i></button>
 
-<div id="imageModal" onclick="this.style.display='none'"><img id="imgFull"></div>
+<div id="imageModal" onclick="this.style.display='none'">
+    <img id="imgFull">
+</div>
 
-<div id="cajaContador" onclick="this.style.display='none'" style="display:none; position:fixed; bottom:20px; left:20px; background:#000; border:2px solid var(--gold); color:var(--gold); padding:10px 15px; border-radius:8px; font-weight:bold; z-index:999999; cursor:pointer;">
-    👀 Visitas: <span id="numeroVisitas">...</span>
+<div id="cajaContador" onclick="this.style.display='none'" style="display:none; position:fixed; bottom:20px; left:20px; background:#000; border:2px solid var(--gold); color:var(--gold); padding:10px 15px; border-radius:8px; font-weight:bold; z-index:999999; box-shadow:0 4px 10px rgba(0,0,0,0.8); cursor:pointer;">
+    👀 Visitas totales: <span id="numeroVisitas">...</span>
+</div>
+
+<div id="ios-install-banner" style="display:none; position:fixed; bottom:20px; left:50%; transform:translateX(-50%); width:90%; max-width:400px; background:rgba(20,20,20,0.95); border:2px solid var(--gold); border-radius:12px; padding:15px; color:white; z-index:999999; box-shadow:0 10px 25px rgba(0,0,0,0.8); text-align:center; font-size:0.9rem;">
+    <button onclick="document.getElementById('ios-install-banner').style.display='none'" style="position:absolute; top:5px; right:10px; background:none; border:none; color:white; font-size:1.2rem; cursor:pointer;">×</button>
+    <p style="margin:0 0 10px 0; font-weight:bold; color:var(--gold);">📲 Instala la App de Tony Vázquez</p>
+    <p style="margin:0; line-height:1.4;">Para instalarla en tu iPhone, abre esta web en <strong>Safari</strong>, toca el botón de compartir <i class="fa-solid fa-arrow-up-from-bracket" style="font-size:1rem; margin:0 5px;"></i> y elige <strong>"Añadir a la pantalla de inicio"</strong> <i class="fa-solid fa-square-plus" style="font-size:1rem; margin:0 5px;"></i>.</p>
 </div>
 
 <script>
-    function abrirImagen(src) { document.getElementById("imgFull").src = src; document.getElementById("imageModal").style.display = "block"; }
-    function compartirWeb() { if (navigator.share) { navigator.share({ title: 'Tony Vázquez | Alma de Rock 🎸', text: 'Escucha mi música. 🤘', url: window.location.href }); } else { navigator.clipboard.writeText(window.location.href); alert("Enlace copiado 🤘"); } }
-    window.onscroll = function() { let btn = document.getElementById("btnSubir"); if (document.documentElement.scrollTop > 400) { btn.style.display = "flex"; } else { btn.style.display = "none"; } };
+    function abrirImagen(src) {
+        document.getElementById("imgFull").src = src;
+        document.getElementById("imageModal").style.display = "block";
+    }
 
-    let toques = 0; function revelarContador() { toques++; if (toques === 3) { document.getElementById('cajaContador').style.display = 'block'; fetch('https://abacus.jasoncameron.dev/get/tonyvazquez.es/visitas').then(res => res.json()).then(data => { document.getElementById('numeroVisitas').innerText = data.value; }); toques = 0; } }
-    function cargarReacciones() { ['fuego', 'cuernos', 'corazon'].forEach(tipo => { fetch(`https://abacus.jasoncameron.dev/get/tonyvazquez.es/react_${tipo}`).then(r => r.json()).then(d => { document.getElementById(`count-${tipo}`).innerText = d.value || 0; }); }); }
-    function sumarReaccion(tipo, btn) { if(localStorage.getItem(`voto_${tipo}`)) return; localStorage.setItem(`voto_${tipo}`, 'true'); btn.classList.add('votado'); let span = document.getElementById(`count-${tipo}`); span.innerText = (parseInt(span.innerText) || 0) + 1; fetch(`https://abacus.jasoncameron.dev/hit/tonyvazquez.es/react_${tipo}`); }
-    
+    function compartirWeb() {
+        if (navigator.share) {
+            navigator.share({ 
+                title: 'Tony Vázquez | Alma de Rock 🎸', 
+                text: 'Escucha mi música y únete al Backstage. 🤘',
+                url: window.location.href 
+            });
+        } else {
+            navigator.clipboard.writeText(window.location.href);
+            alert("Enlace copiado 🤘");
+        }
+    }
+
+    window.onscroll = function() { 
+        let btn = document.getElementById("btnSubir");
+        if (document.documentElement.scrollTop > 400) { btn.style.display = "flex"; } else { btn.style.display = "none"; }
+    };
+
+    // 1. Sumar la visita en silencio cada vez que alguien entra
+    fetch('https://abacus.jasoncameron.dev/hit/tonyvazquez.es/visitas')
+        .catch(err => console.log("")); 
+
+    // 2. El "Toque Secreto" del Jefe (3 toques rápidos)
+    let toques = 0;
+    let tiempoToque = 0;
+
+    function revelarContador() {
+        let ahora = new Date().getTime();
+        if (ahora - tiempoToque > 1500) { toques = 0; }
+        tiempoToque = ahora;
+        toques++;
+
+        if (toques === 3) {
+            document.getElementById('cajaContador').style.display = 'block';
+            fetch('https://abacus.jasoncameron.dev/get/tonyvazquez.es/visitas')
+                .then(res => res.json())
+                .then(data => {
+                    if (data.value !== undefined) {
+                        document.getElementById('numeroVisitas').innerText = data.value;
+                    } else {
+                        fetch('https://abacus.jasoncameron.dev/hit/tonyvazquez.es/visitas')
+                            .then(r => r.json())
+                            .then(d => document.getElementById('numeroVisitas').innerText = d.value)
+                            .catch(e => document.getElementById('numeroVisitas').innerText = "Error");
+                    }
+                })
+                .catch(err => document.getElementById('numeroVisitas').innerText = "Error");
+            toques = 0; 
+        }
+    }
+
+    // 3. Detector de iPhone para el banner de instalación
+    const isIos = () => {
+      const userAgent = window.navigator.userAgent.toLowerCase();
+      return /iphone|ipad|ipod/.test(userAgent);
+    };
+
+    const isInStandaloneMode = () => ('standalone' in window.navigator) && (window.navigator.standalone);
+
+    if (isIos() && !isInStandaloneMode()) {
+        setTimeout(() => {
+            document.getElementById('ios-install-banner').style.display = 'block';
+        }, 2000);
+    }
+
+    // 4. MOTOR DE LAS REACCIONES
+    function cargarReacciones() {
+        const api = 'https://abacus.jasoncameron.dev';
+        const site = 'tonyvazquez.es';
+        ['fuego', 'cuernos', 'corazon'].forEach(tipo => {
+            fetch(`${api}/get/${site}/react_${tipo}`)
+                .then(r => r.json())
+                .then(d => { document.getElementById(`count-${tipo}`).innerText = d.value || 0; })
+                .catch(() => { document.getElementById(`count-${tipo}`).innerText = 0; });
+            
+            if(localStorage.getItem(`voto_${tipo}`)) {
+                let btn = document.getElementById(`count-${tipo}`).parentElement;
+                btn.classList.add('votado');
+            }
+        });
+    }
+
+    function sumarReaccion(tipo, btn) {
+        if(localStorage.getItem(`voto_${tipo}`)) return; 
+        
+        localStorage.setItem(`voto_${tipo}`, 'true');
+        btn.classList.add('votado');
+        
+        let span = document.getElementById(`count-${tipo}`);
+        span.innerText = (parseInt(span.innerText) || 0) + 1;
+        
+        fetch(`https://abacus.jasoncameron.dev/hit/tonyvazquez.es/react_${tipo}`).catch(()=>{});
+    }
+
     document.addEventListener('DOMContentLoaded', cargarReacciones);
-    fetch('https://abacus.jasoncameron.dev/hit/tonyvazquez.es/visitas');
 </script>
+
 </body>
 </html>
