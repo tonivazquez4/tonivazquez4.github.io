@@ -104,7 +104,13 @@
         .bio-content strong { color: var(--gold); }
 
         .seccion-comentarios { max-width: 800px; margin: 50px auto; padding: 20px; background: white; color: black; border-radius: 12px; border: 2px solid var(--gold); }
-        .seccion-comentarios h3 { color: black; text-align: center; text-transform: uppercase; margin-top: 0; }
+        
+        /* ESTILOS REACCIONES */
+        .caja-reacciones { display: flex; justify-content: center; gap: 15px; margin-bottom: 25px; flex-wrap: wrap; }
+        .btn-reaccion { background: #f8f8f8; border: 2px solid var(--gold); border-radius: 20px; padding: 6px 15px; font-size: 1.4rem; cursor: pointer; transition: 0.3s; color: black; font-weight: bold; display: flex; align-items: center; gap: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .btn-reaccion:hover { transform: scale(1.1); background: var(--gold-light); }
+        .btn-reaccion.votado { background: var(--gold); color: white; border-color: black; cursor: default; transform: none; }
+        .btn-reaccion span { font-size: 1.1rem; }
 
         #btnSubir { 
             display: none; position: fixed; bottom: 30px; right: 30px; z-index: 9999; 
@@ -250,7 +256,18 @@
 </div>
 
 <div class="seccion-comentarios">
-    <h3>¡Deja tu mensaje Rockero! 🎸</h3>
+    <h3 style="color: black; text-align: center; text-transform: uppercase; margin-top: 0; font-size: 1.2rem;">¿Qué te parece? ¡Reacciona! 👇</h3>
+    
+    <div class="caja-reacciones">
+        <button class="btn-reaccion" onclick="sumarReaccion('fuego', this)">🔥 <span id="count-fuego">...</span></button>
+        <button class="btn-reaccion" onclick="sumarReaccion('cuernos', this)">🤘 <span id="count-cuernos">...</span></button>
+        <button class="btn-reaccion" onclick="sumarReaccion('corazon', this)">😍 <span id="count-corazon">...</span></button>
+    </div>
+
+    <hr style="border: 1px solid #ddd; margin: 30px 0;">
+
+    <h3 style="color: black; text-align: center; text-transform: uppercase; margin-top: 0; font-size: 1.1rem;">O deja tu mensaje rockero 🎸</h3>
+    
     <div id="cusdis_thread"
       data-host="https://cusdis.com"
       data-app-id="b3a46067-e248-4f1a-8f3b-1d829f5606c3"
@@ -287,7 +304,7 @@
 </div>
 
 <div id="ios-install-banner" style="display:none; position:fixed; bottom:20px; left:50%; transform:translateX(-50%); width:90%; max-width:400px; background:rgba(20,20,20,0.95); border:2px solid var(--gold); border-radius:12px; padding:15px; color:white; z-index:999999; box-shadow:0 10px 25px rgba(0,0,0,0.8); text-align:center; font-size:0.9rem;">
-    <button onclick="document.getElementById('ios-install-banner').style.display='none'" style="position:absolute; top:5px; right:10px; background:none; border:none; color:white; font-size:1.2rem; cursor:pointer;">&times;</button>
+    <button onclick="document.getElementById('ios-install-banner').style.display='none'" style="position:absolute; top:5px; right:10px; background:none; border:none; color:white; font-size:1.2rem; cursor:pointer;">×</button>
     <p style="margin:0 0 10px 0; font-weight:bold; color:var(--gold);">📲 Instala la App de Tony Vázquez</p>
     <p style="margin:0; line-height:1.4;">Para instalarla en tu iPhone, abre esta web en <strong>Safari</strong>, toca el botón de compartir <i class="fa-solid fa-arrow-up-from-bracket" style="font-size:1rem; margin:0 5px;"></i> y elige <strong>"Añadir a la pantalla de inicio"</strong> <i class="fa-solid fa-square-plus" style="font-size:1rem; margin:0 5px;"></i>.</p>
 </div>
@@ -318,7 +335,7 @@
 
     // 1. Sumar la visita en silencio cada vez que alguien entra
     fetch('https://abacus.jasoncameron.dev/hit/tonyvazquez.es/visitas')
-        .catch(err => console.log("")); // Falla en silencio para no molestar
+        .catch(err => console.log("")); 
 
     // 2. El "Toque Secreto" del Jefe (3 toques rápidos)
     let toques = 0;
@@ -326,7 +343,7 @@
 
     function revelarContador() {
         let ahora = new Date().getTime();
-        if (ahora - tiempoToque > 1500) { toques = 0; } // Reinicia si tardas más de 1.5s entre toques
+        if (ahora - tiempoToque > 1500) { toques = 0; }
         tiempoToque = ahora;
         toques++;
 
@@ -362,6 +379,37 @@
             document.getElementById('ios-install-banner').style.display = 'block';
         }, 2000);
     }
+
+    // 4. MOTOR DE LAS REACCIONES
+    function cargarReacciones() {
+        const api = 'https://abacus.jasoncameron.dev';
+        const site = 'tonyvazquez.es';
+        ['fuego', 'cuernos', 'corazon'].forEach(tipo => {
+            fetch(`${api}/get/${site}/react_${tipo}`)
+                .then(r => r.json())
+                .then(d => { document.getElementById(`count-${tipo}`).innerText = d.value || 0; })
+                .catch(() => { document.getElementById(`count-${tipo}`).innerText = 0; });
+            
+            if(localStorage.getItem(`voto_${tipo}`)) {
+                let btn = document.getElementById(`count-${tipo}`).parentElement;
+                btn.classList.add('votado');
+            }
+        });
+    }
+
+    function sumarReaccion(tipo, btn) {
+        if(localStorage.getItem(`voto_${tipo}`)) return; 
+        
+        localStorage.setItem(`voto_${tipo}`, 'true');
+        btn.classList.add('votado');
+        
+        let span = document.getElementById(`count-${tipo}`);
+        span.innerText = (parseInt(span.innerText) || 0) + 1;
+        
+        fetch(`https://abacus.jasoncameron.dev/hit/tonyvazquez.es/react_${tipo}`).catch(()=>{});
+    }
+
+    document.addEventListener('DOMContentLoaded', cargarReacciones);
 </script>
 
 </body>
