@@ -71,6 +71,19 @@
             .backstage-input { width: 100%; margin-bottom: 10px; }
         }
     </style>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#d4af37">
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('/sw.js').then(function(registration) {
+            console.log('ServiceWorker registrado con éxito: ', registration.scope);
+          }, function(err) {
+            console.log('Error al registrar el ServiceWorker: ', err);
+          });
+        });
+      }
+    </script>
 </head>
 <body>
 <header>
