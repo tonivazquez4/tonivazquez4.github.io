@@ -83,8 +83,8 @@
 
         .container { padding: 0 20px 40px; max-width: 1200px; margin: auto; }
 
-        /* REPRODUCTOR SPOTIFY REAL */
-        .spotify-container { max-width: 500px; margin: 0 auto 40px; border-radius: 12px; overflow: hidden; border: 1px solid var(--gold); height: 80px; background: #000; }
+        /* REPRODUCTOR SPOTIFY FIJO */
+        .spotify-container { max-width: 450px; margin: 0 auto 40px; border-radius: 12px; overflow: hidden; border: 1px solid var(--gold); height: 80px; background: #000; }
 
         .discografia { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
         .album-card { background: rgba(20, 20, 20, 0.9); border: 1px solid #333; border-radius: 15px; overflow: hidden; text-align: center; padding-bottom: 20px; transition: 0.4s; }
@@ -106,14 +106,18 @@
 
         #btnSubir { display: none; position: fixed; bottom: 30px; right: 30px; z-index: 9999; background: var(--gold); color: black; border: none; width: 55px; height: 55px; border-radius: 50%; justify-content: center; align-items: center; font-size: 1.5rem; cursor: pointer; }
         footer { padding: 25px; text-align: center; background: #000; border-top: 2px solid #222; cursor: pointer; }
+        #imageModal { display: none; position: fixed; z-index: 10001; padding-top: 50px; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); cursor: zoom-out; }
+        #imgFull { margin: auto; display: block; max-width: 90%; max-height: 85vh; border: 2px solid var(--gold); border-radius: 10px; }
 
         @media (max-width: 768px) {
             header { flex-direction: column; padding: 20px; gap: 15px; }
             .header-logo { display: none; }
-            .social-icons { width: auto; justify-content: center; } 
-            .contenedor-acciones-header { grid-template-columns: 1fr 1fr; gap: 10px; padding: 0 15px; box-sizing: border-box; }
+            .contenedor-acciones-header { grid-template-columns: 1fr 1fr; gap: 10px; padding: 0 10px; box-sizing: border-box; }
+            .btn-share { grid-column: 1; justify-self: center; }
+            .btn-carrito-v { grid-column: 2; justify-self: center; }
             .nav-menu { display: flex; justify-content: center; flex-wrap: wrap; gap: 5px; }
             .btn { font-size: 0.75rem; padding: 8px 10px; margin: 2px; }
+            .social-icons { width: auto; justify-content: center; } 
         }
     </style>
 </head>
@@ -122,7 +126,7 @@
 <header>
     <img src="logoTV.png" alt="Logo" class="header-logo" id="logo-izq">
     <div class="social-icons icons-left">
-        <a href="https://open.spotify.com/intl-es/artist/1497948014" target="_blank"><i class="fa-brands fa-spotify"></i></a>
+        <a href="https://open.spotify.com/artist/1497948014" target="_blank"><i class="fa-brands fa-spotify"></i></a>
         <a href="https://music.apple.com/es/artist/tony-vazquez/1497948014" target="_blank"><i class="fa-brands fa-apple"></i></a>
         <a href="https://music.youtube.com/channel/UCFNdFbrM3s0kznhCGpRJ3GA" target="_blank"><i class="fa-brands fa-youtube"></i></a>
     </div>
@@ -164,17 +168,17 @@
         <div class="album-card">
             <img src="alma-de-rock.jpg" alt="Disco Alma de Rock" class="album-img" onclick="abrirImagen(this.src)">
             <h3>Alma de Rock</h3>
-            <a href="https://open.spotify.com/album/4vM4H8xNnd4O8zN7iL5x4I" target="_blank" class="btn">Escuchar ahora</a>
+            <a href="https://open.spotify.com/album/4vK7VwVfXWpI897N1nB9XU" target="_blank" class="btn">Escuchar ahora</a>
         </div>
         <div class="album-card">
             <img src="Sueños de papel.jpg" alt="Disco Sueños de papel" class="album-img" onclick="abrirImagen(this.src)">
             <h3>Sueños de papel</h3>
-            <a href="https://open.spotify.com/album/3U8q6D7rXyH8Zq8rW5V7uF" target="_blank" class="btn">Escuchar ahora</a>
+            <a href="#" class="btn">Escuchar ahora</a>
         </div>
         <div class="album-card">
             <img src="La magia.jpg" alt="Disco La magia de la vida" class="album-img" onclick="abrirImagen(this.src)">
             <h3>La magia de la vida</h3>
-            <a href="https://open.spotify.com/album/4f9Q8R7rW6H8Zq9rW6V8uG" target="_blank" class="btn">Escuchar ahora</a>
+            <a href="#" class="btn">Escuchar ahora</a>
         </div>
     </div>
 </div>
@@ -183,8 +187,8 @@
     <div class="bio-content">
         <h2 style="color: var(--gold); margin-top: 0;">Trayectoria Profesional</h2>
         <p>Con una carrera de más de <strong>35 años</strong> como pilar de la mítica banda de rock <strong>Astarot</strong>, Tony Vázquez ha recorrido los escenarios más exigentes del país. Su veteranía se ha consolidado también en formaciones de gran prestigio como el <strong>Grupo América</strong> y el <strong>Grupo Limón</strong>.</p>
-        <p>Su maestría técnica le ha llevado a trabajar en la vanguardia de los medios de comunicación nacionales. Durante más de 8 años, formó parte de <strong>Telecinco (Mediaset España)</strong> como técnico de sampler y compositor, extendiendo también su labor creativa a programas de <strong>Antena 3</strong> y <strong>Telemadrid</strong>. Esta faceta como diseñador sonoro y compositor audiovisual le otorga una visión única en la creación de atmósferas musicales.</p>
-        <p>Su polivalencia artística se extiende a las artes escénicas en Madrid, donde participó en el musical <strong>"Kalowa, el 5º valor (2015)"</strong>, demostrando una disciplina interpretativa al alcance de muy pocos. Desde 2017, Tony lidera el apartado de teclados y voz en la <strong>Orquesta Kubo</strong>, aportando su veteranía a uno de los espectáculos de mayor formato e innovación del momento.</p>
+        <p>Su maestría técnica le ha llevado a trabajar en la vanguardia de los medios de comunicación nacionales. Durante más de 8 años, formó parte de <strong>Telecinco (Mediaset España)</strong> como técnico de sampler y compositor...</p>
+        <p>Su polivalencia artística se extiende a las artes escénicas en Madrid, donde participó en el musical <strong>"Kalowa, el 5º valor (2015)"</strong>, demostrando una disciplina interpretativa al alcance de muy pocos.</p>
     </div>
 </div>
 
@@ -226,7 +230,6 @@
     function compartirWeb() { if (navigator.share) { navigator.share({ title: 'Tony Vázquez | Web Oficial 🎸', text: 'Escucha mi música. 🤘', url: window.location.href }); } else { navigator.clipboard.writeText(window.location.href); alert("Enlace copiado 🤘"); } }
     window.onscroll = function() { let btn = document.getElementById("btnSubir"); if (document.documentElement.scrollTop > 400) { btn.style.display = "flex"; } else { btn.style.display = "none"; } };
 
-    // SCRIPTS DE VISITAS Y REACCIONES
     let toques = 0; function revelarContador() { toques++; if (toques === 3) { document.getElementById('cajaContador').style.display = 'block'; fetch('https://abacus.jasoncameron.dev/get/tonyvazquez.es/visitas').then(res => res.json()).then(data => { document.getElementById('numeroVisitas').innerText = data.value; }); toques = 0; } }
     function cargarReacciones() { ['fuego', 'cuernos', 'corazon'].forEach(tipo => { fetch(`https://abacus.jasoncameron.dev/get/tonyvazquez.es/react_${tipo}`).then(r => r.json()).then(d => { document.getElementById(`count-${tipo}`).innerText = d.value || 0; }); }); }
     function sumarReaccion(tipo, btn) { if(localStorage.getItem(`voto_${tipo}`)) return; localStorage.setItem(`voto_${tipo}`, 'true'); btn.classList.add('votado'); let span = document.getElementById(`count-${tipo}`); span.innerText = (parseInt(span.innerText) || 0) + 1; fetch(`https://abacus.jasoncameron.dev/hit/tonyvazquez.es/react_${tipo}`); }
