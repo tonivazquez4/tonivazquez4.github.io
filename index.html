@@ -20,7 +20,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     
     <style>
-        :root { --gold: #d4af37; --gold-light: #f9d976; --merch-green: #2ecc71; }
+        :root { --gold: #d4af37; --gold-light: #f9d976; }
         
         body { 
             font-family: 'Montserrat', sans-serif; margin: 0; padding: 0; color: white; 
@@ -54,34 +54,13 @@
         .header-center h1 { font-size: clamp(1.2rem, 3vw, 1.8rem); margin: 0; text-transform: uppercase; text-shadow: 2px 2px 10px black;}
         .header-center p { margin: 5px 0 0 0; color: var(--gold); letter-spacing: 4px; font-weight: 700; font-size: 0.8rem; }
 
-        /* CONTENEDOR DE BOTONES PARA MANTENER EL COMPARTIR CENTRADO */
-        .header-actions {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            margin-top: 10px;
-            min-height: 40px;
-        }
-
         .btn-share {
             background: linear-gradient(45deg, var(--gold), var(--gold-light));
             color: black; border: none; padding: 6px 14px; border-radius: 8px; font-weight: 700;
             cursor: pointer; font-size: 0.75rem; display: inline-flex; align-items: center; gap: 8px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5); transition: 0.3s; text-transform: uppercase;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5); transition: 0.3s; margin-top: 10px; text-transform: uppercase;
         }
         .btn-share:hover { background: white; transform: scale(1.05); }
-
-        /* EL CARRITO VERDE A LA DERECHA SIN MOVER EL CENTRO */
-        .btn-carrito-v {
-            position: absolute;
-            right: 0;
-            background-color: var(--merch-green);
-            color: black; width: 38px; height: 38px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            text-decoration: none; transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.4);
-        }
-        .btn-carrito-v:hover { background-color: white; transform: scale(1.1); }
 
         .social-icons { display: flex; gap: 15px; width: 200px; }
         .icons-left { justify-content: flex-start; }
@@ -139,7 +118,6 @@
             .nav-menu { display: flex; justify-content: center; flex-wrap: wrap; gap: 5px; }
             .btn { font-size: 0.75rem; padding: 8px 10px; }
             .social-icons { width: auto; justify-content: center; } 
-            .header-actions { width: 100%; padding: 0 10px; box-sizing: border-box; }
         }
         
         .backstage-box {
@@ -174,14 +152,9 @@
     <div class="header-center">
         <h1>TONY VÁZQUEZ</h1>
         <p>ROCK · ALMA · LEYENDA</p>
-        <div class="header-actions">
-            <button class="btn-share" onclick="compartirWeb()">
-                <i class="fa-solid fa-share-nodes"></i> Compartir
-            </button>
-            <a href="tienda.html" class="btn-carrito-v" title="tienda oficial de merchandising">
-                <i class="fa-solid fa-cart-shopping"></i>
-            </a>
-        </div>
+        <button class="btn-share" onclick="compartirWeb()">
+            <i class="fa-solid fa-share-nodes"></i> Compartir
+        </button>
     </div>
 
     <div class="social-icons icons-right">
@@ -201,24 +174,24 @@
 
 <div class="container">
     <div class="spotify-container">
-        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/artist/1497948014?utm_source=generator&theme=0" width="100%" height="80" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/artist/1497948014?utm_source=generator" width="100%" height="80" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
     </div>
 
     <div class="discografia">
         <div class="album-card">
             <img src="alma-de-rock.jpg" alt="Disco Alma de Rock" class="album-img" onclick="abrirImagen(this.src)">
             <h3>Alma de Rock</h3>
-            <a href="https://open.spotify.com/album/43Yv77kof7m2N3UeXvHkZ3" target="_blank" class="btn">Escuchar ahora</a>
+            <a href="https://open.spotify.com/artist/1497948014" target="_blank" class="btn">Escuchar ahora</a>
         </div>
         <div class="album-card">
             <img src="Sueños de papel.jpg" alt="Disco Sueños de papel" class="album-img" onclick="abrirImagen(this.src)">
             <h3>Sueños de papel</h3>
-            <a href="https://open.spotify.com/album/4mUisC8Yl3BAnH69H7jI44" target="_blank" class="btn">Escuchar ahora</a>
+            <a href="https://open.spotify.com/artist/1497948014" target="_blank" class="btn">Escuchar ahora</a>
         </div>
         <div class="album-card">
             <img src="La magia.jpg" alt="Disco La magia de la vida" class="album-img" onclick="abrirImagen(this.src)">
             <h3>La magia de la vida</h3>
-            <a href="https://open.spotify.com/album/08X0fFmJ6A9y1pG9XU39xZ" target="_blank" class="btn">Escuchar ahora</a>
+            <a href="https://open.spotify.com/artist/1497948014" target="_blank" class="btn">Escuchar ahora</a>
         </div>
     </div>
 </div>
