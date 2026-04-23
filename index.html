@@ -13,6 +13,7 @@
         :root { --gold: #d4af37; --gold-light: #f9d976; --merch-green: #2ecc71; }
         body { font-family: 'Montserrat', sans-serif; margin: 0; padding: 0; color: white; background: #000 url('alma-de-rock.jpg') no-repeat center center fixed; background-size: cover; }
         body::before { content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.85) 100%); z-index: -1; }
+        
         header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--gold); padding: 10px 40px; background: rgba(0,0,0,0.9); }
         .header-logo { height: 105px; width: auto; filter: brightness(0) saturate(100%) invert(75%) sepia(50%) saturate(600%) hue-rotate(5deg) brightness(90%) contrast(100%); cursor: pointer; transition: 0.3s; }
         #logo-izq { animation: efecto-reloj 7s linear infinite; }
@@ -24,62 +25,36 @@
         .header-center h1 { font-size: clamp(1.2rem, 3vw, 1.8rem); margin: 0; text-transform: uppercase; text-shadow: 2px 2px 10px black; }
         .header-center p { margin: 5px 0 10px 0; color: var(--gold); letter-spacing: 4px; font-weight: 700; font-size: 0.8rem; }
         
-        /* CONTENEDOR PARA CENTRAR COMPARTIR */
-        .header-actions { 
-            position: relative; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            margin-top: 15px; 
-            min-height: 45px;
-        }
-
-        .btn-share { 
-            background: linear-gradient(45deg, var(--gold), var(--gold-light)); 
-            color: black; border: none; padding: 8px 16px; border-radius: 8px; 
-            font-weight: 700; cursor: pointer; font-size: 0.75rem; 
-            display: inline-flex; align-items: center; gap: 8px; 
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5); transition: 0.3s; 
-            text-transform: uppercase; 
-        }
-
-        /* CARRITO DESPLAZADO A LA DERECHA SIN AFECTAR AL CENTRO */
-        .btn-tienda-header { 
-            position: absolute;
-            right: 0;
-            background: var(--merch-green); color: black; width: 42px; height: 42px; 
-            border-radius: 50%; text-decoration: none; display: inline-flex; 
-            align-items: center; justify-content: center; font-size: 1.2rem; 
-            transition: 0.3s; box-shadow: 0 0 15px rgba(46, 204, 113, 0.4); 
-        }
+        .header-actions { position: relative; display: flex; justify-content: center; align-items: center; margin-top: 15px; min-height: 45px; }
+        .btn-share { background: linear-gradient(45deg, var(--gold), var(--gold-light)); color: black; border: none; padding: 8px 16px; border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 0.75rem; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.5); transition: 0.3s; text-transform: uppercase; }
+        
+        .btn-tienda-header { position: absolute; right: 0; background: var(--merch-green); color: black; width: 42px; height: 42px; border-radius: 50%; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; font-size: 1.2rem; transition: 0.3s; box-shadow: 0 0 15px rgba(46, 204, 113, 0.4); }
         .btn-tienda-header:hover { background: white; transform: scale(1.1); }
 
         .social-icons { display: flex; gap: 15px; width: 200px; }
         .icons-left { justify-content: flex-start; }
         .icons-right { justify-content: flex-end; }
         .social-icons a { color: white; font-size: 1.4rem; text-decoration: none; transition: 0.3s; }
-        
+        .social-icons a:hover { color: var(--gold); transform: translateY(-3px); }
+
         .nav-menu { text-align: center; margin: 30px 0; }
         .btn { background: linear-gradient(45deg, var(--gold), var(--gold-light)); color: black; padding: 10px 22px; text-decoration: none; border-radius: 8px; font-weight: 700; display: inline-block; margin: 5px; transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
         .btn:hover, .btn.activo { background: white; transform: scale(1.05); }
-        
+
         .container { padding: 0 20px 40px; max-width: 1200px; margin: auto; }
-        .spotify-container { max-width: 500px; margin: 0 auto 40px; border-radius: 12px; overflow: hidden; border: 1px solid var(--gold); height: 80px; }
+        .spotify-container { max-width: 500px; margin: 0 auto 40px; border-radius: 12px; overflow: hidden; border: 1px solid var(--gold); height: 80px; background: rgba(0,0,0,0.5); }
+        
         .discografia { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
         .album-card { background: rgba(20, 20, 20, 0.9); border: 1px solid #333; border-radius: 15px; overflow: hidden; text-align: center; padding-bottom: 20px; transition: 0.4s; }
         .album-img { width: 100%; height: 350px; object-fit: contain; background: black; padding-top: 10px; cursor: pointer; }
         
         .bio { background: rgba(0,0,0,0.8); padding: 60px 20px; text-align: center; border-top: 1px solid #333; border-bottom: 1px solid #333; margin-top: 50px; }
         .bio-content { max-width: 950px; margin: auto; font-size: 1.15rem; line-height: 1.8; color: #ddd; }
+        .bio-content strong { color: var(--gold); }
         
         #btnSubir { display: none; position: fixed; bottom: 30px; right: 30px; z-index: 9999; background: var(--gold); color: black; border: none; cursor: pointer; width: 55px; height: 55px; border-radius: 50%; box-shadow: 0 4px 15px rgba(0,0,0,0.6); justify-content: center; align-items: center; font-size: 1.5rem; transition: 0.3s; }
         
-        @media (max-width: 768px) { 
-            header { flex-direction: column; padding: 20px; gap: 15px; } 
-            .header-logo { display: none; } 
-            .header-actions { width: 100%; padding: 0 10px; box-sizing: border-box; } 
-            .social-icons { width: auto; justify-content: center; } 
-        }
+        @media (max-width: 768px) { header { flex-direction: column; padding: 20px; gap: 15px; } .header-logo { display: none; } .header-actions { width: 100%; padding: 0 10px; box-sizing: border-box; } .social-icons { width: auto; justify-content: center; } }
     </style>
 </head>
 <body>
@@ -118,24 +93,24 @@
 
 <div class="container">
     <div class="spotify-container">
-        <iframe style="border-radius:12px" src="https://open.spotify.com/intl-es/album/708rurqxThgsJPR8aClRAD216" width="100%" height="80" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/artist/3B07NFBKRHJ?utm_source=generator&theme=0" width="100%" height="80" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
     </div>
 
     <div class="discografia">
         <div class="album-card">
             <img src="alma-de-rock.jpg" class="album-img" onclick="abrirImagen(this.src)">
             <h3>Alma de Rock</h3>
-            <a href="https://open.spotify.com/intl-es/album/708rurqxThgsJPR8aClRAD217" class="btn">Escuchar ahora</a>
+            <a href="https://open.spotify.com/album/4vK7z9JqXq0..." class="btn">Escuchar ahora</a>
         </div>
         <div class="album-card">
             <img src="Sueños de papel.jpg" class="album-img" onclick="abrirImagen(this.src)">
             <h3>Sueños de papel</h3>
-            <a href="https://open.spotify.com/intl-es/album/708rurqxThgsJPR8aClRAD218" class="btn">Escuchar ahora</a>
+            <a href="#" class="btn">Escuchar ahora</a>
         </div>
         <div class="album-card">
             <img src="La magia.jpg" class="album-img" onclick="abrirImagen(this.src)">
             <h3>La magia de la vida</h3>
-            <a href="https://open.spotify.com/intl-es/album/708rurqxThgsJPR8aClRAD219" class="btn">Escuchar ahora</a>
+            <a href="#" class="btn">Escuchar ahora</a>
         </div>
     </div>
 </div>
@@ -143,9 +118,8 @@
 <div class="bio">
     <div class="bio-content">
         <h2 style="color: var(--gold); margin-top: 0;">Trayectoria Profesional</h2>
-        <p>Con una carrera de más de <strong>35 años</strong> como pilar de la mítica banda de rock <strong>Astarot</strong>, Tony Vázquez ha recorrido los escenarios más exigentes del país. Su veteranía se ha consolidado también en formaciones de gran prestigio como el <strong>Grupo América</strong> y el <strong>Grupo Limón</strong>.</p>
-        <p>Su maestría técnica le ha llevado a trabajar en la vanguardia de los medios de comunicación nacionales. Durante más de 8 años, formó parte de <strong>Telecinco (Mediaset España)</strong> como técnico de sampler y compositor, extendiendo también su labor creativa a programas de <strong>Antena 3</strong> y <strong>Telemadrid</strong>. Esta faceta como diseñador sonoro y compositor audiovisual le otorga una visión única en la creación de atmósferas musicales.</p>
-        <p>Su polivalencia artística se extiende a las artes escénicas en Madrid, donde participó en el musical <strong>"Kalowa, el 5º valor (2015)"</strong>, demostrando una disciplina interpretativa al alcance de muy pocos. Desde 2017, Tony lidera el apartado de teclados y voz en la <strong>Orquesta Kubo</strong>, aportando su veteranía a uno de los espectáculos de mayor formato e innovación del momento.</p>
+        <p>Con una carrera de más de <strong>35 años</strong> como pilar de la mítica banda de rock <strong>Astarot</strong>, Tony Vázquez ha recorrido los escenarios más exigentes del país...</p>
+        <p>Su maestría técnica le ha llevado a trabajar en la vanguardia de los medios de comunicación nacionales. Durante más de 8 años, formó parte de <strong>Telecinco (Mediaset España)</strong>...</p>
     </div>
 </div>
 
