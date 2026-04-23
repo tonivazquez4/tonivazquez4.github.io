@@ -7,8 +7,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Conciertos | Tony Vázquez</title>
     <link rel="icon" type="image/png" href="favicon.png">
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "MusicGroup",
+      "name": "Tony Vázquez",
+      "event": [
+        { "@type": "Event", "name": "Orquesta Kubo - Socobio", "startDate": "2026-05-02T22:30", "location": { "@type": "Place", "name": "Socobio-Piélagos", "address": { "@type": "PostalAddress", "addressLocality": "Cantabria", "addressCountry": "ES" } } },
+        { "@type": "Event", "name": "Orquesta Kubo - Ourense", "startDate": "2026-05-09T22:00", "location": { "@type": "Place", "name": "Barrio de Follateira", "address": { "@type": "PostalAddress", "addressLocality": "Ourense", "addressCountry": "ES" } } }
+      ]
+    }
+    </script>
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    
     <style>
         :root { --gold: #d4af37; --gold-light: #f9d976; }
         body { font-family: 'Montserrat', sans-serif; margin: 0; padding: 0; color: white; background: #000 url('Alma de Rock.jpg') no-repeat center center fixed; background-size: cover; }
@@ -31,9 +45,10 @@
         .btn:hover, .btn.activo { background: white; transform: scale(1.05); }
         .container { padding: 20px 20px 40px; max-width: 900px; margin: auto; }
         .mes-titulo { color: var(--gold); text-align: center; font-size: 1.8rem; margin: 40px 0 15px 0; letter-spacing: 2px; text-transform: uppercase; text-shadow: 2px 2px 10px black; }
-        .tour-list { background: rgba(20,20,20,0.9); border-radius: 15px; border: 1px solid var(--gold); padding: 20px; }
+        .tour-list { background: rgba(20,20,20,0.9); border-radius: 15px; border: 1px solid var(--gold); padding: 20px; margin-bottom: 20px; }
         .tour-item { display: flex; justify-content: space-between; align-items: center; padding: 20px; border-bottom: 1px solid #333; cursor: pointer; transition: 0.3s; }
         .tour-item:hover { background: rgba(212, 175, 55, 0.1); }
+        .tour-item:last-child { border-bottom: none; }
         .tour-date { color: var(--gold); font-weight: bold; font-size: 1.2rem; min-width: 100px; text-align: center; }
         .tour-info { flex-grow: 1; padding: 0 20px; text-align: left; }
         .tour-info span { display: block; color: #aaa; font-size: 0.9rem; margin-top: 5px; }
@@ -43,6 +58,7 @@
         .btn-reaccion:hover { transform: scale(1.1); background: var(--gold-light); }
         .btn-reaccion.votado { background: var(--gold); color: white; border-color: black; cursor: default; transform: none; }
         .btn-reaccion span { font-size: 1.1rem; }
+        #btnSubir { display: none; position: fixed; bottom: 30px; right: 30px; z-index: 9999; background: var(--gold); color: black; border: none; cursor: pointer; width: 55px; height: 55px; border-radius: 50%; box-shadow: 0 4px 15px rgba(0,0,0,0.6); justify-content: center; align-items: center; font-size: 1.5rem; transition: 0.3s; }
         @media (max-width: 768px) { header { flex-direction: column; padding: 20px; gap: 15px; } .header-logo { display: none; } .social-icons { width: auto; justify-content: center; } .btn { font-size: 0.75rem; padding: 8px 10px; } .tour-item { flex-direction: column; text-align: center; gap: 15px; } .tour-info { padding: 0; text-align: center; } }
     </style>
     <link rel="manifest" href="manifest.json">
@@ -55,9 +71,9 @@
 </head>
 <body>
 <header>
-    <img src="logoTV.png" class="header-logo" id="logo-izq">
+    <img src="logoTV.png" class="header-logo" id="logo-izq" alt="Logo">
     <div class="social-icons icons-left">
-        <a href="https://open.spotify.com/intl-es/album/708rurqxThgsJPR8aClRAD22" target="_blank"><i class="fa-brands fa-spotify"></i></a>
+        <a href="https://open.spotify.com/artist/1497948014" target="_blank"><i class="fa-brands fa-spotify"></i></a>
         <a href="https://music.apple.com/es/artist/tony-vazquez/1497948014" target="_blank"><i class="fa-brands fa-apple"></i></a>
         <a href="https://music.youtube.com/channel/UCFNdFbrM3s0kznhCGpRJ3GA" target="_blank"><i class="fa-brands fa-youtube"></i></a>
     </div>
@@ -67,7 +83,7 @@
         <a href="https://instagram.com/tonykubo" target="_blank"><i class="fa-brands fa-instagram"></i></a>
         <a href="https://www.facebook.com/tonisampler/" target="_blank"><i class="fa-brands fa-facebook"></i></a>
     </div>
-    <img src="logoTV.png" class="header-logo" id="logo-der">
+    <img src="logoTV.png" class="header-logo" id="logo-der" alt="Logo">
 </header>
 <nav class="nav-menu">
     <a href="index.html" class="btn">Inicio</a>
@@ -80,6 +96,15 @@
     <div class="tour-list">
         <div class="tour-item" onclick="trazarRuta('Socobio-Piélagos, Cantabria')"><div class="tour-date">02 MAY</div><div class="tour-info">Cantabria - Socobio-Piélagos<br><strong>Orquesta Kubo</strong><span>22:30h</span></div></div>
         <div class="tour-item" onclick="trazarRuta('Barrio de Follateira, Ourense')"><div class="tour-date">09 MAY</div><div class="tour-info">Ourense - Barrio de Follateira<br><strong>Orquesta Kubo</strong><span>22:00h</span></div></div>
+        <div class="tour-item" onclick="trazarRuta('Vilagarcía de Arousa, Pontevedra')"><div class="tour-date">21 MAY</div><div class="tour-info">Pontevedra - Vilagarcía de Arousa<br><strong>Orquesta Kubo</strong><span>22:00h</span></div></div>
+        <div class="tour-item" onclick="trazarRuta('Arteixo, A Coruña')"><div class="tour-date">29 MAY</div><div class="tour-info">A Coruña - Arteixo<br><strong>Orquesta Kubo</strong><span>22:00h</span></div></div>
+        <div class="tour-item" onclick="trazarRuta('Dornels-Mos, Pontevedra')"><div class="tour-date">30 MAY</div><div class="tour-info">Pontevedra - Dornels-Mos<br><strong>Orquesta Kubo</strong><span>22:00h</span></div></div>
+    </div>
+    <h2 class="mes-titulo">Junio 2026</h2>
+    <div class="tour-list">
+        <div class="tour-item" onclick="trazarRuta('Burela, Lugo')"><div class="tour-date">05 JUN</div><div class="tour-info">Lugo - Burela<br><strong>Orquesta Kubo</strong><span>22:00h</span></div></div>
+        <div class="tour-item" onclick="trazarRuta('Corbelle-A Pastoriza, Lugo')"><div class="tour-date">06 JUN</div><div class="tour-info">Lugo - Corbelle-A Pastoriza<br><strong>Orquesta Kubo</strong><span>22:30h</span></div></div>
+        <div class="tour-item" onclick="trazarRuta('Paiosaco-Laracha, A Coruña')"><div class="tour-date">08 JUN</div><div class="tour-info">A Coruña - Paiosaco-Laracha<br><strong>Orquesta Kubo</strong><span>22:30h</span></div></div>
     </div>
 </div>
 <div class="seccion-comentarios">
@@ -94,6 +119,8 @@
     <script defer src="https://cusdis.com/js/widget/lang/es.js"></script>
     <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
 </div>
+<footer style="text-align:center; padding: 40px;"><p>© 2026 Tony Vázquez. Todos los derechos reservados.</p></footer>
+<button id="btnSubir" onclick="window.scrollTo({top: 0, behavior: 'smooth'})"><i class="fa-solid fa-arrow-up"></i></button>
 <script>
     function trazarRuta(destino) {
         const d = encodeURIComponent(destino); const ua = navigator.userAgent;
@@ -113,6 +140,7 @@
         let span = document.getElementById(`count-${tipo}`); span.innerText = (parseInt(span.innerText) || 0) + 1;
         fetch(`https://abacus.jasoncameron.dev/hit/tonyvazquez.es/react_${tipo}`);
     }
+    window.onscroll = function() { let btn = document.getElementById("btnSubir"); if (document.documentElement.scrollTop > 400) { btn.style.display = "flex"; } else { btn.style.display = "none"; } };
     document.addEventListener('DOMContentLoaded', cargarReacciones);
 </script>
 </body>
