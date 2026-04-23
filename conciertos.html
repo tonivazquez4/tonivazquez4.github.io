@@ -6,7 +6,6 @@
     <title>Conciertos | Tony Vázquez</title>
     
     <link rel="icon" type="image/png" href="favicon.png">
-    
     <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -245,10 +244,6 @@
             <div class="tour-date">06 JUN</div>
             <div class="tour-info">Lugo - Corbelle-A Pastoriza<br><strong>Orquesta Kubo (Gira Golden 2026)</strong><span>22:30h</span></div>
         </div>
-        <div class="tour-item" onclick="trazarRuta('Paiosaco-Laracha, A Coruña')">
-            <div class="tour-date">08 JUN</div>
-            <div class="tour-info">Paiosaco - Laracha-A Coruña<br><strong>Orquesta Kubo (Gira Golden 2026)</strong><span>22:30h</span></div>
-        </div>
     </div>
     
 </div>
@@ -274,11 +269,30 @@
 <button id="btnSubir" onclick="window.scrollTo({top: 0, behavior: 'smooth'})"><i class="fa-solid fa-arrow-up"></i></button>
 
 <script>
-    // FUNCIÓN DE MAPAS MEJORADA
+    // FUNCIÓN DE MAPAS DEFINITIVA CON GPS REAL
     function trazarRuta(destino) {
-        // Usamos origin=My+Location para intentar forzar al navegador a pedir el GPS actual
-        const url = "https://www.google.com/maps/dir/?api=1&origin=My+Location&destination=" + encodeURIComponent(destino);
-        window.open(url, '_blank');
+        // Intentamos usar el sensor GPS del móvil/ordenador
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                function(posicion) {
+                    // Si nos da permiso, sacamos las coordenadas exactas
+                    let lat = posicion.coords.latitude;
+                    let lon = posicion.coords.longitude;
+                    let url = 'https://www.google.com/maps/dir/?api=1&origin=' + lat + ',' + lon + '&destination=' + encodeURIComponent(destino);
+                    window.open(url, '_blank');
+                },
+                function(error) {
+                    // Si el usuario bloquea el permiso o falla el GPS, abrimos el mapa normal
+                    let url = 'https://www.google.com/maps/dir/?api=1&destination=' + encodeURIComponent(destino);
+                    window.open(url, '_blank');
+                },
+                { enableHighAccuracy: true } // Esto fuerza que sea el GPS y no la IP
+            );
+        } else {
+            // Para navegadores muy antiguos
+            let url = 'https://www.google.com/maps/dir/?api=1&destination=' + encodeURIComponent(destino);
+            window.open(url, '_blank');
+        }
     }
 
     function compartirWeb() {
