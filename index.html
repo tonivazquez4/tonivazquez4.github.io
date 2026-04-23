@@ -11,92 +11,59 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root { --gold: #d4af37; --gold-light: #f9d976; }
-        body { font-family: 'Montserrat', sans-serif; margin: 0; padding: 0; color: white; background: #000 url('Alma de Rock.jpg') no-repeat center center fixed; background-size: cover; }
+        body { font-family: 'Montserrat', sans-serif; margin: 0; padding: 0; color: white; background: #000 url('alma-de-rock.jpg') no-repeat center center fixed; background-size: cover; }
         body::before { content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.85) 100%); z-index: -1; }
         
         header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--gold); padding: 10px 40px; background: rgba(0,0,0,0.9); }
         .header-logo { height: 105px; width: auto; filter: brightness(0) saturate(100%) invert(75%) sepia(50%) saturate(600%) hue-rotate(5deg) brightness(90%) contrast(100%); cursor: pointer; transition: 0.3s; }
-        #logo-izq { animation: giro-3d 6s linear infinite; }
-        #logo-der { animation: giro-3d 6s linear infinite reverse; }
-        @keyframes giro-3d { from { transform: perspective(1000px) rotateY(0deg); } to { transform: perspective(1000px) rotateY(360deg); } }
+        #logo-izq { animation: efecto-reloj 7s linear infinite; }
+        #logo-der { animation: efecto-contra-reloj 7s linear infinite; }
+        @keyframes efecto-reloj { from { transform: perspective(1000px) rotateY(0deg); } to { transform: perspective(1000px) rotateY(360deg); } }
+        @keyframes efecto-contra-reloj { from { transform: perspective(1000px) rotateY(0deg); } to { transform: perspective(1000px) rotateY(-360deg); } }
         
         .header-center { text-align: center; flex-grow: 1; }
-        .header-center h1 { font-size: clamp(1.2rem, 3vw, 1.8rem); margin: 0; text-transform: uppercase; text-shadow: 2px 2px 10px black; }
-        .header-center p { margin: 5px 0 0 0; color: var(--gold); letter-spacing: 4px; font-weight: 700; font-size: 0.8rem; }
-        
-        .social-icons { display: flex; gap: 15px; width: 200px; }
-        .icons-left { justify-content: flex-start; }
-        .icons-right { justify-content: flex-end; }
-        .social-icons a { color: white; font-size: 1.4rem; text-decoration: none; transition: 0.3s; }
-        .social-icons a:hover { color: var(--gold); transform: translateY(-3px); }
+        .header-center h1 { font-size: clamp(1.2rem, 3vw, 1.8rem); margin: 0; text-transform: uppercase; text-shadow: 2px 2px 10px black;}
         
         .nav-menu { text-align: center; margin: 30px 0; }
         .btn { background: linear-gradient(45deg, var(--gold), var(--gold-light)); color: black; padding: 10px 22px; text-decoration: none; border-radius: 8px; font-weight: 700; display: inline-block; margin: 5px; transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
         .btn:hover, .btn.activo { background: white; transform: scale(1.05); }
-
-        /* NUEVO BOTÓN TIENDA DIFERENCIADO */
-        .contenedor-tienda { max-width: 900px; margin: 20px auto; padding: 0 20px; display: flex; justify-content: flex-end; }
-        .btn-tienda-destacado { 
-            display: inline-flex; 
-            align-items: center; 
-            gap: 12px; 
-            background: rgba(0,0,0,0.8); 
-            color: var(--gold); 
-            border: 2px solid var(--gold); 
-            padding: 12px 28px; 
-            border-radius: 50px; 
-            text-decoration: none; 
-            font-weight: 700; 
-            text-transform: uppercase; 
-            font-size: 0.9rem; 
-            transition: 0.3s; 
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
-        }
-        .btn-tienda-destacado:hover { background: var(--gold); color: black; box-shadow: 0 0 25px rgba(212, 175, 55, 0.6); transform: translateY(-3px); }
-        .btn-tienda-destacado i { font-size: 1.2rem; }
-
-        .discografia { max-width: 900px; margin: 40px auto; padding: 0 20px; }
-        .disco-row { display: flex; align-items: center; gap: 30px; background: rgba(20,20,20,0.8); padding: 20px; border-radius: 15px; border-left: 5px solid var(--gold); transition: 0.3s; }
-        .disco-row:hover { background: rgba(40,40,40,0.9); transform: translateX(10px); }
-        .disco-img { width: 180px; height: 180px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.5); object-fit: cover; }
-        .disco-info h2 { color: var(--gold); margin: 0 0 10px 0; font-size: 1.5rem; }
-        .disco-info p { line-height: 1.6; margin: 0; font-size: 0.95rem; color: #ddd; }
         
+        .container { padding: 0 20px 40px; max-width: 1200px; margin: auto; }
+        .discografia { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .album-card { background: rgba(20, 20, 20, 0.9); border: 1px solid #333; border-radius: 15px; overflow: hidden; text-align: center; padding-bottom: 20px; transition: 0.4s; }
+        .album-img { width: 100%; height: 350px; object-fit: contain; background: black; padding-top: 10px; }
+
+        /* BOTÓN SOLO CARRITO (SIN LETRAS) */
+        .contenedor-tienda-derecha { display: flex; justify-content: flex-end; margin-top: 25px; padding: 0 10px; }
+        .btn-carrito-solo { 
+            display: flex; align-items: center; justify-content: center;
+            background: var(--gold); color: black; width: 60px; height: 60px; 
+            border-radius: 50%; text-decoration: none; font-size: 1.5rem; 
+            transition: 0.3s; box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+        }
+        .btn-carrito-solo:hover { background: white; transform: scale(1.1); box-shadow: 0 5px 20px rgba(255, 255, 255, 0.4); }
+
+        .seccion-comentarios { max-width: 800px; margin: 50px auto; padding: 20px; background: white; color: black; border-radius: 12px; border: 2px solid var(--gold); }
         #btnSubir { display: none; position: fixed; bottom: 30px; right: 30px; z-index: 9999; background: var(--gold); color: black; border: none; cursor: pointer; width: 55px; height: 55px; border-radius: 50%; box-shadow: 0 4px 15px rgba(0,0,0,0.6); justify-content: center; align-items: center; font-size: 1.5rem; transition: 0.3s; }
         
         @media (max-width: 768px) { 
             header { flex-direction: column; padding: 20px; gap: 15px; } 
             .header-logo { display: none; } 
-            .social-icons { width: auto; justify-content: center; } 
-            .btn { font-size: 0.75rem; padding: 8px 10px; } 
-            .disco-row { flex-direction: column; text-align: center; }
-            .contenedor-tienda { justify-content: center; }
+            .contenedor-tienda-derecha { justify-content: center; }
         }
     </style>
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#d4af37">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="Tony Vázquez">
-    <link rel="apple-touch-icon" href="favicon.png">
-    <script>if ('serviceWorker' in navigator) { window.addEventListener('load', function() { navigator.serviceWorker.register('/sw.js'); }); }</script>
 </head>
 <body>
 
 <header>
-    <img src="logoTV.png" class="header-logo" id="logo-izq" alt="Logo">
+    <img src="logoTV.png" class="header-logo" id="logo-izq">
     <div class="social-icons icons-left">
-        <a href="https://open.spotify.com/embed/artist/5PGFsB4rJcNb9h5gBOKnWw?utm_source=generator2" target="_blank"><i class="fa-brands fa-spotify"></i></a>
-        <a href="https://music.apple.com/es/artist/tony-vazquez/1497948014" target="_blank"><i class="fa-brands fa-apple"></i></a>
-        <a href="https://music.youtube.com/channel/UCFNdFbrM3s0kznhCGpRJ3GA" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+        <a href="#"><i class="fa-brands fa-spotify"></i></a>
+        <a href="#"><i class="fa-brands fa-apple"></i></a>
+        <a href="#"><i class="fa-brands fa-youtube"></i></a>
     </div>
-    <div class="header-center"><h1>TONY VÁZQUEZ</h1><p>SITIO OFICIAL</p></div>
-    <div class="social-icons icons-right">
-        <a href="https://music.amazon.es/artists/B07NFBKRHJ/tony-vazquez" target="_blank"><i class="fa-brands fa-amazon"></i></a>
-        <a href="https://instagram.com/tonykubo" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-        <a href="https://www.facebook.com/tonisampler/" target="_blank"><i class="fa-brands fa-facebook"></i></a>
-    </div>
-    <img src="logoTV.png" class="header-logo" id="logo-der" alt="Logo">
+    <div class="header-center"><h1>TONY VÁZQUEZ</h1><p>ROCK · ALMA · LEYENDA</p></div>
+    <img src="logoTV.png" class="header-logo" id="logo-der">
 </header>
 
 <nav class="nav-menu">
@@ -106,24 +73,40 @@
     <a href="conciertos.html" class="btn">Conciertos</a>
 </nav>
 
-<div class="discografia">
-    <div class="disco-row">
-        <img src="Alma de Rock.jpg" alt="Alma de Rock" class="disco-img">
-        <div class="disco-info">
-            <h2>Alma de Rock (2024)</h2>
-            <p>Descubre el nuevo álbum de Tony Vázquez. Un viaje a través de la esencia pura del rock, con riffs potentes y letras que nacen del corazón. Ya disponible en todas las plataformas digitales.</p>
+<div class="container">
+    <div class="discografia">
+        <div class="album-card">
+            <img src="alma-de-rock.jpg" class="album-img">
+            <h3>Alma de Rock</h3>
+            <a href="#" class="btn">Escuchar ahora</a>
         </div>
+        <div class="album-card">
+            <img src="Sueños de papel.jpg" class="album-img">
+            <h3>Sueños de papel</h3>
+            <a href="#" class="btn">Escuchar ahora</a>
+        </div>
+        <div class="album-card">
+            <img src="La magia.jpg" class="album-img">
+            <h3>La magia de la vida</h3>
+            <a href="#" class="btn">Escuchar ahora</a>
+        </div>
+    </div>
+
+    <div class="contenedor-tienda-derecha">
+        <a href="tienda.html" class="btn-carrito-solo" title="tienda oficial de merchandising">
+            <i class="fa-solid fa-cart-shopping"></i>
+        </a>
     </div>
 </div>
 
-<div class="contenedor-tienda">
-    <a href="tienda.html" class="btn-tienda-destacado">
-        <i class="fa-solid fa-cart-shopping"></i> Tienda Oficial Merchandising
-    </a>
+<div class="seccion-comentarios">
+    <h3 style="color: black; text-align: center; text-transform: uppercase;">¡Deja tu mensaje Rockero! 🎸</h3>
+    <div id="cusdis_thread" data-host="https://cusdis.com" data-app-id="b3a46067-e248-4f1a-8f3b-1d829f5606c3" data-page-id="inicio_tony_vazquez"></div>
+    <script defer src="https://cusdis.com/js/widget/lang/es.js"></script>
+    <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
 </div>
 
-<footer style="text-align:center; padding: 40px; margin-top: 50px;"><p>© 2026 Tony Vázquez. Todos los derechos reservados.</p></footer>
-
+<footer style="text-align:center; padding: 40px;"><p>© 2026 Tony Vázquez. Todos los derechos reservados.</p></footer>
 <button id="btnSubir" onclick="window.scrollTo({top: 0, behavior: 'smooth'})"><i class="fa-solid fa-arrow-up"></i></button>
 
 <script>
