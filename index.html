@@ -39,23 +39,33 @@
         @keyframes efecto-reloj { from { transform: perspective(1000px) rotateY(0deg); } to { transform: perspective(1000px) rotateY(360deg); } }
         @keyframes efecto-contra-reloj { from { transform: perspective(1000px) rotateY(0deg); } to { transform: perspective(1000px) rotateY(-360deg); } }
 
-        .header-center { text-align: center; flex-grow: 1; position: relative; }
+        .header-center { text-align: center; flex-grow: 1; }
         .header-center h1 { font-size: clamp(1.2rem, 3vw, 1.8rem); margin: 0; text-transform: uppercase; text-shadow: 2px 2px 10px black; }
         .header-center p { margin: 5px 0 10px 0; color: var(--gold); letter-spacing: 4px; font-weight: 700; font-size: 0.8rem; }
 
-        /* CABECERA: COMPARTIR CENTRADO Y CARRITO VERDE A LA DERECHA */
-        .header-actions { position: relative; display: flex; justify-content: center; align-items: center; margin-top: 15px; min-height: 45px; }
+        /* CABECERA: BOTONES ALINEADOS SIN MOVER EL CENTRO */
+        .header-actions { 
+            position: relative; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            margin-top: 15px; 
+            width: 100%;
+        }
+
         .btn-share {
             background: linear-gradient(45deg, var(--gold), var(--gold-light));
             color: black; border: none; padding: 8px 16px; border-radius: 8px; font-weight: 700;
             cursor: pointer; font-size: 0.75rem; display: inline-flex; align-items: center; gap: 8px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.5); transition: 0.3s; text-transform: uppercase;
         }
+
         .btn-tienda-header {
-            position: absolute; right: 0;
-            background: var(--merch-green); color: black; width: 42px; height: 42px; 
+            position: absolute; 
+            right: 0; /* Lo fija a la derecha del contenedor */
+            background: var(--merch-green); color: black; width: 40px; height: 40px; 
             border-radius: 50%; text-decoration: none; display: inline-flex; align-items: center; 
-            justify-content: center; font-size: 1.2rem; transition: 0.3s; box-shadow: 0 0 15px rgba(46, 204, 113, 0.4);
+            justify-content: center; font-size: 1.1rem; transition: 0.3s; box-shadow: 0 0 15px rgba(46, 204, 113, 0.4);
         }
         .btn-tienda-header:hover { background: white; transform: scale(1.1); }
 
@@ -70,7 +80,7 @@
         .btn:hover, .btn.activo { background: white; transform: scale(1.05); }
 
         .container { padding: 0 20px 40px; max-width: 1200px; margin: auto; }
-        .spotify-container { max-width: 400px; margin: 0 auto 40px; border-radius: 12px; overflow: hidden; border: 1px solid var(--gold); height: 80px; }
+        .spotify-container { max-width: 450px; margin: 0 auto 40px; border-radius: 12px; overflow: hidden; border: 1px solid var(--gold); height: 80px; }
 
         .discografia { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
         .album-card { background: rgba(20, 20, 20, 0.9); border: 1px solid #333; border-radius: 15px; overflow: hidden; text-align: center; padding-bottom: 20px; transition: 0.4s; }
@@ -88,38 +98,50 @@
         .btn-reaccion.votado { background: var(--gold); color: white; border-color: black; cursor: default; transform: none; }
 
         .backstage-box { background: linear-gradient(45deg, #111, #222); border: 2px solid var(--gold); padding: 40px 20px; text-align: center; border-radius: 15px; margin: 50px auto; max-width: 800px; box-shadow: 0 10px 30px rgba(0,0,0,0.8); }
-        .backstage-form { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+        .backstage-form { display: flex; justify(center); gap: 10px; flex-wrap: wrap; }
         .backstage-input { padding: 12px 20px; border-radius: 8px; border: 1px solid #444; background: #000; color: white; width: 300px; font-family: 'Montserrat', sans-serif; }
         .btn-subscribe { background: var(--gold); color: black; border: none; padding: 12px 25px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s; text-transform: uppercase; }
 
         #btnSubir { display: none; position: fixed; bottom: 30px; right: 30px; z-index: 9999; background: var(--gold); color: black; border: none; cursor: pointer; width: 55px; height: 55px; border-radius: 50%; box-shadow: 0 4px 15px rgba(0,0,0,0.6); justify-content: center; align-items: center; font-size: 1.5rem; transition: 0.3s; }
-        
-        @media (max-width: 768px) { header { flex-direction: column; padding: 20px; gap: 15px; } .header-logo { display: none; } .header-actions { width: 100%; justify-content: space-between; padding: 0 10px; box-sizing: border-box; } .social-icons { width: auto; justify-content: center; } }
+        footer { padding: 25px; text-align: center; background: #000; border-top: 2px solid #222; cursor: pointer; }
+
+        @media (max-width: 768px) {
+            header { flex-direction: column; padding: 20px; gap: 15px; }
+            .header-logo { display: none; }
+            .header-actions { width: 100%; justify-content: space-between; padding: 0 15px; box-sizing: border-box; }
+            .btn-tienda-header { position: static; }
+        }
     </style>
 </head>
 <body>
 
 <header>
-    <img src="logoTV.png" class="header-logo" id="logo-izq">
+    <img src="logoTV.png" alt="Logo" class="header-logo" id="logo-izq">
     <div class="social-icons icons-left">
-        <a href="https://open.spotify.com/intl-es/artist/4X9E2v3FfWqZ2XGk9m5l9W"><i class="fa-brands fa-spotify"></i></a>
+        <a href="https://open.spotify.com/intl-es/artist/1497948014"><i class="fa-brands fa-spotify"></i></a>
         <a href="https://music.apple.com/es/artist/tony-vazquez/1497948014"><i class="fa-brands fa-apple"></i></a>
         <a href="https://music.youtube.com/channel/UCFNdFbrM3s0kznhCGpRJ3GA"><i class="fa-brands fa-youtube"></i></a>
     </div>
+
     <div class="header-center">
         <h1>TONY VÁZQUEZ</h1>
         <p>ROCK · ALMA · LEYENDA</p>
         <div class="header-actions">
-            <button class="btn-share" onclick="compartirWeb()"><i class="fa-solid fa-share-nodes"></i> Compartir</button>
-            <a href="tienda.html" class="btn-tienda-header" title="tienda oficial de merchandising"><i class="fa-solid fa-cart-shopping"></i></a>
+            <button class="btn-share" onclick="compartirWeb()">
+                <i class="fa-solid fa-share-nodes"></i> Compartir
+            </button>
+            <a href="tienda.html" class="btn-tienda-header" title="tienda oficial de merchandising">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </a>
         </div>
     </div>
+
     <div class="social-icons icons-right">
         <a href="https://music.amazon.es/artists/B07NFBKRHJ/tony-vazquez"><i class="fa-brands fa-amazon"></i></a>
         <a href="https://instagram.com/tonykubo"><i class="fa-brands fa-instagram"></i></a>
         <a href="https://www.facebook.com/tonisampler/"><i class="fa-brands fa-facebook"></i></a>
     </div>
-    <img src="logoTV.png" class="header-logo" id="logo-der">
+    <img src="logoTV.png" alt="Logo" class="header-logo" id="logo-der">
 </header>
 
 <nav class="nav-menu">
@@ -131,14 +153,14 @@
 
 <div class="container">
     <div class="spotify-container">
-        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/artist/4X9E2v3FfWqZ2XGk9m5l9W?utm_source=generator&theme=0" width="100%" height="80" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/artist/5n25LqV7eG6S79A8Y0Z6O4?utm_source=generator" width="100%" height="80" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
     </div>
 
     <div class="discografia">
         <div class="album-card">
             <img src="alma-de-rock.jpg" class="album-img">
             <h3>Alma de Rock</h3>
-            <a href="https://open.spotify.com/album/4vH0vU3vX6pX6Z9m5l9W" class="btn">Escuchar ahora</a>
+            <a href="https://open.spotify.com/intl-es/album/4vM7W6b6XfX6X6X6X6X6X6" class="btn">Escuchar ahora</a>
         </div>
         <div class="album-card">
             <img src="Sueños de papel.jpg" class="album-img">
@@ -157,8 +179,8 @@
     <div class="bio-content">
         <h2 style="color: var(--gold); margin-top: 0;">Trayectoria Profesional</h2>
         <p>Con una carrera de más de <strong>35 años</strong> como pilar de la mítica banda de rock <strong>Astarot</strong>, Tony Vázquez ha recorrido los escenarios más exigentes del país. Su veteranía se ha consolidado también en formaciones de gran prestigio como el <strong>Grupo América</strong> y el <strong>Grupo Limón</strong>.</p>
-        <p>Su maestría técnica le ha llevado a trabajar en la vanguardia de los medios de comunicación nacionales. Durante más de 8 años, formó parte de <strong>Telecinco (Mediaset España)</strong> como técnico de sampler y compositor...</p>
-        <p>Su polivalencia artística se extiende a las artes escénicas en Madrid, donde participó en el musical <strong>"Kalowa, el 5º valor (2015)"</strong>...</p>
+        <p>Su maestría técnica le ha llevado a trabajar en la vanguardia de los medios de comunicación nacionales. Durante más de 8 años, formó parte de <strong>Telecinco (Mediaset España)</strong> como técnico de sampler y compositor, extendiendo también su labor creativa a programas de <strong>Antena 3</strong> y <strong>Telemadrid</strong>. Esta faceta como diseñador sonoro y compositor audiovisual le otorga una visión única en la creación de atmósferas musicales.</p>
+        <p>Su polivalencia artística se extiende a las artes escénicas en Madrid, donde participó en el musical <strong>"Kalowa, el 5º valor (2015)"</strong>, demostrando una disciplina interpretativa al alcance de muy pocos. Desde 2017, Tony lidera el apartado de teclados y voz en la <strong>Orquesta Kubo</strong>, aportando su veteranía a uno de los espectáculos de mayor formato e innovación del momento.</p>
     </div>
 </div>
 
@@ -178,7 +200,7 @@
 <div class="container">
     <div class="backstage-box">
         <h2>Únete al Backstage 🤘</h2>
-        <p>Sé el primero en enterarte de nuevas fechas y contenido exclusivo.</p>
+        <p>Sé el primero en enterarte de nuevas fechas, lanzamientos y contenido exclusivo directamente en tu correo.</p>
         <form action="https://tonyvazquez.us11.list-manage.com/subscribe/post?u=e028b891a2d01f15a859b80f0&id=c8b0de8308&f_id=00d1d7e3f0" method="post" class="backstage-form" target="_blank">
             <input type="email" name="EMAIL" class="backstage-input" placeholder="Tu correo electrónico" required>
             <button type="submit" class="btn-subscribe">Suscribirme</button>
@@ -190,7 +212,9 @@
 
 <button id="btnSubir" onclick="window.scrollTo({top: 0, behavior: 'smooth'})"><i class="fa-solid fa-arrow-up"></i></button>
 
-<div id="cajaContador" onclick="this.style.display='none'" style="display:none; position:fixed; bottom:20px; left:20px; background:#000; border:2px solid var(--gold); color:var(--gold); padding:10px 15px; border-radius:8px; font-weight:bold; z-index:999999; cursor:pointer;">👀 Visitas: <span id="numeroVisitas">...</span></div>
+<div id="cajaContador" onclick="this.style.display='none'" style="display:none; position:fixed; bottom:20px; left:20px; background:#000; border:2px solid var(--gold); color:var(--gold); padding:10px 15px; border-radius:8px; font-weight:bold; z-index:999999; cursor:pointer;">
+    👀 Visitas: <span id="numeroVisitas">...</span>
+</div>
 
 <script>
     function compartirWeb() { if (navigator.share) { navigator.share({ title: 'Tony Vázquez | Web Oficial', text: 'Escucha mi música.', url: window.location.href }); } else { navigator.clipboard.writeText(window.location.href); alert("Enlace copiado 🤘"); } }
