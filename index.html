@@ -76,13 +76,13 @@
         }
         .btn-share:hover { background: white; transform: scale(1.05); }
 
-        /* BOTÓN CARRITO FLOTANTE (REGLA DE ORO) */
+        /* BOTÓN CARRITO FLOTANTE (REGLA DE ORO ACTUALIZADA) */
         .wrapper-botones-accion { position: relative; display: inline-block; vertical-align: middle; }
         .btn-tienda {
             background: #1DB954; color: white; padding: 7px 12px; border-radius: 8px; font-weight: 700;
             cursor: pointer; font-size: 1rem; display: flex; align-items: center; justify-content: center;
             box-shadow: 0 4px 10px rgba(0,0,0,0.5); transition: 0.3s; 
-            text-decoration: none; position: absolute; left: 100%; margin-left: 12px; bottom: 0;
+            text-decoration: none; position: absolute; left: 100%; margin-left: 25px; bottom: 0;
         }
         .btn-tienda:hover { background: #1ed760; transform: scale(1.1); color: white; }
 
@@ -142,7 +142,6 @@
             .nav-menu { display: flex; justify-content: center; flex-wrap: wrap; gap: 5px; }
             .btn { font-size: 0.75rem; padding: 8px 10px; }
             .social-icons { width: auto; justify-content: center; } 
-            /* En móvil mantenemos el wrapper centrado y los botones uno al lado del otro */
             .wrapper-botones-accion { display: inline-block; margin: 0 auto; }
         }
         
@@ -386,7 +385,10 @@
       return /iphone|ipad|ipod/.test(userAgent);
     };
 
-    const isInStandaloneMode = () => ('standalone' in window.navigator) && (window.navigator.standalone);
+    // FUNCIÓN DE DETECCIÓN DE APP MEJORADA (REGLA DE ORO)
+    const isInStandaloneMode = () => 
+        (window.navigator.standalone) || 
+        (window.matchMedia('(display-mode: standalone)').matches);
 
     if (isIos() && !isInStandaloneMode()) {
         setTimeout(() => {
