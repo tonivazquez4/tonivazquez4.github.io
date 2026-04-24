@@ -76,15 +76,15 @@
         }
         .btn-share:hover { background: white; transform: scale(1.05); }
 
-        /* NUEVO BOTÓN TIENDA (FLOTANTE) */
-        .wrapper-botones-accion { position: relative; display: inline-block; }
+        /* BOTÓN CARRITO FLOTANTE (REGLA DE ORO) */
+        .wrapper-botones-accion { position: relative; display: inline-block; vertical-align: middle; }
         .btn-tienda {
-            background: #1DB954; color: white; padding: 6px 14px; border-radius: 8px; font-weight: 700;
-            cursor: pointer; font-size: 0.75rem; display: inline-flex; align-items: center; gap: 8px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5); transition: 0.3s; text-transform: uppercase;
-            text-decoration: none; position: absolute; margin-left: 15px; white-space: nowrap; top: 10px;
+            background: #1DB954; color: white; padding: 7px 12px; border-radius: 8px; font-weight: 700;
+            cursor: pointer; font-size: 1rem; display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5); transition: 0.3s; 
+            text-decoration: none; position: absolute; left: 100%; margin-left: 12px; bottom: 0;
         }
-        .btn-tienda:hover { background: #1ed760; transform: scale(1.05); color: white; }
+        .btn-tienda:hover { background: #1ed760; transform: scale(1.1); color: white; }
 
         .social-icons { display: flex; gap: 15px; width: 200px; }
         .icons-left { justify-content: flex-start; }
@@ -142,8 +142,8 @@
             .nav-menu { display: flex; justify-content: center; flex-wrap: wrap; gap: 5px; }
             .btn { font-size: 0.75rem; padding: 8px 10px; }
             .social-icons { width: auto; justify-content: center; } 
-            .btn-tienda { position: static; margin: 10px 0 0 0; display: flex; justify-content: center; }
-            .wrapper-botones-accion { display: flex; flex-direction: column; align-items: center; width: 100%; }
+            /* En móvil mantenemos el wrapper centrado y los botones uno al lado del otro */
+            .wrapper-botones-accion { display: inline-block; margin: 0 auto; }
         }
         
         .backstage-box {
@@ -205,7 +205,7 @@
 <header>
     <img src="logoTV.png" alt="Logo Tony Vázquez" class="header-logo" id="logo-izq">
     <div class="social-icons icons-left">
-        <a href="http://googleusercontent.com/spotify.com/14"><i class="fa-brands fa-spotify"></i></a>
+        <a href="https://open.spotify.com/intl-es/artist/5PGFsB4rJcNb9h5gBOKnWw?si=SBjt7wSNRyKfW2ed2fkjzg"><i class="fa-brands fa-spotify"></i></a>
         <a href="https://music.apple.com/es/artist/tony-vazquez/1497948014"><i class="fa-brands fa-apple"></i></a>
         <a href="https://music.youtube.com/channel/UCFNdFbrM3s0kznhCGpRJ3GA"><i class="fa-brands fa-youtube"></i></a>
     </div>
@@ -218,8 +218,8 @@
             <button class="btn-share" onclick="compartirWeb()">
                 <i class="fa-solid fa-share-nodes"></i> Compartir
             </button>
-            <a href="tienda.html" class="btn-tienda">
-                <i class="fa-solid fa-cart-shopping"></i> Tienda
+            <a href="tienda.html" class="btn-tienda" title="Ir a la Tienda">
+                <i class="fa-solid fa-cart-shopping"></i>
             </a>
         </div>
     </div>
@@ -241,24 +241,24 @@
 
 <div class="container">
     <div class="spotify-container">
-        <iframe style="border-radius:12px" src="http://googleusercontent.com/spotify.com/15" width="100%" height="80" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/artist/5PGFsB4rJcNb9h5gBOKnWw?utm_source=generator" width="100%" height="80" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
     </div>
 
     <div class="discografia">
         <div class="album-card">
             <img src="alma-de-rock.jpg" alt="Disco Alma de Rock" class="album-img" onclick="abrirImagen(this.src)">
             <h3>Alma de Rock</h3>
-            <a href="http://googleusercontent.com/spotify.com/16" class="btn">Escuchar ahora</a>
+            <a href="https://open.spotify.com/intl-es/album/4rs6iGjMuaWskxs9FkEEt7?si=PzXKCwO0T1GDQSk4VFCCBQ" class="btn">Escuchar ahora</a>
         </div>
         <div class="album-card">
             <img src="Sueños de papel.jpg" alt="Disco Sueños de papel" class="album-img" onclick="abrirImagen(this.src)">
             <h3>Sueños de papel</h3>
-            <a href="http://googleusercontent.com/spotify.com/17" class="btn">Escuchar ahora</a>
+            <a href="https://open.spotify.com/intl-es/album/708rurqxThgsJPR8aClRAD?si=o6eWGd1jQJSU7i1lwuh5JQ" class="btn">Escuchar ahora</a>
         </div>
         <div class="album-card">
             <img src="La magia.jpg" alt="Disco La magia de la vida" class="album-img" onclick="abrirImagen(this.src)">
             <h3>La magia de la vida</h3>
-            <a href="http://googleusercontent.com/spotify.com/18" class="btn">Escuchar ahora</a>
+            <a href="https://open.spotify.com/intl-es/album/4UYMgk4jtxCj9GU6be8txk?si=qIYMH7C4R2WCRyfAOcUD2Q" class="btn">Escuchar ahora</a>
         </div>
     </div>
 </div>
