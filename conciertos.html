@@ -3,9 +3,11 @@
 <head>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-1YS8QY8TXN"></script>
     <script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-1YS8QY8TXN');</script>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Conciertos | Tony Vázquez</title>
+    
     <link rel="icon" type="image/png" href="favicon.png">
     
     <script type="application/ld+json">
@@ -24,73 +26,117 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     
     <style>
+        /* REGLA DE ORO: Evita desbordes en móvil */
+        * { box-sizing: border-box; }
+
         :root { --gold: #d4af37; --gold-light: #f9d976; }
-        body { font-family: 'Montserrat', sans-serif; margin: 0; padding: 0; color: white; background: #000 url('Alma de Rock.jpg') no-repeat center center fixed; background-size: cover; }
-        body::before { content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.85) 100%); z-index: -1; }
-        header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--gold); padding: 10px 40px; background: rgba(0,0,0,0.9); }
-        .header-logo { height: 105px; width: auto; filter: brightness(0) saturate(100%) invert(75%) sepia(50%) saturate(600%) hue-rotate(5deg) brightness(90%) contrast(100%); cursor: pointer; transition: 0.3s; }
+        
+        body { 
+            font-family: 'Montserrat', sans-serif; margin: 0; padding: 0; color: white; 
+            background: #000 url('Alma de Rock.jpg') no-repeat center center fixed; 
+            background-size: cover; overflow-x: hidden;
+        }
+        
+        body::before { 
+            content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: radial-gradient(circle at center, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.85) 100%); 
+            z-index: -1; 
+        }
+
+        /* Ocultar banner si ya es App */
+        @media (display-mode: standalone) {
+            #ios-install-banner { display: none !important; }
+        }
+
+        header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--gold); padding: 10px 20px; background: rgba(0,0,0,0.9); width: 100%; }
+        
+        .header-logo { height: 80px; width: auto; filter: invert(75%) sepia(50%) saturate(600%) hue-rotate(5deg); cursor: pointer; transition: 0.3s; }
+        @media (min-width: 1024px) { .header-logo { height: 105px; } }
+
         #logo-izq { animation: giro-3d 6s linear infinite; }
         #logo-der { animation: giro-3d 6s linear infinite reverse; }
         @keyframes giro-3d { from { transform: perspective(1000px) rotateY(0deg); } to { transform: perspective(1000px) rotateY(360deg); } }
-        .header-center { text-align: center; flex-grow: 1; }
-        .header-center h1 { font-size: clamp(1.2rem, 3vw, 1.8rem); margin: 0; text-transform: uppercase; text-shadow: 2px 2px 10px black; }
-        .header-center p { margin: 5px 0 0 0; color: var(--gold); letter-spacing: 4px; font-weight: 700; font-size: 0.8rem; }
-        .social-icons { display: flex; gap: 15px; width: 200px; }
-        .icons-left { justify-content: flex-start; }
-        .icons-right { justify-content: flex-end; }
-        .social-icons a { color: white; font-size: 1.4rem; text-decoration: none; transition: 0.3s; }
-        .social-icons a:hover { color: var(--gold); transform: translateY(-3px); }
-        .nav-menu { text-align: center; margin: 30px 0; }
-        .btn { background: linear-gradient(45deg, var(--gold), var(--gold-light)); color: black; padding: 10px 22px; text-decoration: none; border-radius: 8px; font-weight: 700; display: inline-block; margin: 5px; transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+
+        .header-center { text-align: center; flex-grow: 1; padding: 0 10px; }
+        .header-center h1 { font-size: clamp(1rem, 4vw, 1.8rem); margin: 0; text-transform: uppercase; text-shadow: 2px 2px 10px black; }
+        .header-center p { margin: 5px 0 0 0; color: var(--gold); letter-spacing: 2px; font-weight: 700; font-size: 0.7rem; }
+
+        .social-icons { display: flex; gap: 10px; }
+        .social-icons a { color: white; font-size: 1.2rem; text-decoration: none; transition: 0.3s; }
+
+        .nav-menu { text-align: center; margin: 20px 0; display: flex; justify-content: center; flex-wrap: wrap; gap: 5px; }
+        .btn { background: linear-gradient(45deg, var(--gold), var(--gold-light)); color: black; padding: 8px 15px; text-decoration: none; border-radius: 8px; font-weight: 700; font-size: 0.8rem; transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
         .btn:hover, .btn.activo { background: white; transform: scale(1.05); }
-        .container { padding: 20px 20px 40px; max-width: 900px; margin: auto; }
-        .mes-titulo { color: var(--gold); text-align: center; font-size: 1.8rem; margin: 40px 0 15px 0; letter-spacing: 2px; text-transform: uppercase; text-shadow: 2px 2px 10px black; }
-        .tour-list { background: rgba(20,20,20,0.9); border-radius: 15px; border: 1px solid var(--gold); padding: 20px; margin-bottom: 20px; }
+
+        .container { padding: 20px 15px 40px; max-width: 900px; margin: auto; }
+        .mes-titulo { color: var(--gold); text-align: center; font-size: 1.6rem; margin: 40px 0 15px 0; letter-spacing: 2px; text-transform: uppercase; text-shadow: 2px 2px 10px black; }
+        
+        .tour-list { background: rgba(20,20,20,0.9); border-radius: 15px; border: 1px solid var(--gold); padding: 10px; margin-bottom: 20px; }
         .tour-item { display: flex; justify-content: space-between; align-items: center; padding: 20px; border-bottom: 1px solid #333; cursor: pointer; transition: 0.3s; }
         .tour-item:hover { background: rgba(212, 175, 55, 0.1); }
         .tour-item:last-child { border-bottom: none; }
-        .tour-date { color: var(--gold); font-weight: bold; font-size: 1.2rem; min-width: 100px; text-align: center; }
-        .tour-info { flex-grow: 1; padding: 0 20px; text-align: left; }
-        .tour-info span { display: block; color: #aaa; font-size: 0.9rem; margin-top: 5px; }
-        .seccion-comentarios { max-width: 800px; margin: 40px auto; padding: 20px; background: white; color: black; border-radius: 12px; border: 2px solid var(--gold); }
-        .caja-reacciones { display: flex; justify-content: center; gap: 15px; margin-bottom: 25px; flex-wrap: wrap; }
-        .btn-reaccion { background: #f8f8f8; border: 2px solid var(--gold); border-radius: 20px; padding: 6px 15px; font-size: 1.4rem; cursor: pointer; transition: 0.3s; color: black; font-weight: bold; display: flex; align-items: center; gap: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        .btn-reaccion:hover { transform: scale(1.1); background: var(--gold-light); }
-        .btn-reaccion.votado { background: var(--gold); color: white; border-color: black; cursor: default; transform: none; }
-        .btn-reaccion span { font-size: 1.1rem; }
-        #btnSubir { display: none; position: fixed; bottom: 30px; right: 30px; z-index: 9999; background: var(--gold); color: black; border: none; cursor: pointer; width: 55px; height: 55px; border-radius: 50%; box-shadow: 0 4px 15px rgba(0,0,0,0.6); justify-content: center; align-items: center; font-size: 1.5rem; transition: 0.3s; }
-        @media (max-width: 768px) { header { flex-direction: column; padding: 20px; gap: 15px; } .header-logo { display: none; } .social-icons { width: auto; justify-content: center; } .btn { font-size: 0.75rem; padding: 8px 10px; } .tour-item { flex-direction: column; text-align: center; gap: 15px; } .tour-info { padding: 0; text-align: center; } }
+        .tour-date { color: var(--gold); font-weight: bold; font-size: 1.1rem; min-width: 80px; text-align: center; }
+        .tour-info { flex-grow: 1; padding: 0 15px; text-align: left; font-size: 0.95rem; }
+        .tour-info span { display: block; color: #aaa; font-size: 0.85rem; margin-top: 5px; }
+
+        /* MURO ROCKERO RESPONSIVO */
+        .muro-rockero {
+            width: 95%;
+            max-width: 480px;
+            margin: 40px auto;
+            padding: 20px;
+            background: rgba(15, 15, 15, 0.95);
+            border-radius: 15px;
+            border: 1px solid var(--gold);
+            color: white;
+            box-sizing: border-box;
+        }
+
+        @media (min-width: 1024px) {
+            .muro-rockero { max-width: 1000px; padding: 30px; }
+        }
+
+        .caja-reacciones { display: flex; justify-content: center; gap: 10px; margin-bottom: 25px; flex-wrap: wrap; }
+        .btn-reaccion { background: #222; border: 1px solid var(--gold); border-radius: 10px; padding: 8px 12px; cursor: pointer; color: white; font-size: 0.9rem; }
+        .btn-reaccion.votado { background: var(--gold); color: black; }
+
+        footer { text-align: center; padding: 30px; background: #000; border-top: 1px solid #222; font-size: 0.8rem; }
+        
+        #btnSubir { display: none; position: fixed; bottom: 20px; right: 20px; z-index: 9999; background: var(--gold); border: none; width: 50px; height: 50px; border-radius: 50%; justify-content: center; align-items: center; font-size: 1.2rem; cursor: pointer; }
+
+        @media (max-width: 768px) {
+            header { flex-direction: column; padding: 15px; gap: 10px; }
+            .header-logo { display: none; }
+            .tour-item { flex-direction: column; text-align: center; gap: 10px; }
+            .tour-info { padding: 0; text-align: center; }
+        }
     </style>
     <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#d4af37">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="Tony Vázquez">
-    <link rel="apple-touch-icon" href="favicon.png">
-    <script>if ('serviceWorker' in navigator) { window.addEventListener('load', function() { navigator.serviceWorker.register('/sw.js'); }); }</script>
 </head>
 <body>
+
 <header>
     <img src="logoTV.png" class="header-logo" id="logo-izq" alt="Logo">
-    <div class="social-icons icons-left">
+    <div class="social-icons">
         <a href="https://open.spotify.com/artist/1497948014" target="_blank"><i class="fa-brands fa-spotify"></i></a>
         <a href="https://music.apple.com/es/artist/tony-vazquez/1497948014" target="_blank"><i class="fa-brands fa-apple"></i></a>
-        <a href="https://music.youtube.com/channel/UCFNdFbrM3s0kznhCGpRJ3GA" target="_blank"><i class="fa-brands fa-youtube"></i></a>
     </div>
     <div class="header-center"><h1>TONY VÁZQUEZ</h1><p>CONCIERTOS</p></div>
-    <div class="social-icons icons-right">
-        <a href="https://music.amazon.es/artists/B07NFBKRHJ/tony-vazquez" target="_blank"><i class="fa-brands fa-amazon"></i></a>
+    <div class="social-icons">
         <a href="https://instagram.com/tonykubo" target="_blank"><i class="fa-brands fa-instagram"></i></a>
         <a href="https://www.facebook.com/tonisampler/" target="_blank"><i class="fa-brands fa-facebook"></i></a>
     </div>
     <img src="logoTV.png" class="header-logo" id="logo-der" alt="Logo">
 </header>
+
 <nav class="nav-menu">
     <a href="index.html" class="btn">Inicio</a>
     <a href="galeria.html" class="btn">Galería</a>
     <a href="videos.html" class="btn">Vídeos</a>
     <a href="conciertos.html" class="btn activo">Conciertos</a>
+    <a href="tienda.html" class="btn">Tienda</a>
 </nav>
+
 <div class="container">
     <h2 class="mes-titulo">Mayo 2026</h2>
     <div class="tour-list">
@@ -100,6 +146,7 @@
         <div class="tour-item" onclick="trazarRuta('Arteixo, A Coruña')"><div class="tour-date">29 MAY</div><div class="tour-info">A Coruña - Arteixo<br><strong>Kubo Golden Tour</strong><span>22:00h</span></div></div>
         <div class="tour-item" onclick="trazarRuta('Dornels-Mos, Pontevedra')"><div class="tour-date">30 MAY</div><div class="tour-info">Pontevedra - Dornels-Mos<br><strong>Kubo Golden Tour</strong><span>22:00h</span></div></div>
     </div>
+
     <h2 class="mes-titulo">Junio 2026</h2>
     <div class="tour-list">
         <div class="tour-item" onclick="trazarRuta('Burela, Lugo')"><div class="tour-date">05 JUN</div><div class="tour-info">Lugo - Burela<br><strong>Kubo Golden Tour</strong><span>22:00h</span></div></div>
@@ -107,72 +154,61 @@
         <div class="tour-item" onclick="trazarRuta('Paiosaco-Laracha, A Coruña')"><div class="tour-date">08 JUN</div><div class="tour-info">A Coruña - Paiosaco-Laracha<br><strong>Kubo Golden Tour</strong><span>22:30h</span></div></div>
         <div class="tour-item" onclick="trazarRuta('Leon')"><div class="tour-date">13 JUN</div><div class="tour-info">Leon<br><strong>Kubo Golden Tour</strong><span>22:30h</span></div></div>
     </div>
-    </div>
 </div>
-<style>
-    .muro-rockero {
-        width: 95%;
-        max-width: 500px; /* Tamaño por defecto (Móvil) */
-        margin: 40px auto;
-        padding: 25px;
-        background: rgba(15, 15, 15, 0.98);
-        border-radius: 15px;
-        border: 1px solid #d4af37;
-        color: white;
-        transition: max-width 0.3s ease;
-    }
-
-    /* Cuando la pantalla es grande (Ordenador / PC) */
-    @media (min-width: 1024px) {
-        .muro-rockero {
-            max-width: 1000px; /* Se vuelve mucho más alargado */
-        }
-    }
-</style>
 
 <div class="muro-rockero">
-    <h3 style="color: #d4af37; text-align: center; text-transform: uppercase; margin-top: 0; font-size: 1.2rem; letter-spacing: 2px;">
-        ¿Qué te parece? ¡Reacciona! 🤘
-    </h3>
-    
-    <div class="caja-reacciones" style="display: flex; justify-content: center; gap: 15px; margin-bottom: 25px;">
-        <button onclick="sumarReaccion('fuego', this)" style="background: #222; color: white; border: 1px solid #444; padding: 8px 15px; border-radius: 8px; cursor: pointer; transition: 0.3s;">🔥 <span id="count-fuego">...</span></button>
-        <button onclick="sumarReaccion('cuernos', this)" style="background: #222; color: white; border: 1px solid #444; padding: 8px 15px; border-radius: 8px; cursor: pointer; transition: 0.3s;">🤘 <span id="count-cuernos">...</span></button>
-        <button onclick="sumarReaccion('corazon', this)" style="background: #222; color: white; border: 1px solid #444; padding: 8px 15px; border-radius: 8px; cursor: pointer; transition: 0.3s;">😍 <span id="count-corazon">...</span></button>
+    <h3 style="color: var(--gold); text-align: center; text-transform: uppercase; margin-top: 0; font-size: 1.1rem;">¿Qué te parece? ¡Reacciona! 🤘</h3>
+    <div class="caja-reacciones">
+        <button class="btn-reaccion" onclick="sumarReaccion('fuego', this)">🔥 <span id="count-fuego">0</span></button>
+        <button class="btn-reaccion" onclick="sumarReaccion('cuernos', this)">🤘 <span id="count-cuernos">0</span></button>
+        <button class="btn-reaccion" onclick="sumarReaccion('corazon', this)">😍 <span id="count-corazon">0</span></button>
     </div>
-
-    <hr style="border: 0.5px solid #d4af37; opacity: 0.2; margin: 25px 0;">
-
-    <h3 style="color: white; text-align: center; text-transform: uppercase; margin-top: 0; font-size: 1rem; margin-bottom: 20px; opacity: 0.9;">
-        O deja tu mensaje rockero 🎸
-    </h3>
-
-    <div id="cusdis_thread"
-      data-host="https://cusdis.com"
-      data-app-id="b3a46067-e248-4f1a-8f3b-1d829f5606c3"
-      data-page-id="inicio_tony_vazquez"
-      data-page-url="https://www.tonyvazquez.es/index.html"
-      data-page-title="Inicio Tony Vazquez"
-      data-theme="dark">
-    </div>
-
-    <script defer src="https://cusdis.com/js/widget/lang/es.js"></script>
-    <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
+    <hr style="border: 0.5px solid var(--gold); opacity: 0.2; margin: 20px 0;">
+    <h3 style="color: white; text-align: center; font-size: 0.9rem; margin-bottom: 20px;">O deja tu mensaje rockero 🎸</h3>
+    <div id="cusdis_thread" data-host="https://cusdis.com" data-app-id="b3a46067-e248-4f1a-8f3b-1d829f5606c3" data-page-id="conciertos_tony" data-page-url="https://www.tonyvazquez.es/conciertos.html" data-page-title="Conciertos Tony Vazquez" data-theme="dark"></div>
 </div>
-    <hr style="border: 1px solid #ddd; margin: 30px 0;">
-    <div id="cusdis_thread" data-host="https://cusdis.com" data-app-id="b3a46067-e248-4f1a-8f3b-1d829f5606c3" data-page-id="conciertos_tony_vazquez" data-page-url="https://www.tonyvazquez.es/conciertos.html" data-page-title="Conciertos Tony Vazquez"></div>
-    <script defer src="https://cusdis.com/js/widget/lang/es.js"></script>
-    <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
-</div>
-<footer style="text-align:center; padding: 40px;"><p>© 2026 Tony Vázquez. Todos los derechos reservados.</p></footer>
+
+<footer><p>© 2026 Tony Vázquez. Todos los derechos reservados.</p></footer>
+
 <button id="btnSubir" onclick="window.scrollTo({top: 0, behavior: 'smooth'})"><i class="fa-solid fa-arrow-up"></i></button>
+
+<div id="ios-install-banner" style="display:none; position:fixed; bottom:20px; left:50%; transform:translateX(-50%); width:92%; max-width:400px; background:rgba(20,20,20,0.98); border:2px solid var(--gold); border-radius:12px; padding:20px; color:white; z-index:999999; text-align:center; box-shadow: 0 0 20px rgba(0,0,0,1);">
+    <button onclick="cerrarBannerIos()" style="position:absolute; top:5px; right:10px; background:none; border:none; color:white; font-size:1.8rem; cursor:pointer;">×</button>
+    <p style="margin:0 0 10px 0; font-weight:bold; color:var(--gold); font-size:1.1rem;">📲 Instala la App Oficial</p>
+    <p style="margin:0; font-size:0.85rem; line-height:1.4;">No te pierdas ninguna fecha. ¡Instala la App en tu pantalla de inicio! 🤘</p>
+</div>
+
+<script defer src="https://cusdis.com/js/widget/lang/es.js"></script>
+<script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
+
 <script>
     function trazarRuta(destino) {
-        const d = encodeURIComponent(destino); const ua = navigator.userAgent;
+        const d = encodeURIComponent(destino);
+        const ua = navigator.userAgent;
         if (/iPad|iPhone|iPod/.test(ua)) { window.location.href = 'maps://?daddr=' + d; }
         else if (/android/i.test(ua)) { window.location.href = 'geo:0,0?q=' + d; }
         else { window.open('https://www.google.com/maps/dir/?api=1&destination=' + d, '_blank'); }
     }
+
+    function cerrarBannerIos() {
+        document.getElementById('ios-install-banner').style.display = 'none';
+        localStorage.setItem('pwa_banner_closed_date', new Date().getTime());
+    }
+
+    window.onload = function() {
+        cargarReacciones();
+        const closedDate = localStorage.getItem('pwa_banner_closed_date');
+        const now = new Date().getTime();
+        if (!(closedDate && (now - closedDate < 7 * 24 * 60 * 60 * 1000)) && !window.matchMedia('(display-mode: standalone)').matches) {
+            setTimeout(() => { document.getElementById('ios-install-banner').style.display = 'block'; }, 3000);
+        }
+    };
+
+    window.onscroll = function() { 
+        let btn = document.getElementById("btnSubir"); 
+        btn.style.display = (document.documentElement.scrollTop > 400) ? "flex" : "none"; 
+    };
+
     function cargarReacciones() {
         const api = 'https://abacus.jasoncameron.dev'; const site = 'tonyvazquez.es';
         ['fuego', 'cuernos', 'corazon'].forEach(tipo => {
@@ -180,13 +216,15 @@
             if(localStorage.getItem(`voto_${tipo}`)) { document.getElementById(`count-${tipo}`).parentElement.classList.add('votado'); }
         });
     }
+
     function sumarReaccion(tipo, btn) {
-        if(localStorage.getItem(`voto_${tipo}`)) return; localStorage.setItem(`voto_${tipo}`, 'true'); btn.classList.add('votado');
-        let span = document.getElementById(`count-${tipo}`); span.innerText = (parseInt(span.innerText) || 0) + 1;
+        if(localStorage.getItem(`voto_${tipo}`)) return;
+        localStorage.setItem(`voto_${tipo}`, 'true');
+        btn.classList.add('votado');
+        let span = document.getElementById(`count-${tipo}`);
+        span.innerText = (parseInt(span.innerText) || 0) + 1;
         fetch(`https://abacus.jasoncameron.dev/hit/tonyvazquez.es/react_${tipo}`);
     }
-    window.onscroll = function() { let btn = document.getElementById("btnSubir"); if (document.documentElement.scrollTop > 400) { btn.style.display = "flex"; } else { btn.style.display = "none"; } };
-    document.addEventListener('DOMContentLoaded', cargarReacciones);
 </script>
 </body>
 </html>
