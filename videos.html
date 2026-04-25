@@ -29,13 +29,14 @@
         .nav-menu { text-align: center; margin: 30px 0; }
         .btn { background: linear-gradient(45deg, var(--gold), var(--gold-light)); color: black; padding: 10px 22px; text-decoration: none; border-radius: 8px; font-weight: 700; display: inline-block; margin: 5px; transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
         .btn:hover, .btn.activo { background: white; transform: scale(1.05); }
+        
         .container { padding: 0 15px 20px; max-width: 900px; margin: auto; display: flex; flex-direction: column; gap: 40px; }
         .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border: 2px solid #444; border-radius: 12px; background: black; transition: 0.4s; }
         .video-wrapper:hover { transform: translateY(-5px); border-color: var(--gold); }
         .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
-        /* NUEVO ESTILO COMENTARIOS UNIFICADO (ESTILO GALERIA) */
-        .seccion-comentarios { max-width: 800px; margin: 40px auto; padding: 20px; background: white; color: black; border-radius: 10px; border: 2px solid var(--gold); }
+        /* ESTILO COMENTARIOS CLONADO DE GALERIA */
+        .seccion-comentarios { max-width: 800px; margin: 30px auto; padding: 20px; background: white; color: black; border-radius: 10px; border: 2px solid var(--gold); }
         .caja-reacciones { display: flex; justify-content: center; gap: 15px; margin-bottom: 25px; flex-wrap: wrap; }
         .btn-reaccion { background: #f8f8f8; border: 2px solid var(--gold); border-radius: 20px; padding: 6px 15px; font-size: 1.4rem; cursor: pointer; transition: 0.3s; color: black; font-weight: bold; display: flex; align-items: center; gap: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
         .btn-reaccion:hover { transform: scale(1.1); background: var(--gold-light); }
@@ -107,8 +108,6 @@
     </div>
 
     <hr style="border: 1px solid #ddd; margin: 30px 0;">
-
-    <h3 style="color: black; text-align: center; text-transform: uppercase; margin-top: 0; font-size: 1.1rem;">O deja tu mensaje rockero 🎸</h3>
 
     <div id="cusdis_thread"
       data-host="https://cusdis.com"
