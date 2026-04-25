@@ -27,10 +27,13 @@
     <style>
         :root { --gold: #d4af37; --gold-light: #f9d976; }
         
+        * { box-sizing: border-box; } /* Agregado para que nada se salga del ancho */
+
         body { 
             font-family: 'Montserrat', sans-serif; margin: 0; padding: 0; color: white; 
             background: #000 url('alma-de-rock.jpg') no-repeat center center fixed; 
             background-size: cover; 
+            overflow-x: hidden;
         }
         
         body::before { 
@@ -76,7 +79,6 @@
         }
         .btn-share:hover { background: white; transform: scale(1.05); }
 
-        /* BOTÓN CARRITO FLOTANTE - REGLA DE ORO (Ajuste de distancia) */
         .wrapper-botones-accion { position: relative; display: inline-block; vertical-align: middle; }
         .btn-tienda {
             background: #1DB954; color: white; padding: 7px 12px; border-radius: 8px; font-weight: 700;
@@ -113,7 +115,15 @@
         .bio-content { max-width: 950px; margin: auto; font-size: 1.15rem; line-height: 1.8; color: #ddd; }
         .bio-content strong { color: var(--gold); }
 
-        .seccion-comentarios { max-width: 800px; margin: 50px auto; padding: 20px; background: white; color: black; border-radius: 12px; border: 2px solid var(--gold); }
+        /* MODIFICADO: Muro Responsivo */
+        .seccion-comentarios { 
+            width: 95%; 
+            max-width: 480px; /* Tamaño móvil */
+            margin: 50px auto; padding: 20px; background: white; color: black; border-radius: 12px; border: 2px solid var(--gold); 
+        }
+        @media (min-width: 1024px) {
+            .seccion-comentarios { max-width: 1000px; } /* Tamaño PC */
+        }
         
         .caja-reacciones { display: flex; justify-content: center; gap: 15px; margin-bottom: 25px; flex-wrap: wrap; }
         .btn-reaccion { background: #f8f8f8; border: 2px solid var(--gold); border-radius: 20px; padding: 6px 15px; font-size: 1.4rem; cursor: pointer; transition: 0.3s; color: black; font-weight: bold; display: flex; align-items: center; gap: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
@@ -319,16 +329,16 @@
     👀 Visitas totales: <span id="numeroVisitas">...</span>
 </div>
 
-<div id="ios-install-banner" style="display:none; position:fixed; bottom:20px; left:50%; transform:translateX(-50%); width:90%; max-width:400px; background:rgba(20,20,20,0.95); border:2px solid var(--gold); border-radius:12px; padding:15px; color:white; z-index:999999; box-shadow:0 10px 25px rgba(0,0,0,0.8); text-align:center; font-size:0.9rem;">
-    <button onclick="cerrarBannerIos()" style="position:absolute; top:5px; right:10px; background:none; border:none; color:white; font-size:1.2rem; cursor:pointer;">×</button>
-    <p style="margin:0 0 10px 0; font-weight:bold; color:var(--gold);">📲 Instala la App de Tony Vázquez</p>
-    <p style="margin:0; line-height:1.4;">Para instalarla en tu iPhone, abre esta web en <strong>Safari</strong>, toca el botón de compartir <i class="fa-solid fa-arrow-up-from-bracket" style="font-size:1rem; margin:0 5px;"></i> y elige <strong>"Añadir a la pantalla de inicio"</strong> <i class="fa-solid fa-square-plus" style="font-size:1rem; margin:0 5px;"></i>.</p>
+<div id="ios-install-banner" style="display:none; position:fixed; bottom:20px; left:50%; transform:translateX(-50%); width:90%; max-width:400px; background:rgba(20,20,20,0.95); border:2px solid var(--gold); border-radius:12px; padding:20px; color:white; z-index:999999; box-shadow:0 10px 25px rgba(0,0,0,0.8); text-align:center;">
+    <button onclick="cerrarBannerIos()" style="position:absolute; top:5px; right:10px; background:none; border:none; color:white; font-size:1.8rem; cursor:pointer;">×</button>
+    <p style="margin:0 0 10px 0; font-weight:bold; color:var(--gold); font-size:1rem;">📲 Instala la App de Tony Vázquez</p>
+    <p style="margin:0; font-size:0.85rem; line-height:1.4;">Acceso directo, fotos y novedades en tu pantalla de inicio 🤘</p>
 </div>
 
 <script>
     function abrirImagen(src) {
         document.getElementById("imgFull").src = src;
-        document.getElementById("imageModal").style.display = "block";
+        document.getElementById("imageModal").style.display = "flex";
     }
 
     function compartirWeb() {
@@ -369,7 +379,6 @@
         }
     }
 
-    /* DETECCIÓN PWA MEJORADA (REGLA DE ORO) */
     const isIos = () => {
       const userAgent = window.navigator.userAgent.toLowerCase();
       return /iphone|ipad|ipod/.test(userAgent);
@@ -377,20 +386,26 @@
 
     const isInStandaloneMode = () => 
         (window.navigator.standalone === true) || 
-        (window.matchMedia('(display-mode: standalone)').matches) ||
-        (window.matchMedia('(display-mode: fullscreen)').matches);
+        (window.matchMedia('(display-mode: standalone)').matches);
 
+    // MODIFICADO: Lógica de cierre con memoria de 7 días
     function cerrarBannerIos() {
         document.getElementById('ios-install-banner').style.display = 'none';
-        sessionStorage.setItem('pwa_banner_closed', 'true'); // No mostrar más en esta sesión
+        localStorage.setItem('pwa_banner_closed_date', new Date().getTime());
     }
 
-    // Solo mostrar el banner si es iOS, NO está en modo App y NO lo ha cerrado ya
-    if (isIos() && !isInStandaloneMode() && !sessionStorage.getItem('pwa_banner_closed')) {
-        setTimeout(() => {
-            document.getElementById('ios-install-banner').style.display = 'block';
-        }, 3000);
-    }
+    window.onload = function() {
+        const closedDate = localStorage.getItem('pwa_banner_closed_date');
+        const now = new Date().getTime();
+        const oneWeek = 7 * 24 * 60 * 60 * 1000;
+        
+        if (isIos() && !isInStandaloneMode() && !(closedDate && (now - closedDate < oneWeek))) {
+            setTimeout(() => {
+                document.getElementById('ios-install-banner').style.display = 'block';
+            }, 3000);
+        }
+        cargarReacciones();
+    };
 
     function cargarReacciones() {
         const api = 'https://abacus.jasoncameron.dev';
@@ -414,8 +429,6 @@
         span.innerText = (parseInt(span.innerText) || 0) + 1;
         fetch(`https://abacus.jasoncameron.dev/hit/tonyvazquez.es/react_${tipo}`).catch(()=>{});
     }
-
-    document.addEventListener('DOMContentLoaded', cargarReacciones);
 </script>
 
 </body>
