@@ -27,13 +27,12 @@
     <style>
         :root { --gold: #d4af37; --gold-light: #f9d976; }
         
-        * { box-sizing: border-box; } /* Agregado para que nada se salga del ancho */
+        * { box-sizing: border-box; }
 
         body { 
             font-family: 'Montserrat', sans-serif; margin: 0; padding: 0; color: white; 
             background: #000 url('alma-de-rock.jpg') no-repeat center center fixed; 
             background-size: cover; 
-            overflow-x: hidden;
         }
         
         body::before { 
@@ -56,14 +55,8 @@
         #logo-izq { animation: efecto-reloj 7s linear infinite; }
         #logo-der { animation: efecto-contra-reloj 7s linear infinite; }
 
-        @keyframes efecto-reloj { 
-            from { transform: perspective(1000px) rotateY(0deg); } 
-            to { transform: perspective(1000px) rotateY(360deg); } 
-        }
-        @keyframes efecto-contra-reloj { 
-            from { transform: perspective(1000px) rotateY(0deg); } 
-            to { transform: perspective(1000px) rotateY(-360deg); } 
-        }
+        @keyframes efecto-reloj { from { transform: perspective(1000px) rotateY(0deg); } to { transform: perspective(1000px) rotateY(360deg); } }
+        @keyframes efecto-contra-reloj { from { transform: perspective(1000px) rotateY(0deg); } to { transform: perspective(1000px) rotateY(-360deg); } }
 
         .header-logo:hover { animation-play-state: paused; filter: brightness(1.2); }
 
@@ -115,14 +108,19 @@
         .bio-content { max-width: 950px; margin: auto; font-size: 1.15rem; line-height: 1.8; color: #ddd; }
         .bio-content strong { color: var(--gold); }
 
-        /* MODIFICADO: Muro Responsivo */
+        /* SECCIÓN COMENTARIOS (Igual que Galería + Responsive) */
         .seccion-comentarios { 
-            width: 95%; 
-            max-width: 480px; /* Tamaño móvil */
-            margin: 50px auto; padding: 20px; background: white; color: black; border-radius: 12px; border: 2px solid var(--gold); 
+            width: 95%;
+            max-width: 800px; 
+            margin: 50px auto; 
+            padding: 20px; 
+            background: white; 
+            color: black; 
+            border-radius: 12px; 
+            border: 2px solid var(--gold); 
         }
         @media (min-width: 1024px) {
-            .seccion-comentarios { max-width: 1000px; } /* Tamaño PC */
+            .seccion-comentarios { max-width: 1000px; } /* Más alargado en PC */
         }
         
         .caja-reacciones { display: flex; justify-content: center; gap: 15px; margin-bottom: 25px; flex-wrap: wrap; }
@@ -153,6 +151,7 @@
             .btn { font-size: 0.75rem; padding: 8px 10px; }
             .social-icons { width: auto; justify-content: center; } 
             .wrapper-botones-accion { display: inline-block; margin: 0 auto; }
+            .seccion-comentarios { max-width: 480px; }
         }
         
         .backstage-box {
@@ -214,7 +213,7 @@
 <header>
     <img src="logoTV.png" alt="Logo Tony Vázquez" class="header-logo" id="logo-izq">
     <div class="social-icons icons-left">
-        <a href="https://open.spotify.com/intl-es/artist/5PGFsB4rJcNb9h5gBOKnWw?si=SBjt7wSNRyKfW2ed2fkjzg"><i class="fa-brands fa-spotify"></i></a>
+        <a href="https://open.spotify.com/intl-es/album/4rs6iGjMuaWskxs9FkEEt7?si=PzXKCwO0T1GDQSk4VFCCBQ2"><i class="fa-brands fa-spotify"></i></a>
         <a href="https://music.apple.com/es/artist/tony-vazquez/1497948014"><i class="fa-brands fa-apple"></i></a>
         <a href="https://music.youtube.com/channel/UCFNdFbrM3s0kznhCGpRJ3GA"><i class="fa-brands fa-youtube"></i></a>
     </div>
@@ -250,24 +249,24 @@
 
 <div class="container">
     <div class="spotify-container">
-        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/artist/5PGFsB4rJcNb9h5gBOKnWw?utm_source=generator" width="100%" height="80" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <iframe style="border-radius:12px" src="https://open.spotify.com/intl-es/album/4rs6iGjMuaWskxs9FkEEt7?si=PzXKCwO0T1GDQSk4VFCCBQ3" width="100%" height="80" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
     </div>
 
     <div class="discografia">
         <div class="album-card">
             <img src="alma-de-rock.jpg" alt="Disco Alma de Rock" class="album-img" onclick="abrirImagen(this.src)">
             <h3>Alma de Rock</h3>
-            <a href="https://open.spotify.com/intl-es/album/4rs6iGjMuaWskxs9FkEEt7?si=PzXKCwO0T1GDQSk4VFCCBQ" class="btn">Escuchar ahora</a>
+            <a href="https://open.spotify.com/intl-es/album/4rs6iGjMuaWskxs9FkEEt7?si=PzXKCwO0T1GDQSk4VFCCBQ4" class="btn">Escuchar ahora</a>
         </div>
         <div class="album-card">
             <img src="Sueños de papel.jpg" alt="Disco Sueños de papel" class="album-img" onclick="abrirImagen(this.src)">
             <h3>Sueños de papel</h3>
-            <a href="https://open.spotify.com/intl-es/album/708rurqxThgsJPR8aClRAD?si=o6eWGd1jQJSU7i1lwuh5JQ" class="btn">Escuchar ahora</a>
+            <a href="https://open.spotify.com/intl-es/album/4rs6iGjMuaWskxs9FkEEt7?si=PzXKCwO0T1GDQSk4VFCCBQ5" class="btn">Escuchar ahora</a>
         </div>
         <div class="album-card">
             <img src="La magia.jpg" alt="Disco La magia de la vida" class="album-img" onclick="abrirImagen(this.src)">
             <h3>La magia de la vida</h3>
-            <a href="https://open.spotify.com/intl-es/album/4UYMgk4jtxCj9GU6be8txk?si=qIYMH7C4R2WCRyfAOcUD2Q" class="btn">Escuchar ahora</a>
+            <a href="https://open.spotify.com/intl-es/album/4rs6iGjMuaWskxs9FkEEt7?si=PzXKCwO0T1GDQSk4VFCCBQ6" class="btn">Escuchar ahora</a>
         </div>
     </div>
 </div>
@@ -329,16 +328,16 @@
     👀 Visitas totales: <span id="numeroVisitas">...</span>
 </div>
 
-<div id="ios-install-banner" style="display:none; position:fixed; bottom:20px; left:50%; transform:translateX(-50%); width:90%; max-width:400px; background:rgba(20,20,20,0.95); border:2px solid var(--gold); border-radius:12px; padding:20px; color:white; z-index:999999; box-shadow:0 10px 25px rgba(0,0,0,0.8); text-align:center;">
-    <button onclick="cerrarBannerIos()" style="position:absolute; top:5px; right:10px; background:none; border:none; color:white; font-size:1.8rem; cursor:pointer;">×</button>
-    <p style="margin:0 0 10px 0; font-weight:bold; color:var(--gold); font-size:1rem;">📲 Instala la App de Tony Vázquez</p>
-    <p style="margin:0; font-size:0.85rem; line-height:1.4;">Acceso directo, fotos y novedades en tu pantalla de inicio 🤘</p>
+<div id="ios-install-banner" style="display:none; position:fixed; bottom:20px; left:50%; transform:translateX(-50%); width:90%; max-width:400px; background:rgba(20,20,20,0.95); border:2px solid var(--gold); border-radius:12px; padding:15px; color:white; z-index:999999; box-shadow:0 10px 25px rgba(0,0,0,0.8); text-align:center; font-size:0.9rem;">
+    <button onclick="cerrarBannerIos()" style="position:absolute; top:5px; right:10px; background:none; border:none; color:white; font-size:1.2rem; cursor:pointer;">×</button>
+    <p style="margin:0 0 10px 0; font-weight:bold; color:var(--gold);">📲 Instala la App de Tony Vázquez</p>
+    <p style="margin:0; line-height:1.4;">Acceso directo, fotos y novedades en tu pantalla de inicio 🤘</p>
 </div>
 
 <script>
     function abrirImagen(src) {
         document.getElementById("imgFull").src = src;
-        document.getElementById("imageModal").style.display = "flex";
+        document.getElementById("imageModal").style.display = "block";
     }
 
     function compartirWeb() {
@@ -384,11 +383,8 @@
       return /iphone|ipad|ipod/.test(userAgent);
     };
 
-    const isInStandaloneMode = () => 
-        (window.navigator.standalone === true) || 
-        (window.matchMedia('(display-mode: standalone)').matches);
+    const isInStandaloneMode = () => (window.navigator.standalone === true) || (window.matchMedia('(display-mode: standalone)').matches);
 
-    // MODIFICADO: Lógica de cierre con memoria de 7 días
     function cerrarBannerIos() {
         document.getElementById('ios-install-banner').style.display = 'none';
         localStorage.setItem('pwa_banner_closed_date', new Date().getTime());
@@ -399,10 +395,8 @@
         const now = new Date().getTime();
         const oneWeek = 7 * 24 * 60 * 60 * 1000;
         
-        if (isIos() && !isInStandaloneMode() && !(closedDate && (now - closedDate < oneWeek))) {
-            setTimeout(() => {
-                document.getElementById('ios-install-banner').style.display = 'block';
-            }, 3000);
+        if (!isInStandaloneMode() && !(closedDate && (now - closedDate < oneWeek))) {
+            setTimeout(() => { document.getElementById('ios-install-banner').style.display = 'block'; }, 3000);
         }
         cargarReacciones();
     };
@@ -429,6 +423,8 @@
         span.innerText = (parseInt(span.innerText) || 0) + 1;
         fetch(`https://abacus.jasoncameron.dev/hit/tonyvazquez.es/react_${tipo}`).catch(()=>{});
     }
+
+    document.addEventListener('DOMContentLoaded', cargarReacciones);
 </script>
 
 </body>
