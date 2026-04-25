@@ -271,26 +271,29 @@
     </div>
 </div>
 
-<div class="seccion-comentarios">
-    <h3 style="color: black; text-align: center; text-transform: uppercase; margin-top: 0; font-size: 1.2rem;">¿Qué te parece? ¡Reacciona! 👇</h3>
+<div class="seccion-comentarios" style="max-width: 500px; margin: 40px auto; padding: 20px; background: rgba(20, 20, 20, 0.95); border-radius: 15px; border: 1px solid #d4af37; color: white; font-family: 'Montserrat', sans-serif;">
     
-    <div class="caja-reacciones">
-        <button class="btn-reaccion" onclick="sumarReaccion('fuego', this)">🔥 <span id="count-fuego">...</span></button>
-        <button class="btn-reaccion" onclick="sumarReaccion('cuernos', this)">🤘 <span id="count-cuernos">...</span></button>
-        <button class="btn-reaccion" onclick="sumarReaccion('corazon', this)">😍 <span id="count-corazon">...</span></button>
+    <h3 style="color: #d4af37; text-align: center; text-transform: uppercase; margin-top: 0; font-size: 1.1rem;">¿Qué te parece? ¡Reacciona! 🤘</h3>
+    
+    <div class="caja-reacciones" style="display: flex; justify-content: center; gap: 10px; margin-bottom: 20px;">
+        <button class="btn-reaccion" onclick="sumarReaccion('fuego', this)" style="background: #333; color: white; border: 1px solid #444; padding: 5px 10px; border-radius: 5px; cursor: pointer;">🔥 <span id="count-fuego">...</span></button>
+        <button class="btn-reaccion" onclick="sumarReaccion('cuernos', this)" style="background: #333; color: white; border: 1px solid #444; padding: 5px 10px; border-radius: 5px; cursor: pointer;">🤘 <span id="count-cuernos">...</span></button>
+        <button class="btn-reaccion" onclick="sumarReaccion('corazon', this)" style="background: #333; color: white; border: 1px solid #444; padding: 5px 10px; border-radius: 5px; cursor: pointer;">😍 <span id="count-corazon">...</span></button>
     </div>
 
-    <hr style="border: 1px solid #ddd; margin: 30px 0;">
+    <hr style="border: 0.5px solid #d4af37; opacity: 0.3; margin: 20px 0;">
 
-    <h3 style="color: black; text-align: center; text-transform: uppercase; margin-top: 0; font-size: 1.1rem;">O deja tu mensaje rockero 🎸</h3>
-    
+    <h3 style="color: white; text-align: center; text-transform: uppercase; margin-top: 0; font-size: 1rem; margin-bottom: 15px;">O deja tu mensaje rockero 🎸</h3>
+
     <div id="cusdis_thread"
       data-host="https://cusdis.com"
       data-app-id="b3a46067-e248-4f1a-8f3b-1d829f5606c3"
       data-page-id="inicio_tony_vazquez"
       data-page-url="https://www.tonyvazquez.es/index.html"
-      data-page-title="Inicio Tony Vazquez">
+      data-page-title="Inicio Tony Vazquez"
+      data-theme="dark">
     </div>
+
     <script defer src="https://cusdis.com/js/widget/lang/es.js"></script>
     <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
 </div>
