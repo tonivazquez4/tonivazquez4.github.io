@@ -53,14 +53,8 @@
         #logo-izq { animation: efecto-reloj 7s linear infinite; }
         #logo-der { animation: efecto-contra-reloj 7s linear infinite; }
 
-        @keyframes efecto-reloj { 
-            from { transform: perspective(1000px) rotateY(0deg); } 
-            to { transform: perspective(1000px) rotateY(360deg); } 
-        }
-        @keyframes efecto-contra-reloj { 
-            from { transform: perspective(1000px) rotateY(0deg); } 
-            to { transform: perspective(1000px) rotateY(-360deg); } 
-        }
+        @keyframes efecto-reloj { from { transform: perspective(1000px) rotateY(0deg); } to { transform: perspective(1000px) rotateY(360deg); } }
+        @keyframes efecto-contra-reloj { from { transform: perspective(1000px) rotateY(0deg); } to { transform: perspective(1000px) rotateY(-360deg); } }
 
         .header-logo:hover { animation-play-state: paused; filter: brightness(1.2); }
 
@@ -76,7 +70,6 @@
         }
         .btn-share:hover { background: white; transform: scale(1.05); }
 
-        /* BOTÓN CARRITO FLOTANTE - REGLA DE ORO (Ajuste de distancia) */
         .wrapper-botones-accion { position: relative; display: inline-block; vertical-align: middle; }
         .btn-tienda {
             background: #1DB954; color: white; padding: 7px 12px; border-radius: 8px; font-weight: 700;
@@ -101,7 +94,6 @@
         .btn:hover, .btn.activo { background: white; transform: scale(1.05); }
 
         .container { padding: 0 20px 40px; max-width: 1200px; margin: auto; }
-
         .spotify-container { max-width: 400px; margin: 0 auto 40px; border-radius: 12px; overflow: hidden; border: 1px solid var(--gold); height: 80px; }
 
         .discografia { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
@@ -113,8 +105,8 @@
         .bio-content { max-width: 950px; margin: auto; font-size: 1.15rem; line-height: 1.8; color: #ddd; }
         .bio-content strong { color: var(--gold); }
 
-        .seccion-comentarios { max-width: 800px; margin: 50px auto; padding: 20px; background: white; color: black; border-radius: 12px; border: 2px solid var(--gold); }
-        
+        /* NUEVO ESTILO SECCION COMENTARIOS UNIFICADO */
+        .seccion-comentarios { max-width: 800px; margin: 50px auto; padding: 20px; background: white; color: black; border-radius: 10px; border: 2px solid var(--gold); }
         .caja-reacciones { display: flex; justify-content: center; gap: 15px; margin-bottom: 25px; flex-wrap: wrap; }
         .btn-reaccion { background: #f8f8f8; border: 2px solid var(--gold); border-radius: 20px; padding: 6px 15px; font-size: 1.4rem; cursor: pointer; transition: 0.3s; color: black; font-weight: bold; display: flex; align-items: center; gap: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
         .btn-reaccion:hover { transform: scale(1.1); background: var(--gold-light); }
@@ -272,7 +264,7 @@
 </div>
 
 <div class="seccion-comentarios">
-    <h3 style="color: black; text-align: center; text-transform: uppercase; margin-top: 0; font-size: 1.2rem;">¿Qué te parece? ¡Reacciona! 👇</h3>
+    <h3 style="color: black; text-align: center; text-transform: uppercase; margin-top: 0; font-size: 1.2rem;">¿Qué te parece la web? ¡Reacciona! 👇</h3>
     
     <div class="caja-reacciones">
         <button class="btn-reaccion" onclick="sumarReaccion('fuego', this)">🔥 <span id="count-fuego">...</span></button>
@@ -319,12 +311,6 @@
     👀 Visitas totales: <span id="numeroVisitas">...</span>
 </div>
 
-<div id="ios-install-banner" style="display:none; position:fixed; bottom:20px; left:50%; transform:translateX(-50%); width:90%; max-width:400px; background:rgba(20,20,20,0.95); border:2px solid var(--gold); border-radius:12px; padding:15px; color:white; z-index:999999; box-shadow:0 10px 25px rgba(0,0,0,0.8); text-align:center; font-size:0.9rem;">
-    <button onclick="cerrarBannerIos()" style="position:absolute; top:5px; right:10px; background:none; border:none; color:white; font-size:1.2rem; cursor:pointer;">×</button>
-    <p style="margin:0 0 10px 0; font-weight:bold; color:var(--gold);">📲 Instala la App de Tony Vázquez</p>
-    <p style="margin:0; line-height:1.4;">Para instalarla en tu iPhone, abre esta web en <strong>Safari</strong>, toca el botón de compartir <i class="fa-solid fa-arrow-up-from-bracket" style="font-size:1rem; margin:0 5px;"></i> y elige <strong>"Añadir a la pantalla de inicio"</strong> <i class="fa-solid fa-square-plus" style="font-size:1rem; margin:0 5px;"></i>.</p>
-</div>
-
 <script>
     function abrirImagen(src) {
         document.getElementById("imgFull").src = src;
@@ -367,29 +353,6 @@
                 .catch(() => { document.getElementById('numeroVisitas').innerText = "Error"; });
             toques = 0; 
         }
-    }
-
-    /* DETECCIÓN PWA MEJORADA (REGLA DE ORO) */
-    const isIos = () => {
-      const userAgent = window.navigator.userAgent.toLowerCase();
-      return /iphone|ipad|ipod/.test(userAgent);
-    };
-
-    const isInStandaloneMode = () => 
-        (window.navigator.standalone === true) || 
-        (window.matchMedia('(display-mode: standalone)').matches) ||
-        (window.matchMedia('(display-mode: fullscreen)').matches);
-
-    function cerrarBannerIos() {
-        document.getElementById('ios-install-banner').style.display = 'none';
-        sessionStorage.setItem('pwa_banner_closed', 'true'); // No mostrar más en esta sesión
-    }
-
-    // Solo mostrar el banner si es iOS, NO está en modo App y NO lo ha cerrado ya
-    if (isIos() && !isInStandaloneMode() && !sessionStorage.getItem('pwa_banner_closed')) {
-        setTimeout(() => {
-            document.getElementById('ios-install-banner').style.display = 'block';
-        }, 3000);
     }
 
     function cargarReacciones() {
