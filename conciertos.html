@@ -109,19 +109,43 @@
     </div>
     </div>
 </div>
-<div class="seccion-comentarios" style="max-width: 500px; margin: 40px auto; padding: 20px; background: rgba(20, 20, 20, 0.95); border-radius: 15px; border: 1px solid #d4af37; color: white; font-family: 'Montserrat', sans-serif;">
+<style>
+    .muro-rockero {
+        width: 95%;
+        max-width: 500px; /* Tamaño por defecto (Móvil) */
+        margin: 40px auto;
+        padding: 25px;
+        background: rgba(15, 15, 15, 0.98);
+        border-radius: 15px;
+        border: 1px solid #d4af37;
+        color: white;
+        transition: max-width 0.3s ease;
+    }
+
+    /* Cuando la pantalla es grande (Ordenador / PC) */
+    @media (min-width: 1024px) {
+        .muro-rockero {
+            max-width: 1000px; /* Se vuelve mucho más alargado */
+        }
+    }
+</style>
+
+<div class="muro-rockero">
+    <h3 style="color: #d4af37; text-align: center; text-transform: uppercase; margin-top: 0; font-size: 1.2rem; letter-spacing: 2px;">
+        ¿Qué te parece? ¡Reacciona! 🤘
+    </h3>
     
-    <h3 style="color: #d4af37; text-align: center; text-transform: uppercase; margin-top: 0; font-size: 1.1rem;">¿Qué te parece? ¡Reacciona! 🤘</h3>
-    
-    <div class="caja-reacciones" style="display: flex; justify-content: center; gap: 10px; margin-bottom: 20px;">
-        <button class="btn-reaccion" onclick="sumarReaccion('fuego', this)" style="background: #333; color: white; border: 1px solid #444; padding: 5px 10px; border-radius: 5px; cursor: pointer;">🔥 <span id="count-fuego">...</span></button>
-        <button class="btn-reaccion" onclick="sumarReaccion('cuernos', this)" style="background: #333; color: white; border: 1px solid #444; padding: 5px 10px; border-radius: 5px; cursor: pointer;">🤘 <span id="count-cuernos">...</span></button>
-        <button class="btn-reaccion" onclick="sumarReaccion('corazon', this)" style="background: #333; color: white; border: 1px solid #444; padding: 5px 10px; border-radius: 5px; cursor: pointer;">😍 <span id="count-corazon">...</span></button>
+    <div class="caja-reacciones" style="display: flex; justify-content: center; gap: 15px; margin-bottom: 25px;">
+        <button onclick="sumarReaccion('fuego', this)" style="background: #222; color: white; border: 1px solid #444; padding: 8px 15px; border-radius: 8px; cursor: pointer; transition: 0.3s;">🔥 <span id="count-fuego">...</span></button>
+        <button onclick="sumarReaccion('cuernos', this)" style="background: #222; color: white; border: 1px solid #444; padding: 8px 15px; border-radius: 8px; cursor: pointer; transition: 0.3s;">🤘 <span id="count-cuernos">...</span></button>
+        <button onclick="sumarReaccion('corazon', this)" style="background: #222; color: white; border: 1px solid #444; padding: 8px 15px; border-radius: 8px; cursor: pointer; transition: 0.3s;">😍 <span id="count-corazon">...</span></button>
     </div>
 
-    <hr style="border: 0.5px solid #d4af37; opacity: 0.3; margin: 20px 0;">
+    <hr style="border: 0.5px solid #d4af37; opacity: 0.2; margin: 25px 0;">
 
-    <h3 style="color: white; text-align: center; text-transform: uppercase; margin-top: 0; font-size: 1rem; margin-bottom: 15px;">O deja tu mensaje rockero 🎸</h3>
+    <h3 style="color: white; text-align: center; text-transform: uppercase; margin-top: 0; font-size: 1rem; margin-bottom: 20px; opacity: 0.9;">
+        O deja tu mensaje rockero 🎸
+    </h3>
 
     <div id="cusdis_thread"
       data-host="https://cusdis.com"
