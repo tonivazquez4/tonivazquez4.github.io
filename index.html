@@ -4,90 +4,103 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-1YS8QY8TXN"></script>
     <script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-1YS8QY8TXN');</script>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Galería | Tony Vázquez</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tony Vázquez | Web Oficial</title>
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         * { box-sizing: border-box; }
         :root { --gold: #d4af37; --gold-light: #f9d976; }
-        body { font-family: 'Montserrat', sans-serif; margin: 0; padding: 0; color: white; background: #000 url('Alma de Rock.jpg') no-repeat center center fixed; background-size: cover; overflow-x: hidden; touch-action: pan-y; }
+        body { font-family: 'Montserrat', sans-serif; margin: 0; padding: 0; color: white; background: #000 url('alma-de-rock.jpg') no-repeat center center fixed; background-size: cover; overflow-x: hidden; }
         body::before { content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.85) 100%); z-index: -1; }
         @media (display-mode: standalone) { #ios-install-banner { display: none !important; } }
         header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--gold); padding: 10px 20px; background: rgba(0,0,0,0.9); width: 100%; }
         .header-logo { height: 80px; width: auto; filter: invert(75%) sepia(50%) saturate(600%) hue-rotate(5deg); cursor: pointer; transition: 0.3s; }
         @media (min-width: 1024px) { .header-logo { height: 105px; } }
-        #logo-izq { animation: giro-3d 6s linear infinite; }
-        #logo-der { animation: giro-3d 6s linear infinite reverse; }
+        #logo-izq { animation: giro-3d 7s linear infinite; }
+        #logo-der { animation: giro-3d 7s linear infinite reverse; }
         @keyframes giro-3d { from { transform: rotateY(0deg); } to { transform: rotateY(360deg); } }
         .header-center { text-align: center; flex-grow: 1; padding: 0 10px; }
-        .header-center h1 { font-size: clamp(1rem, 4vw, 1.8rem); margin: 0; text-transform: uppercase; text-shadow: 2px 2px 10px black; }
+        .header-center h1 { font-size: clamp(1rem, 4vw, 1.8rem); margin: 0; text-transform: uppercase; text-shadow: 2px 2px 10px black;}
         .header-center p { margin: 5px 0 0 0; color: var(--gold); letter-spacing: 2px; font-weight: 700; font-size: 0.7rem; }
+        .btn-share { background: linear-gradient(45deg, var(--gold), var(--gold-light)); color: black; border: none; padding: 6px 12px; border-radius: 8px; font-weight: 700; cursor: pointer; margin-top: 10px; text-transform: uppercase; font-size: 0.7rem; }
+        .btn-tienda { background: #1DB954; color: white; padding: 7px 12px; border-radius: 8px; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; margin-left: 10px; }
         .nav-menu { text-align: center; margin: 20px 0; display: flex; justify-content: center; flex-wrap: wrap; gap: 5px; }
-        .btn { background: linear-gradient(45deg, var(--gold), var(--gold-light)); color: black; padding: 8px 15px; text-decoration: none; border-radius: 8px; font-weight: 700; font-size: 0.8rem; }
-        .grid-galeria { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; padding: 20px; max-width: 1300px; margin: auto; }
-        .foto-card { position: relative; aspect-ratio: 1 / 1; border-radius: 10px; border: 1px solid #333; background: #111; overflow: hidden; }
-        .foto-card img { width: 100%; height: 100%; object-fit: cover; cursor: pointer; transition: 0.4s; }
+        .btn { background: linear-gradient(45deg, var(--gold), var(--gold-light)); color: black; padding: 8px 15px; text-decoration: none; border-radius: 8px; font-weight: 700; font-size: 0.8rem; transition: 0.3s; }
+        .btn:hover, .btn.activo { background: white; transform: scale(1.05); }
+        .container { padding: 0 15px 40px; max-width: 1200px; margin: auto; }
         .muro-rockero { width: 95%; max-width: 480px; margin: 40px auto; padding: 20px; background: rgba(15, 15, 15, 0.95); border-radius: 15px; border: 1px solid var(--gold); color: white; }
         @media (min-width: 1024px) { .muro-rockero { max-width: 1000px; padding: 30px; } }
-        #imageModal { display: none; position: fixed; z-index: 99999; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); align-items: center; justify-content: center; }
-        #imgFull { max-width: 95%; max-height: 85vh; border: 2px solid var(--gold); object-fit: contain; }
-        .modal-btn { position: absolute; background: rgba(0,0,0,0.5); border: 1px solid var(--gold); color: white; font-size: 2rem; cursor: pointer; z-index: 100000; border-radius: 50%; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; }
-        #prevBtn { left: 10px; } #nextBtn { right: 10px; } #closeBtn { top: 10px; right: 10px; }
-        footer { text-align: center; padding: 30px; background: #000; border-top: 1px solid #222; font-size: 0.8rem; }
-        #btnSubir { display: none; position: fixed; bottom: 20px; right: 20px; z-index: 9999; background: var(--gold); border: none; width: 50px; height: 50px; border-radius: 50%; justify-content: center; align-items: center; }
+        .caja-reacciones { display: flex; justify-content: center; gap: 10px; margin-bottom: 25px; flex-wrap: wrap; }
+        .btn-reaccion { background: #222; border: 1px solid var(--gold); border-radius: 10px; padding: 8px 12px; cursor: pointer; color: white; font-size: 0.9rem; }
+        .btn-reaccion.votado { background: var(--gold); color: black; }
+        .discografia { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .album-card { background: rgba(20, 20, 20, 0.9); border: 1px solid #333; border-radius: 15px; text-align: center; padding-bottom: 20px; overflow: hidden; }
+        .album-img { width: 100%; height: 300px; object-fit: contain; padding-top: 10px; cursor: pointer; }
+        .bio { background: rgba(0,0,0,0.8); padding: 40px 20px; text-align: center; margin-top: 50px; }
+        .bio-content { max-width: 950px; margin: auto; font-size: 1rem; line-height: 1.6; color: #ddd; }
+        footer { padding: 25px; text-align: center; background: #000; border-top: 2px solid #222; cursor: pointer; font-size: 0.8rem; }
+        #btnSubir { display: none; position: fixed; bottom: 20px; right: 20px; z-index: 9999; background: var(--gold); border: none; width: 50px; height: 50px; border-radius: 50%; justify-content: center; align-items: center; font-size: 1.2rem; }
+        #imageModal { display: none; position: fixed; z-index: 10001; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); }
+        #imgFull { margin: auto; display: block; max-width: 90%; max-height: 80vh; border: 1px solid var(--gold); }
     </style>
     <link rel="manifest" href="manifest.json">
 </head>
 <body>
 <header>
     <img src="logoTV.png" class="header-logo" id="logo-izq">
-    <div style="display:flex; gap:10px;"><a href="https://open.spotify.com/embed/artist/5PGFsB4rJcNb9h5gBOKnWw?utm_source=generator" style="color:white; font-size:1.2rem;"><i class="fa-brands fa-spotify"></i></a><a href="https://music.apple.com/es/artist/tony-vazquez/1497948014" style="color:white; font-size:1.2rem;"><i class="fa-brands fa-apple"></i></a></div>
-    <div class="header-center"><h1>TONY VÁZQUEZ</h1><p>GALERÍA</p><button class="btn-share" onclick="compartirWeb()" style="background:linear-gradient(45deg, var(--gold), var(--gold-light)); border:none; padding:6px 12px; border-radius:8px; font-weight:700; cursor:pointer; font-size:0.7rem; text-transform:uppercase;">Compartir</button></div>
+    <div style="display:flex; gap:10px;"><a href="https://open.spotify.com/intl-es/artist/5PGFsB4rJcNb9h5gBOKnWw?si=SBjt7wSNRyKfW2ed2fkjzg" style="color:white; font-size:1.2rem;"><i class="fa-brands fa-spotify"></i></a><a href="https://music.apple.com/es/artist/tony-vazquez/1497948014" style="color:white; font-size:1.2rem;"><i class="fa-brands fa-apple"></i></a></div>
+    <div class="header-center">
+        <h1>TONY VÁZQUEZ</h1><p>ROCK · ALMA · LEYENDA</p>
+        <div style="display: flex; justify-content: center; align-items: center;"><button class="btn-share" onclick="compartirWeb()"><i class="fa-solid fa-share-nodes"></i> Compartir</button><a href="tienda.html" class="btn-tienda"><i class="fa-solid fa-cart-shopping"></i></a></div>
+    </div>
     <div style="display:flex; gap:10px;"><a href="https://instagram.com/tonykubo" style="color:white; font-size:1.2rem;"><i class="fa-brands fa-instagram"></i></a><a href="https://www.facebook.com/tonisampler/" style="color:white; font-size:1.2rem;"><i class="fa-brands fa-facebook"></i></a></div>
     <img src="logoTV.png" class="header-logo" id="logo-der">
 </header>
 <nav class="nav-menu">
-    <a href="index.html" class="btn">Inicio</a>
-    <a href="galeria.html" class="btn activo">Galería</a>
+    <a href="index.html" class="btn activo">Inicio</a>
+    <a href="galeria.html" class="btn">Galería</a>
     <a href="videos.html" class="btn">Vídeos</a>
     <a href="conciertos.html" class="btn">Conciertos</a>
 </nav>
-<div class="grid-galeria" id="galeria-fotos"></div>
+<div class="container">
+    <div class="discografia">
+        <div class="album-card"><img src="alma-de-rock.jpg" class="album-img" onclick="abrirImagen(this.src)"><h3>Alma de Rock</h3><a href="#" class="btn">Escuchar</a></div>
+        <div class="album-card"><img src="Sueños de papel.jpg" class="album-img" onclick="abrirImagen(this.src)"><h3>Sueños de papel</h3><a href="#" class="btn">Escuchar</a></div>
+        <div class="album-card"><img src="La magia.jpg" class="album-img" onclick="abrirImagen(this.src)"><h3>La magia de la vida</h3><a href="#" class="btn">Escuchar</a></div>
+    </div>
+</div>
+<div class="bio"><div class="bio-content"><h2 style="color: var(--gold);">Trayectoria Profesional</h2><p>Más de 35 años de rock en las venas. Pilar de <strong>Astarot</strong> y veterano en grandes formaciones...</p></div></div>
 <div class="muro-rockero">
     <h3 style="color: var(--gold); text-align: center; text-transform: uppercase; font-size: 1.1rem; margin-top:0;">¿Qué te parece? ¡Reacciona! 🤘</h3>
-    <div class="caja-reacciones" style="display:flex; justify-content:center; gap:10px;"><button onclick="sumarReaccion('fuego', this)" style="background:#222; border:1px solid var(--gold); color:white; padding:8px 12px; border-radius:10px;">🔥 <span id="count-fuego">0</span></button><button onclick="sumarReaccion('cuernos', this)" style="background:#222; border:1px solid var(--gold); color:white; padding:8px 12px; border-radius:10px;">🤘 <span id="count-cuernos">0</span></button><button onclick="sumarReaccion('corazon', this)" style="background:#222; border:1px solid var(--gold); color:white; padding:8px 12px; border-radius:10px;">😍 <span id="count-corazon">0</span></button></div>
-    <hr style="border: 0.5px solid var(--gold); opacity: 0.2; margin: 20px 0;">
-    <div id="cusdis_thread" data-host="https://cusdis.com" data-app-id="b3a46067-e248-4f1a-8f3b-1d829f5606c3" data-page-id="galeria_tony" data-page-url="https://www.tonyvazquez.es/galeria.html" data-page-title="Galería Tony Vazquez" data-theme="dark"></div>
+    <div class="caja-reacciones"><button class="btn-reaccion" onclick="sumarReaccion('fuego', this)">🔥 <span id="count-fuego">0</span></button><button class="btn-reaccion" onclick="sumarReaccion('cuernos', this)">🤘 <span id="count-cuernos">0</span></button><button class="btn-reaccion" onclick="sumarReaccion('corazon', this)">😍 <span id="count-corazon">0</span></button></div>
+    <hr style="border: 0.5px solid var(--gold); opacity: 0.3; margin: 20px 0;">
+    <h3 style="color: white; text-align: center; font-size: 0.9rem; margin-bottom: 20px;">O deja tu mensaje rockero 🎸</h3>
+    <div id="cusdis_thread" data-host="https://cusdis.com" data-app-id="b3a46067-e248-4f1a-8f3b-1d829f5606c3" data-page-id="inicio_tony_vazquez" data-page-url="https://www.tonyvazquez.es/index.html" data-page-title="Inicio Tony Vazquez" data-theme="dark"></div>
 </div>
 <footer><p>© 2026 Tony Vázquez. Todos los derechos reservados.</p></footer>
+<button id="btnSubir" onclick="window.scrollTo({top: 0, behavior: 'smooth'})"><i class="fa-solid fa-arrow-up"></i></button>
 <div id="ios-install-banner" style="display:none; position:fixed; bottom:20px; left:50%; transform:translateX(-50%); width:92%; max-width:400px; background:rgba(20,20,20,0.98); border:2px solid var(--gold); border-radius:12px; padding:20px; color:white; z-index:999999; text-align:center;">
     <button onclick="cerrarBannerIos()" style="position:absolute; top:5px; right:10px; background:none; border:none; color:white; font-size:1.8rem; cursor:pointer;">×</button>
-    <p style="margin:0 0 10px 0; font-weight:bold; color:var(--gold);">📲 Instala la App</p>
-    <p style="margin:0; font-size:0.85rem;">Para acceso directo a la galería en tu pantalla de inicio 🤘</p>
+    <p style="margin:0 0 10px 0; font-weight:bold; color:var(--gold);">📲 Instala la App Oficial</p>
+    <p style="margin:0; font-size:0.85rem; line-height:1.4;">Acceso directo y contenido exclusivo en tu pantalla de inicio 🤘</p>
 </div>
-<div id="imageModal"><button class="modal-btn" id="closeBtn" onclick="cerrarModal()">×</button><button class="modal-btn" id="prevBtn" onclick="cambiarFoto(-1)">❮</button><img id="imgFull" src=""><button class="modal-btn" id="nextBtn" onclick="cambiarFoto(1)">❯</button></div>
-<button id="btnSubir" onclick="window.scrollTo({top: 0, behavior: 'smooth'})"><i class="fa-solid fa-arrow-up"></i></button>
+<div id="imageModal" onclick="this.style.display='none'"><img id="imgFull"></div>
 <script defer src="https://cusdis.com/js/widget/lang/es.js"></script>
 <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
 <script>
-    const totalFotos = 178; let fotoActual = 1;
-    function cargarGaleria() { let contenido = ""; for (let i = 1; i <= totalFotos; i++) { contenido += `<div class="foto-card"><img src="Fotos/Foto ${i}.jpg" loading="lazy" onclick="abrirImagen(${i})"></div>`; } document.getElementById('galeria-fotos').innerHTML = contenido; }
-    function abrirImagen(indice) { fotoActual = indice; actualizarImagenModal(); document.getElementById("imageModal").style.display = "flex"; document.body.style.overflow = "hidden"; }
-    function cerrarModal() { document.getElementById("imageModal").style.display = "none"; document.body.style.overflow = "auto"; }
-    function cambiarFoto(direccion) { fotoActual += direccion; if (fotoActual > totalFotos) fotoActual = 1; if (fotoActual < 1) fotoActual = totalFotos; actualizarImagenModal(); }
-    function actualizarImagenModal() { document.getElementById("imgFull").src = `Fotos/Foto ${fotoActual}.jpg`; }
+    function abrirImagen(src) { document.getElementById("imgFull").src = src; document.getElementById("imageModal").style.display = "block"; }
+    function compartirWeb() { if (navigator.share) { navigator.share({ title: 'Tony Vázquez', url: window.location.href }); } else { navigator.clipboard.writeText(window.location.href); alert("Enlace copiado 🤘"); } }
     function cerrarBannerIos() { document.getElementById('ios-install-banner').style.display = 'none'; localStorage.setItem('pwa_banner_closed_date', new Date().getTime()); }
-    function compartirWeb() { if (navigator.share) { navigator.share({ title: 'Galería Tony Vázquez', url: window.location.href }); } }
     window.onload = function() {
-        cargarGaleria();
         const closedDate = localStorage.getItem('pwa_banner_closed_date');
         if (!(closedDate && (new Date().getTime() - closedDate < 7 * 24 * 60 * 60 * 1000)) && !window.matchMedia('(display-mode: standalone)').matches) {
             setTimeout(() => { document.getElementById('ios-install-banner').style.display = 'block'; }, 3000);
         }
     };
-    function sumarReaccion(tipo, btn) { if(localStorage.getItem(`voto_${tipo}`)) return; localStorage.setItem(`voto_${tipo}`, 'true'); btn.style.background = "var(--gold)"; btn.style.color = "black"; }
+    window.onscroll = function() { let btn = document.getElementById("btnSubir"); btn.style.display = (document.documentElement.scrollTop > 400) ? "flex" : "none"; };
+    function sumarReaccion(tipo, btn) { if(localStorage.getItem(`voto_${tipo}`)) return; localStorage.setItem(`voto_${tipo}`, 'true'); btn.classList.add('votado'); let span = document.getElementById(`count-${tipo}`); span.innerText = (parseInt(span.innerText) || 0) + 1; }
 </script>
 </body>
 </html>
