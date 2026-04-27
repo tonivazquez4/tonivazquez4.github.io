@@ -107,8 +107,15 @@
 </div>
 
 <script>
-    const totalFotos = 178; const contenedor = document.getElementById('galeria-fotos'); let fotoActual = 1; let escalaActual = 1;
-    function cargarGaleria() { let contenido = ""; for (let i = 1; i <= totalFotos; i++) { contenido += `<div class="foto-card"><img src="Fotos/Foto ${i}.jpg" loading="lazy" onclick="abrirImagen(${i})"></div>`; } contenedor.innerHTML = contenido; }
+    const totalFotos = 178; const limiteFijo = 200; const contenedor = document.getElementById('galeria-fotos'); let fotoActual = 1; let escalaActual = 1;
+    function cargarGaleria() { 
+        let contenido = ""; 
+        // 1. Fotos nuevas (de la actual bajando hasta la 201) aparecen al principio
+        if (totalFotos > limiteFijo) { for (let i = totalFotos; i > limiteFijo; i--) { contenido += `<div class="foto-card"><img src="Fotos/Foto ${i}.jpg" loading="lazy" onclick="abrirImagen(${i})"></div>`; } }
+        // 2. Bloque histórico (de la 1 subiendo hasta la 200) aparecen después
+        for (let i = 1; i <= Math.min(totalFotos, limiteFijo); i++) { contenido += `<div class="foto-card"><img src="Fotos/Foto ${i}.jpg" loading="lazy" onclick="abrirImagen(${i})"></div>`; } 
+        contenedor.innerHTML = contenido; 
+    }
     function abrirImagen(indice) { fotoActual = indice; escalaActual = 1; document.getElementById("imgFull").style.transform = `scale(1)`; actualizarImagenModal(); document.getElementById("imageModal").style.display = "flex"; document.body.style.overflow = "hidden"; }
     function cerrarModal() { document.getElementById("imageModal").style.display = "none"; document.body.style.overflow = "auto"; }
     function cambiarFoto(direccion) { fotoActual += direccion; if (fotoActual > totalFotos) fotoActual = 1; if (fotoActual < 1) fotoActual = totalFotos; escalaActual = 1; document.getElementById("imgFull").style.transform = `scale(1)`; actualizarImagenModal(); }
@@ -127,7 +134,6 @@
         fetch(`https://abacus.jasoncameron.dev/hit/tonyvazquez.es/react_${tipo}`);
     }
 
-    // LÓGICA DE SCROLL RECUPERADA
     window.onscroll = function() { 
         let btn = document.getElementById("btnSubir"); 
         if (document.documentElement.scrollTop > 400) { btn.style.display = "flex"; } else { btn.style.display = "none"; } 
