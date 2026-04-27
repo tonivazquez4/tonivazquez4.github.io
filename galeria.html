@@ -107,18 +107,53 @@
 </div>
 
 <script>
-    const totalFotos = 180; const limiteFijo = 200; const contenedor = document.getElementById('galeria-fotos'); let fotoActual = 1; let escalaActual = 1;
+    // --- CONTADORES SEPARADOS ---
+    const totalClasicas = 178; // Aumenta este cuando metas fotos de la 179 a la 199 (van abajo)
+    const totalNuevas = 0;     // Pon 200, 201, 202... cuando las subas (van arriba). Si aún no hay, déjalo en 0.
+
+    const contenedor = document.getElementById('galeria-fotos'); 
+    let fotoActual = 1; 
+    let escalaActual = 1;
+    let ordenFotos = []; // Lista interna para que el visor salte huecos vacíos automáticamente
+
     function cargarGaleria() { 
         let contenido = ""; 
-        // 1. Fotos nuevas (de la actual bajando hasta la 201) aparecen al principio
-        if (totalFotos > limiteFijo) { for (let i = totalFotos; i > limiteFijo; i--) { contenido += `<div class="foto-card"><img src="Fotos/Foto ${i}.jpg" loading="lazy" onclick="abrirImagen(${i})"></div>`; } }
-        // 2. Bloque histórico (de la 1 subiendo hasta la 200) aparecen después
-        for (let i = 1; i <= Math.min(totalFotos, limiteFijo); i++) { contenido += `<div class="foto-card"><img src="Fotos/Foto ${i}.jpg" loading="lazy" onclick="abrirImagen(${i})"></div>`; } 
+        ordenFotos = []; // Limpiamos la lista al cargar
+
+        // 1. Fotos a partir de la 200 (van arriba, se ordenan de más nueva a más vieja)
+        if (totalNuevas >= 200) { 
+            for (let i = totalNuevas; i >= 200; i--) { 
+                ordenFotos.push(i); // Guardamos que esta foto existe
+                contenido += `<div class="foto-card"><img src="Fotos/Foto ${i}.jpg" loading="lazy" onclick="abrirImagen(${i})"></div>`; 
+            } 
+        }
+
+        // 2. Fotos históricas (van abajo, de la 1 al total que hayas puesto)
+        for (let i = 1; i <= totalClasicas; i++) { 
+            ordenFotos.push(i); // Guardamos que esta foto existe
+            contenido += `<div class="foto-card"><img src="Fotos/Foto ${i}.jpg" loading="lazy" onclick="abrirImagen(${i})"></div>`; 
+        } 
+
         contenedor.innerHTML = contenido; 
     }
+
     function abrirImagen(indice) { fotoActual = indice; escalaActual = 1; document.getElementById("imgFull").style.transform = `scale(1)`; actualizarImagenModal(); document.getElementById("imageModal").style.display = "flex"; document.body.style.overflow = "hidden"; }
     function cerrarModal() { document.getElementById("imageModal").style.display = "none"; document.body.style.overflow = "auto"; }
-    function cambiarFoto(direccion) { fotoActual += direccion; if (fotoActual > totalFotos) fotoActual = 1; if (fotoActual < 1) fotoActual = totalFotos; escalaActual = 1; document.getElementById("imgFull").style.transform = `scale(1)`; actualizarImagenModal(); }
+    
+    // VISOR MODIFICADO: Ahora navega por la lista de fotos que existen realmente, no por números a ciegas
+    function cambiarFoto(direccion) { 
+        let index = ordenFotos.indexOf(fotoActual); // Buscamos en qué posición estamos
+        index += direccion; // Avanzamos o retrocedemos
+        
+        if (index >= ordenFotos.length) index = 0; // Si llegamos al final, volvemos al principio
+        if (index < 0) index = ordenFotos.length - 1; // Si vamos hacia atrás desde la primera, vamos a la última
+        
+        fotoActual = ordenFotos[index]; // Cogemos el número de foto real de esa posición
+        escalaActual = 1; 
+        document.getElementById("imgFull").style.transform = `scale(1)`; 
+        actualizarImagenModal(); 
+    }
+
     function actualizarImagenModal() { document.getElementById("imgFull").src = `Fotos/Foto ${fotoActual}.jpg`; }
     
     function cargarReacciones() {
@@ -128,6 +163,7 @@
             if(localStorage.getItem(`voto_${tipo}`)) { document.getElementById(`count-${tipo}`).parentElement.classList.add('votado'); }
         });
     }
+
     function sumarReaccion(tipo, btn) {
         if(localStorage.getItem(`voto_${tipo}`)) return; localStorage.setItem(`voto_${tipo}`, 'true'); btn.classList.add('votado');
         let span = document.getElementById(`count-${tipo}`); span.innerText = (parseInt(span.innerText) || 0) + 1;
