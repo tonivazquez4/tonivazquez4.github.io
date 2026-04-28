@@ -41,10 +41,11 @@
         #nextBtn { right: 20px; }
         #closeBtn { top: 20px; right: 20px; font-size: 2rem; width: 50px; height: 50px; }
 
-        /* ESTILO SECCION COMENTARIOS UNIFICADO (MODO OSCURO) */
+        /* SECCIÓN COMENTARIOS COMPACTA */
         .seccion-comentarios { 
-            max-width: 800px; 
-            margin: 30px auto; 
+            width: 95%;
+            max-width: 480px; /* Tamaño reducido */
+            margin: 40px auto; 
             padding: 20px; 
             background: rgba(15, 15, 15, 0.95); 
             color: white; 
@@ -52,7 +53,7 @@
             border: 1px solid var(--gold); 
             box-sizing: border-box;
         }
-        .caja-reacciones { display: flex; justify-content: center; gap: 15px; margin-bottom: 25px; flex-wrap: wrap; }
+        .caja-reacciones { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
         .btn-reaccion { 
             background: #222; 
             border: 1px solid var(--gold); 
@@ -113,7 +114,7 @@
         <button class="btn-reaccion" onclick="sumarReaccion('cuernos', this)">🤘 <span id="count-cuernos">0</span></button>
         <button class="btn-reaccion" onclick="sumarReaccion('corazon', this)">😍 <span id="count-corazon">0</span></button>
     </div>
-    <hr style="border: 0.5px solid var(--gold); opacity: 0.2; margin: 30px 0;">
+    <hr style="border: 0.5px solid var(--gold); opacity: 0.2; margin: 25px 0;">
     <div id="cusdis_thread" 
          data-host="https://cusdis.com" 
          data-app-id="b3a46067-e248-4f1a-8f3b-1d829f5606c3" 
@@ -138,29 +139,27 @@
 
 <script>
     // --- CONTADORES SEPARADOS ---
-    const totalClasicas = 179; // Aumenta este cuando metas fotos de la 179 a la 199 (van abajo)
-    const totalNuevas = 0;     // Pon 200, 201, 202... cuando las subas (van arriba). Si aún no hay, déjalo en 0.
+    const totalClasicas = 179; 
+    const totalNuevas = 0;     
 
     const contenedor = document.getElementById('galeria-fotos'); 
     let fotoActual = 1; 
     let escalaActual = 1;
-    let ordenFotos = []; // Lista interna para que el visor salte huecos vacíos automáticamente
+    let ordenFotos = []; 
 
     function cargarGaleria() { 
         let contenido = ""; 
-        ordenFotos = []; // Limpiamos la lista al cargar
+        ordenFotos = []; 
 
-        // 1. Fotos a partir de la 200 (van arriba, se ordenan de más nueva a más vieja)
         if (totalNuevas >= 200) { 
             for (let i = totalNuevas; i >= 200; i--) { 
-                ordenFotos.push(i); // Guardamos que esta foto existe
+                ordenFotos.push(i); 
                 contenido += `<div class="foto-card"><img src="Fotos/Foto ${i}.jpg" loading="lazy" onclick="abrirImagen(${i})"></div>`; 
             } 
         }
 
-        // 2. Fotos históricas (van abajo, de la 1 al total que hayas puesto)
         for (let i = 1; i <= totalClasicas; i++) { 
-            ordenFotos.push(i); // Guardamos que esta foto existe
+            ordenFotos.push(i); 
             contenido += `<div class="foto-card"><img src="Fotos/Foto ${i}.jpg" loading="lazy" onclick="abrirImagen(${i})"></div>`; 
         } 
 
@@ -170,15 +169,14 @@
     function abrirImagen(indice) { fotoActual = indice; escalaActual = 1; document.getElementById("imgFull").style.transform = `scale(1)`; actualizarImagenModal(); document.getElementById("imageModal").style.display = "flex"; document.body.style.overflow = "hidden"; }
     function cerrarModal() { document.getElementById("imageModal").style.display = "none"; document.body.style.overflow = "auto"; }
     
-    // VISOR MODIFICADO: Ahora navega por la lista de fotos que existen realmente, no por números a ciegas
     function cambiarFoto(direccion) { 
-        let index = ordenFotos.indexOf(fotoActual); // Buscamos en qué posición estamos
-        index += direccion; // Avanzamos o retrocedemos
+        let index = ordenFotos.indexOf(fotoActual); 
+        index += direccion; 
         
-        if (index >= ordenFotos.length) index = 0; // Si llegamos al final, volvemos al principio
-        if (index < 0) index = ordenFotos.length - 1; // Si vamos hacia atrás desde la primera, vamos a la última
+        if (index >= ordenFotos.length) index = 0; 
+        if (index < 0) index = ordenFotos.length - 1; 
         
-        fotoActual = ordenFotos[index]; // Cogemos el número de foto real de esa posición
+        fotoActual = ordenFotos[index]; 
         escalaActual = 1; 
         document.getElementById("imgFull").style.transform = `scale(1)`; 
         actualizarImagenModal(); 
