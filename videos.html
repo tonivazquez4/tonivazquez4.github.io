@@ -34,12 +34,34 @@
         .video-wrapper:hover { transform: translateY(-5px); border-color: var(--gold); }
         .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
-        /* SECCION COMENTARIOS - ESTILO GALERIA */
-        .seccion-comentarios { max-width: 800px; margin: 40px auto; padding: 20px; background: white; color: black; border-radius: 12px; border: 2px solid var(--gold); }
-        .caja-reacciones { display: flex; justify-content: center; gap: 15px; margin-bottom: 25px; flex-wrap: wrap; }
-        .btn-reaccion { background: #f8f8f8; border: 2px solid var(--gold); border-radius: 20px; padding: 6px 15px; font-size: 1.4rem; cursor: pointer; transition: 0.3s; color: black; font-weight: bold; display: flex; align-items: center; gap: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        .btn-reaccion:hover { transform: scale(1.1); background: var(--gold-light); }
-        .btn-reaccion.votado { background: var(--gold); color: white; border-color: black; cursor: default; transform: none; }
+        /* SECCION COMENTARIOS COMPACTA, MÁS ANCHA EN PC Y MENOS ALTA */
+        .seccion-comentarios { 
+            width: 95%;
+            max-width: 800px; /* <-- Más ancho para PC */
+            margin: 30px auto; 
+            padding: 15px 20px 10px 20px; /* <-- Menos padding vertical */
+            background: rgba(15, 15, 15, 0.95); 
+            color: white; 
+            border-radius: 15px; 
+            border: 1px solid var(--gold); 
+            box-sizing: border-box;
+        }
+        .caja-reacciones { display: flex; justify-content: center; gap: 10px; margin-bottom: 10px; flex-wrap: wrap; } /* <-- Menos margen inferior */
+        .btn-reaccion { 
+            background: #222; 
+            border: 1px solid var(--gold); 
+            border-radius: 10px; 
+            padding: 6px 12px; /* <-- Botones ligeramente más finos */
+            font-size: 1.2rem; 
+            cursor: pointer; 
+            transition: 0.3s; 
+            color: white; 
+            display: flex; 
+            align-items: center; 
+            gap: 8px; 
+        }
+        .btn-reaccion:hover { transform: scale(1.05); background: rgba(212, 175, 55, 0.1); }
+        .btn-reaccion.votado { background: var(--gold); color: black; border-color: black; cursor: default; transform: none; }
         .btn-reaccion span { font-size: 1.1rem; }
 
         #btnSubir { display: none; position: fixed; bottom: 30px; right: 30px; z-index: 9999; background: var(--gold); color: black; border: none; cursor: pointer; width: 55px; height: 55px; border-radius: 50%; box-shadow: 0 4px 15px rgba(0,0,0,0.6); justify-content: center; align-items: center; font-size: 1.5rem; transition: 0.3s; }
@@ -98,24 +120,25 @@
 </div>
 
 <div class="seccion-comentarios">
-    <h3 style="color: black; text-align: center; text-transform: uppercase; margin-top: 0; font-size: 1.2rem;">¿Qué te parece? ¡Reacciona! 👇</h3>
+    <h3 style="color: var(--gold); text-align: center; text-transform: uppercase; margin: 0 0 10px 0; font-size: 1.1rem;">¿Qué te parece? ¡Reacciona! 👇</h3>
     
     <div class="caja-reacciones">
-        <button class="btn-reaccion" onclick="sumarReaccion('fuego', this)">🔥 <span id="count-fuego">...</span></button>
-        <button class="btn-reaccion" onclick="sumarReaccion('cuernos', this)">🤘 <span id="count-cuernos">...</span></button>
-        <button class="btn-reaccion" onclick="sumarReaccion('corazon', this)">😍 <span id="count-corazon">...</span></button>
+        <button class="btn-reaccion" onclick="sumarReaccion('fuego', this)">🔥 <span id="count-fuego">0</span></button>
+        <button class="btn-reaccion" onclick="sumarReaccion('cuernos', this)">🤘 <span id="count-cuernos">0</span></button>
+        <button class="btn-reaccion" onclick="sumarReaccion('corazon', this)">😍 <span id="count-corazon">0</span></button>
     </div>
 
-    <hr style="border: 1px solid #ddd; margin: 30px 0;">
+    <hr style="border: 0.5px solid var(--gold); opacity: 0.2; margin: 15px 0;">
 
-    <h3 style="color: black; text-align: center; text-transform: uppercase; margin-top: 0; font-size: 1.1rem;">O deja tu mensaje rockero 🎸</h3>
+    <h3 style="color: var(--gold); text-align: center; text-transform: uppercase; margin: 0 0 10px 0; font-size: 1rem; opacity: 0.8;">O deja tu mensaje rockero 🎸</h3>
 
     <div id="cusdis_thread"
       data-host="https://cusdis.com"
       data-app-id="b3a46067-e248-4f1a-8f3b-1d829f5606c3"
       data-page-id="videos_tony_vazquez" 
       data-page-url="https://www.tonyvazquez.es/videos.html"
-      data-page-title="Vídeos Tony Vazquez">
+      data-page-title="Vídeos Tony Vazquez"
+      data-theme="dark">
     </div>
 
     <script defer src="https://cusdis.com/js/widget/lang/es.js"></script>
