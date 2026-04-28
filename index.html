@@ -105,10 +105,11 @@
         .bio-content { max-width: 950px; margin: auto; font-size: 1.15rem; line-height: 1.8; color: #ddd; }
         .bio-content strong { color: var(--gold); }
 
-        /* ESTILO SECCION COMENTARIOS UNIFICADO (MODO OSCURO) */
+        /* SECCIÓN COMENTARIOS MÁS PEQUEÑA Y COMPACTA */
         .seccion-comentarios { 
-            max-width: 800px; 
-            margin: 50px auto; 
+            width: 95%;
+            max-width: 480px; /* Tamaño reducido igual que en Conciertos */
+            margin: 40px auto; 
             padding: 20px; 
             background: rgba(15, 15, 15, 0.95); 
             color: white; 
@@ -116,7 +117,7 @@
             border: 1px solid var(--gold); 
             box-sizing: border-box;
         }
-        .caja-reacciones { display: flex; justify-content: center; gap: 10px; margin-bottom: 25px; flex-wrap: wrap; }
+        .caja-reacciones { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
         .btn-reaccion { 
             background: #222; 
             border: 1px solid var(--gold); 
@@ -293,10 +294,8 @@
         <button class="btn-reaccion" onclick="sumarReaccion('corazon', this)">😍 <span id="count-corazon">0</span></button>
     </div>
 
-    <hr style="border: 0.5px solid var(--gold); opacity: 0.2; margin: 30px 0;">
+    <hr style="border: 0.5px solid var(--gold); opacity: 0.2; margin: 20px 0;">
 
-    <h3 style="color: var(--gold); text-align: center; text-transform: uppercase; margin-top: 0; font-size: 1rem; opacity: 0.8;">O deja tu mensaje rockero 🎸</h3>
-    
     <div id="cusdis_thread"
       data-host="https://cusdis.com"
       data-app-id="b3a46067-e248-4f1a-8f3b-1d829f5606c3"
