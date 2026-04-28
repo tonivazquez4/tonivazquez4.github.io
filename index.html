@@ -105,24 +105,24 @@
         .bio-content { max-width: 950px; margin: auto; font-size: 1.15rem; line-height: 1.8; color: #ddd; }
         .bio-content strong { color: var(--gold); }
 
-        /* SECCIÓN COMENTARIOS MÁS PEQUEÑA Y COMPACTA */
+        /* SECCION COMENTARIOS COMPACTA, MÁS ANCHA EN PC Y MENOS ALTA */
         .seccion-comentarios { 
             width: 95%;
-            max-width: 480px; /* Tamaño reducido igual que en Conciertos */
+            max-width: 800px; 
             margin: 40px auto; 
-            padding: 20px; 
+            padding: 15px 20px 10px 20px; 
             background: rgba(15, 15, 15, 0.95); 
             color: white; 
             border-radius: 15px; 
             border: 1px solid var(--gold); 
             box-sizing: border-box;
         }
-        .caja-reacciones { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+        .caja-reacciones { display: flex; justify-content: center; gap: 10px; margin-bottom: 10px; flex-wrap: wrap; }
         .btn-reaccion { 
             background: #222; 
             border: 1px solid var(--gold); 
             border-radius: 10px; 
-            padding: 8px 12px; 
+            padding: 6px 12px; 
             font-size: 1.2rem; 
             cursor: pointer; 
             transition: 0.3s; 
@@ -286,7 +286,7 @@
 </div>
 
 <div class="seccion-comentarios">
-    <h3 style="color: var(--gold); text-align: center; text-transform: uppercase; margin-top: 0; font-size: 1.1rem;">¿Qué te parece la web? ¡Reacciona! 🤘</h3>
+    <h3 style="color: var(--gold); text-align: center; text-transform: uppercase; margin: 0 0 10px 0; font-size: 1.1rem;">¿Qué te parece la web? ¡Reacciona! 🤘</h3>
     
     <div class="caja-reacciones">
         <button class="btn-reaccion" onclick="sumarReaccion('fuego', this)">🔥 <span id="count-fuego">0</span></button>
@@ -294,7 +294,9 @@
         <button class="btn-reaccion" onclick="sumarReaccion('corazon', this)">😍 <span id="count-corazon">0</span></button>
     </div>
 
-    <hr style="border: 0.5px solid var(--gold); opacity: 0.2; margin: 20px 0;">
+    <hr style="border: 0.5px solid var(--gold); opacity: 0.2; margin: 15px 0;">
+
+    <h3 style="color: var(--gold); text-align: center; text-transform: uppercase; margin: 0 0 10px 0; font-size: 1rem; opacity: 0.8;">O deja tu mensaje rockero 🎸</h3>
 
     <div id="cusdis_thread"
       data-host="https://cusdis.com"
