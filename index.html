@@ -39,7 +39,7 @@
             z-index: -1; 
         }
 
-        /* --- SISTEMA DE AVISOS INDEPENDIENTES --- */
+        /* --- ESTILO ALERTAS INDEPENDIENTES --- */
         #contenedor-avisos { position: relative; z-index: 10002; width: 100%; }
         .barra-flash {
             background: linear-gradient(90deg, #1a1a1a, #2a2a2a, #1a1a1a);
@@ -78,13 +78,19 @@
         .header-center h1 { font-size: clamp(1.2rem, 3vw, 1.8rem); margin: 0; text-transform: uppercase; text-shadow: 2px 2px 10px black;}
         .header-center p { margin: 5px 0 0 0; color: var(--gold); letter-spacing: 4px; font-weight: 700; font-size: 0.8rem; }
 
+        .wrapper-botones-accion { position: relative; display: inline-block; vertical-align: middle; }
         .btn-share {
             background: linear-gradient(45deg, var(--gold), var(--gold-light));
             color: black; border: none; padding: 6px 14px; border-radius: 8px; font-weight: 700;
             cursor: pointer; font-size: 0.75rem; display: inline-flex; align-items: center; gap: 8px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.5); transition: 0.3s; margin-top: 10px; text-transform: uppercase;
         }
-        .btn-share:hover { background: white; transform: scale(1.05); }
+        .btn-tienda {
+            background: #1DB954; color: white; padding: 7px 12px; border-radius: 8px; font-weight: 700;
+            cursor: pointer; font-size: 1rem; display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5); transition: 0.3s; 
+            text-decoration: none; position: absolute; left: 100%; margin-left: 40px; bottom: 0;
+        }
 
         .social-icons { display: flex; gap: 15px; width: 200px; }
         .icons-left { justify-content: flex-start; }
@@ -112,11 +118,11 @@
         .bio-content { max-width: 950px; margin: auto; font-size: 1.15rem; line-height: 1.8; color: #ddd; }
         .bio-content strong { color: var(--gold); }
 
-        .seccion-comentarios { max-width: 800px; margin: 50px auto; padding: 20px; background: white; color: black; border-radius: 12px; border: 2px solid var(--gold); }
+        .seccion-comentarios { width: 95%; max-width: 800px; margin: 40px auto; padding: 20px; background: rgba(15, 15, 15, 0.95); border-radius: 15px; border: 1px solid var(--gold); box-sizing: border-box; }
         .caja-reacciones { display: flex; justify-content: center; gap: 15px; margin-bottom: 25px; flex-wrap: wrap; }
-        .btn-reaccion { background: #f8f8f8; border: 2px solid var(--gold); border-radius: 20px; padding: 6px 15px; font-size: 1.4rem; cursor: pointer; transition: 0.3s; color: black; font-weight: bold; display: flex; align-items: center; gap: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        .btn-reaccion:hover { transform: scale(1.1); background: var(--gold-light); }
-        .btn-reaccion.votado { background: var(--gold); color: white; border-color: black; cursor: default; transform: none; }
+        .btn-reaccion { background: #222; border: 1px solid var(--gold); border-radius: 10px; padding: 10px 18px; font-size: 1.4rem; cursor: pointer; transition: 0.3s; color: white; display: flex; align-items: center; gap: 10px; }
+        .btn-reaccion:hover { transform: scale(1.1); background: rgba(212, 175, 55, 0.1); }
+        .btn-reaccion.votado { background: var(--gold); color: black; border-color: black; cursor: default; }
 
         #btnSubir { 
             display: none; position: fixed; bottom: 30px; right: 30px; z-index: 9999; 
@@ -138,18 +144,17 @@
             .nav-menu { display: flex; justify-content: center; flex-wrap: wrap; gap: 5px; }
             .btn { font-size: 0.75rem; padding: 8px 10px; }
             .social-icons { width: auto; justify-content: center; } 
+            .wrapper-botones-accion { display: inline-block; margin: 0 auto; }
         }
         
         .backstage-box {
             background: linear-gradient(45deg, #111, #222); border: 2px solid var(--gold); padding: 40px 20px;
             text-align: center; border-radius: 15px; margin: 50px auto; max-width: 800px; box-shadow: 0 10px 30px rgba(0,0,0,0.8);
         }
-        .backstage-box h2 { color: var(--gold); text-transform: uppercase; margin-top: 0; margin-bottom: 10px; }
-        .backstage-box p { color: #ccc; margin-bottom: 25px; font-size: 1.1rem; }
-        .backstage-form { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+        .backstage-box h2 { color: var(--gold); text-transform: uppercase; margin-top: 0; }
+        .backstage-form { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-top: 20px; }
         .backstage-input { padding: 12px 20px; border-radius: 8px; border: 1px solid #444; background: #000; color: white; width: 300px; font-family: 'Montserrat', sans-serif; }
-        .btn-subscribe { background: var(--gold); color: black; border: none; padding: 12px 25px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s; text-transform: uppercase; }
-        .btn-subscribe:hover { background: white; transform: scale(1.05); }
+        .btn-subscribe { background: var(--gold); color: black; border: none; padding: 12px 25px; border-radius: 8px; font-weight: 700; cursor: pointer; text-transform: uppercase; transition: 0.3s; }
     </style>
 
     <link rel="manifest" href="manifest.json">
@@ -163,9 +168,9 @@
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', function() {
           navigator.serviceWorker.register('/sw.js').then(function(reg) {
-            console.log('SW registrado');
+            console.log('ServiceWorker registrado');
           }).catch(function(err) {
-            console.log('SW error', err);
+            console.log('Error en ServiceWorker', err);
           });
         });
       }
@@ -202,9 +207,12 @@
     <div class="header-center">
         <h1>TONY VÁZQUEZ</h1>
         <p>ROCK · ALMA · LEYENDA</p>
-        <button class="btn-share" onclick="compartirWeb()">
-            <i class="fa-solid fa-share-nodes"></i> Compartir
-        </button>
+        <div class="wrapper-botones-accion">
+            <button class="btn-share" onclick="compartirWeb()">
+                <i class="fa-solid fa-share-nodes"></i> Compartir
+            </button>
+            <a href="tienda.html" class="btn-tienda" title="Tienda"><i class="fa-solid fa-cart-shopping"></i></a>
+        </div>
     </div>
 
     <div class="social-icons icons-right">
@@ -262,7 +270,6 @@
         <button class="btn-reaccion" onclick="sumarReaccion('cuernos', this)">🤘 <span id="count-cuernos">...</span></button>
         <button class="btn-reaccion" onclick="sumarReaccion('corazon', this)">😍 <span id="count-corazon">...</span></button>
     </div>
-    <hr style="border: 1px solid #ddd; margin: 30px 0;">
     <div id="cusdis_thread" data-host="https://cusdis.com" data-app-id="b3a46067-e248-4f1a-8f3b-1d829f5606c3" data-page-id="inicio_tony_vazquez" data-page-url="https://www.tonyvazquez.es/index.html" data-page-title="Inicio Tony Vazquez" data-theme="dark"></div>
     <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
 </div>
@@ -270,7 +277,7 @@
 <div class="container">
     <div class="backstage-box">
         <h2>Únete al Backstage 🤘</h2>
-        <p>Sé el primero en enterarte de nuevas fechas y lanzamientos.</p>
+        <p>Sé el primero en enterarte de lanzamientos y conciertos exclusivos.</p>
         <form action="https://tonyvazquez.us11.list-manage.com/subscribe/post?u=e028b891a2d01f15a859b80f0&id=c8b0de8308&f_id=00d1d7e3f0" method="post" class="backstage-form" target="_blank">
             <input type="email" name="EMAIL" class="backstage-input" placeholder="Tu correo electrónico" required>
             <button type="submit" class="btn-subscribe">Suscribirme</button>
@@ -288,6 +295,7 @@
 </div>
 
 <script>
+    // --- LÓGICA DE ALERTAS ---
     const configAlertas = {
         fotos: { activo: true, id: "fotos_v1" },
         videos: { activo: true, id: "videos_v1" },
@@ -311,6 +319,7 @@
         }
     }
 
+    // --- FUNCIONES ORIGINALES RESTAURADAS ---
     function abrirImagen(src) { document.getElementById("imgFull").src = src; document.getElementById("imageModal").style.display = "block"; }
     
     function compartirWeb() {
@@ -340,6 +349,7 @@
     function cargarReacciones() {
         ['fuego', 'cuernos', 'corazon'].forEach(tipo => {
             fetch(`https://abacus.jasoncameron.dev/get/tonyvazquez.es/react_${tipo}`).then(r => r.json()).then(d => { document.getElementById(`count-${tipo}`).innerText = d.value || 0; });
+            if(localStorage.getItem(`voto_${tipo}`)) { document.getElementById(`count-${tipo}`).parentElement.classList.add('votado'); }
         });
     }
 
