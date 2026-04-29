@@ -25,7 +25,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     
     <style>
-        :root { --gold: #d4af37; --gold-light: #f9d976; }
+        :root { --gold: #d4af37; --gold-light: #f9d976; --alert-red: #ff4444; }
         
         body { 
             font-family: 'Montserrat', sans-serif; margin: 0; padding: 0; color: white; 
@@ -38,6 +38,50 @@
             background: radial-gradient(circle at center, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.85) 100%); 
             z-index: -1; 
         }
+
+        /* --- ESTILO DEL AVISO FLASH --- */
+        #barra-aviso {
+            background: linear-gradient(90deg, #1a1a1a, #333, #1a1a1a);
+            border-bottom: 1px solid var(--gold);
+            color: white;
+            text-align: center;
+            padding: 12px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            position: relative;
+            z-index: 10002;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            letter-spacing: 1px;
+        }
+
+        .punto-flash {
+            width: 10px;
+            height: 10px;
+            background-color: var(--alert-red);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--alert-red);
+            animation: pulse-red 1.2s infinite;
+        }
+
+        @keyframes pulse-red {
+            0% { transform: scale(0.9); opacity: 0.7; }
+            50% { transform: scale(1.2); opacity: 1; box-shadow: 0 0 15px var(--alert-red); }
+            100% { transform: scale(0.9); opacity: 0.7; }
+        }
+
+        .cerrar-aviso {
+            position: absolute;
+            right: 20px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            opacity: 0.5;
+            transition: 0.3s;
+        }
+        .cerrar-aviso:hover { opacity: 1; color: var(--gold); }
+        /* ------------------------------ */
 
         h1, h2, h3 { font-family: 'Arial Black', sans-serif; }
 
@@ -105,7 +149,6 @@
         .bio-content { max-width: 950px; margin: auto; font-size: 1.15rem; line-height: 1.8; color: #ddd; }
         .bio-content strong { color: var(--gold); }
 
-        /* SECCION COMENTARIOS COMPACTA, MÁS ANCHA EN PC Y MENOS ALTA */
         .seccion-comentarios { 
             width: 95%;
             max-width: 800px; 
@@ -157,6 +200,7 @@
             .btn { font-size: 0.75rem; padding: 8px 10px; }
             .social-icons { width: auto; justify-content: center; } 
             .wrapper-botones-accion { display: inline-block; margin: 0 auto; }
+            #barra-aviso { font-size: 0.75rem; padding: 10px 30px 10px 10px; }
         }
         
         .backstage-box {
@@ -201,19 +245,14 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Tony Vázquez">
     <link rel="apple-touch-icon" href="favicon.png">
-    <script>
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', function() {
-          navigator.serviceWorker.register('/sw.js').then(function(registration) {
-            console.log('ServiceWorker registrado con éxito: ', registration.scope);
-          }, function(err) {
-            console.log('Error al registrar el ServiceWorker: ', err);
-          });
-        });
-      }
-    </script>
 </head>
 <body>
+
+<div id="barra-aviso">
+    <div class="punto-flash"></div>
+    <span>NUEVAS FOTOS Y VÍDEOS DISPONIBLES EN LA GALERÍA 🎸🤘</span>
+    <div class="cerrar-aviso" onclick="this.parentElement.style.display='none'">×</div>
+</div>
 
 <header>
     <img src="logoTV.png" alt="Logo Tony Vázquez" class="header-logo" id="logo-izq">
