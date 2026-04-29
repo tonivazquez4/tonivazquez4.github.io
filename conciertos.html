@@ -45,41 +45,37 @@
         .header-center h1 { font-size: clamp(1rem, 4vw, 1.8rem); margin: 0; text-transform: uppercase; text-shadow: 2px 2px 10px black; }
         .header-center p { margin: 5px 0 0 0; color: var(--gold); letter-spacing: 2px; font-weight: 700; font-size: 0.7rem; }
 
-        /* --- TRUCO DE CENTRADO ABSOLUTO CON GRID --- */
+        /* --- CONTENEDOR DE BOTONES CON SEPARACIÓN FORZADA --- */
         .wrapper-botones-accion { 
-            display: grid;
-            grid-template-columns: 1fr auto 1fr; /* 3 columnas: equilibrador | botón | carrito */
-            align-items: center;
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            position: relative;
             margin-top: 15px;
+            min-height: 50px;
             width: 100%;
-            max-width: 400px; /* Limitamos el ancho para que no se alejen demasiado */
-            margin-left: auto;
-            margin-right: auto;
         }
 
-        .espaciador-izq { width: 40px; } /* Mismo ancho que el botón del carrito para equilibrar */
-
         .btn-share { 
-            grid-column: 2; /* Siempre al centro */
             background: linear-gradient(45deg, var(--gold), var(--gold-light)); 
             color: black; border: none; padding: 8px 18px; border-radius: 8px; font-weight: 700; 
             cursor: pointer; text-transform: uppercase; font-size: 0.75rem; display: inline-flex; align-items: center; gap: 8px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.5); transition: 0.3s;
             white-space: nowrap;
+            z-index: 2;
         }
         .btn-share:hover { background: white; transform: scale(1.05); }
 
         .btn-tienda {
-            grid-column: 3;
-            justify-self: end; /* Pegado a la derecha de su columna */
-            background: #1DB954; color: white; width: 40px; height: 40px; border-radius: 8px; font-weight: 700;
+            background: #1DB954; color: white; width: 42px; height: 42px; border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
             box-shadow: 0 4px 10px rgba(0,0,0,0.5); transition: 0.3s; text-decoration: none;
-            font-size: 1.1rem;
+            font-size: 1.15rem;
+            margin-left: 25px; /* FUERZA LA SEPARACIÓN EN CUALQUIER PANTALLA */
         }
         .btn-tienda:hover { background: #1ed760; transform: scale(1.1); color: white; }
 
-        .social-icons { display: flex; gap: 15px; width: 160px; }
+        .social-icons { display: flex; gap: 15px; width: 200px; }
         .social-icons a { color: white; font-size: 1.3rem; text-decoration: none; transition: 0.3s; }
         .social-icons a:hover { color: var(--gold); transform: translateY(-3px); }
 
@@ -90,20 +86,30 @@
         .container { padding: 20px 15px 40px; max-width: 900px; margin: auto; }
         .mes-titulo { color: var(--gold); text-align: center; font-size: 1.6rem; margin: 40px 0 15px 0; text-transform: uppercase; text-shadow: 2px 2px 5px black; }
         .tour-list { background: rgba(20,20,20,0.9); border-radius: 15px; border: 1px solid var(--gold); padding: 10px; margin-bottom: 20px; }
-        .tour-item { display: flex; justify-content: space-between; align-items: center; padding: 20px; border-bottom: 1px solid #333; cursor: pointer; }
+        .tour-item { display: flex; justify-content: space-between; align-items: center; padding: 20px; border-bottom: 1px solid #333; cursor: pointer; transition: 0.3s; }
+        .tour-item:last-child { border-bottom: none; }
+        .tour-item:hover { background: rgba(212, 175, 55, 0.1); }
         .tour-date { color: var(--gold); font-weight: bold; font-size: 1.1rem; min-width: 80px; text-align: center; }
-        .tour-info { flex-grow: 1; padding: 0 15px; text-align: left; font-size: 0.95rem; }
+        .tour-info { flex-grow: 1; padding: 0 15px; text-align: left; font-size: 0.95rem; line-height: 1.4; }
         
         .muro-rockero { width: 95%; max-width: 800px; margin: 40px auto; padding: 20px; background: rgba(15, 15, 15, 0.95); border-radius: 15px; border: 1px solid var(--gold); color: white; box-sizing: border-box; }
         
-        footer { text-align: center; padding: 30px; background: #000; border-top: 2px solid #222; font-size: 0.8rem; }
-        #btnSubir { display: none; position: fixed; bottom: 20px; right: 20px; z-index: 9999; background: var(--gold); color: black; border: none; width: 50px; height: 50px; border-radius: 50%; justify-content: center; align-items: center; font-size: 1.2rem; cursor: pointer; }
+        footer { text-align: center; padding: 30px; background: #000; border-top: 2px solid #222; font-size: 0.8rem; color: #888; }
+        
+        #btnSubir { 
+            display: none; position: fixed; bottom: 20px; right: 20px; z-index: 9999; 
+            background: var(--gold); color: black; border: none; width: 50px; height: 50px; 
+            border-radius: 50%; justify-content: center; align-items: center; cursor: pointer; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5); font-size: 1.2rem;
+        }
 
         @media (max-width: 768px) { 
             header { flex-direction: column; padding: 20px; gap: 15px; align-items: center; } 
             .header-logo { display: none; } 
             .social-icons { width: 100%; justify-content: center !important; }
+            .wrapper-botones-accion { width: 100%; justify-content: center; padding-left: 42px; } /* El padding compensa el ancho del carrito para que el de compartir quede centrado visualmente */
             .tour-item { flex-direction: column; text-align: center; gap: 10px; } 
+            .tour-info { text-align: center; } 
         }
     </style>
 </head>
@@ -121,10 +127,10 @@
         <h1>TONY VÁZQUEZ</h1>
         <p>CONCIERTOS</p>
         <div class="wrapper-botones-accion">
-            <div class="espaciador-izq"></div> <button class="btn-share" onclick="compartirWeb()">
+            <button class="btn-share" onclick="compartirWeb()">
                 <i class="fa-solid fa-share-nodes"></i> Compartir
             </button>
-            <a href="tienda.html" class="btn-tienda" title="Tienda">
+            <a href="tienda.html" class="btn-tienda" title="Ir a la Tienda">
                 <i class="fa-solid fa-cart-shopping"></i>
             </a>
         </div>
@@ -177,29 +183,19 @@
 
 <footer><p>© 2026 Tony Vázquez. Todos los derechos reservados.</p></footer>
 
+<div id="ios-install-banner" style="display:none; position:fixed; bottom:20px; left:50%; transform:translateX(-50%); width:92%; max-width:400px; background:rgba(20,20,20,0.98); border:2px solid var(--gold); border-radius:12px; padding:20px; color:white; z-index:999999; text-align:center;">
+    <button onclick="cerrarBannerIos()" style="position:absolute; top:5px; right:10px; background:none; border:none; color:white; font-size:1.8rem; cursor:pointer;">×</button>
+    <p style="margin:0 0 10px 0; font-weight:bold; color:var(--gold);">📲 Instala la App</p>
+    <p style="margin:0; font-size:0.85rem;">Fechas de la gira siempre a mano 🤘</p>
+</div>
+
 <button id="btnSubir" onclick="window.scrollTo({top: 0, behavior: 'smooth'})"><i class="fa-solid fa-arrow-up"></i></button>
 
 <script defer src="https://cusdis.com/js/widget/lang/es.js"></script>
 <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
 <script>
-    function trazarRuta(destino) { const d = encodeURIComponent(destino); if (/iPad|iPhone|iPod/.test(navigator.userAgent)) { window.location.href = 'maps://?daddr=' + d; } else { window.open('http://googleusercontent.com/maps.google.com/13' + d, '_blank'); } }
+    function trazarRuta(destino) { const d = encodeURIComponent(destino); if (/iPad|iPhone|iPod/.test(navigator.userAgent)) { window.location.href = 'maps://?daddr=' + d; } else { window.open('http://googleusercontent.com/maps.google.com/14' + d, '_blank'); } }
     
     function compartirWeb() {
         if (navigator.share) {
-            navigator.share({ title: 'Conciertos Tony Vázquez', url: window.location.href });
-        } else {
-            navigator.clipboard.writeText(window.location.href);
-            alert("Enlace copiado 🤘");
-        }
-    }
-
-    window.onload = function() { cargarReacciones(); };
-
-    function cargarReacciones() { const api = 'https://abacus.jasoncameron.dev'; const site = 'tonyvazquez.es'; ['fuego', 'cuernos', 'corazon'].forEach(tipo => { fetch(`${api}/get/${site}/react_${tipo}`).then(r => r.json()).then(d => { document.getElementById(`count-${tipo}`).innerText = d.value || 0; }); }); }
-    
-    function sumarReaccion(tipo, btn) { if(localStorage.getItem(`voto_${tipo}`)) return; localStorage.setItem(`voto_${tipo}`, 'true'); btn.style.background = "var(--gold)"; btn.style.color = "black"; let span = document.getElementById(`count-${tipo}`); span.innerText = (parseInt(span.innerText) || 0) + 1; fetch(`https://abacus.jasoncameron.dev/hit/tonyvazquez.es/react_${tipo}`); }
-    
-    window.onscroll = function() { let btn = document.getElementById("btnSubir"); btn.style.display = (document.documentElement.scrollTop > 400) ? "flex" : "none"; };
-</script>
-</body>
-</html>
+            navigator.share
