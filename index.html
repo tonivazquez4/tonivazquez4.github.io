@@ -49,14 +49,19 @@
             z-index: -1; 
         }
 
-        /* --- ESTILOS ALERTAS --- */
-        #contenedor-avisos { position: relative; z-index: 10002; width: 100%; }
+        /* --- ESTILOS ALERTAS CON ANIMACIÓN DE DESLIZAMIENTO --- */
+        #contenedor-avisos { position: relative; z-index: 10002; width: 100%; overflow: hidden; }
+        
         .barra-flash {
             background: linear-gradient(90deg, #1a1a1a, #2a2a2a, #1a1a1a);
             border-bottom: 1px solid var(--gold);
-            color: white; text-align: center; padding: 10px; font-weight: 600; font-size: 0.85rem;
+            color: white; text-align: center; padding: 12px; font-weight: 600; font-size: 0.85rem;
             display: none; justify-content: center; align-items: center; gap: 12px; letter-spacing: 1px;
+            transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+            touch-action: pan-y; /* Permite scroll vertical pero detectamos el horizontal */
+            user-select: none;
         }
+
         .punto-flash {
             width: 8px; height: 8px; background-color: var(--alert-red); border-radius: 50%;
             box-shadow: 0 0 10px var(--alert-red); animation: pulse-red 1.2s infinite;
@@ -82,20 +87,18 @@
         .header-center h1 { font-size: clamp(1.2rem, 3vw, 1.8rem); margin: 0; text-transform: uppercase; text-shadow: 2px 2px 10px black;}
         .header-center p { margin: 5px 0 0 0; color: var(--gold); letter-spacing: 4px; font-weight: 700; font-size: 0.8rem; }
 
-        /* --- BOTONES ACCIÓN: CENTRADO MILIMÉTRICO --- */
+        /* --- BOTONES ACCIÓN: CENTRADO PERFECTO --- */
         .wrapper-botones-accion { 
             display: grid;
-            grid-template-columns: 50px 1fr 50px; /* Equilibrio perfecto */
+            grid-template-columns: 50px 1fr 50px;
             align-items: center;
             justify-content: center;
             margin: 15px auto 0;
             width: 100%;
-            max-width: 320px;
+            max-width: 350px;
         }
-
         .btn-share { 
-            grid-column: 2;
-            justify-self: center;
+            grid-column: 2; justify-self: center;
             background: linear-gradient(45deg, var(--gold), var(--gold-light)); 
             color: black; border: none; padding: 8px 18px; border-radius: 8px; font-weight: 700; 
             cursor: pointer; font-size: 0.75rem; display: inline-flex; align-items: center; gap: 8px; 
@@ -105,20 +108,17 @@
         .btn-share:hover { background: white; transform: scale(1.05); }
 
         .btn-tienda { 
-            grid-column: 3;
-            justify-self: end;
+            grid-column: 3; justify-self: start; margin-left: 20px;
             background: #1DB954; color: white; width: 42px; height: 42px; border-radius: 50%; 
             display: flex; align-items: center; justify-content: center; 
             box-shadow: 0 4px 10px rgba(0,0,0,0.5); transition: 0.3s; text-decoration: none;
             font-size: 1.15rem;
         }
-        .btn-tienda:hover { background: #1ed760; transform: scale(1.1); color: white; }
 
         .social-icons { display: flex; gap: 15px; width: 200px; }
         .icons-left { justify-content: flex-start; }
         .icons-right { justify-content: flex-end; }
         .social-icons a { color: white; font-size: 1.4rem; text-decoration: none; transition: 0.3s; }
-        .social-icons a:hover { color: var(--gold); transform: translateY(-3px); }
 
         .nav-menu { text-align: center; margin: 30px 0; }
         .btn { background: linear-gradient(45deg, var(--gold), var(--gold-light)); color: black; padding: 10px 22px; text-decoration: none; border-radius: 8px; font-weight: 700; display: inline-block; margin: 5px; transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
@@ -129,7 +129,6 @@
 
         .discografia { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
         .album-card { background: rgba(20, 20, 20, 0.9); border: 1px solid #333; border-radius: 15px; overflow: hidden; text-align: center; padding-bottom: 20px; transition: 0.4s; }
-        .album-card:hover { transform: translateY(-10px); border-color: var(--gold); }
         .album-img { width: 100%; height: 350px; object-fit: contain; background: black; padding-top: 10px; cursor: pointer; }
 
         .bio { background: rgba(0,0,0,0.8); padding: 60px 20px; text-align: center; border-top: 1px solid #333; border-bottom: 1px solid #333; margin-top: 50px; }
@@ -146,27 +145,16 @@
             .social-icons { width: 100%; justify-content: center !important; } 
             .nav-menu { display: flex; justify-content: center; flex-wrap: wrap; gap: 5px; }
             .btn { font-size: 0.75rem; padding: 8px 10px; }
-            .wrapper-botones-accion { max-width: 280px; }
+            .wrapper-botones-accion { max-width: 280px; gap: 10px; }
         }
-        
-        .backstage-box { background: linear-gradient(45deg, #111, #222); border: 2px solid var(--gold); padding: 40px 20px; text-align: center; border-radius: 15px; margin: 50px auto; max-width: 800px; box-shadow: 0 10px 30px rgba(0,0,0,0.8); }
-        .backstage-input { padding: 12px 20px; border-radius: 8px; border: 1px solid #444; background: #000; color: white; width: 300px; font-family: 'Montserrat', sans-serif; }
-        .btn-subscribe { background: var(--gold); color: black; border: none; padding: 12px 25px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s; text-transform: uppercase; }
 
         #cajaContador { display:none; position:fixed; bottom:20px; left:20px; background:#000; border:2px solid var(--gold); color:var(--gold); padding:10px 15px; border-radius:8px; font-weight:bold; z-index:999999; box-shadow:0 4px 10px rgba(0,0,0,0.8); cursor:pointer; }
     </style>
 
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#d4af37">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="Tony Vázquez">
-    <link rel="apple-touch-icon" href="favicon.png">
-
     <script>
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', function() {
-          navigator.serviceWorker.register('/sw.js').then(function(reg) { console.log('PWA ok'); }).catch(function(err) { console.log('SW error', err); });
+          navigator.serviceWorker.register('/sw.js').then(function(reg) { console.log('SW ok'); }).catch(function(err) { console.log('SW error', err); });
         });
       }
     </script>
@@ -174,17 +162,17 @@
 <body>
 
 <div id="contenedor-avisos">
-    <div id="aviso-fotos" class="barra-flash">
+    <div id="aviso-fotos" class="barra-flash" data-tipo="fotos">
         <div class="punto-flash"></div>
         <span>¡HAY NUEVAS FOTOS DISPONIBLES!</span>
         <a href="galeria.html" class="link-aviso" onclick="marcarVisto('fotos')">IR A GALERÍA 🤘</a>
     </div>
-    <div id="aviso-videos" class="barra-flash">
+    <div id="aviso-videos" class="barra-flash" data-tipo="videos">
         <div class="punto-flash"></div>
         <span>¡NUEVOS VÍDEOS EN EL CANAL!</span>
         <a href="videos.html" class="link-aviso" onclick="marcarVisto('videos')">VER VÍDEOS 🎸</a>
     </div>
-    <div id="aviso-conciertos" class="barra-flash">
+    <div id="aviso-conciertos" class="barra-flash" data-tipo="conciertos">
         <div class="punto-flash" style="background-color: var(--alert-blue); box-shadow: 0 0 10px var(--alert-blue);"></div>
         <span>¡NUEVA FECHA DE CONCIERTO CONFIRMADA!</span>
         <a href="conciertos.html" class="link-aviso" onclick="marcarVisto('conciertos')">VER CITAS 📅</a>
@@ -194,7 +182,7 @@
 <header>
     <img src="logoTV.png" alt="Logo" class="header-logo" id="logo-izq">
     <div class="social-icons icons-left">
-        <a href="https://open.spotify.com/intl-es/artist/1497948014" target="_blank"><i class="fa-brands fa-spotify"></i></a>
+        <a href="https://open.spotify.com/intl-es/artist/5PGFsB4rJcNb9h5gBOKnWw" target="_blank"><i class="fa-brands fa-spotify"></i></a>
         <a href="https://music.apple.com/es/artist/tony-vazquez/1497948014" target="_blank"><i class="fa-brands fa-apple"></i></a>
         <a href="https://music.youtube.com/channel/UCFNdFbrM3s0kznhCGpRJ3GA" target="_blank"><i class="fa-brands fa-youtube"></i></a>
     </div>
@@ -203,7 +191,8 @@
         <h1>TONY VÁZQUEZ</h1>
         <p>ROCK · ALMA · LEYENDA</p>
         <div class="wrapper-botones-accion">
-            <div style="width: 50px;"></div> <button class="btn-share" onclick="compartirWeb()">
+            <div style="width: 42px;"></div>
+            <button class="btn-share" onclick="compartirWeb()">
                 <i class="fa-solid fa-share-nodes"></i> Compartir
             </button>
             <a href="tienda.html" class="btn-tienda" title="Ir a la Tienda">
@@ -289,11 +278,47 @@
 <div id="cajaContador" onclick="this.style.display='none'">👀 Visitas totales: <span id="numeroVisitas">...</span></div>
 
 <script>
+    // --- CONFIGURACIÓN DE ALERTAS ---
     const configAlertas = {
         fotos: { activo: true, id: "fotos_v1" },
         videos: { activo: true, id: "videos_v1" },
         conciertos: { activo: true, id: "conciertos_v1" }
     };
+
+    // --- FUNCIÓN PARA MARCAR COMO VISTO ---
+    function marcarVisto(tipo) {
+        if (configAlertas[tipo]) {
+            localStorage.setItem('visto_' + configAlertas[tipo].id, 'true');
+            const el = document.getElementById('aviso-' + tipo);
+            if (el) {
+                el.style.transform = 'translateX(-100%)';
+                el.style.opacity = '0';
+                setTimeout(() => el.style.display = 'none', 300);
+            }
+        }
+    }
+
+    // --- LÓGICA DE SWIPE (DESLIZAR) ---
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    function inicializarSwipe() {
+        const barras = document.querySelectorAll('.barra-flash');
+        barras.forEach(barra => {
+            barra.addEventListener('touchstart', e => {
+                touchStartX = e.changedTouches[0].screenX;
+            }, false);
+
+            barra.addEventListener('touchend', e => {
+                touchEndX = e.changedTouches[0].screenX;
+                const tipo = barra.getAttribute('data-tipo');
+                // Si el deslizamiento es hacia la izquierda y mayor de 70px
+                if (touchStartX - touchEndX > 70) {
+                    marcarVisto(tipo);
+                }
+            }, false);
+        });
+    }
 
     function gestionarAvisos() {
         Object.keys(configAlertas).forEach(tipo => {
@@ -302,36 +327,17 @@
                 document.getElementById('aviso-' + tipo).style.display = 'flex';
             }
         });
-    }
-
-    function marcarVisto(tipo) {
-        if (configAlertas[tipo]) {
-            localStorage.setItem('visto_' + configAlertas[tipo].id, 'true');
-            const el = document.getElementById('aviso-' + tipo);
-            if (el) el.style.display = 'none';
-        }
+        inicializarSwipe();
     }
 
     function abrirImagen(src) { document.getElementById("imgFull").src = src; document.getElementById("imageModal").style.display = "block"; }
 
     async function compartirWeb() {
-        const shareData = {
-            title: 'Tony Vázquez | Web Oficial 🎸',
-            text: 'Escucha la música de Tony Vázquez y únete al Backstage. 🤘',
-            url: window.location.href
-        };
+        const shareData = { title: 'Tony Vázquez | Web Oficial 🎸', text: 'Escucha la música de Tony Vázquez 🤘', url: window.location.href };
         try {
             if (navigator.share) { await navigator.share(shareData); } 
             else { await navigator.clipboard.writeText(window.location.href); alert("Enlace copiado 🤘"); }
-        } catch (err) {
-            const tempInput = document.createElement("input");
-            document.body.appendChild(tempInput);
-            tempInput.value = window.location.href;
-            tempInput.select();
-            document.execCommand("copy");
-            document.body.removeChild(tempInput);
-            alert("Enlace copiado 🤘");
-        }
+        } catch (err) { alert("Enlace: " + window.location.href); }
     }
 
     window.onscroll = function() { 
