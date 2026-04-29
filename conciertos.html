@@ -45,7 +45,7 @@
         .header-center h1 { font-size: clamp(1rem, 4vw, 1.8rem); margin: 0; text-transform: uppercase; text-shadow: 2px 2px 10px black; }
         .header-center p { margin: 5px 0 0 0; color: var(--gold); letter-spacing: 2px; font-weight: 700; font-size: 0.7rem; }
 
-        /* --- CONTENEDOR DE BOTONES CON SEPARACIÓN FORZADA --- */
+        /* --- BOTONES ACCIÓN: CENTRADO PERFECTO --- */
         .wrapper-botones-accion { 
             display: flex; 
             align-items: center; 
@@ -58,11 +58,12 @@
 
         .btn-share { 
             background: linear-gradient(45deg, var(--gold), var(--gold-light)); 
-            color: black; border: none; padding: 8px 18px; border-radius: 8px; font-weight: 700; 
-            cursor: pointer; text-transform: uppercase; font-size: 0.75rem; display: inline-flex; align-items: center; gap: 8px;
+            color: black; border: none; padding: 10px 20px; border-radius: 8px; font-weight: 700; 
+            cursor: pointer; text-transform: uppercase; font-size: 0.75rem; 
+            display: inline-flex; align-items: center; gap: 8px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.5); transition: 0.3s;
             white-space: nowrap;
-            z-index: 2;
+            z-index: 10; /* Asegura que se pueda clicar siempre */
         }
         .btn-share:hover { background: white; transform: scale(1.05); }
 
@@ -71,7 +72,7 @@
             display: flex; align-items: center; justify-content: center;
             box-shadow: 0 4px 10px rgba(0,0,0,0.5); transition: 0.3s; text-decoration: none;
             font-size: 1.15rem;
-            margin-left: 25px; /* FUERZA LA SEPARACIÓN EN CUALQUIER PANTALLA */
+            margin-left: 30px; /* Separación real */
         }
         .btn-tienda:hover { background: #1ed760; transform: scale(1.1); color: white; }
 
@@ -81,35 +82,24 @@
 
         .nav-menu { text-align: center; margin: 20px 0; display: flex; justify-content: center; flex-wrap: wrap; gap: 5px; }
         .btn { background: linear-gradient(45deg, var(--gold), var(--gold-light)); color: black; padding: 10px 20px; text-decoration: none; border-radius: 8px; font-weight: 700; font-size: 0.8rem; transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
-        .btn:hover, .btn.activo { background: white; transform: scale(1.05); }
 
         .container { padding: 20px 15px 40px; max-width: 900px; margin: auto; }
-        .mes-titulo { color: var(--gold); text-align: center; font-size: 1.6rem; margin: 40px 0 15px 0; text-transform: uppercase; text-shadow: 2px 2px 5px black; }
+        .mes-titulo { color: var(--gold); text-align: center; font-size: 1.6rem; margin: 40px 0 15px 0; text-transform: uppercase; }
         .tour-list { background: rgba(20,20,20,0.9); border-radius: 15px; border: 1px solid var(--gold); padding: 10px; margin-bottom: 20px; }
-        .tour-item { display: flex; justify-content: space-between; align-items: center; padding: 20px; border-bottom: 1px solid #333; cursor: pointer; transition: 0.3s; }
-        .tour-item:last-child { border-bottom: none; }
-        .tour-item:hover { background: rgba(212, 175, 55, 0.1); }
-        .tour-date { color: var(--gold); font-weight: bold; font-size: 1.1rem; min-width: 80px; text-align: center; }
-        .tour-info { flex-grow: 1; padding: 0 15px; text-align: left; font-size: 0.95rem; line-height: 1.4; }
+        .tour-item { display: flex; justify-content: space-between; align-items: center; padding: 20px; border-bottom: 1px solid #333; cursor: pointer; }
         
         .muro-rockero { width: 95%; max-width: 800px; margin: 40px auto; padding: 20px; background: rgba(15, 15, 15, 0.95); border-radius: 15px; border: 1px solid var(--gold); color: white; box-sizing: border-box; }
         
-        footer { text-align: center; padding: 30px; background: #000; border-top: 2px solid #222; font-size: 0.8rem; color: #888; }
+        footer { text-align: center; padding: 30px; background: #000; border-top: 2px solid #222; font-size: 0.8rem; }
         
-        #btnSubir { 
-            display: none; position: fixed; bottom: 20px; right: 20px; z-index: 9999; 
-            background: var(--gold); color: black; border: none; width: 50px; height: 50px; 
-            border-radius: 50%; justify-content: center; align-items: center; cursor: pointer; 
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5); font-size: 1.2rem;
-        }
+        #btnSubir { display: none; position: fixed; bottom: 20px; right: 20px; z-index: 9999; background: var(--gold); color: black; border: none; width: 50px; height: 50px; border-radius: 50%; justify-content: center; align-items: center; cursor: pointer; }
 
         @media (max-width: 768px) { 
             header { flex-direction: column; padding: 20px; gap: 15px; align-items: center; } 
             .header-logo { display: none; } 
             .social-icons { width: 100%; justify-content: center !important; }
-            .wrapper-botones-accion { width: 100%; justify-content: center; padding-left: 42px; } /* El padding compensa el ancho del carrito para que el de compartir quede centrado visualmente */
+            .wrapper-botones-accion { padding-left: 42px; } /* Equilibra el carrito para centrar compartir */
             .tour-item { flex-direction: column; text-align: center; gap: 10px; } 
-            .tour-info { text-align: center; } 
         }
     </style>
 </head>
@@ -154,20 +144,11 @@
 <div class="container">
     <h2 class="mes-titulo">Mayo 2026</h2>
     <div class="tour-list">
-        <div class="tour-item" onclick="trazarRuta('Socobio-Piélagos, Cantabria')"><div class="tour-date">02 MAY</div><div class="tour-info">Cantabria - Socobio-Piélagos<br><strong>Kubo Golden Tour</strong><span> 23:00h</span></div></div>
-        <div class="tour-item" onclick="trazarRuta('Barrio de Follateira, Ourense')"><div class="tour-date">09 MAY</div><div class="tour-info">Ourense - Barrio de Follateira<br><strong>Kubo Golden Tour</strong><span> 22:00h</span></div></div>
-        <div class="tour-item" onclick="trazarRuta('Vilagarcía de Arousa, Pontevedra')"><div class="tour-date">21 MAY</div><div class="tour-info">Pontevedra - Vilagarcía de Arousa<br><strong>Kubo Golden Tour</strong><span> 22:00h</span></div></div>
-        <div class="tour-item" onclick="trazarRuta('Arteixo, A Coruña')"><div class="tour-date">29 MAY</div><div class="tour-info">A Coruña - Arteixo<br><strong>Kubo Golden Tour</strong><span> 22:00h</span></div></div>
-        <div class="tour-item" onclick="trazarRuta('Dornels-Mos, Pontevedra')"><div class="tour-date">30 MAY</div><div class="tour-info">Pontevedra - Dornels-Mos<br><strong>Kubo Golden Tour</strong><span> 22:00h</span></div></div>
-    </div>
-
-    <h2 class="mes-titulo">Junio 2026</h2>
-    <div class="tour-list">
-        <div class="tour-item" onclick="trazarRuta('Burela, Lugo')"><div class="tour-date">05 JUN</div><div class="tour-info">Lugo - Burela<br><strong>Kubo Golden Tour</strong><span> 22:00h</span></div></div>
-        <div class="tour-item" onclick="trazarRuta('Corbelle-A Pastoriza, Lugo')"><div class="tour-date">06 JUN</div><div class="tour-info">Lugo - Corbelle-A Pastoriza<br><strong>Kubo Golden Tour</strong><span> 22:30h</span></div></div>
-        <div class="tour-item" onclick="trazarRuta('Paiosaco-Laracha, A Coruña')"><div class="tour-date">08 JUN</div><div class="tour-info">A Coruña - Paiosaco-Laracha<br><strong>Kubo Golden Tour</strong><span> 22:30h</span></div></div>
-        <div class="tour-item" onclick="trazarRuta('Leon')"><div class="tour-date">13 JUN</div><div class="tour-info">Leon<br><strong>Kubo Golden Tour</strong><span> 22:30h</span></div></div>
-    </div>
+        <div class="tour-item" onclick="trazarRuta('Socobio-Piélagos, Cantabria')">
+            <div class="tour-date">02 MAY</div>
+            <div class="tour-info">Cantabria - Socobio-Piélagos<br><strong>Kubo Golden Tour</strong><span> 23:00h</span></div>
+        </div>
+        </div>
 </div>
 
 <div class="muro-rockero">
@@ -183,19 +164,46 @@
 
 <footer><p>© 2026 Tony Vázquez. Todos los derechos reservados.</p></footer>
 
-<div id="ios-install-banner" style="display:none; position:fixed; bottom:20px; left:50%; transform:translateX(-50%); width:92%; max-width:400px; background:rgba(20,20,20,0.98); border:2px solid var(--gold); border-radius:12px; padding:20px; color:white; z-index:999999; text-align:center;">
-    <button onclick="cerrarBannerIos()" style="position:absolute; top:5px; right:10px; background:none; border:none; color:white; font-size:1.8rem; cursor:pointer;">×</button>
-    <p style="margin:0 0 10px 0; font-weight:bold; color:var(--gold);">📲 Instala la App</p>
-    <p style="margin:0; font-size:0.85rem;">Fechas de la gira siempre a mano 🤘</p>
-</div>
-
 <button id="btnSubir" onclick="window.scrollTo({top: 0, behavior: 'smooth'})"><i class="fa-solid fa-arrow-up"></i></button>
 
 <script defer src="https://cusdis.com/js/widget/lang/es.js"></script>
 <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
 <script>
-    function trazarRuta(destino) { const d = encodeURIComponent(destino); if (/iPad|iPhone|iPod/.test(navigator.userAgent)) { window.location.href = 'maps://?daddr=' + d; } else { window.open('http://googleusercontent.com/maps.google.com/14' + d, '_blank'); } }
+    function trazarRuta(destino) { const d = encodeURIComponent(destino); if (/iPad|iPhone|iPod/.test(navigator.userAgent)) { window.location.href = 'maps://?daddr=' + d; } else { window.open('http://googleusercontent.com/maps.google.com/15' + d, '_blank'); } }
     
-    function compartirWeb() {
-        if (navigator.share) {
-            navigator.share
+    // --- FUNCIÓN COMPARTIR BLINDADA ---
+    async function compartirWeb() {
+        const shareData = {
+            title: 'Tony Vázquez | Conciertos 🎸',
+            text: 'Mira las próximas fechas de la gira de Tony Vázquez 🤘',
+            url: window.location.href
+        };
+
+        try {
+            if (navigator.share) {
+                await navigator.share(shareData);
+            } else {
+                await navigator.clipboard.writeText(window.location.href);
+                alert("Enlace de la web copiado al portapapeles 🤘");
+            }
+        } catch (err) {
+            console.log('Error compartiendo:', err);
+            // Fallback manual por si falla el clipboard
+            const tempInput = document.createElement("input");
+            document.body.appendChild(tempInput);
+            tempInput.value = window.location.href;
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+            alert("Enlace copiado 🤘");
+        }
+    }
+
+    window.onload = function() { cargarReacciones(); };
+
+    function cargarReacciones() { const api = 'https://abacus.jasoncameron.dev'; const site = 'tonyvazquez.es'; ['fuego', 'cuernos', 'corazon'].forEach(tipo => { fetch(`${api}/get/${site}/react_${tipo}`).then(r => r.json()).then(d => { document.getElementById(`count-${tipo}`).innerText = d.value || 0; }); }); }
+    function sumarReaccion(tipo, btn) { if(localStorage.getItem(`voto_${tipo}`)) return; localStorage.setItem(`voto_${tipo}`, 'true'); btn.style.background = "var(--gold)"; btn.style.color = "black"; let span = document.getElementById(`count-${tipo}`); span.innerText = (parseInt(span.innerText) || 0) + 1; fetch(`https://abacus.jasoncameron.dev/hit/tonyvazquez.es/react_${tipo}`); }
+    window.onscroll = function() { let btn = document.getElementById("btnSubir"); btn.style.display = (document.documentElement.scrollTop > 400) ? "flex" : "none"; };
+</script>
+</body>
+</html>
