@@ -136,6 +136,41 @@
 
         .seccion-comentarios { width: 95%; max-width: 800px; margin: 40px auto; padding: 15px 20px 10px 20px; background: rgba(15, 15, 15, 0.95); color: white; border-radius: 15px; border: 1px solid var(--gold); box-sizing: border-box; }
         
+        /* --- ESTILOS CAJA BACKSTAGE (RESTAURADOS) --- */
+        .backstage-box {
+            background: linear-gradient(45deg, #111, #222);
+            border: 2px solid var(--gold);
+            padding: 40px 20px;
+            text-align: center;
+            border-radius: 15px;
+            margin: 50px auto;
+            max-width: 800px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+        }
+        .backstage-box h2 { color: var(--gold); text-transform: uppercase; margin-top: 0; margin-bottom: 20px; }
+        .backstage-form { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+        .backstage-input {
+            padding: 12px 20px;
+            border-radius: 8px;
+            border: 1px solid #444;
+            background: #000;
+            color: white;
+            width: 300px;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .btn-subscribe {
+            background: var(--gold);
+            color: black;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+            text-transform: uppercase;
+        }
+        .btn-subscribe:hover { background: white; transform: scale(1.05); }
+
         #btnSubir { display: none; position: fixed; bottom: 30px; right: 30px; z-index: 9999; background: var(--gold); color: black; border: none; width: 55px; height: 55px; border-radius: 50%; box-shadow: 0 4px 15px rgba(0,0,0,0.6); justify-content: center; align-items: center; font-size: 1.5rem; transition: 0.3s; }
         footer { padding: 25px; text-align: center; background: #000; border-top: 2px solid #222; cursor: pointer; }
 
