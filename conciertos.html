@@ -188,15 +188,13 @@
 <script defer src="https://cusdis.com/js/widget/lang/es.js"></script>
 <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
 <script>
-    function trazarRuta(destino) { const d = encodeURIComponent(destino); if (/iPad|iPhone|iPod/.test(navigator.userAgent)) { window.location.href = 'maps://?daddr=' + d; } else { window.open('http://googleusercontent.com/maps.google.com/15' + d, '_blank'); } }
-    
-    async function compartirWeb() {
-        const shareData = { title: 'Conciertos Tony Vázquez', text: 'Fechas de la gira Alma de Rock 🤘', url: window.location.href };
-        try {
-            if (navigator.share) { await navigator.share(shareData); } 
-            else { await navigator.clipboard.writeText(window.location.href); alert("Enlace copiado 🤘"); }
-        } catch (err) {
-            alert("Enlace: " + window.location.href);
+    function trazarRuta(destino) { 
+    const d = encodeURIComponent(destino); 
+    if (/iPad|iPhone|iPod/.test(navigator.userAgent)) { 
+        window.location.href = 'maps://?daddr=' + d; 
+    } else { 
+        // URL corregida para abrir Google Maps en web/ordenador/Android
+        window.open('https://www.google.com/maps/dir/?api=1&destination=' + d, '_blank'); 
         }
     }
 
