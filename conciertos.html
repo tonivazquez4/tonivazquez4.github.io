@@ -20,19 +20,33 @@
             --alert-blue: #3498db;
         }
         
+        /* --- CONFIGURACIÓN DEL FONDO ESTÁTICO (SOLUCIÓN UNIVERSAL) --- */
         body { 
             font-family: 'Montserrat', sans-serif; margin: 0; padding: 0; color: white; 
-            background: #000 url('Alma de Rock.jpg') no-repeat center center fixed; 
-            background-size: cover; overflow-x: hidden; 
+            background-color: #000;
+            overflow-x: hidden; 
         }
         
-        body::before { 
-            content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-            background: radial-gradient(circle at center, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.6) 100%); 
-            z-index: -1; 
+        /* La imagen va aquí. Esto evita el zoom de iOS y la deja 100% estática */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: url('Alma de Rock.jpg') no-repeat center center;
+            background-size: cover;
+            z-index: -2;
         }
 
-        header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--gold); padding: 10px 40px; background: rgba(0,0,0,0.4); width: 100%; }
+        /* Esta es la capa de sombra estática para que la web sea legible y se separe de la imagen */
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle at center, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.8) 100%);
+            z-index: -1;
+        }
+
+        header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--gold); padding: 10px 40px; background: rgba(0,0,0,0.5); width: 100%; position: relative; z-index: 10;}
         
         .header-logo { height: 80px; width: auto; filter: invert(75%) sepia(50%) saturate(600%) hue-rotate(5deg); cursor: pointer; transition: 0.3s; backface-visibility: visible; }
         @media (min-width: 1024px) { .header-logo { height: 105px; } }
@@ -45,7 +59,6 @@
         .header-center h1 { font-size: clamp(1rem, 4vw, 1.8rem); margin: 0; text-transform: uppercase; text-shadow: 2px 2px 10px black; }
         .header-center p { margin: 5px 0 0 0; color: var(--gold); letter-spacing: 2px; font-weight: 700; font-size: 0.7rem; text-shadow: 1px 1px 5px black; }
 
-        /* --- ARREGLO BOTONES: CENTRADO PERFECTO --- */
         .wrapper-botones-accion { 
             display: grid;
             grid-template-columns: 50px 1fr 50px; 
@@ -82,54 +95,38 @@
         .social-icons a { color: white; font-size: 1.3rem; text-decoration: none; transition: 0.3s; text-shadow: 2px 2px 5px black; }
         .social-icons a:hover { color: var(--gold); transform: translateY(-3px); }
 
-        .nav-menu { text-align: center; margin: 20px 0; display: flex; justify-content: center; flex-wrap: wrap; gap: 5px; }
+        .nav-menu { text-align: center; margin: 20px 0; display: flex; justify-content: center; flex-wrap: wrap; gap: 5px; position: relative; z-index: 10;}
         .btn { background: linear-gradient(45deg, var(--gold), var(--gold-light)); color: black; padding: 10px 20px; text-decoration: none; border-radius: 8px; font-weight: 700; font-size: 0.8rem; transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
         .btn:hover, .btn.activo { background: white; transform: scale(1.05); }
 
-        .container { padding: 20px 15px 40px; max-width: 900px; margin: auto; }
+        .container { padding: 20px 15px 40px; max-width: 900px; margin: auto; position: relative; z-index: 10;}
         .mes-titulo { color: var(--gold); text-align: center; font-size: 1.6rem; margin: 40px 0 15px 0; text-transform: uppercase; text-shadow: 2px 2px 8px black; }
-        .tour-list { background: rgba(20,20,20,0.6); border-radius: 15px; border: 1px solid var(--gold); padding: 10px; margin-bottom: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.5); }
+        
+        .tour-list { background: rgba(15, 15, 15, 0.85); border-radius: 15px; border: 1px solid var(--gold); padding: 10px; margin-bottom: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.8); backdrop-filter: blur(5px); }
         .tour-item { display: flex; justify-content: space-between; align-items: center; padding: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); cursor: pointer; transition: 0.3s; }
         .tour-item:last-child { border-bottom: none; }
-        .tour-item:hover { background: rgba(212, 175, 55, 0.2); }
+        .tour-item:hover { background: rgba(212, 175, 55, 0.15); }
         .tour-date { color: var(--gold); font-weight: bold; font-size: 1.1rem; min-width: 80px; text-align: center; text-shadow: 1px 1px 5px black; }
         .tour-info { flex-grow: 1; padding: 0 15px; text-align: left; font-size: 0.95rem; line-height: 1.4; text-shadow: 1px 1px 5px black; }
         
         /* CÓDIGO NUEVO PARA SEPARAR LA HORA */
         .tour-info span { margin-left: 15px; color: var(--gold-light); }
         
-        .muro-rockero { width: 95%; max-width: 800px; margin: 40px auto; padding: 20px; background: rgba(15, 15, 15, 0.6); border-radius: 15px; border: 1px solid var(--gold); color: white; box-sizing: border-box; box-shadow: 0 5px 15px rgba(0,0,0,0.5); }
+        .muro-rockero { width: 95%; max-width: 800px; margin: 40px auto; padding: 20px; background: rgba(15, 15, 15, 0.85); border-radius: 15px; border: 1px solid var(--gold); color: white; box-sizing: border-box; box-shadow: 0 5px 15px rgba(0,0,0,0.8); backdrop-filter: blur(5px); position: relative; z-index: 10;}
         
-        footer { text-align: center; padding: 30px; background: rgba(0,0,0,0.7); border-top: 2px solid #222; font-size: 0.8rem; }
+        footer { text-align: center; padding: 30px; background: rgba(0,0,0,0.85); border-top: 2px solid #222; font-size: 0.8rem; position: relative; z-index: 10;}
         #btnSubir { display: none; position: fixed; bottom: 20px; right: 20px; z-index: 9999; background: var(--gold); color: black; border: none; width: 50px; height: 50px; border-radius: 50%; justify-content: center; align-items: center; cursor: pointer; }
 
-       @media (max-width: 768px) { 
+        @media (max-width: 768px) { 
             header { 
-                flex-direction: column; 
-                padding: 20px; 
-                gap: 15px; 
-                align-items: center; 
-                background: rgba(0, 0, 0, 0.2); 
-                border-bottom: 1px solid rgba(212, 175, 55, 0.3); 
+                flex-direction: column; padding: 20px; gap: 15px; align-items: center; 
+                background: rgba(0, 0, 0, 0.4); border-bottom: 1px solid rgba(212, 175, 55, 0.3); 
             } 
             .header-logo { display: none; } 
             .social-icons { width: 100%; justify-content: center !important; }
             .wrapper-botones-accion { max-width: 280px; }
             .tour-item { flex-direction: column; text-align: center; gap: 10px; } 
             .tour-info { text-align: center; } 
-            
-            /* --- ARREGLO DEFINITIVO PARA EL FONDO EN MÓVIL --- */
-            body { 
-                /* Obligamos a que la imagen empiece desde arriba y ocupe el ancho total sin hacer zoom excesivo */
-                background-position: top center !important; 
-                background-attachment: fixed !important; 
-                background-size: 100% auto !important; /* Ajusta al ancho del móvil */
-                background-color: #050505 !important; /* Color de relleno para lo que no cubra la foto */
-            }
-            body::before { 
-                /* Quitamos casi toda la sombra en móvil para ver la foto a pleno brillo */
-                background: rgba(0, 0, 0, 0.1) !important; 
-            }
         }
     </style>
 </head>
