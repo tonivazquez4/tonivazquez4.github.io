@@ -54,13 +54,12 @@
             z-index: -2;
         }
 
-        /* Esta es la capa de sombra estática (MÁS SUAVE AHORA) */
+        /* Esta es la capa de sombra estática (NIVEL INTERMEDIO PARA EL CUERPO) */
         body::after {
             content: "";
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
-            /* Degradado ajustado: del 20% en el centro, al 60% en los bordes */
-            background: radial-gradient(circle at center, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.6) 100%);
+            background: radial-gradient(circle at center, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.8) 100%);
             z-index: -1;
         }
 
