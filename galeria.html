@@ -31,7 +31,7 @@
             z-index: -2;
         }
 
-        /* Sombra estática MÁS CLARA (del 20% al 60% de negro) para que la foto luzca */
+        /* Sombra estática en PC (Clara para que luzca la foto) */
         body::after {
             content: "";
             position: fixed;
@@ -40,7 +40,7 @@
             z-index: -1;
         }
 
-        /* CABECERA MÁS TRANSPARENTE (0.3) */
+        /* CABECERA EN PC */
         header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--gold); padding: 10px 40px; background: rgba(0,0,0,0.3); position: relative; z-index: 10;}
         .header-logo { height: 105px; width: auto; filter: brightness(0) saturate(100%) invert(75%) sepia(50%) saturate(600%) hue-rotate(5deg) brightness(90%) contrast(100%); cursor: pointer; transition: 0.3s; }
         #logo-izq { animation: giro-3d 6s linear infinite; }
@@ -81,7 +81,7 @@
             max-width: 800px; 
             margin: 30px auto; 
             padding: 15px 20px 10px 20px; 
-            background: rgba(15, 15, 15, 0.75); /* Un poco más claro (75%) para no opacar tanto */
+            background: rgba(15, 15, 15, 0.75); 
             color: white; 
             border-radius: 15px; 
             border: 1px solid var(--gold); 
@@ -112,12 +112,18 @@
         footer { text-align:center; padding: 40px; position: relative; z-index: 10; background: rgba(0,0,0,0.85); border-top: 2px solid #222; margin-top: 40px;}
 
         @media (max-width: 768px) { 
-            header { flex-direction: column; padding: 20px; gap: 15px; align-items: center; background: rgba(0, 0, 0, 0.3); border-bottom: 1px solid rgba(212, 175, 55, 0.3); } 
+            /* Cabecera ajustada: un poco más oscura que el intento anterior (0.4) */
+            header { flex-direction: column; padding: 20px; gap: 15px; align-items: center; background: rgba(0, 0, 0, 0.4); border-bottom: 1px solid rgba(212, 175, 55, 0.3); } 
             .header-logo { display: none; } 
             .social-icons { width: auto; justify-content: center; } 
             .btn { font-size: 0.7rem; padding: 8px 10px; } 
             .modal-btn { font-size: 1.8rem; padding: 10px; width: 45px; height: 45px; background: rgba(0,0,0,0.7); } 
             #imgFull { max-height: 70vh; } 
+            
+            /* Sombra de fondo un poco más oscura en móvil para resaltar contenido */
+            body::after {
+                background: radial-gradient(circle at center, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 100%);
+            }
         }
     </style>
     <link rel="manifest" href="manifest.json">
