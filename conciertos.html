@@ -104,21 +104,27 @@
         #btnSubir { display: none; position: fixed; bottom: 20px; right: 20px; z-index: 9999; background: var(--gold); color: black; border: none; width: 50px; height: 50px; border-radius: 50%; justify-content: center; align-items: center; cursor: pointer; }
 
       @media (max-width: 768px) { 
-            header { flex-direction: column; padding: 20px; gap: 15px; align-items: center; } 
+            header { 
+                flex-direction: column; 
+                padding: 20px; 
+                gap: 15px; 
+                align-items: center; 
+                /* ESTA ES LA CLAVE: Hacemos la cabecera mucho más transparente en móvil */
+                background: rgba(0, 0, 0, 0.2); 
+                border-bottom: 1px solid rgba(212, 175, 55, 0.3); /* Suavizamos también la línea dorada */
+            } 
             .header-logo { display: none; } 
             .social-icons { width: 100%; justify-content: center !important; }
             .wrapper-botones-accion { max-width: 280px; }
             .tour-item { flex-direction: column; text-align: center; gap: 10px; } 
             .tour-info { text-align: center; } 
             
-            /* --- FORZAR EL FONDO EN MÓVILES --- */
             body { 
                 background-attachment: scroll !important; 
                 background-position: center top !important; 
             }
             body::before { 
-                /* Forzamos que la capa oscura sea plana y muy transparente (solo un 30% de negro) */
-                background: rgba(0, 0, 0, 0.3) !important; 
+                background: rgba(0, 0, 0, 0.4) !important; 
             }
         }
     </style>
