@@ -31,16 +31,17 @@
             z-index: -2;
         }
 
-        /* Sombra oscura para que las fotos resalten */
+        /* Sombra estática MÁS CLARA (del 20% al 60% de negro) para que la foto luzca */
         body::after {
             content: "";
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0, 0, 0, 0.85); /* Un 85% de negro constante para no opacar la galería */
+            background: radial-gradient(circle at center, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.6) 100%);
             z-index: -1;
         }
 
-        header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--gold); padding: 10px 40px; background: rgba(0,0,0,0.5); position: relative; z-index: 10;}
+        /* CABECERA MÁS TRANSPARENTE (0.3) */
+        header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--gold); padding: 10px 40px; background: rgba(0,0,0,0.3); position: relative; z-index: 10;}
         .header-logo { height: 105px; width: auto; filter: brightness(0) saturate(100%) invert(75%) sepia(50%) saturate(600%) hue-rotate(5deg) brightness(90%) contrast(100%); cursor: pointer; transition: 0.3s; }
         #logo-izq { animation: giro-3d 6s linear infinite; }
         #logo-der { animation: giro-3d 6s linear infinite reverse; }
@@ -75,13 +76,12 @@
         #closeBtn { top: 20px; right: 20px; font-size: 2rem; width: 50px; height: 50px; }
         #downloadBtn { top: 20px; left: 20px; font-size: 1.5rem; width: 50px; height: 50px; }
 
-        /* SECCION COMENTARIOS COMPACTA, MÁS ANCHA EN PC Y MENOS ALTA */
         .seccion-comentarios { 
             width: 95%;
             max-width: 800px; 
             margin: 30px auto; 
             padding: 15px 20px 10px 20px; 
-            background: rgba(15, 15, 15, 0.85); 
+            background: rgba(15, 15, 15, 0.75); /* Un poco más claro (75%) para no opacar tanto */
             color: white; 
             border-radius: 15px; 
             border: 1px solid var(--gold); 
@@ -112,7 +112,7 @@
         footer { text-align:center; padding: 40px; position: relative; z-index: 10; background: rgba(0,0,0,0.85); border-top: 2px solid #222; margin-top: 40px;}
 
         @media (max-width: 768px) { 
-            header { flex-direction: column; padding: 20px; gap: 15px; align-items: center; background: rgba(0, 0, 0, 0.4); border-bottom: 1px solid rgba(212, 175, 55, 0.3); } 
+            header { flex-direction: column; padding: 20px; gap: 15px; align-items: center; background: rgba(0, 0, 0, 0.3); border-bottom: 1px solid rgba(212, 175, 55, 0.3); } 
             .header-logo { display: none; } 
             .social-icons { width: auto; justify-content: center; } 
             .btn { font-size: 0.7rem; padding: 8px 10px; } 
@@ -241,15 +241,13 @@
         actualizarImagenModal(); 
     }
 
-    // ACTUALIZADA PARA CAMBIAR EL LINK DE DESCARGA
     function actualizarImagenModal() { 
         const rutaFoto = `Fotos/Foto ${fotoActual}.jpg`;
         document.getElementById("imgFull").src = rutaFoto; 
         
-        // Actualizamos el botón de descarga
         const btnDescarga = document.getElementById("downloadBtn");
         btnDescarga.href = rutaFoto;
-        btnDescarga.download = `Tony_Vazquez_Foto_${fotoActual}.jpg`; // Nombre con el que se guardará
+        btnDescarga.download = `Tony_Vazquez_Foto_${fotoActual}.jpg`;
     }
     
     function cargarReacciones() {
