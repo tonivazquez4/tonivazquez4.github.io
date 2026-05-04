@@ -103,13 +103,13 @@
         footer { text-align: center; padding: 30px; background: rgba(0,0,0,0.7); border-top: 2px solid #222; font-size: 0.8rem; }
         #btnSubir { display: none; position: fixed; bottom: 20px; right: 20px; z-index: 9999; background: var(--gold); color: black; border: none; width: 50px; height: 50px; border-radius: 50%; justify-content: center; align-items: center; cursor: pointer; }
 
-        @media (max-width: 768px) { 
+       @media (max-width: 768px) { 
             header { 
                 flex-direction: column; 
                 padding: 20px; 
                 gap: 15px; 
                 align-items: center; 
-                background: rgba(0, 0, 0, 0.4); 
+                background: rgba(0, 0, 0, 0.2); 
                 border-bottom: 1px solid rgba(212, 175, 55, 0.3); 
             } 
             .header-logo { display: none; } 
@@ -118,12 +118,17 @@
             .tour-item { flex-direction: column; text-align: center; gap: 10px; } 
             .tour-info { text-align: center; } 
             
+            /* --- ARREGLO DEFINITIVO PARA EL FONDO EN MÓVIL --- */
             body { 
-                background-attachment: scroll !important; 
-                background-position: center top !important; 
+                /* Obligamos a que la imagen empiece desde arriba y ocupe el ancho total sin hacer zoom excesivo */
+                background-position: top center !important; 
+                background-attachment: fixed !important; 
+                background-size: 100% auto !important; /* Ajusta al ancho del móvil */
+                background-color: #050505 !important; /* Color de relleno para lo que no cubra la foto */
             }
             body::before { 
-                background: rgba(0, 0, 0, 0.4) !important; 
+                /* Quitamos casi toda la sombra en móvil para ver la foto a pleno brillo */
+                background: rgba(0, 0, 0, 0.1) !important; 
             }
         }
     </style>
