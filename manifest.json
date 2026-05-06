@@ -2,7 +2,7 @@
   "name": "Tony Vázquez",
   "short_name": "Tony Vázquez",
   "description": "App oficial de Tony Vázquez: Conciertos, Música y Galería",
-  "start_url": "/index.html",
+  "start_url": "index.html",
   "display": "standalone",
   "background_color": "#000000",
   "theme_color": "#d4af37",
