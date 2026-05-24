@@ -100,7 +100,7 @@
 
         .header-center { text-align: center; flex-grow: 1; }
         .header-center h1 { font-size: clamp(1.2rem, 3vw, 1.8rem); margin: 0; text-transform: uppercase; text-shadow: 2px 2px 10px black;}
-        .header-center p { margin: 5px 0 0 0; color: var(--gold); letter-spacing: 4px; font-weight: 700; font-size: 0.8rem; text-shadow: 1px 1px 5px black;}
+        .header-center p { margin: 5px 0 0 0; color: var(--gold); letter-spacing: 4px; font-weight: 700; font-size: 0.8rem; text-transform: uppercase; text-shadow: 2px 2px 10px black;}
 
         /* --- BOTONES ACCIÓN: CENTRADO PERFECTO --- */
         .wrapper-botones-accion { 
@@ -376,14 +376,38 @@
         });
     }
 
+    // --- GESTIÓN DE AVISOS INTELIGENTE (FILTRO PRIMERA VISITA REAL) ---
     function gestionarAvisos() {
+        // Comprobamos si es la primera vez en toda la web
+        const usuarioRecurrente = localStorage.getItem('tony_web_visitado');
+
+        if (!usuarioRecurrente) {
+            // 1. Lo marcamos como usuario que ya nos conoce
+            localStorage.setItem('tony_web_visitado', 'true');
+            
+            // 2. TRUCO: Marcamos todos los avisos ACTUALES como "vistos" de forma silenciosa.
+            // Así no le saltarán hoy al cambiar a otra página de tu web.
+            Object.keys(configAlertas).forEach(tipo => {
+                localStorage.setItem('visto_' + configAlertas[tipo].id, 'true');
+            });
+            
+            console.log("Espectador nuevo: avisos silenciados en su primera experiencia.");
+            return; 
+        }
+
+        // 3. VISITAS RECURRENTES O NUEVOS AVISOS (cuando cambies el ID en el futuro)
+        let hayAvisos = false;
         Object.keys(configAlertas).forEach(tipo => {
             const alerta = configAlertas[tipo];
             if (alerta.activo && !localStorage.getItem('visto_' + alerta.id)) {
                 document.getElementById('aviso-' + tipo).style.display = 'flex';
+                hayAvisos = true;
             }
         });
-        inicializarSwipe();
+        
+        if (hayAvisos) {
+            inicializarSwipe();
+        }
     }
 
     function abrirImagen(src) { document.getElementById("imgFull").src = src; document.getElementById("imageModal").style.display = "block"; }
