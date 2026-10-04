@@ -66,8 +66,20 @@
         .foto-card img { width: 100%; height: 100%; object-fit: contain; cursor: pointer; transition: 0.4s; display: block; touch-action: manipulation; }
         .foto-card img:hover { transform: scale(1.05); filter: brightness(1.2); }
         
-        #imageModal { display: none; position: fixed; z-index: 99999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.98); align-items: center; justify-content: center; overflow: auto; }
-        #imgFull { width: 100%; height: 100%; max-height: 85vh; border: 2px solid var(--gold); border-radius: 5px; box-shadow: 0 0 30px rgba(212, 175, 55, 0.3); object-fit: contain; touch-action: pinch-zoom; transition: transform 0.2s ease-out; transform-origin: center center; }
+        #imageModal { display: none; position: fixed; z-index: 99999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.98); align-items: center; justify-content: center; overflow: hidden; }
+        
+        /* MODIFICADO: Permite gestos táctiles libres de zoom y movimiento en la imagen */
+        #imgFull { 
+            max-width: 100%; 
+            max-height: 85vh; 
+            border: 2px solid var(--gold); 
+            border-radius: 5px; 
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.3); 
+            object-fit: contain; 
+            touch-action: none; 
+            transform-origin: center center; 
+            transition: transform 0.1s ease-out;
+        }
         
         .modal-btn { position: absolute; background: rgba(0,0,0,0.5); border: 1px solid var(--gold); color: white; font-size: 2.5rem; cursor: pointer; transition: 0.3s; padding: 10px 20px; z-index: 100000; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; }
         .modal-btn:hover { background: var(--gold); color: black; }
@@ -112,7 +124,6 @@
         footer { text-align:center; padding: 40px; position: relative; z-index: 10; background: rgba(0,0,0,0.85); border-top: 2px solid #222; margin-top: 40px;}
 
         @media (max-width: 768px) { 
-            /* Cabecera ajustada: un poco más oscura que el intento anterior (0.4) */
             header { flex-direction: column; padding: 20px; gap: 15px; align-items: center; background: rgba(0, 0, 0, 0.4); border-bottom: 1px solid rgba(212, 175, 55, 0.3); } 
             .header-logo { display: none; } 
             .social-icons { width: auto; justify-content: center; } 
@@ -120,7 +131,6 @@
             .modal-btn { font-size: 1.8rem; padding: 10px; width: 45px; height: 45px; background: rgba(0,0,0,0.7); } 
             #imgFull { max-height: 70vh; } 
             
-            /* Sombra de fondo un poco más oscura en móvil para resaltar contenido */
             body::after {
                 background: radial-gradient(circle at center, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 100%);
             }
@@ -187,19 +197,26 @@
     <a id="downloadBtn" class="modal-btn" href="" download title="Descargar foto"><i class="fa-solid fa-download"></i></a>
     <button class="modal-btn" id="closeBtn" onclick="cerrarModal()">×</button>
     <button class="modal-btn" id="prevBtn" onclick="cambiarFoto(-1)">❮</button>
-    <div id="zoomContainer" style="display:flex; justify-content:center; align-items:center; width:100%; height:100%; touch-action: none;"><img id="imgFull" src=""></div>
+    <div id="zoomContainer" style="display:flex; justify-content:center; align-items:center; width:100%; height:100%;">
+        <img id="imgFull" src="">
+    </div>
     <button class="modal-btn" id="nextBtn" onclick="cambiarFoto(1)">❯</button>
 </div>
 
 <script>
-    // --- CONTADORES SEPARADOS ---
     const totalClasicas = 192; 
     const totalNuevas = 237;      
 
     const contenedor = document.getElementById('galeria-fotos'); 
     let fotoActual = 1; 
-    let escalaActual = 1;
     let ordenFotos = []; 
+
+    // Variables para el control táctil de zoom y desplazamiento
+    let escalaActual = 1;
+    let posX = 0, posY = 0;
+    let distanciaInicial = 0;
+    let tocando = false;
+    let inicioX = 0, inicioY = 0;
 
     function cargarGaleria() { 
         let contenido = ""; 
@@ -222,8 +239,7 @@
 
     function abrirImagen(indice) { 
         fotoActual = indice; 
-        escalaActual = 1; 
-        document.getElementById("imgFull").style.transform = `scale(1)`; 
+        resetZoom();
         actualizarImagenModal(); 
         document.getElementById("imageModal").style.display = "flex"; 
         document.body.style.overflow = "hidden"; 
@@ -242,8 +258,7 @@
         if (index < 0) index = ordenFotos.length - 1; 
         
         fotoActual = ordenFotos[index]; 
-        escalaActual = 1; 
-        document.getElementById("imgFull").style.transform = `scale(1)`; 
+        resetZoom();
         actualizarImagenModal(); 
     }
 
@@ -255,7 +270,79 @@
         btnDescarga.href = rutaFoto;
         btnDescarga.download = `Tony_Vazquez_Foto_${fotoActual}.jpg`;
     }
-    
+
+    function resetZoom() {
+        escalaActual = 1;
+        posX = 0;
+        posY = 0;
+        aplicarTransformacion();
+    }
+
+    function aplicarTransformacion() {
+        const img = document.getElementById("imgFull");
+        img.style.transform = `translate(${posX}px, ${posY}px) scale(${escalaActual})`;
+    }
+
+    // --- LÓGICA DE GESTOS TÁCTILES (PELLIZCAR Y MOVER) ---
+    const imgModal = document.getElementById("imgFull");
+
+    imgModal.addEventListener('touchstart', (e) => {
+        if (e.touches.length === 2) {
+            // Dos dedos: calcular distancia inicial para el pellizco (zoom)
+            distanciaInicial = Math.hypot(
+                e.touches[0].clientX - e.touches[1].clientX,
+                e.touches[0].clientY - e.touches[1].clientY
+            );
+        } else if (e.touches.length === 1 && escalaActual > 1) {
+            // Un dedo: preparar para arrastrar la imagen ampliada
+            tocando = true;
+            inicioX = e.touches[0].clientX - posX;
+            inicioY = e.touches[0].clientY - posY;
+        }
+    });
+
+    imgModal.addEventListener('touchmove', (e) => {
+        if (e.touches.length === 2) {
+            // Mover dos dedos (Pellizcar para hacer zoom)
+            const distanciaActual = Math.hypot(
+                e.touches[0].clientX - e.touches[1].clientX,
+                e.touches[0].clientY - e.touches[1].clientY
+            );
+            if (distanciaInicial > 0) {
+                let factor = distanciaActual / distanciaInicial;
+                escalaActual = Math.min(Math.max(1, escalaActual * (factor * 0.05 + 0.95)), 4); // Zoom entre 1x y 4x
+                aplicarTransformacion();
+            }
+        } else if (e.touches.length === 1 && tocando && escalaActual > 1) {
+            // Mover un dedo (Desplazarse por la foto ampliada)
+            posX = e.touches[0].clientX - inicioX;
+            posY = e.touches[0].clientY - inicioY;
+            aplicarTransformacion();
+        }
+    });
+
+    imgModal.addEventListener('touchend', (e) => {
+        if (e.touches.length < 2) distanciaInicial = 0;
+        if (e.touches.length === 0) tocando = false;
+        if (escalaActual <= 1) resetZoom(); // Si se reduce al tamaño original, se centra
+    });
+
+    // También permitimos hacer doble toque rápido para alternar zoom (1x / 2.5x)
+    let ultimoToke = 0;
+    imgModal.addEventListener('touchend', (e) => {
+        let tiempoActual = new Date().getTime();
+        let tiempoTranscurrido = tiempoActual - ultimoToke;
+        if (tiempoTranscurrido < 300 && tiempoTranscurrido > 0) {
+            if (escalaActual === 1) {
+                escalaActual = 2.5;
+            } else {
+                resetZoom();
+            }
+            aplicarTransformacion();
+        }
+        ultimoToke = tiempoActual;
+    });
+
     function cargarReacciones() {
         const api = 'https://abacus.jasoncameron.dev'; const site = 'tonyvazquez.es';
         ['fuego', 'cuernos', 'corazon'].forEach(tipo => {
