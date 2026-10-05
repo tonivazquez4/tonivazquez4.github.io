@@ -68,7 +68,6 @@
         
         #imageModal { display: none; position: fixed; z-index: 99999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.98); align-items: center; justify-content: center; overflow: hidden; }
         
-        /* MODIFICADO: Permite gestos táctiles libres de zoom y movimiento en la imagen */
         #imgFull { 
             max-width: 100%; 
             max-height: 85vh; 
@@ -215,6 +214,7 @@
     let escalaActual = 1;
     let posX = 0, posY = 0;
     let distanciaInicial = 0;
+    let escalaInicialAlPellizcar = 1;
     let tocando = false;
     let inicioX = 0, inicioY = 0;
 
@@ -288,13 +288,12 @@
 
     imgModal.addEventListener('touchstart', (e) => {
         if (e.touches.length === 2) {
-            // Dos dedos: calcular distancia inicial para el pellizco (zoom)
             distanciaInicial = Math.hypot(
                 e.touches[0].clientX - e.touches[1].clientX,
                 e.touches[0].clientY - e.touches[1].clientY
             );
+            escalaInicialAlPellizcar = escalaActual;
         } else if (e.touches.length === 1 && escalaActual > 1) {
-            // Un dedo: preparar para arrastrar la imagen ampliada
             tocando = true;
             inicioX = e.touches[0].clientX - posX;
             inicioY = e.touches[0].clientY - posY;
@@ -303,18 +302,16 @@
 
     imgModal.addEventListener('touchmove', (e) => {
         if (e.touches.length === 2) {
-            // Mover dos dedos (Pellizcar para hacer zoom)
             const distanciaActual = Math.hypot(
                 e.touches[0].clientX - e.touches[1].clientX,
                 e.touches[0].clientY - e.touches[1].clientY
             );
             if (distanciaInicial > 0) {
                 let factor = distanciaActual / distanciaInicial;
-                escalaActual = Math.min(Math.max(1, escalaActual * (factor * 0.05 + 0.95)), 4); // Zoom entre 1x y 4x
+                escalaActual = Math.min(Math.max(1, escalaInicialAlPellizcar * factor), 4);
                 aplicarTransformacion();
             }
         } else if (e.touches.length === 1 && tocando && escalaActual > 1) {
-            // Mover un dedo (Desplazarse por la foto ampliada)
             posX = e.touches[0].clientX - inicioX;
             posY = e.touches[0].clientY - inicioY;
             aplicarTransformacion();
@@ -324,10 +321,12 @@
     imgModal.addEventListener('touchend', (e) => {
         if (e.touches.length < 2) distanciaInicial = 0;
         if (e.touches.length === 0) tocando = false;
-        if (escalaActual <= 1) resetZoom(); // Si se reduce al tamaño original, se centra
+        if (escalaActual < 1) {
+            resetZoom();
+        }
     });
 
-    // También permitimos hacer doble toque rápido para alternar zoom (1x / 2.5x)
+    // Doble toque rápido para alternar zoom o resetear
     let ultimoToke = 0;
     imgModal.addEventListener('touchend', (e) => {
         let tiempoActual = new Date().getTime();
