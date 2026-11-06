@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1YS8QY8TXN"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-1YS8QY8TXN');
+    </script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>En el estudio... | Tony Vázquez</title>
+    
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#d4af37">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root { 
+            --gold: #d4af37; 
+            --gold-light: #f9d976; 
+        }
+        
+        body { 
+            font-family: 'Montserrat', sans-serif; margin: 0; padding: 0; color: white; 
+            background-color: #000;
+            overflow-x: hidden; 
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: url('alma-de-rock.jpg') no-repeat center center;
+            background-size: cover;
+            z-index: -2;
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle at center, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.9) 100%);
+            z-index: -1;
+        }
+
+        header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--gold); padding: 10px 40px; background: rgba(0,0,0,0.5); position: relative; z-index: 10;}
+        .header-logo { height: 105px; width: auto; filter: brightness(0) saturate(100%) invert(75%) sepia(50%) saturate(600%) hue-rotate(5deg) brightness(90%) contrast(100%); cursor: pointer; transition: 0.3s; backface-visibility: visible; }
+        
+        .header-center { text-align: center; flex-grow: 1; }
+        .header-center h1 { font-size: clamp(1.2rem, 3vw, 1.8rem); margin: 0; text-transform: uppercase; text-shadow: 2px 2px 10px black;}
+        .header-center p { margin: 5px 0 0 0; color: var(--gold); letter-spacing: 4px; font-weight: 700; font-size: 0.8rem; text-transform: uppercase; text-shadow: 2px 2px 10px black;}
+
+        .social-icons { display: flex; gap: 15px; width: 200px; }
+        .icons-left { justify-content: flex-start; }
+        .icons-right { justify-content: flex-end; }
+        .social-icons a { color: white; font-size: 1.4rem; text-decoration: none; transition: 0.3s; text-shadow: 2px 2px 5px black;}
+        .social-icons a:hover { color: var(--gold); }
+
+        .nav-menu { text-align: center; margin: 30px 0; position: relative; z-index: 10;}
+        .btn { background: linear-gradient(45deg, var(--gold), var(--gold-light)); color: black; padding: 12px 25px; text-decoration: none; border-radius: 8px; font-weight: 700; display: inline-block; margin: 5px; transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.5); text-transform: uppercase;}
+        .btn:hover { background: white; transform: scale(1.05); }
+
+        .container { flex: 1; padding: 0 20px 40px; max-width: 1200px; margin: auto; position: relative; z-index: 10; display: flex; align-items: center; justify-content: center;}
+        
+        .mensaje-estudio {
+            background: linear-gradient(45deg, rgba(17,17,17,0.85), rgba(34,34,34,0.85));
+            border: 2px solid var(--gold);
+            padding: 50px 30px;
+            text-align: center;
+            border-radius: 15px;
+            max-width: 700px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            backdrop-filter: blur(5px);
+            animation: aparecer 0.8s ease-out;
+        }
+
+        .mensaje-estudio h2 { color: var(--gold); text-transform: uppercase; margin-top: 15px; margin-bottom: 20px; font-family: 'Arial Black', sans-serif; text-shadow: 2px 2px 5px black; font-size: 1.8rem;}
+        .mensaje-estudio p { font-size: 1.15rem; line-height: 1.8; color: #eee; margin-bottom: 30px; text-shadow: 1px 1px 3px black; font-weight: 600;}
+        .icono-micro { font-size: 4rem; color: var(--gold); filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.5)); animation: latido 2s infinite alternate;}
+
+        @keyframes latido {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
+        }
+
+        @keyframes aparecer {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        footer { padding: 25px; text-align: center; background: rgba(0,0,0,0.85); border-top: 2px solid #222; position: relative; z-index: 10;}
+
+        @media (max-width: 768px) {
+            header { flex-direction: column; padding: 20px; gap: 20px; align-items: center; background: rgba(0, 0, 0, 0.4); border-bottom: 1px solid rgba(212, 175, 55, 0.3); }
+            .header-logo { display: none; }
+            .social-icons { width: 100%; justify-content: center !important; } 
+            .nav-menu { display: flex; justify-content: center; flex-wrap: wrap; gap: 5px; }
+            .btn { font-size: 0.75rem; padding: 8px 10px; }
+            .mensaje-estudio { padding: 30px 20px; }
+            .mensaje-estudio h2 { font-size: 1.4rem; }
+            .mensaje-estudio p { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <img src="logoTV.png" alt="Logo" class="header-logo" style="animation: none;">
+    <div class="social-icons icons-left">
+        <a href="https://open.spotify.com/intl-es/artist/5PGFsB4rJcNb9h5gBOKnWw" target="_blank"><i class="fa-brands fa-spotify"></i></a>
+        <a href="https://music.apple.com/es/artist/tony-vazquez/1497948014" target="_blank"><i class="fa-brands fa-apple"></i></a>
+        <a href="https://music.youtube.com/channel/UCFNdFbrM3s0kznhCGpRJ3GA" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+    </div>
+
+    <div class="header-center">
+        <h1>TONY VÁZQUEZ</h1>
+        <p>ROCK · ALMA · LEYENDA</p>
+    </div>
+
+    <div class="social-icons icons-right">
+        <a href="https://music.amazon.es/artists/B07NFBKRHJ/tony-vazquez" target="_blank"><i class="fa-brands fa-amazon"></i></a>
+        <a href="https://instagram.com/tonykubo" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://www.facebook.com/tonisampler/" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+    </div>
+    <img src="logoTV.png" alt="Logo" class="header-logo" style="animation: none;">
+</header>
+
+<nav class="nav-menu">
+    <a href="index.html" class="btn">Inicio</a>
+    <a href="galeria.html" class="btn">Galería</a>
+    <a href="videos.html" class="btn">Vídeos</a>
+    <a href="conciertos.html" class="btn">Conciertos</a>
+</nav>
+
+<div class="container">
+    <div class="mensaje-estudio">
+        <i class="fa-solid fa-microphone-lines icono-micro"></i>
+        <h2>Cocinando a fuego lento...</h2>
+        <p>
+            La ciudad aún duerme, pero está a punto de despertar... y lo hará a ritmo de puro rock.</strong>.<br><br>
+            Horas de estudio, cables, cafés a deshora y mucha pasión. 'Cuando despierte la ciudad' ya está en su fase final de mezcla y masterización.<br><br>
+            Estoy encerrado en el estudio puliendo cada nota, cada arreglo y cada letra de 'Cuando despierte la ciudad'. Muy pronto desvelaré el tracklist definitivo y la fecha oficial de lanzamiento. Únete a la lista del Backstage para ser el primero en escuchar lo que se avecina... 🎸 ¡Larga vida al rock! 🔥 🤘
+        </p>
+        <a href="index.html" class="btn"><i class="fa-solid fa-arrow-left"></i> Volver al Inicio</a>
+    </div>
+</div>
+
+<footer><p>© 2026 Tony Vázquez. Todos los derechos reservados.</p></footer>
+
+</body>
+</html>
