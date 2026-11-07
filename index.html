@@ -40,43 +40,32 @@
             overflow-x: hidden; 
         }
         
+        /* FONDOS HECHOS TRASPASABLES PARA NO BLOQUEAR LOS BOTONES */
         body::before {
             content: "";
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: url('alma-de-rock.jpg') no-repeat center center;
-            background-size: cover;
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: url('alma-de-rock.jpg') no-repeat center center; background-size: cover;
             z-index: -2;
+            pointer-events: none; /* Clave para revivir los botones */
         }
-
         body::after {
             content: "";
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
             background: radial-gradient(circle at center, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.8) 100%);
             z-index: -1;
+            pointer-events: none; /* Clave para revivir los botones */
         }
 
         #contenedor-avisos { position: relative; z-index: 10002; width: 100%; overflow: hidden; }
         
         .barra-flash {
-            background: linear-gradient(90deg, #1a1a1a, #2a2a2a, #1a1a1a);
-            border-bottom: 1px solid var(--gold);
+            background: linear-gradient(90deg, #1a1a1a, #2a2a2a, #1a1a1a); border-bottom: 1px solid var(--gold);
             color: white; text-align: center; padding: 12px; font-weight: 600; font-size: 0.85rem;
             display: none; justify-content: center; align-items: center; gap: 12px; letter-spacing: 1px;
-            transition: transform 0.3s ease-out, opacity 0.3s ease-out;
-            user-select: none;
+            transition: transform 0.3s ease-out, opacity 0.3s ease-out; user-select: none;
         }
-
-        .punto-flash {
-            width: 8px; height: 8px; background-color: var(--alert-red); border-radius: 50%;
-            box-shadow: 0 0 10px var(--alert-red); animation: pulse-red 1.2s infinite;
-        }
-        @keyframes pulse-red {
-            0% { transform: scale(0.9); opacity: 0.7; }
-            50% { transform: scale(1.2); opacity: 1; box-shadow: 0 0 15px var(--alert-red); }
-            100% { transform: scale(0.9); opacity: 0.7; }
-        }
+        .punto-flash { width: 8px; height: 8px; background-color: var(--alert-red); border-radius: 50%; box-shadow: 0 0 10px var(--alert-red); animation: pulse-red 1.2s infinite; }
+        @keyframes pulse-red { 0% { transform: scale(0.9); opacity: 0.7; } 50% { transform: scale(1.2); opacity: 1; box-shadow: 0 0 15px var(--alert-red); } 100% { transform: scale(0.9); opacity: 0.7; } }
         .link-aviso { color: var(--gold); text-decoration: underline; cursor: pointer; margin-left: 5px; font-weight: 700; }
 
         h1, h2, h3 { font-family: 'Arial Black', sans-serif; }
@@ -103,32 +92,30 @@
         .btn.activo { background: white; transform: scale(1.05); color: black; }
 
         .container { padding: 0 20px 40px; max-width: 1200px; margin: auto; position: relative; z-index: 10;}
-        .spotify-container { max-width: 400px; margin: 0 auto 40px; border-radius: 12px; overflow: hidden; border: 1px solid var(--gold); height: 80px; background: black; }
+        .spotify-container { max-width: 400px; margin: 0 auto 40px; border-radius: 12px; overflow: hidden; border: 1px solid var(--gold); height: 80px; background: black; position: relative; z-index: 20;}
 
-        .discografia { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; max-width: 900px; margin: 0 auto; position: relative; }
+        .discografia { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; max-width: 900px; margin: 0 auto; position: relative; z-index: 10;}
         
         .album-card { background: rgba(15, 15, 15, 0.85); border: 1px solid #333; border-radius: 15px; overflow: hidden; text-align: center; padding-bottom: 20px; transition: 0.4s; box-shadow: 0 5px 15px rgba(0,0,0,0.8); position: relative; }
         
-        /* IMAGENES AL 100% DE ANCHO SIN BANDAS NEGRAS (object-fit: cover) */
+        /* ADIÓS CORTES: IMAGEN EN TAMAÑO NATURAL (auto) */
         .album-img { 
             width: 100%; 
-            height: 350px; 
-            object-fit: cover; 
+            height: auto; 
             display: block; 
-            background: #000; 
+            background: transparent; 
             cursor: pointer; 
             border-bottom: 1px solid #333;
             position: relative;
-            z-index: 10;
+            z-index: 1;
         }
 
-        /* CINTA CON Z-INDEX SUPERIOR PARA QUE TAPE A LA FOTO */
         .cinta-proximamente { 
             position: absolute; 
-            top: 50%; left: 50%; 
+            top: 45%; left: 50%; 
             width: 200%; 
             background: var(--gold); color: black; text-align: center; padding: 15px 0; font-size: 1.3rem; font-weight: 900; letter-spacing: 3px; text-transform: uppercase; transform: translate(-50%, -50%) rotate(45deg); 
-            z-index: 100; /* Obliga a la cinta a estar siempre encima de la foto */
+            z-index: 20; 
             pointer-events: none; 
             box-shadow: 0 10px 30px rgba(0,0,0,0.9); 
             animation: parpadeo-cinta 0.8s infinite alternate;
@@ -153,8 +140,8 @@
         #imageModal { display: none; position: fixed; z-index: 100000; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); justify-content: center; align-items: center; backdrop-filter: blur(5px); }
         #imageModal img { max-width: 90%; max-height: 90%; border-radius: 10px; box-shadow: 0 0 20px var(--gold); }
 
-        /* ANIMACIONES HOVER (Solo para PC) */
-        @media (hover: hover) {
+        /* ANIMACIONES HOVER (Solo para PC para evitar bugs en móviles) */
+        @media (hover: hover) and (pointer: fine) {
             .btn:hover { background: white; transform: scale(1.05); color: black; }
             .btn-share:hover { background: white; transform: scale(1.05); }
             .social-icons a:hover { color: var(--gold); }
@@ -163,7 +150,7 @@
             #btnSubir:hover { transform: scale(1.1); background: white; }
         }
 
-        /* VERSIÓN MÓVIL OPTIMIZADA */
+        /* --- VERSIÓN MÓVIL --- */
         @media (max-width: 768px) {
             header { flex-direction: column; padding: 10px; gap: 8px; align-items: center; background: rgba(0, 0, 0, 0.4); border-bottom: 1px solid rgba(212, 175, 55, 0.3); }
             .header-logo { display: none; }
@@ -174,18 +161,14 @@
             .wrapper-botones-accion { margin: 8px auto 0; gap: 10px; max-width: 250px; }
             .btn-share { padding: 6px 12px; font-size: 0.7rem; }
             .btn-tienda { width: 38px; height: 38px; font-size: 1.05rem; margin-left: 10px; }
-            
             .nav-menu { display: flex; justify-content: center; flex-wrap: wrap; gap: 5px; margin: 12px 0; }
             .btn { font-size: 0.75rem; padding: 7px 10px; margin: 2px; }
-            
             .spotify-container { margin: 0 auto 15px; height: 80px;} 
             
             .discografia { grid-template-columns: 1fr !important; gap: 25px !important; }
             .album-card { padding-bottom: 0 !important; }
             
-            /* Ajuste exacto de altura en móviles para que no haya bandas negras y se vea la tarjeta entera */
-            .album-img { height: 280px !important; width: 100% !important; object-fit: cover !important; padding-top: 0 !important; }
-            .cinta-proximamente { font-size: 1.1rem !important; padding: 10px 0 !important; }
+            .cinta-proximamente { font-size: 1rem !important; padding: 10px 0 !important; }
         }
 
         #cajaContador { display:none; position:fixed; bottom:20px; left:20px; background:#000; border:2px solid var(--gold); color:var(--gold); padding:10px 15px; border-radius:8px; font-weight:bold; z-index:999999; box-shadow:0 4px 10px rgba(0,0,0,0.8); cursor:pointer; }
@@ -194,18 +177,20 @@
 <body>
 
 <div id="contenedor-avisos">
-    <!-- Solo muestran los avisos, se quitan solos o deslizando -->
     <div id="aviso-fotos" class="barra-flash" data-tipo="fotos">
         <div class="punto-flash"></div>
         <span>¡HAY NUEVAS FOTOS DISPONIBLES!</span>
+        <a href="galeria.html" class="link-aviso" onclick="marcarVisto('fotos');">IR A GALERÍA 🤘</a>
     </div>
     <div id="aviso-videos" class="barra-flash" data-tipo="videos">
         <div class="punto-flash"></div>
         <span>¡NUEVOS VÍDEOS EN EL CANAL!</span>
+        <a href="videos.html" class="link-aviso" onclick="marcarVisto('videos');">VER VÍDEOS 🎸</a>
     </div>
     <div id="aviso-conciertos" class="barra-flash" data-tipo="conciertos">
         <div class="punto-flash" style="background-color: var(--alert-blue); box-shadow: 0 0 10px var(--alert-blue);"></div>
         <span>¡NUEVA FECHA DE CONCIERTO CONFIRMADA!</span>
+        <a href="conciertos.html" class="link-aviso" onclick="marcarVisto('conciertos');">VER CITAS 📅</a>
     </div>
 </div>
 
@@ -240,7 +225,6 @@
 </header>
 
 <nav class="nav-menu">
-    <!-- Enlaces HTML completamente limpios de scripts -->
     <a href="index.html" class="btn activo">Inicio</a>
     <a href="galeria.html" class="btn">Galería</a>
     <a href="videos.html" class="btn">Vídeos</a>
@@ -270,7 +254,7 @@
         </div>
         
         <div class="album-card">
-            <img src="Sueños de papel.jpg" alt="Disco" class="album-img" onclick="abrirImagen(this.src)">
+            <img src="suenos-de-papel.jpg" alt="Disco" class="album-img" onclick="abrirImagen(this.src)">
             <h3>Sueños de papel</h3>
             <a href="https://open.spotify.com/intl-es/album/708rurqxThgsJPR8aClRAD?si=o6eWGd1jQJSU7i1lwuh5JQ" target="_blank" class="btn">Escuchar ahora</a>
         </div>
@@ -322,7 +306,6 @@
 <div id="cajaContador" onclick="this.style.display='none'">👀 Visitas totales: <span id="numeroVisitas">...</span></div>
 
 <script>
-    // Destrucción total de la caché antigua en móviles y PC
     if ('serviceWorker' in navigator) {
         navigator.serviceWorker.getRegistrations().then(function(registrations) {
             for(let registration of registrations) { registration.unregister(); }
