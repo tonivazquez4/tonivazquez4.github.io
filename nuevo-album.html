@@ -35,7 +35,6 @@
             min-height: 100vh;
         }
         
-        /* 1. EL EXTERIOR (Ordenador: foto al 50%) */
         body::before {
             content: "";
             position: fixed;
@@ -77,7 +76,6 @@
 
         .container { flex: 1; padding: 0 20px 40px; max-width: 1200px; margin: auto; position: relative; z-index: 10; display: flex; align-items: center; justify-content: center;}
         
-        /* 2. EL INTERIOR DE LA CAJA (Ordenador) */
         .mensaje-estudio {
             background-image: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), url('Cuando despierte la ciudad.jpg');
             background-color: #000;
@@ -110,20 +108,22 @@
 
         footer { padding: 25px; text-align: center; background: rgba(0,0,0,0.85); border-top: 2px solid #222; position: relative; z-index: 10;}
 
-        /* --- VERSIÓN MÓVIL OPTIMIZADA (Se ajusta al 92% para que quepa entera) --- */
+        /* --- VERSIÓN MÓVIL: AJUSTE INTELIGENTE PARA QUE ENTRE ENTERO --- */
         @media (max-width: 768px) {
             body::before, .mensaje-estudio {
-                background-size: 92% auto !important; /* Fuerza a que la foto ocupe el 92% del ancho de la pantalla y entre entera */
+                background-size: contain !important; /* Fuerza a que la carátula quepa entera dentro de la altura de la pantalla */
                 background-position: center center !important;
+                background-attachment: scroll !important; /* Soluciona el error de zoom en algunos navegadores móviles */
             }
             header { flex-direction: column; padding: 20px; gap: 20px; align-items: center; background: rgba(0, 0, 0, 0.4); border-bottom: 1px solid rgba(212, 175, 55, 0.3); }
             .header-logo { display: none; }
             .social-icons { width: 100%; justify-content: center !important; } 
             .nav-menu { display: flex; justify-content: center; flex-wrap: wrap; gap: 5px; }
             .btn { font-size: 0.75rem; padding: 8px 10px; }
-            .mensaje-estudio { padding: 30px 15px; width: 100%; box-sizing: border-box; }
+            .mensaje-estudio { padding: 25px 15px; width: 92%; box-sizing: border-box; margin: 20px auto; }
             .mensaje-estudio h2 { font-size: 1.3rem; }
-            .mensaje-estudio p { font-size: 0.95rem; }
+            .mensaje-estudio p { font-size: 0.9rem; line-height: 1.5; margin-bottom: 15px; }
+            .icono-micro { font-size: 3rem; }
         }
     </style>
 </head>
