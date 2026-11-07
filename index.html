@@ -23,11 +23,6 @@
     <meta property="og:url" content="https://www.tonyvazquez.es/index.html">
     <meta property="og:type" content="website">
 
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Tony Vázquez | Alma de Rock 🤘">
-    <meta name="twitter:description" content="Trayectoria profesional y discografía de Tony Vázquez.">
-    <meta name="twitter:image" content="https://www.tonyvazquez.es/alma-de-rock.jpg">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     
@@ -70,7 +65,6 @@
             color: white; text-align: center; padding: 12px; font-weight: 600; font-size: 0.85rem;
             display: none; justify-content: center; align-items: center; gap: 12px; letter-spacing: 1px;
             transition: transform 0.3s ease-out, opacity 0.3s ease-out;
-            touch-action: pan-y;
             user-select: none;
         }
 
@@ -87,64 +81,80 @@
 
         h1, h2, h3 { font-family: 'Arial Black', sans-serif; }
 
-        header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--gold); padding: 10px 40px; background: rgba(0,0,0,0.5); position: relative; z-index: 50;}
-        .header-logo { height: 105px; width: auto; filter: brightness(0) saturate(100%) invert(75%) sepia(50%) saturate(600%) hue-rotate(5deg) brightness(90%) contrast(100%); cursor: pointer; transition: 0.3s; backface-visibility: visible; }
-        #logo-izq { animation: efecto-reloj 7s linear infinite; }
-        #logo-der { animation: efecto-contra-reloj 7s linear infinite; }
-        @keyframes efecto-reloj { from { transform: perspective(1000px) rotateY(0deg); } to { transform: perspective(1000px) rotateY(360deg); } }
-        @keyframes efecto-contra-reloj { from { transform: perspective(1000px) rotateY(0deg); } to { transform: perspective(1000px) rotateY(-360deg); } }
-
+        header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--gold); padding: 10px 40px; background: rgba(0,0,0,0.5); position: relative; z-index: 10;}
+        .header-logo { height: 105px; width: auto; filter: brightness(0) saturate(100%) invert(75%) sepia(50%) saturate(600%) hue-rotate(5deg) brightness(90%) contrast(100%); cursor: pointer; transition: 0.3s; }
+        
         .header-center { text-align: center; flex-grow: 1; }
         .header-center h1 { font-size: clamp(1.2rem, 3vw, 1.8rem); margin: 0; text-transform: uppercase; text-shadow: 2px 2px 10px black;}
         .header-center p { margin: 5px 0 0 0; color: var(--gold); letter-spacing: 4px; font-weight: 700; font-size: 0.8rem; text-transform: uppercase; text-shadow: 2px 2px 10px black;}
 
-        .wrapper-botones-accion { display: grid; grid-template-columns: 50px 1fr 50px; align-items: center; justify-content: center; margin: 15px auto 0; width: 100%; max-width: 350px; position: relative; z-index: 60;}
+        .wrapper-botones-accion { display: grid; grid-template-columns: 50px 1fr 50px; align-items: center; justify-content: center; margin: 15px auto 0; width: 100%; max-width: 350px;}
         
         .btn-share { grid-column: 2; justify-self: center; background: linear-gradient(45deg, var(--gold), var(--gold-light)); color: black; border: none; padding: 8px 18px; border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 0.75rem; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.5); transition: 0.3s; text-transform: uppercase; white-space: nowrap; }
         .btn-tienda { grid-column: 3; justify-self: start; margin-left: 20px; background: #1DB954; color: white; width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.5); transition: 0.3s; text-decoration: none; font-size: 1.15rem; }
 
-        .social-icons { display: flex; gap: 15px; width: 200px; position: relative; z-index: 60;}
+        .social-icons { display: flex; gap: 15px; width: 200px; }
         .icons-left { justify-content: flex-start; }
         .icons-right { justify-content: flex-end; }
         .social-icons a { color: white; font-size: 1.4rem; text-decoration: none; transition: 0.3s; text-shadow: 2px 2px 5px black;}
 
-        .nav-menu { text-align: center; margin: 30px 0; position: relative; z-index: 60;}
-        .btn { background: linear-gradient(45deg, var(--gold), var(--gold-light)); color: black; padding: 10px 22px; text-decoration: none; border-radius: 8px; font-weight: 700; display: inline-block; margin: 5px; transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.5); position: relative; z-index: 60;}
+        .nav-menu { text-align: center; margin: 30px 0; position: relative; z-index: 10;}
+        .btn { background: linear-gradient(45deg, var(--gold), var(--gold-light)); color: black; padding: 10px 22px; text-decoration: none; border-radius: 8px; font-weight: 700; display: inline-block; margin: 5px; transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
         .btn.activo { background: white; transform: scale(1.05); color: black; }
 
-        .container { padding: 0 20px 40px; max-width: 1200px; margin: auto; position: relative; z-index: 40;}
-        .spotify-container { max-width: 400px; margin: 0 auto 40px; border-radius: 12px; overflow: hidden; border: 1px solid var(--gold); height: 80px; background: black; position: relative; z-index: 50;}
+        .container { padding: 0 20px 40px; max-width: 1200px; margin: auto; position: relative; z-index: 10;}
+        .spotify-container { max-width: 400px; margin: 0 auto 40px; border-radius: 12px; overflow: hidden; border: 1px solid var(--gold); height: 80px; background: black; }
 
-        .discografia { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; max-width: 900px; margin: 0 auto; position: relative; z-index: 50;}
+        .discografia { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; max-width: 900px; margin: 0 auto; position: relative; }
         
-        .album-card { background: rgba(15, 15, 15, 0.85); border: 1px solid #333; border-radius: 15px; overflow: hidden; text-align: center; padding-bottom: 20px; transition: 0.4s; box-shadow: 0 5px 15px rgba(0,0,0,0.8); position: relative; z-index: 50;}
+        .album-card { background: rgba(15, 15, 15, 0.85); border: 1px solid #333; border-radius: 15px; overflow: hidden; text-align: center; padding-bottom: 20px; transition: 0.4s; box-shadow: 0 5px 15px rgba(0,0,0,0.8); position: relative; }
         
-        .album-img { width: 100%; height: 350px; object-fit: contain; display: block; background: transparent; padding-top: 10px; cursor: pointer; border-bottom: 1px solid #333; position: relative; z-index: 50;}
+        /* IMAGENES AL 100% DE ANCHO SIN BANDAS NEGRAS (object-fit: cover) */
+        .album-img { 
+            width: 100%; 
+            height: 350px; 
+            object-fit: cover; 
+            display: block; 
+            background: #000; 
+            cursor: pointer; 
+            border-bottom: 1px solid #333;
+            position: relative;
+            z-index: 10;
+        }
 
-        .bio { background: rgba(15, 15, 15, 0.85); padding: 60px 20px; text-align: center; border-top: 1px solid #333; border-bottom: 1px solid #333; margin-top: 50px; box-shadow: 0 5px 15px rgba(0,0,0,0.8); backdrop-filter: blur(5px); position: relative; z-index: 40;}
+        /* CINTA CON Z-INDEX SUPERIOR PARA QUE TAPE A LA FOTO */
+        .cinta-proximamente { 
+            position: absolute; 
+            top: 50%; left: 50%; 
+            width: 200%; 
+            background: var(--gold); color: black; text-align: center; padding: 15px 0; font-size: 1.3rem; font-weight: 900; letter-spacing: 3px; text-transform: uppercase; transform: translate(-50%, -50%) rotate(45deg); 
+            z-index: 100; /* Obliga a la cinta a estar siempre encima de la foto */
+            pointer-events: none; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.9); 
+            animation: parpadeo-cinta 0.8s infinite alternate;
+        }
+
+        @keyframes parpadeo-cinta { 0% { opacity: 0.95; filter: brightness(1.2); } 100% { opacity: 0.5; filter: brightness(0.6); } }
+
+        .bio { background: rgba(15, 15, 15, 0.85); padding: 60px 20px; text-align: center; border-top: 1px solid #333; border-bottom: 1px solid #333; margin-top: 50px; box-shadow: 0 5px 15px rgba(0,0,0,0.8); backdrop-filter: blur(5px); position: relative; z-index: 10;}
         .bio-content { max-width: 950px; margin: auto; font-size: 1.15rem; line-height: 1.8; color: #ddd; text-shadow: 1px 1px 3px black;}
 
-        .seccion-comentarios { width: 95%; max-width: 800px; margin: 40px auto; padding: 15px 20px 10px 20px; background: rgba(15, 15, 15, 0.85); color: white; border-radius: 15px; border: 1px solid var(--gold); box-sizing: border-box; box-shadow: 0 5px 15px rgba(0,0,0,0.8); backdrop-filter: blur(5px); position: relative; z-index: 40;}
+        .seccion-comentarios { width: 95%; max-width: 800px; margin: 40px auto; padding: 15px 20px 10px 20px; background: rgba(15, 15, 15, 0.85); color: white; border-radius: 15px; border: 1px solid var(--gold); box-sizing: border-box; box-shadow: 0 5px 15px rgba(0,0,0,0.8); backdrop-filter: blur(5px); position: relative; z-index: 10;}
         
-        .backstage-box { background: linear-gradient(45deg, rgba(17,17,17,0.85), rgba(34,34,34,0.85)); border: 2px solid var(--gold); padding: 40px 20px; text-align: center; border-radius: 15px; margin: 50px auto; max-width: 800px; box-shadow: 0 10px 30px rgba(0,0,0,0.8); backdrop-filter: blur(5px); position: relative; z-index: 40;}
+        .backstage-box { background: linear-gradient(45deg, rgba(17,17,17,0.85), rgba(34,34,34,0.85)); border: 2px solid var(--gold); padding: 40px 20px; text-align: center; border-radius: 15px; margin: 50px auto; max-width: 800px; box-shadow: 0 10px 30px rgba(0,0,0,0.8); backdrop-filter: blur(5px); position: relative; z-index: 10;}
         .backstage-box h2 { color: var(--gold); text-transform: uppercase; margin-top: 0; margin-bottom: 20px; text-shadow: 2px 2px 5px black;}
         .backstage-form { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
         .backstage-input { padding: 12px 20px; border-radius: 8px; border: 1px solid #444; background: rgba(0,0,0,0.8); color: white; width: 300px; font-family: 'Montserrat', sans-serif;}
         .btn-subscribe { background: var(--gold); color: black; border: none; padding: 12px 25px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s; text-transform: uppercase;}
 
         #btnSubir { display: none; position: fixed; bottom: 30px; right: 30px; z-index: 9999; background: var(--gold); color: black; border: none; width: 55px; height: 55px; border-radius: 50%; box-shadow: 0 4px 15px rgba(0,0,0,0.6); justify-content: center; align-items: center; font-size: 1.5rem; transition: 0.3s; }
-        footer { padding: 25px; text-align: center; background: rgba(0,0,0,0.85); border-top: 2px solid #222; cursor: pointer; position: relative; z-index: 40;}
-
-        .cinta-proximamente { position: absolute; top: 50%; left: 50%; width: 200%; background: var(--gold); color: black; text-align: center; padding: 15px 0; font-size: 1.3rem; font-weight: 900; letter-spacing: 3px; text-transform: uppercase; transform: translate(-50%, -50%) rotate(45deg); z-index: 5; pointer-events: none; box-shadow: 0 10px 30px rgba(0,0,0,0.9); animation: parpadeo-cinta 0.8s infinite alternate;}
-
-        @keyframes parpadeo-cinta { 0% { opacity: 0.95; filter: brightness(1.2); } 100% { opacity: 0.5; filter: brightness(0.6); } }
+        footer { padding: 25px; text-align: center; background: rgba(0,0,0,0.85); border-top: 2px solid #222; cursor: pointer; position: relative; z-index: 10;}
 
         #imageModal { display: none; position: fixed; z-index: 100000; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); justify-content: center; align-items: center; backdrop-filter: blur(5px); }
         #imageModal img { max-width: 90%; max-height: 90%; border-radius: 10px; box-shadow: 0 0 20px var(--gold); }
 
-        /* ANIMACIONES HOVER SOLO PARA ORDENADOR */
+        /* ANIMACIONES HOVER (Solo para PC) */
         @media (hover: hover) {
-            .header-logo:hover { animation-play-state: paused; filter: brightness(1.2); }
             .btn:hover { background: white; transform: scale(1.05); color: black; }
             .btn-share:hover { background: white; transform: scale(1.05); }
             .social-icons a:hover { color: var(--gold); }
@@ -153,7 +163,7 @@
             #btnSubir:hover { transform: scale(1.1); background: white; }
         }
 
-        /* --- VERSIÓN MÓVIL OPTIMIZADA --- */
+        /* VERSIÓN MÓVIL OPTIMIZADA */
         @media (max-width: 768px) {
             header { flex-direction: column; padding: 10px; gap: 8px; align-items: center; background: rgba(0, 0, 0, 0.4); border-bottom: 1px solid rgba(212, 175, 55, 0.3); }
             .header-logo { display: none; }
@@ -164,15 +174,18 @@
             .wrapper-botones-accion { margin: 8px auto 0; gap: 10px; max-width: 250px; }
             .btn-share { padding: 6px 12px; font-size: 0.7rem; }
             .btn-tienda { width: 38px; height: 38px; font-size: 1.05rem; margin-left: 10px; }
+            
             .nav-menu { display: flex; justify-content: center; flex-wrap: wrap; gap: 5px; margin: 12px 0; }
             .btn { font-size: 0.75rem; padding: 7px 10px; margin: 2px; }
+            
             .spotify-container { margin: 0 auto 15px; height: 80px;} 
             
             .discografia { grid-template-columns: 1fr !important; gap: 25px !important; }
             .album-card { padding-bottom: 0 !important; }
-            /* CARÁTULA AL 100% PARA MÓVIL SIN RECORTES */
-            .album-img { height: auto !important; width: 100% !important; object-fit: cover !important; padding-top: 0 !important; background: transparent !important; }
-            .cinta-proximamente { font-size: 1rem !important; padding: 10px 0 !important; }
+            
+            /* Ajuste exacto de altura en móviles para que no haya bandas negras y se vea la tarjeta entera */
+            .album-img { height: 280px !important; width: 100% !important; object-fit: cover !important; padding-top: 0 !important; }
+            .cinta-proximamente { font-size: 1.1rem !important; padding: 10px 0 !important; }
         }
 
         #cajaContador { display:none; position:fixed; bottom:20px; left:20px; background:#000; border:2px solid var(--gold); color:var(--gold); padding:10px 15px; border-radius:8px; font-weight:bold; z-index:999999; box-shadow:0 4px 10px rgba(0,0,0,0.8); cursor:pointer; }
@@ -181,20 +194,18 @@
 <body>
 
 <div id="contenedor-avisos">
+    <!-- Solo muestran los avisos, se quitan solos o deslizando -->
     <div id="aviso-fotos" class="barra-flash" data-tipo="fotos">
         <div class="punto-flash"></div>
         <span>¡HAY NUEVAS FOTOS DISPONIBLES!</span>
-        <a href="galeria.html" class="link-aviso" onclick="marcarVisto('fotos');">IR A GALERÍA 🤘</a>
     </div>
     <div id="aviso-videos" class="barra-flash" data-tipo="videos">
         <div class="punto-flash"></div>
         <span>¡NUEVOS VÍDEOS EN EL CANAL!</span>
-        <a href="videos.html" class="link-aviso" onclick="marcarVisto('videos');">VER VÍDEOS 🎸</a>
     </div>
     <div id="aviso-conciertos" class="barra-flash" data-tipo="conciertos">
         <div class="punto-flash" style="background-color: var(--alert-blue); box-shadow: 0 0 10px var(--alert-blue);"></div>
         <span>¡NUEVA FECHA DE CONCIERTO CONFIRMADA!</span>
-        <a href="conciertos.html" class="link-aviso" onclick="marcarVisto('conciertos');">VER CITAS 📅</a>
     </div>
 </div>
 
@@ -229,6 +240,7 @@
 </header>
 
 <nav class="nav-menu">
+    <!-- Enlaces HTML completamente limpios de scripts -->
     <a href="index.html" class="btn activo">Inicio</a>
     <a href="galeria.html" class="btn">Galería</a>
     <a href="videos.html" class="btn">Vídeos</a>
@@ -241,6 +253,7 @@
     </div>
 
     <div class="discografia" id="discografia">
+        
         <div class="album-card">
             <a href="nuevo-album.html" style="display: block; text-decoration: none; color: inherit; padding-bottom: 15px; position: relative;">
                 <div class="cinta-proximamente">Próximamente</div>
@@ -309,12 +322,10 @@
 <div id="cajaContador" onclick="this.style.display='none'">👀 Visitas totales: <span id="numeroVisitas">...</span></div>
 
 <script>
-    // --- SCRIPT ASESINO DE CACHÉ (Destruye Service Workers antiguos) ---
+    // Destrucción total de la caché antigua en móviles y PC
     if ('serviceWorker' in navigator) {
         navigator.serviceWorker.getRegistrations().then(function(registrations) {
-            for(let registration of registrations) {
-                registration.unregister();
-            }
+            for(let registration of registrations) { registration.unregister(); }
         });
     }
 
