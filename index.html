@@ -218,10 +218,14 @@
             100% { opacity: 0.5; filter: brightness(0.6); }
         }
 
+        /* --- VERSIÓN MÓVIL OPTIMIZADA --- */
         @media (max-width: 768px) {
             .discografia { 
                 grid-template-columns: 1fr !important; 
-                gap: 30px !important; 
+                gap: 20px !important; 
+            }
+            .album-img {
+                height: 240px !important; /* Reducimos la altura en móvil para que el cuadro de la carátula entre entero en la pantalla */
             }
             header { flex-direction: column; padding: 20px; gap: 20px; align-items: center; background: rgba(0, 0, 0, 0.4); border-bottom: 1px solid rgba(212, 175, 55, 0.3); }
             .header-logo { display: none; }
