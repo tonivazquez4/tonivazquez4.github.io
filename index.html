@@ -87,7 +87,7 @@
 
         h1, h2, h3 { font-family: 'Arial Black', sans-serif; }
 
-        header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--gold); padding: 10px 40px; background: rgba(0,0,0,0.5); position: relative; z-index: 10;}
+        header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--gold); padding: 10px 40px; background: rgba(0,0,0,0.5); position: relative; z-index: 50;}
         .header-logo { height: 105px; width: auto; filter: brightness(0) saturate(100%) invert(75%) sepia(50%) saturate(600%) hue-rotate(5deg) brightness(90%) contrast(100%); cursor: pointer; transition: 0.3s; backface-visibility: visible; }
         #logo-izq { animation: efecto-reloj 7s linear infinite; }
         #logo-der { animation: efecto-contra-reloj 7s linear infinite; }
@@ -98,140 +98,51 @@
         .header-center h1 { font-size: clamp(1.2rem, 3vw, 1.8rem); margin: 0; text-transform: uppercase; text-shadow: 2px 2px 10px black;}
         .header-center p { margin: 5px 0 0 0; color: var(--gold); letter-spacing: 4px; font-weight: 700; font-size: 0.8rem; text-transform: uppercase; text-shadow: 2px 2px 10px black;}
 
-        .wrapper-botones-accion { 
-            display: grid;
-            grid-template-columns: 50px 1fr 50px;
-            align-items: center;
-            justify-content: center;
-            margin: 15px auto 0;
-            width: 100%;
-            max-width: 350px;
-        }
+        .wrapper-botones-accion { display: grid; grid-template-columns: 50px 1fr 50px; align-items: center; justify-content: center; margin: 15px auto 0; width: 100%; max-width: 350px; position: relative; z-index: 60;}
         
-        /* BOTONES BASE (Sin animaciones de hover, se añaden más abajo solo para PC) */
-        .btn-share { 
-            grid-column: 2; justify-self: center;
-            background: linear-gradient(45deg, var(--gold), var(--gold-light)); 
-            color: black; border: none; padding: 8px 18px; border-radius: 8px; font-weight: 700; 
-            cursor: pointer; font-size: 0.75rem; display: inline-flex; align-items: center; gap: 8px; 
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5); transition: 0.3s; text-transform: uppercase;
-            white-space: nowrap;
-        }
+        .btn-share { grid-column: 2; justify-self: center; background: linear-gradient(45deg, var(--gold), var(--gold-light)); color: black; border: none; padding: 8px 18px; border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 0.75rem; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.5); transition: 0.3s; text-transform: uppercase; white-space: nowrap; }
+        .btn-tienda { grid-column: 3; justify-self: start; margin-left: 20px; background: #1DB954; color: white; width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.5); transition: 0.3s; text-decoration: none; font-size: 1.15rem; }
 
-        .btn-tienda { 
-            grid-column: 3; justify-self: start; margin-left: 20px;
-            background: #1DB954; color: white; width: 42px; height: 42px; border-radius: 50%; 
-            display: flex; align-items: center; justify-content: center; 
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5); transition: 0.3s; text-decoration: none;
-            font-size: 1.15rem;
-        }
-
-        .social-icons { display: flex; gap: 15px; width: 200px; }
+        .social-icons { display: flex; gap: 15px; width: 200px; position: relative; z-index: 60;}
         .icons-left { justify-content: flex-start; }
         .icons-right { justify-content: flex-end; }
         .social-icons a { color: white; font-size: 1.4rem; text-decoration: none; transition: 0.3s; text-shadow: 2px 2px 5px black;}
 
-        .nav-menu { text-align: center; margin: 30px 0; position: relative; z-index: 10;}
-        
-        .btn { background: linear-gradient(45deg, var(--gold), var(--gold-light)); color: black; padding: 10px 22px; text-decoration: none; border-radius: 8px; font-weight: 700; display: inline-block; margin: 5px; transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+        .nav-menu { text-align: center; margin: 30px 0; position: relative; z-index: 60;}
+        .btn { background: linear-gradient(45deg, var(--gold), var(--gold-light)); color: black; padding: 10px 22px; text-decoration: none; border-radius: 8px; font-weight: 700; display: inline-block; margin: 5px; transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.5); position: relative; z-index: 60;}
         .btn.activo { background: white; transform: scale(1.05); color: black; }
 
-        .container { padding: 0 20px 40px; max-width: 1200px; margin: auto; position: relative; z-index: 10;}
-        .spotify-container { max-width: 400px; margin: 0 auto 40px; border-radius: 12px; overflow: hidden; border: 1px solid var(--gold); height: 80px; background: black; }
+        .container { padding: 0 20px 40px; max-width: 1200px; margin: auto; position: relative; z-index: 40;}
+        .spotify-container { max-width: 400px; margin: 0 auto 40px; border-radius: 12px; overflow: hidden; border: 1px solid var(--gold); height: 80px; background: black; position: relative; z-index: 50;}
 
-        .discografia { 
-            display: grid; 
-            grid-template-columns: repeat(2, 1fr); 
-            gap: 40px; 
-            max-width: 900px; 
-            margin: 0 auto; 
-        }
+        .discografia { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; max-width: 900px; margin: 0 auto; position: relative; z-index: 50;}
         
-        .album-card { background: rgba(15, 15, 15, 0.85); border: 1px solid #333; border-radius: 15px; overflow: hidden; text-align: center; padding-bottom: 20px; transition: 0.4s; box-shadow: 0 5px 15px rgba(0,0,0,0.8); position: relative;}
+        .album-card { background: rgba(15, 15, 15, 0.85); border: 1px solid #333; border-radius: 15px; overflow: hidden; text-align: center; padding-bottom: 20px; transition: 0.4s; box-shadow: 0 5px 15px rgba(0,0,0,0.8); position: relative; z-index: 50;}
         
-        /* RESTAURADA LA IMAGEN PARA ORDENADOR */
-        .album-img { 
-            width: 100%; 
-            height: 350px; 
-            object-fit: contain; 
-            background: black; 
-            padding-top: 10px; 
-            cursor: pointer; 
-            border-bottom: 1px solid #333;
-        }
+        .album-img { width: 100%; height: 350px; object-fit: contain; display: block; background: transparent; padding-top: 10px; cursor: pointer; border-bottom: 1px solid #333; position: relative; z-index: 50;}
 
-        .bio { background: rgba(15, 15, 15, 0.85); padding: 60px 20px; text-align: center; border-top: 1px solid #333; border-bottom: 1px solid #333; margin-top: 50px; box-shadow: 0 5px 15px rgba(0,0,0,0.8); backdrop-filter: blur(5px); position: relative; z-index: 10;}
+        .bio { background: rgba(15, 15, 15, 0.85); padding: 60px 20px; text-align: center; border-top: 1px solid #333; border-bottom: 1px solid #333; margin-top: 50px; box-shadow: 0 5px 15px rgba(0,0,0,0.8); backdrop-filter: blur(5px); position: relative; z-index: 40;}
         .bio-content { max-width: 950px; margin: auto; font-size: 1.15rem; line-height: 1.8; color: #ddd; text-shadow: 1px 1px 3px black;}
 
-        .seccion-comentarios { width: 95%; max-width: 800px; margin: 40px auto; padding: 15px 20px 10px 20px; background: rgba(15, 15, 15, 0.85); color: white; border-radius: 15px; border: 1px solid var(--gold); box-sizing: border-box; box-shadow: 0 5px 15px rgba(0,0,0,0.8); backdrop-filter: blur(5px); position: relative; z-index: 10;}
+        .seccion-comentarios { width: 95%; max-width: 800px; margin: 40px auto; padding: 15px 20px 10px 20px; background: rgba(15, 15, 15, 0.85); color: white; border-radius: 15px; border: 1px solid var(--gold); box-sizing: border-box; box-shadow: 0 5px 15px rgba(0,0,0,0.8); backdrop-filter: blur(5px); position: relative; z-index: 40;}
         
-        .backstage-box {
-            background: linear-gradient(45deg, rgba(17,17,17,0.85), rgba(34,34,34,0.85));
-            border: 2px solid var(--gold);
-            padding: 40px 20px;
-            text-align: center;
-            border-radius: 15px;
-            margin: 50px auto;
-            max-width: 800px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-            backdrop-filter: blur(5px);
-        }
+        .backstage-box { background: linear-gradient(45deg, rgba(17,17,17,0.85), rgba(34,34,34,0.85)); border: 2px solid var(--gold); padding: 40px 20px; text-align: center; border-radius: 15px; margin: 50px auto; max-width: 800px; box-shadow: 0 10px 30px rgba(0,0,0,0.8); backdrop-filter: blur(5px); position: relative; z-index: 40;}
         .backstage-box h2 { color: var(--gold); text-transform: uppercase; margin-top: 0; margin-bottom: 20px; text-shadow: 2px 2px 5px black;}
         .backstage-form { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
-        .backstage-input {
-            padding: 12px 20px;
-            border-radius: 8px;
-            border: 1px solid #444;
-            background: rgba(0,0,0,0.8);
-            color: white;
-            width: 300px;
-            font-family: 'Montserrat', sans-serif;
-        }
-        .btn-subscribe {
-            background: var(--gold);
-            color: black;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 8px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: 0.3s;
-            text-transform: uppercase;
-        }
+        .backstage-input { padding: 12px 20px; border-radius: 8px; border: 1px solid #444; background: rgba(0,0,0,0.8); color: white; width: 300px; font-family: 'Montserrat', sans-serif;}
+        .btn-subscribe { background: var(--gold); color: black; border: none; padding: 12px 25px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s; text-transform: uppercase;}
 
         #btnSubir { display: none; position: fixed; bottom: 30px; right: 30px; z-index: 9999; background: var(--gold); color: black; border: none; width: 55px; height: 55px; border-radius: 50%; box-shadow: 0 4px 15px rgba(0,0,0,0.6); justify-content: center; align-items: center; font-size: 1.5rem; transition: 0.3s; }
-        footer { padding: 25px; text-align: center; background: rgba(0,0,0,0.85); border-top: 2px solid #222; cursor: pointer; position: relative; z-index: 10;}
+        footer { padding: 25px; text-align: center; background: rgba(0,0,0,0.85); border-top: 2px solid #222; cursor: pointer; position: relative; z-index: 40;}
 
-        .cinta-proximamente {
-            position: absolute;
-            top: 50%;       
-            left: 50%;      
-            width: 200%;    
-            background: var(--gold);
-            color: black;
-            text-align: center;
-            padding: 15px 0;
-            font-size: 1.3rem;
-            font-weight: 900;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            transform: translate(-50%, -50%) rotate(45deg);
-            z-index: 5;
-            pointer-events: none; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.9);
-            animation: parpadeo-cinta 0.8s infinite alternate;
-        }
+        .cinta-proximamente { position: absolute; top: 50%; left: 50%; width: 200%; background: var(--gold); color: black; text-align: center; padding: 15px 0; font-size: 1.3rem; font-weight: 900; letter-spacing: 3px; text-transform: uppercase; transform: translate(-50%, -50%) rotate(45deg); z-index: 5; pointer-events: none; box-shadow: 0 10px 30px rgba(0,0,0,0.9); animation: parpadeo-cinta 0.8s infinite alternate;}
 
-        @keyframes parpadeo-cinta {
-            0% { opacity: 0.95; filter: brightness(1.2); }
-            100% { opacity: 0.5; filter: brightness(0.6); }
-        }
+        @keyframes parpadeo-cinta { 0% { opacity: 0.95; filter: brightness(1.2); } 100% { opacity: 0.5; filter: brightness(0.6); } }
 
-        /* RESTAURADA LA CAJA DE IMÁGENES EMERGENTE */
         #imageModal { display: none; position: fixed; z-index: 100000; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); justify-content: center; align-items: center; backdrop-filter: blur(5px); }
         #imageModal img { max-width: 90%; max-height: 90%; border-radius: 10px; box-shadow: 0 0 20px var(--gold); }
 
-        /* --- SOLUCIÓN DOBLE TOQUE: LAS ANIMACIONES HOVER SOLO FUNCIONAN EN ORDENADOR --- */
+        /* ANIMACIONES HOVER SOLO PARA ORDENADOR */
         @media (hover: hover) {
             .header-logo:hover { animation-play-state: paused; filter: brightness(1.2); }
             .btn:hover { background: white; transform: scale(1.05); color: black; }
@@ -242,36 +153,25 @@
             #btnSubir:hover { transform: scale(1.1); background: white; }
         }
 
-        /* --- VERSIÓN MÓVIL OPTIMIZADA Y COMPRIMIDA --- */
+        /* --- VERSIÓN MÓVIL OPTIMIZADA --- */
         @media (max-width: 768px) {
-            /* Compresión superior */
             header { flex-direction: column; padding: 10px; gap: 8px; align-items: center; background: rgba(0, 0, 0, 0.4); border-bottom: 1px solid rgba(212, 175, 55, 0.3); }
             .header-logo { display: none; }
             .header-center h1 { font-size: 1.15rem; }
             .header-center p { font-size: 0.7rem; margin-top: 3px; }
-            
             .social-icons { width: 100%; justify-content: center !important; gap: 12px; }
             .social-icons a { font-size: 1.2rem; }
-            
             .wrapper-botones-accion { margin: 8px auto 0; gap: 10px; max-width: 250px; }
             .btn-share { padding: 6px 12px; font-size: 0.7rem; }
             .btn-tienda { width: 38px; height: 38px; font-size: 1.05rem; margin-left: 10px; }
-            
             .nav-menu { display: flex; justify-content: center; flex-wrap: wrap; gap: 5px; margin: 12px 0; }
             .btn { font-size: 0.75rem; padding: 7px 10px; margin: 2px; }
-            
             .spotify-container { margin: 0 auto 15px; height: 80px;} 
             
-            /* Tarjeta gigante en móvil (sin márgenes negros) */
             .discografia { grid-template-columns: 1fr !important; gap: 25px !important; }
             .album-card { padding-bottom: 0 !important; }
-            .album-img { 
-                height: auto !important; 
-                width: 100% !important; 
-                object-fit: cover !important; 
-                padding-top: 0 !important; 
-                background: transparent !important; 
-            }
+            /* CARÁTULA AL 100% PARA MÓVIL SIN RECORTES */
+            .album-img { height: auto !important; width: 100% !important; object-fit: cover !important; padding-top: 0 !important; background: transparent !important; }
             .cinta-proximamente { font-size: 1rem !important; padding: 10px 0 !important; }
         }
 
@@ -330,7 +230,6 @@
 
 <nav class="nav-menu">
     <a href="index.html" class="btn activo">Inicio</a>
-    <!-- Enlaces puros sin JS para asegurar que funcionan siempre -->
     <a href="galeria.html" class="btn">Galería</a>
     <a href="videos.html" class="btn">Vídeos</a>
     <a href="conciertos.html" class="btn">Conciertos</a>
@@ -342,7 +241,6 @@
     </div>
 
     <div class="discografia" id="discografia">
-        
         <div class="album-card">
             <a href="nuevo-album.html" style="display: block; text-decoration: none; color: inherit; padding-bottom: 15px; position: relative;">
                 <div class="cinta-proximamente">Próximamente</div>
@@ -359,7 +257,7 @@
         </div>
         
         <div class="album-card">
-            <img src="suenos-de-papel.jpg" alt="Disco" class="album-img" onclick="abrirImagen(this.src)">
+            <img src="Sueños de papel.jpg" alt="Disco" class="album-img" onclick="abrirImagen(this.src)">
             <h3>Sueños de papel</h3>
             <a href="https://open.spotify.com/intl-es/album/708rurqxThgsJPR8aClRAD?si=o6eWGd1jQJSU7i1lwuh5JQ" target="_blank" class="btn">Escuchar ahora</a>
         </div>
@@ -407,63 +305,52 @@
 
 <button id="btnSubir" onclick="window.scrollTo({top: 0, behavior: 'smooth'})"><i class="fa-solid fa-arrow-up"></i></button>
 
-<!-- Ventana emergente (Modal) para ver las fotos en grande -->
 <div id="imageModal" onclick="this.style.display='none'"><img id="imgFull"></div>
-
 <div id="cajaContador" onclick="this.style.display='none'">👀 Visitas totales: <span id="numeroVisitas">...</span></div>
 
 <script>
-    const configAlertas = {
-        fotos: { activo: true, id: "fotos_v1" },
-        videos: { activo: true, id: "videos_v1" },
-        conciertos: { activo: true, id: "conciertos_v1" }
-    };
+    // --- SCRIPT ASESINO DE CACHÉ (Destruye Service Workers antiguos) ---
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.getRegistrations().then(function(registrations) {
+            for(let registration of registrations) {
+                registration.unregister();
+            }
+        });
+    }
+
+    const configAlertas = { fotos: { activo: true, id: "fotos_v1" }, videos: { activo: true, id: "videos_v1" }, conciertos: { activo: true, id: "conciertos_v1" } };
 
     function marcarVisto(tipo) {
         try {
             if (configAlertas[tipo]) {
                 localStorage.setItem('visto_' + configAlertas[tipo].id, 'true');
                 const el = document.getElementById('aviso-' + tipo);
-                if (el) {
-                    el.style.transform = 'translateX(-100%)';
-                    el.style.opacity = '0';
-                    setTimeout(() => el.style.display = 'none', 300);
-                }
+                if (el) { el.style.transform = 'translateX(-100%)'; el.style.opacity = '0'; setTimeout(() => el.style.display = 'none', 300); }
             }
-        } catch(e) { console.error(e); }
+        } catch(e) {}
     }
 
-    let touchStartX = 0;
-    let touchEndX = 0;
+    let touchStartX = 0; let touchEndX = 0;
 
     function inicializarSwipe() {
         const barras = document.querySelectorAll('.barra-flash');
         barras.forEach(barra => {
-            barra.addEventListener('touchstart', e => {
-                touchStartX = e.changedTouches[0].screenX;
-            }, false);
-
+            barra.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; }, {passive: true});
             barra.addEventListener('touchend', e => {
                 touchEndX = e.changedTouches[0].screenX;
                 const tipo = barra.getAttribute('data-tipo');
-                if (touchStartX - touchEndX > 70) {
-                    marcarVisto(tipo);
-                }
-            }, false);
+                if (touchStartX - touchEndX > 70) { marcarVisto(tipo); }
+            }, {passive: true});
         });
     }
 
     function gestionarAvisos() {
         const usuarioRecurrente = localStorage.getItem('tony_web_visitado');
-
         if (!usuarioRecurrente) {
             localStorage.setItem('tony_web_visitado', 'true');
-            Object.keys(configAlertas).forEach(tipo => {
-                localStorage.setItem('visto_' + configAlertas[tipo].id, 'true');
-            });
+            Object.keys(configAlertas).forEach(tipo => { localStorage.setItem('visto_' + configAlertas[tipo].id, 'true'); });
             return; 
         }
-
         let hayAvisos = false;
         Object.keys(configAlertas).forEach(tipo => {
             const alerta = configAlertas[tipo];
@@ -472,10 +359,7 @@
                 hayAvisos = true;
             }
         });
-        
-        if (hayAvisos) {
-            inicializarSwipe();
-        }
+        if (hayAvisos) { inicializarSwipe(); }
     }
 
     function abrirImagen(src) { 
