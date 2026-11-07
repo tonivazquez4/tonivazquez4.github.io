@@ -93,7 +93,6 @@
         #logo-der { animation: efecto-contra-reloj 7s linear infinite; }
         @keyframes efecto-reloj { from { transform: perspective(1000px) rotateY(0deg); } to { transform: perspective(1000px) rotateY(360deg); } }
         @keyframes efecto-contra-reloj { from { transform: perspective(1000px) rotateY(0deg); } to { transform: perspective(1000px) rotateY(-360deg); } }
-        .header-logo:hover { animation-play-state: paused; filter: brightness(1.2); }
 
         .header-center { text-align: center; flex-grow: 1; }
         .header-center h1 { font-size: clamp(1.2rem, 3vw, 1.8rem); margin: 0; text-transform: uppercase; text-shadow: 2px 2px 10px black;}
@@ -116,8 +115,6 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.5); transition: 0.3s; text-transform: uppercase;
             white-space: nowrap;
         }
-        .btn-share:hover { background: white; transform: scale(1.05); }
-
         .btn-tienda { 
             grid-column: 3; justify-self: start; margin-left: 20px;
             background: #1DB954; color: white; width: 42px; height: 42px; border-radius: 50%; 
@@ -132,8 +129,10 @@
         .social-icons a { color: white; font-size: 1.4rem; text-decoration: none; transition: 0.3s; text-shadow: 2px 2px 5px black;}
 
         .nav-menu { text-align: center; margin: 30px 0; position: relative; z-index: 10;}
+        
+        /* Botones Base */
         .btn { background: linear-gradient(45deg, var(--gold), var(--gold-light)); color: black; padding: 10px 22px; text-decoration: none; border-radius: 8px; font-weight: 700; display: inline-block; margin: 5px; transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
-        .btn:hover, .btn.activo { background: white; transform: scale(1.05); }
+        .btn.activo { background: white; transform: scale(1.05); color: black; }
 
         .container { padding: 0 20px 40px; max-width: 1200px; margin: auto; position: relative; z-index: 10;}
         .spotify-container { max-width: 400px; margin: 0 auto 40px; border-radius: 12px; overflow: hidden; border: 1px solid var(--gold); height: 80px; background: black; }
@@ -147,7 +146,6 @@
         }
         
         .album-card { background: rgba(15, 15, 15, 0.85); border: 1px solid #333; border-radius: 15px; overflow: hidden; text-align: center; padding-bottom: 20px; transition: 0.4s; box-shadow: 0 5px 15px rgba(0,0,0,0.8); backdrop-filter: blur(5px);}
-        .album-card:hover { transform: translateY(-10px); border-color: var(--gold); background: rgba(30, 30, 30, 0.95); box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
         
         .album-img { 
             width: 100%; 
@@ -197,7 +195,6 @@
             transition: 0.3s;
             text-transform: uppercase;
         }
-        .btn-subscribe:hover { background: white; transform: scale(1.05); }
 
         #btnSubir { display: none; position: fixed; bottom: 30px; right: 30px; z-index: 9999; background: var(--gold); color: black; border: none; width: 55px; height: 55px; border-radius: 50%; box-shadow: 0 4px 15px rgba(0,0,0,0.6); justify-content: center; align-items: center; font-size: 1.5rem; transition: 0.3s; }
         footer { padding: 25px; text-align: center; background: rgba(0,0,0,0.85); border-top: 2px solid #222; cursor: pointer; position: relative; z-index: 10;}
@@ -227,19 +224,19 @@
             100% { opacity: 0.5; filter: brightness(0.6); }
         }
 
+        /* --- SOLUCIÓN DOBLE TOQUE: ANIMACIONES SOLO PARA PC --- */
+        @media (hover: hover) {
+            .header-logo:hover { animation-play-state: paused; filter: brightness(1.2); }
+            .btn-share:hover { background: white; transform: scale(1.05); }
+            .social-icons a:hover { color: var(--gold); }
+            .btn:hover { background: white; transform: scale(1.05); }
+            .album-card:hover { transform: translateY(-10px); border-color: var(--gold); background: rgba(30, 30, 30, 0.95); box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
+            .btn-subscribe:hover { background: white; transform: scale(1.05); }
+            #btnSubir:hover { transform: scale(1.1); background: white; }
+        }
+
         /* --- VERSIÓN MÓVIL SÚPER OPTIMIZADA --- */
         @media (max-width: 768px) {
-            
-            /* 1. SOLUCIÓN AL "DOBLE TOQUE" DE MÓVILES (Anula los hovers problemáticos) */
-            .btn:hover { transform: none !important; background: linear-gradient(45deg, var(--gold), var(--gold-light)) !important; color: black !important; }
-            .btn.activo { transform: scale(1.05) !important; background: white !important; color: black !important; }
-            .btn:active { transform: scale(0.95) !important; background: white !important; }
-            
-            .album-card:hover { transform: none !important; border-color: #333 !important; background: rgba(15, 15, 15, 0.85) !important; box-shadow: 0 5px 15px rgba(0,0,0,0.8) !important; }
-            .btn-share:hover { transform: none !important; background: linear-gradient(45deg, var(--gold), var(--gold-light)) !important; }
-            .btn-subscribe:hover { transform: none !important; background: var(--gold) !important; }
-
-            /* 2. COMPRESIÓN DE LA PARTE SUPERIOR */
             header { flex-direction: column; padding: 10px; gap: 8px; align-items: center; background: rgba(0, 0, 0, 0.4); border-bottom: 1px solid rgba(212, 175, 55, 0.3); }
             .header-logo { display: none; }
             .header-center h1 { font-size: 1.15rem; }
@@ -257,23 +254,10 @@
             
             .spotify-container { margin: 0 auto 15px; height: 80px;} 
             
-            /* 3. CARÁTULAS AL 100% DE ANCHO Y SIN NEGRO LATERAL */
-            .discografia { 
-                grid-template-columns: 1fr !important; 
-                gap: 25px !important; 
-            }
-            .album-card {
-                padding-bottom: 0 !important; 
-            }
-            .album-img {
-                height: auto !important; 
-                width: 100% !important;
-                object-fit: cover !important; 
-            }
-            .cinta-proximamente {
-                font-size: 1rem !important; 
-                padding: 10px 0 !important;
-            }
+            .discografia { grid-template-columns: 1fr !important; gap: 25px !important; }
+            .album-card { padding-bottom: 0 !important; }
+            .album-img { height: auto !important; width: 100% !important; object-fit: cover !important; }
+            .cinta-proximamente { font-size: 1rem !important; padding: 10px 0 !important; }
         }
 
         #cajaContador { display:none; position:fixed; bottom:20px; left:20px; background:#000; border:2px solid var(--gold); color:var(--gold); padding:10px 15px; border-radius:8px; font-weight:bold; z-index:999999; box-shadow:0 4px 10px rgba(0,0,0,0.8); cursor:pointer; }
@@ -285,17 +269,17 @@
     <div id="aviso-fotos" class="barra-flash" data-tipo="fotos">
         <div class="punto-flash"></div>
         <span>¡HAY NUEVAS FOTOS DISPONIBLES!</span>
-        <a href="galeria.html" class="link-aviso" onclick="marcarVisto('fotos')">IR A GALERÍA 🤘</a>
+        <a href="galeria.html" class="link-aviso" onclick="marcarVisto('fotos'); return true;">IR A GALERÍA 🤘</a>
     </div>
     <div id="aviso-videos" class="barra-flash" data-tipo="videos">
         <div class="punto-flash"></div>
         <span>¡NUEVOS VÍDEOS EN EL CANAL!</span>
-        <a href="videos.html" class="link-aviso" onclick="marcarVisto('videos')">VER VÍDEOS 🎸</a>
+        <a href="videos.html" class="link-aviso" onclick="marcarVisto('videos'); return true;">VER VÍDEOS 🎸</a>
     </div>
     <div id="aviso-conciertos" class="barra-flash" data-tipo="conciertos">
         <div class="punto-flash" style="background-color: var(--alert-blue); box-shadow: 0 0 10px var(--alert-blue);"></div>
         <span>¡NUEVA FECHA DE CONCIERTO CONFIRMADA!</span>
-        <a href="conciertos.html" class="link-aviso" onclick="marcarVisto('conciertos')">VER CITAS 📅</a>
+        <a href="conciertos.html" class="link-aviso" onclick="marcarVisto('conciertos'); return true;">VER CITAS 📅</a>
     </div>
 </div>
 
@@ -331,9 +315,9 @@
 
 <nav class="nav-menu">
     <a href="index.html" class="btn activo">Inicio</a>
-    <a href="galeria.html" class="btn" onclick="marcarVisto('fotos')">Galería</a>
-    <a href="videos.html" class="btn" onclick="marcarVisto('videos')">Vídeos</a>
-    <a href="conciertos.html" class="btn" onclick="marcarVisto('conciertos')">Conciertos</a>
+    <a href="galeria.html" class="btn" onclick="marcarVisto('fotos'); return true;">Galería</a>
+    <a href="videos.html" class="btn" onclick="marcarVisto('videos'); return true;">Vídeos</a>
+    <a href="conciertos.html" class="btn" onclick="marcarVisto('conciertos'); return true;">Conciertos</a>
 </nav>
 
 <div class="container">
@@ -359,7 +343,7 @@
         </div>
         
         <div class="album-card">
-            <img src="Sueños de papel.jpg" alt="Disco" class="album-img" onclick="abrirImagen(this.src)">
+            <img src="suenos-de-papel.jpg" alt="Disco" class="album-img" onclick="abrirImagen(this.src)">
             <h3>Sueños de papel</h3>
             <a href="https://open.spotify.com/intl-es/album/708rurqxThgsJPR8aClRAD?si=o6eWGd1jQJSU7i1lwuh5JQ" target="_blank" class="btn">Escuchar ahora</a>
         </div>
@@ -418,15 +402,18 @@
     };
 
     function marcarVisto(tipo) {
-        if (configAlertas[tipo]) {
-            localStorage.setItem('visto_' + configAlertas[tipo].id, 'true');
-            const el = document.getElementById('aviso-' + tipo);
-            if (el) {
-                el.style.transform = 'translateX(-100%)';
-                el.style.opacity = '0';
-                setTimeout(() => el.style.display = 'none', 300);
+        try {
+            if (configAlertas[tipo]) {
+                localStorage.setItem('visto_' + configAlertas[tipo].id, 'true');
+                const el = document.getElementById('aviso-' + tipo);
+                if (el) {
+                    el.style.transform = 'translateX(-100%)';
+                    el.style.opacity = '0';
+                    setTimeout(() => el.style.display = 'none', 300);
+                }
             }
-        }
+        } catch(e) { console.error(e); }
+        return true; /* Fuerza al navegador a seguir el enlace pase lo que pase */
     }
 
     let touchStartX = 0;
