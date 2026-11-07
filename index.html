@@ -40,20 +40,24 @@
             overflow-x: hidden; 
         }
         
-        /* FONDOS HECHOS TRASPASABLES PARA NO BLOQUEAR LOS BOTONES */
         body::before {
             content: "";
             position: fixed; top: 0; left: 0; right: 0; bottom: 0;
             background: url('alma-de-rock.jpg') no-repeat center center; background-size: cover;
-            z-index: -2;
-            pointer-events: none; /* Clave para revivir los botones */
+            z-index: -2; pointer-events: none; 
         }
         body::after {
             content: "";
             position: fixed; top: 0; left: 0; right: 0; bottom: 0;
             background: radial-gradient(circle at center, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.8) 100%);
-            z-index: -1;
-            pointer-events: none; /* Clave para revivir los botones */
+            z-index: -1; pointer-events: none; 
+        }
+
+        /* --- PANTALLA DE CARGA --- */
+        #loader-pantalla {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9); z-index: 9999999; justify-content: center; align-items: center;
+            flex-direction: column; color: var(--gold); backdrop-filter: blur(5px);
         }
 
         #contenedor-avisos { position: relative; z-index: 10002; width: 100%; overflow: hidden; }
@@ -90,6 +94,9 @@
         .nav-menu { text-align: center; margin: 30px 0; position: relative; z-index: 10;}
         .btn { background: linear-gradient(45deg, var(--gold), var(--gold-light)); color: black; padding: 10px 22px; text-decoration: none; border-radius: 8px; font-weight: 700; display: inline-block; margin: 5px; transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
         .btn.activo { background: white; transform: scale(1.05); color: black; }
+        
+        /* Efecto al tocar la pantalla para que notes que el botón reacciona */
+        .btn:active, .btn-share:active, .album-card:active { transform: scale(0.95) !important; opacity: 0.8; }
 
         .container { padding: 0 20px 40px; max-width: 1200px; margin: auto; position: relative; z-index: 10;}
         .spotify-container { max-width: 400px; margin: 0 auto 40px; border-radius: 12px; overflow: hidden; border: 1px solid var(--gold); height: 80px; background: black; position: relative; z-index: 20;}
@@ -98,7 +105,6 @@
         
         .album-card { background: rgba(15, 15, 15, 0.85); border: 1px solid #333; border-radius: 15px; overflow: hidden; text-align: center; padding-bottom: 20px; transition: 0.4s; box-shadow: 0 5px 15px rgba(0,0,0,0.8); position: relative; }
         
-        /* ADIÓS CORTES: IMAGEN EN TAMAÑO NATURAL (auto) */
         .album-img { 
             width: 100%; 
             height: auto; 
@@ -140,7 +146,6 @@
         #imageModal { display: none; position: fixed; z-index: 100000; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); justify-content: center; align-items: center; backdrop-filter: blur(5px); }
         #imageModal img { max-width: 90%; max-height: 90%; border-radius: 10px; box-shadow: 0 0 20px var(--gold); }
 
-        /* ANIMACIONES HOVER (Solo para PC para evitar bugs en móviles) */
         @media (hover: hover) and (pointer: fine) {
             .btn:hover { background: white; transform: scale(1.05); color: black; }
             .btn-share:hover { background: white; transform: scale(1.05); }
@@ -150,7 +155,6 @@
             #btnSubir:hover { transform: scale(1.1); background: white; }
         }
 
-        /* --- VERSIÓN MÓVIL --- */
         @media (max-width: 768px) {
             header { flex-direction: column; padding: 10px; gap: 8px; align-items: center; background: rgba(0, 0, 0, 0.4); border-bottom: 1px solid rgba(212, 175, 55, 0.3); }
             .header-logo { display: none; }
@@ -167,7 +171,7 @@
             
             .discografia { grid-template-columns: 1fr !important; gap: 25px !important; }
             .album-card { padding-bottom: 0 !important; }
-            
+            .album-img { height: auto !important; width: 100% !important; object-fit: cover !important; padding-top: 0 !important; background: transparent !important; }
             .cinta-proximamente { font-size: 1rem !important; padding: 10px 0 !important; }
         }
 
@@ -176,21 +180,27 @@
 </head>
 <body>
 
+<!-- PANTALLA DE CARGA -->
+<div id="loader-pantalla">
+    <i class="fa-solid fa-circle-notch fa-spin" style="font-size: 4rem; margin-bottom: 20px;"></i>
+    <h3 style="margin:0; letter-spacing: 3px; text-transform: uppercase;">Cargando...</h3>
+</div>
+
 <div id="contenedor-avisos">
     <div id="aviso-fotos" class="barra-flash" data-tipo="fotos">
         <div class="punto-flash"></div>
         <span>¡HAY NUEVAS FOTOS DISPONIBLES!</span>
-        <a href="galeria.html" class="link-aviso" onclick="marcarVisto('fotos');">IR A GALERÍA 🤘</a>
+        <a href="galeria.html" class="link-aviso" onclick="marcarVisto('fotos'); mostrarCarga(event, this.href);">IR A GALERÍA 🤘</a>
     </div>
     <div id="aviso-videos" class="barra-flash" data-tipo="videos">
         <div class="punto-flash"></div>
         <span>¡NUEVOS VÍDEOS EN EL CANAL!</span>
-        <a href="videos.html" class="link-aviso" onclick="marcarVisto('videos');">VER VÍDEOS 🎸</a>
+        <a href="videos.html" class="link-aviso" onclick="marcarVisto('videos'); mostrarCarga(event, this.href);">VER VÍDEOS 🎸</a>
     </div>
     <div id="aviso-conciertos" class="barra-flash" data-tipo="conciertos">
         <div class="punto-flash" style="background-color: var(--alert-blue); box-shadow: 0 0 10px var(--alert-blue);"></div>
         <span>¡NUEVA FECHA DE CONCIERTO CONFIRMADA!</span>
-        <a href="conciertos.html" class="link-aviso" onclick="marcarVisto('conciertos');">VER CITAS 📅</a>
+        <a href="conciertos.html" class="link-aviso" onclick="marcarVisto('conciertos'); mostrarCarga(event, this.href);">VER CITAS 📅</a>
     </div>
 </div>
 
@@ -225,10 +235,11 @@
 </header>
 
 <nav class="nav-menu">
+    <!-- TODOS LOS ENLACES DE LA WEB AHORA ACTIVAN LA PANTALLA DE CARGA -->
     <a href="index.html" class="btn activo">Inicio</a>
-    <a href="galeria.html" class="btn">Galería</a>
-    <a href="videos.html" class="btn">Vídeos</a>
-    <a href="conciertos.html" class="btn">Conciertos</a>
+    <a href="galeria.html" class="btn" onclick="mostrarCarga(event, this.href)">Galería</a>
+    <a href="videos.html" class="btn" onclick="mostrarCarga(event, this.href)">Vídeos</a>
+    <a href="conciertos.html" class="btn" onclick="mostrarCarga(event, this.href)">Conciertos</a>
 </nav>
 
 <div class="container">
@@ -239,28 +250,28 @@
     <div class="discografia" id="discografia">
         
         <div class="album-card">
-            <a href="nuevo-album.html" style="display: block; text-decoration: none; color: inherit; padding-bottom: 15px; position: relative;">
+            <a href="nuevo-album.html" onclick="mostrarCarga(event, this.href)" style="display: block; text-decoration: none; color: inherit; padding-bottom: 15px; position: relative;">
                 <div class="cinta-proximamente">Próximamente</div>
-                <img src="Cuando despierte la ciudad.jpg" alt="Disco Cuando despierte la ciudad" class="album-img">
+                <img src="Cuando despierte la ciudad.jpg" alt="Disco Cuando despierte la ciudad" class="album-img" loading="lazy">
                 <h3 style="margin: 15px 0 5px;">Cuando despierte la ciudad</h3>
                 <p style="color: var(--gold); font-size: 0.85rem; font-weight: bold; text-transform: uppercase; margin: 0;"><i class="fa-solid fa-door-open"></i> Entrar al estudio</p>
             </a>
         </div>
 
         <div class="album-card">
-            <img src="alma-de-rock.jpg" alt="Disco" class="album-img" onclick="abrirImagen(this.src)">
+            <img src="alma-de-rock.jpg" alt="Disco" class="album-img" onclick="abrirImagen(this.src)" loading="lazy">
             <h3>Alma de Rock</h3>
             <a href="https://open.spotify.com/intl-es/album/4rs6iGjMuaWskxs9FkEEt7?si=PzXKCwO0T1GDQSk4VFCCBQ" target="_blank" class="btn">Escuchar ahora</a>
         </div>
         
         <div class="album-card">
-            <img src="Sueños de papel.jpg" alt="Disco" class="album-img" onclick="abrirImagen(this.src)">
+            <img src="Sueños de papel.jpg" alt="Disco" class="album-img" onclick="abrirImagen(this.src)" loading="lazy">
             <h3>Sueños de papel</h3>
             <a href="https://open.spotify.com/intl-es/album/708rurqxThgsJPR8aClRAD?si=o6eWGd1jQJSU7i1lwuh5JQ" target="_blank" class="btn">Escuchar ahora</a>
         </div>
         
         <div class="album-card">
-            <img src="La magia.jpg" alt="Disco" class="album-img" onclick="abrirImagen(this.src)">
+            <img src="La magia.jpg" alt="Disco" class="album-img" onclick="abrirImagen(this.src)" loading="lazy">
             <h3>La magia de la vida</h3>
             <a href="https://open.spotify.com/intl-es/album/4UYMgk4jtxCj9GU6be8txk?si=qIYMH7C4R2WCRyfAOcUD2Q" target="_blank" class="btn">Escuchar ahora</a>
         </div>
@@ -306,10 +317,21 @@
 <div id="cajaContador" onclick="this.style.display='none'">👀 Visitas totales: <span id="numeroVisitas">...</span></div>
 
 <script>
+    // Limpieza de Caché del Service Worker
     if ('serviceWorker' in navigator) {
         navigator.serviceWorker.getRegistrations().then(function(registrations) {
             for(let registration of registrations) { registration.unregister(); }
         });
+    }
+
+    // FUNCIÓN DE PANTALLA DE CARGA (Para que el usuario sepa que el botón funciona)
+    function mostrarCarga(e, url) {
+        // Si el usuario hace clic derecho o pulsa Control para abrir en nueva pestaña, no bloqueamos la pantalla
+        if (e.ctrlKey || e.metaKey || e.shiftKey) return; 
+        e.preventDefault();
+        document.getElementById('loader-pantalla').style.display = 'flex';
+        // Redirige tras un microsegundo para dar tiempo a que aparezca la animación
+        setTimeout(() => { window.location.href = url; }, 50); 
     }
 
     const configAlertas = { fotos: { activo: true, id: "fotos_v1" }, videos: { activo: true, id: "videos_v1" }, conciertos: { activo: true, id: "conciertos_v1" } };
