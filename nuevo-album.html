@@ -35,14 +35,14 @@
             min-height: 100vh;
         }
         
-        /* 1. EL EXTERIOR (Más visible / menos opaco, foto bajada un poco) */
+        /* 1. EL EXTERIOR (Ordenador: foto al 50%) */
         body::before {
             content: "";
             position: fixed;
             top: -20px; left: -20px; right: -20px; bottom: -20px;
             background-image: url('Cuando despierte la ciudad.jpg');
             background-color: #000;
-            background-position: center 60%; /* Desplaza la foto un poco hacia abajo */
+            background-position: center 60%;
             background-repeat: no-repeat;
             background-attachment: fixed;
             background-size: 50%; 
@@ -50,7 +50,6 @@
             z-index: -2;
         }
 
-        /* Capa exterior más clara (opacidad 0.4 en lugar de 0.6) para ver más el fondo */
         body::after {
             content: "";
             position: fixed;
@@ -78,11 +77,11 @@
 
         .container { flex: 1; padding: 0 20px 40px; max-width: 1200px; margin: auto; position: relative; z-index: 10; display: flex; align-items: center; justify-content: center;}
         
-        /* 2. EL INTERIOR DE LA CAJA (Un poco más opaco/oscuro para destacar las letras, misma posición desplazada) */
+        /* 2. EL INTERIOR DE LA CAJA (Ordenador) */
         .mensaje-estudio {
             background-image: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), url('Cuando despierte la ciudad.jpg');
             background-color: #000;
-            background-position: center 60%; /* Mantiene la misma posición exacta que el fondo */
+            background-position: center 60%;
             background-repeat: no-repeat;
             background-attachment: fixed;
             background-size: 50%; 
@@ -111,19 +110,20 @@
 
         footer { padding: 25px; text-align: center; background: rgba(0,0,0,0.85); border-top: 2px solid #222; position: relative; z-index: 10;}
 
-        /* VERSIÓN MÓVIL */
+        /* --- VERSIÓN MÓVIL OPTIMIZADA (Se ajusta al 92% para que quepa entera) --- */
         @media (max-width: 768px) {
             body::before, .mensaje-estudio {
-                background-size: contain !important; 
+                background-size: 92% auto !important; /* Fuerza a que la foto ocupe el 92% del ancho de la pantalla y entre entera */
+                background-position: center center !important;
             }
             header { flex-direction: column; padding: 20px; gap: 20px; align-items: center; background: rgba(0, 0, 0, 0.4); border-bottom: 1px solid rgba(212, 175, 55, 0.3); }
             .header-logo { display: none; }
             .social-icons { width: 100%; justify-content: center !important; } 
             .nav-menu { display: flex; justify-content: center; flex-wrap: wrap; gap: 5px; }
             .btn { font-size: 0.75rem; padding: 8px 10px; }
-            .mensaje-estudio { padding: 30px 20px; }
-            .mensaje-estudio h2 { font-size: 1.4rem; }
-            .mensaje-estudio p { font-size: 1rem; }
+            .mensaje-estudio { padding: 30px 15px; width: 100%; box-sizing: border-box; }
+            .mensaje-estudio h2 { font-size: 1.3rem; }
+            .mensaje-estudio p { font-size: 0.95rem; }
         }
     </style>
 </head>
