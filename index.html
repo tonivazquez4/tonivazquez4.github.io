@@ -39,17 +39,6 @@
             background: radial-gradient(circle at center, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.8) 100%); z-index: -1;
         }
 
-        #contenedor-avisos { position: relative; z-index: 10002; width: 100%; overflow: hidden; }
-        
-        .barra-flash {
-            background: linear-gradient(90deg, #1a1a1a, #2a2a2a, #1a1a1a); border-bottom: 1px solid var(--gold);
-            color: white; text-align: center; padding: 12px; font-weight: 600; font-size: 0.85rem;
-            display: none; justify-content: center; align-items: center; gap: 12px; user-select: none;
-        }
-        .punto-flash { width: 8px; height: 8px; background-color: var(--alert-red); border-radius: 50%; animation: pulse-red 1.2s infinite; }
-        @keyframes pulse-red { 0% { transform: scale(0.9); opacity: 0.7; } 50% { transform: scale(1.2); opacity: 1; } 100% { transform: scale(0.9); opacity: 0.7; } }
-        .link-aviso { color: var(--gold); text-decoration: underline; cursor: pointer; font-weight: 700; }
-
         h1, h2, h3 { font-family: 'Arial Black', sans-serif; }
 
         header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--gold); padding: 10px 40px; background: rgba(0,0,0,0.5); position: relative; z-index: 10;}
@@ -69,6 +58,8 @@
         .social-icons a { color: white; font-size: 1.4rem; text-decoration: none; transition: 0.3s; text-shadow: 2px 2px 5px black;}
 
         .nav-menu { text-align: center; margin: 30px 0; position: relative; z-index: 10;}
+        
+        /* BOTONES DEL MENÚ */
         .btn { 
             background: linear-gradient(45deg, var(--gold), var(--gold-light)); color: black; 
             padding: 10px 22px; text-decoration: none; border-radius: 8px; font-weight: 700; 
@@ -76,7 +67,8 @@
             touch-action: manipulation;
         }
         
-        .btn.activo { background: white; transform: scale(1.05); color: black; }
+        /* Efecto de pulsación táctil (Sin javascript) */
+        .btn.activo, .btn:active { background: white; transform: scale(1.05); color: black; }
         
         @media (hover: hover) {
             .btn:hover, .btn-share:hover, .btn-subscribe:hover { background: white; transform: scale(1.05); color: black; }
@@ -108,7 +100,6 @@
         .btn-subscribe { background: var(--gold); color: black; border: none; padding: 12px 25px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s; text-transform: uppercase; }
 
         footer { padding: 25px; text-align: center; background: rgba(0,0,0,0.85); border-top: 2px solid #222; cursor: pointer; }
-        #btnSubir { display: none; position: fixed; bottom: 30px; right: 30px; z-index: 9999; background: var(--gold); color: black; border: none; width: 55px; height: 55px; border-radius: 50%; font-size: 1.5rem; transition: 0.3s; }
         
         #imageModal { display: none; position: fixed; z-index: 100000; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); justify-content: center; align-items: center; }
         #imageModal img { max-width: 90%; max-height: 90%; border-radius: 10px; box-shadow: 0 0 20px var(--gold); }
@@ -123,24 +114,9 @@
             .discografia { grid-template-columns: 1fr; gap: 25px; }
             .album-card { padding-bottom: 15px; }
         }
-        #cajaContador { display:none; position:fixed; bottom:20px; left:20px; background:#000; border:2px solid var(--gold); color:var(--gold); padding:10px 15px; border-radius:8px; font-weight:bold; z-index:999999; cursor:pointer; }
     </style>
 </head>
 <body>
-
-<div id="contenedor-avisos">
-    <!-- ENLACES QUE FUERZAN A IGNORAR LA MEMORIA ANTIGUA -->
-    <div id="aviso-fotos" class="barra-flash" data-tipo="fotos">
-        <div class="punto-flash"></div>
-        <span>¡HAY NUEVAS FOTOS DISPONIBLES!</span>
-        <a href="galeria.html?v=nuevo" class="link-aviso" onclick="marcarVisto('fotos');">IR A GALERÍA 🤘</a>
-    </div>
-    <div id="aviso-videos" class="barra-flash" data-tipo="videos">
-        <div class="punto-flash"></div>
-        <span>¡NUEVOS VÍDEOS EN EL CANAL!</span>
-        <a href="videos.html?v=nuevo" class="link-aviso" onclick="marcarVisto('videos');">VER VÍDEOS 🎸</a>
-    </div>
-</div>
 
 <header>
     <img src="logoTV.png" alt="Logo" class="header-logo" id="logo-izq">
@@ -168,9 +144,9 @@
 
 <nav class="nav-menu">
     <a href="index.html" class="btn activo">Inicio</a>
-    <!-- ENLACES QUE FUERZAN A IGNORAR LA MEMORIA ANTIGUA -->
-    <a href="galeria.html?v=nuevo" class="btn">Galería</a>
-    <a href="videos.html?v=nuevo" class="btn">Vídeos</a>
+    <!-- ENLACES LIMPIOS Y DIRECTOS SIN TRUCOS QUE BLOQUEEN LA CACHÉ -->
+    <a href="galeria.html" class="btn">Galería</a>
+    <a href="videos.html" class="btn">Vídeos</a>
     <a href="conciertos.html" class="btn">Conciertos</a>
 </nav>
 
@@ -225,7 +201,7 @@
     <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
 </div>
 
-<footer onclick="revelarContador()"><p>© 2026 Tony Vázquez. Todos los derechos reservados.</p></footer>
+<footer><p>© 2026 Tony Vázquez. Todos los derechos reservados.</p></footer>
 
 <div id="imageModal" onclick="this.style.display='none'"><img id="imgFull"></div>
 
