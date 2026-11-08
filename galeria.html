@@ -14,7 +14,6 @@
         * { box-sizing: border-box; }
         :root { --gold: #d4af37; --gold-light: #f9d976; }
         
-        /* 1. RESET BÁSICO Y TÁCTIL SEGURO */
         body { 
             font-family: 'Montserrat', sans-serif; margin: 0; padding: 0; color: white; 
             background-color: #000; overflow-x: hidden; 
@@ -22,17 +21,13 @@
         
         a, button, .foto-card, .btn { touch-action: manipulation; }
 
-        /* 2. FONDO SEGURO AISLADO (Sin pseudo-elementos que bloquean iOS) */
         .bg-fijo {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
             background: radial-gradient(circle at center, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.6) 100%), url('Alma de Rock.jpg') no-repeat center center;
             background-size: cover; z-index: -1; pointer-events: none;
         }
 
-        /* 3. ENVOLTORIO PROTECTOR */
-        .page-wrapper {
-            width: 100%; min-height: 100vh; overflow-x: hidden; position: relative;
-        }
+        .page-wrapper { width: 100%; min-height: 100vh; overflow-x: hidden; position: relative; }
 
         header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--gold); padding: 10px 40px; background: rgba(0,0,0,0.3); }
         .header-logo { height: 105px; width: auto; filter: brightness(0) saturate(100%) invert(75%) sepia(50%) saturate(600%) hue-rotate(5deg) brightness(90%) contrast(100%); cursor: pointer; transition: 0.3s; }
@@ -139,6 +134,7 @@
         <a href="conciertos.html" class="btn">Conciertos</a>
     </nav>
 
+    <!-- AQUÍ SE PINTARÁN LAS FOTOS -->
     <div class="grid-galeria" id="galeria-fotos"></div>
 
     <div class="seccion-comentarios">
@@ -154,7 +150,7 @@
     </div>
 
     <footer><p>© 2026 Tony Vázquez. Todos los derechos reservados.</p></footer>
-</div> <!-- Fin del wrapper -->
+</div> 
 
 <button id="btnSubir" onclick="window.scrollTo({top: 0, behavior: 'smooth'})"><i class="fa-solid fa-arrow-up"></i></button>
 
@@ -168,10 +164,8 @@
     <button class="modal-btn" id="nextBtn" onclick="cambiarFoto(1)">❯</button>
 </div>
 
-<script defer src="https://cusdis.com/js/widget/lang/es.js"></script>
-<script defer src="https://cusdis.com/js/cusdis.es.js"></script>
-
 <script>
+    // 1. ELIMINACIÓN DE LA CACHÉ
     if ('serviceWorker' in navigator) {
         navigator.serviceWorker.getRegistrations().then(function(registrations) {
             for(let registration of registrations) { registration.unregister(); }
@@ -184,7 +178,7 @@
     let fotoActual = 1; 
     let ordenFotos = []; 
 
-    // Carga original súper rápida de un solo golpe
+    // 2. CREACIÓN DE LA GALERÍA SÚPER RÁPIDA (Fuerza Bruta Original)
     function cargarGaleria() { 
         let contenido = ""; 
         ordenFotos = []; 
@@ -204,7 +198,11 @@
         contenedor.innerHTML = contenido; 
     }
 
-    // Modal y Zoom
+    // ¡EL TRUCO MAESTRO! 
+    // Llamamos a pintar la galería INMEDIATAMENTE, sin esperar a ningún servidor externo.
+    cargarGaleria();
+
+    // 3. LÓGICA DE MODAL Y ZOOM
     let escalaActual = 1; let posX = 0; let posY = 0; let distanciaInicial = 0; let escalaInicialAlPellizcar = 1; let tocando = false; let inicioX = 0, inicioY = 0;
 
     function abrirImagen(indice) { 
@@ -276,30 +274,38 @@
         ultimoToke = tActual;
     });
 
-    function cargarReacciones() {
+    window.onscroll = function() { 
+        let btn = document.getElementById("btnSubir"); 
+        if (document.documentElement.scrollTop > 400) btn.style.display = "flex"; else btn.style.display = "none"; 
+    };
+
+    // 4. CARGA DE COMENTARIOS INVISIBLE (Se cargan 1 segundo después para no asfixiar el navegador)
+    setTimeout(() => {
+        // Carga de Contador de Reacciones
         const api = 'https://abacus.jasoncameron.dev'; const site = 'tonyvazquez.es';
         ['fuego', 'cuernos', 'corazon'].forEach(tipo => {
             fetch(`${api}/get/${site}/react_${tipo}`)
                 .then(r => r.json()).then(d => { document.getElementById(`count-${tipo}`).innerText = d.value || 0; }).catch(() => {});
             if(localStorage.getItem(`voto_${tipo}`)) document.getElementById(`count-${tipo}`).parentElement.classList.add('votado');
         });
-    }
+
+        // Carga de Cusdis Dinámica
+        let scriptLang = document.createElement('script');
+        scriptLang.src = "https://cusdis.com/js/widget/lang/es.js";
+        scriptLang.async = true;
+        document.body.appendChild(scriptLang);
+        
+        let scriptMain = document.createElement('script');
+        scriptMain.src = "https://cusdis.com/js/cusdis.es.js";
+        scriptMain.async = true;
+        document.body.appendChild(scriptMain);
+    }, 1000);
 
     function sumarReaccion(tipo, btn) {
         if(localStorage.getItem(`voto_${tipo}`)) return; localStorage.setItem(`voto_${tipo}`, 'true'); btn.classList.add('votado');
         let span = document.getElementById(`count-${tipo}`); span.innerText = (parseInt(span.innerText) || 0) + 1;
         fetch(`https://abacus.jasoncameron.dev/hit/tonyvazquez.es/react_${tipo}`).catch(() => {});
     }
-
-    window.onscroll = function() { 
-        let btn = document.getElementById("btnSubir"); 
-        if (document.documentElement.scrollTop > 400) btn.style.display = "flex"; else btn.style.display = "none"; 
-    };
-
-    document.addEventListener('DOMContentLoaded', () => { 
-        cargarGaleria(); 
-        setTimeout(cargarReacciones, 1000); // Retrasamos el contador externo para que no bloquee nada
-    });
 </script>
 </body>
 </html>
