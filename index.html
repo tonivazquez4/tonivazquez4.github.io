@@ -39,7 +39,6 @@
             background-color: #000; overflow-x: hidden; 
         }
         
-        /* NUEVOS FONDOS SEGUROS (Inmunes a bloqueos táctiles) */
         #fondo-global {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
             background: url('alma-de-rock.jpg') no-repeat center center; background-size: cover;
@@ -93,36 +92,21 @@
         
         .album-card { background: rgba(15, 15, 15, 0.85); border: 1px solid #333; border-radius: 15px; overflow: hidden; text-align: center; padding-bottom: 20px; transition: 0.4s; box-shadow: 0 5px 15px rgba(0,0,0,0.8); position: relative; }
         
-        /* NUEVO CONTENEDOR DE CARÁTULA: Cuadrado perfecto, sin cortes, con la cinta blindada */
         .album-img-wrapper {
-            position: relative;
-            width: 100%;
-            aspect-ratio: 1 / 1; /* Garantiza que todas las tarjetas midan igual de alto */
-            background: #000; /* Fondo oscuro por si la foto no es cuadrada */
-            border-bottom: 1px solid #333;
-            overflow: hidden; /* Mantiene la cinta dentro de la caja */
-            z-index: 10;
+            position: relative; width: 100%; aspect-ratio: 1 / 1; background: #000; 
+            border-bottom: 1px solid #333; overflow: hidden; z-index: 10;
         }
 
         .album-img { 
-            width: 100%; 
-            height: 100%; 
-            object-fit: contain; /* Ajusta la foto ENTERA dentro del marco, NUNCA corta letras */
-            display: block; 
-            cursor: pointer; 
-            position: relative;
-            z-index: 10;
+            width: 100%; height: 100%; object-fit: contain; display: block; 
+            cursor: pointer; position: relative; z-index: 10;
         }
 
         .cinta-proximamente { 
-            position: absolute; 
-            top: 50%; left: 50%; 
-            width: 150%; 
+            position: absolute; top: 50%; left: 50%; width: 150%; 
             background: var(--gold); color: black; text-align: center; padding: 12px 0; font-size: 1.2rem; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; 
             transform: translate(-50%, -50%) rotate(-35deg); 
-            z-index: 30; /* 100% GARANTIZADO por encima de la foto */
-            pointer-events: none; 
-            box-shadow: 0 5px 20px rgba(0,0,0,0.9); 
+            z-index: 30; pointer-events: none; box-shadow: 0 5px 20px rgba(0,0,0,0.9); 
             animation: parpadeo-cinta 0.8s infinite alternate;
         }
 
@@ -145,7 +129,6 @@
         #imageModal { display: none; position: fixed; z-index: 100000; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); justify-content: center; align-items: center; backdrop-filter: blur(5px); }
         #imageModal img { max-width: 90%; max-height: 90%; border-radius: 10px; box-shadow: 0 0 20px var(--gold); }
 
-        /* HOVERS AISLADOS PARA ORDENADOR */
         @media (hover: hover) and (pointer: fine) {
             .btn:hover { background: white; transform: scale(1.05); color: black; }
             .btn-share:hover { background: white; transform: scale(1.05); }
@@ -155,7 +138,6 @@
             #btnSubir:hover { transform: scale(1.1); background: white; }
         }
 
-        /* VERSIÓN MÓVIL ÓPTIMA */
         @media (max-width: 768px) {
             header { flex-direction: column; padding: 10px; gap: 8px; align-items: center; background: rgba(0, 0, 0, 0.4); border-bottom: 1px solid rgba(212, 175, 55, 0.3); }
             .header-logo { display: none; }
@@ -179,12 +161,6 @@
     </style>
 </head>
 <body>
-
-<!-- PANTALLA DE CARGA (Evita el "efecto congelación" al navegar por el móvil) -->
-<div id="pantalla-carga" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:9999999; justify-content:center; align-items:center; flex-direction:column; backdrop-filter:blur(5px);">
-    <i class="fa-solid fa-compact-disc fa-spin" style="color:var(--gold); font-size:4rem; margin-bottom:20px;"></i>
-    <h3 style="color:var(--gold); font-family:'Montserrat', sans-serif; text-transform:uppercase; letter-spacing:3px; margin:0;">Cargando...</h3>
-</div>
 
 <div id="fondo-global"></div>
 <div id="capa-oscura"></div>
@@ -327,21 +303,6 @@
 <div id="cajaContador" onclick="this.style.display='none'">👀 Visitas totales: <span id="numeroVisitas">...</span></div>
 
 <script>
-    // SCRIPT DE PANTALLA DE CARGA (Atrapa todos los clics a páginas de la web)
-    document.addEventListener('DOMContentLoaded', () => {
-        const links = document.querySelectorAll('a');
-        links.forEach(link => {
-            link.addEventListener('click', (e) => {
-                const href = link.getAttribute('href');
-                const target = link.getAttribute('target');
-                // Activar animación solo al viajar a otras páginas de tu web
-                if (href && href.endsWith('.html') && target !== '_blank' && !e.ctrlKey && !e.metaKey) {
-                    document.getElementById('pantalla-carga').style.display = 'flex';
-                }
-            });
-        });
-    });
-
     if ('serviceWorker' in navigator) {
         navigator.serviceWorker.getRegistrations().then(function(registrations) {
             for(let registration of registrations) { registration.unregister(); }
