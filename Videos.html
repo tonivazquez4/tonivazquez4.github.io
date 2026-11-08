@@ -15,66 +15,61 @@
         
         body { 
             font-family: 'Montserrat', sans-serif; margin: 0; padding: 0; color: white; 
-            background-color: #000;
-            overflow-x: hidden; 
+            background-color: #000; overflow-x: hidden; 
         }
         
-        /* NUEVOS FONDOS SEGUROS (Inmunes a bloqueos táctiles) */
-        #fondo-global {
+        .bg-fijo {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            background: url('Alma de Rock.jpg') no-repeat center center; background-size: cover;
-            z-index: -2; pointer-events: none;
-        }
-        #capa-oscura {
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            background: rgba(0, 0, 0, 0.6); 
-            z-index: -1; pointer-events: none;
+            background: rgba(0, 0, 0, 0.6) url('Alma de Rock.jpg') no-repeat center center; 
+            background-blend-mode: overlay;
+            background-size: cover;
+            z-index: -1; 
+            pointer-events: none;
         }
 
-        header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--gold); padding: 10px 40px; background: rgba(0,0,0,0.3); position: relative; z-index: 50;}
-        .header-logo { height: 105px; width: auto; filter: brightness(0) saturate(100%) invert(75%) sepia(50%) saturate(600%) hue-rotate(5deg) brightness(90%) contrast(100%); cursor: pointer; transition: 0.3s; position: relative; z-index: 50;}
+        .page-wrapper { width: 100%; min-height: 100vh; position: relative; z-index: 10; }
+
+        header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--gold); padding: 10px 40px; background: rgba(0,0,0,0.3); }
+        .header-logo { height: 105px; width: auto; filter: brightness(0) saturate(100%) invert(75%) sepia(50%) saturate(600%) hue-rotate(5deg) brightness(90%) contrast(100%); cursor: pointer; transition: 0.3s; }
         #logo-izq { animation: giro-3d 6s linear infinite; }
         #logo-der { animation: giro-3d 6s linear infinite reverse; }
         @keyframes giro-3d { from { transform: perspective(1000px) rotateY(0deg); } to { transform: perspective(1000px) rotateY(360deg); } }
         
-        .header-center { text-align: center; flex-grow: 1; position: relative; z-index: 50;}
+        .header-center { text-align: center; flex-grow: 1; }
         .header-center h1 { font-size: clamp(1.2rem, 3vw, 1.8rem); margin: 0; text-transform: uppercase; text-shadow: 2px 2px 10px black; }
         .header-center p { margin: 5px 0 0 0; color: var(--gold); letter-spacing: 4px; font-weight: 700; font-size: 0.8rem; text-shadow: 1px 1px 5px black;}
         
-        .social-icons { display: flex; gap: 15px; width: 200px; position: relative; z-index: 50;}
+        .social-icons { display: flex; gap: 15px; width: 200px; }
         .icons-left { justify-content: flex-start; }
         .icons-right { justify-content: flex-end; }
         .social-icons a { color: white; font-size: 1.4rem; text-decoration: none; transition: 0.3s; text-shadow: 2px 2px 5px black;}
         
-        .nav-menu { text-align: center; margin: 30px 0; position: relative; z-index: 50;}
-        .btn { background: linear-gradient(45deg, var(--gold), var(--gold-light)); color: black; padding: 10px 22px; text-decoration: none; border-radius: 8px; font-weight: 700; display: inline-block; margin: 5px; transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.5); position: relative; z-index: 50;}
+        .nav-menu { text-align: center; margin: 30px 0; }
+        .btn { background: linear-gradient(45deg, var(--gold), var(--gold-light)); color: black; padding: 10px 22px; text-decoration: none; border-radius: 8px; font-weight: 700; display: inline-block; margin: 5px; transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
         .btn.activo { background: white; transform: scale(1.05); color: black; }
         
-        .container { padding: 0 15px 20px; max-width: 900px; margin: auto; display: flex; flex-direction: column; gap: 40px; position: relative; z-index: 10;}
+        .container { padding: 0 15px 20px; max-width: 900px; margin: auto; display: flex; flex-direction: column; gap: 40px; }
         
-        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border: 2px solid #444; border-radius: 12px; background: black; transition: 0.4s; box-shadow: 0 5px 15px rgba(0,0,0,0.8); z-index: 10;}
+        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border: 2px solid #444; border-radius: 12px; background: black; transition: 0.4s; box-shadow: 0 5px 15px rgba(0,0,0,0.8);}
         .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
         .seccion-comentarios { 
             width: 95%; max-width: 800px; margin: 30px auto; padding: 15px 20px 10px 20px; 
             background: rgba(15, 15, 15, 0.75); color: white; border-radius: 15px; 
             border: 1px solid var(--gold); box-sizing: border-box; box-shadow: 0 5px 15px rgba(0,0,0,0.8); 
-            position: relative; z-index: 10;
         }
         .caja-reacciones { display: flex; justify-content: center; gap: 10px; margin-bottom: 10px; flex-wrap: wrap; }
         .btn-reaccion { 
             background: #222; border: 1px solid var(--gold); border-radius: 10px; padding: 6px 12px; 
-            font-size: 1.2rem; cursor: pointer; transition: 0.3s; color: white; display: flex; 
-            align-items: center; gap: 8px; position: relative; z-index: 20;
+            font-size: 1.2rem; cursor: pointer; transition: 0.3s; color: white; display: flex; align-items: center; gap: 8px; 
         }
         .btn-reaccion.votado { background: var(--gold); color: black; border-color: black; cursor: default; transform: none; }
         .btn-reaccion span { font-size: 1.1rem; }
 
         #btnSubir { display: none; position: fixed; bottom: 30px; right: 30px; z-index: 9999; background: var(--gold); color: black; border: none; cursor: pointer; width: 55px; height: 55px; border-radius: 50%; box-shadow: 0 4px 15px rgba(0,0,0,0.6); justify-content: center; align-items: center; font-size: 1.5rem; transition: 0.3s; }
         
-        footer { text-align:center; padding: 40px; position: relative; z-index: 10; background: rgba(0,0,0,0.85); border-top: 2px solid #222; margin-top: 40px;}
+        footer { text-align:center; padding: 40px; background: rgba(0,0,0,0.85); border-top: 2px solid #222; margin-top: 40px;}
 
-        /* ANIMACIONES HOVER SOLO PARA PC (Adiós al doble toque en móviles) */
         @media (hover: hover) and (pointer: fine) {
             .social-icons a:hover { color: var(--gold); transform: translateY(-3px); }
             .btn:hover { background: white; transform: scale(1.05); color: black; }
@@ -99,119 +94,101 @@
 </head>
 <body>
 
-<!-- PANTALLA DE CARGA (Para que el móvil no parezca congelado) -->
-<div id="pantalla-carga" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:9999999; justify-content:center; align-items:center; flex-direction:column; backdrop-filter:blur(5px);">
-    <i class="fa-solid fa-compact-disc fa-spin" style="color:var(--gold); font-size:4rem; margin-bottom:20px;"></i>
-    <h3 style="color:var(--gold); font-family:'Montserrat', sans-serif; text-transform:uppercase; letter-spacing:3px; margin:0;">Cargando...</h3>
-</div>
+<div class="bg-fijo"></div>
 
-<div id="fondo-global"></div>
-<div id="capa-oscura"></div>
+<div class="page-wrapper">
+    <header>
+        <img src="logoTV.png" class="header-logo" id="logo-izq" alt="">
+        <div class="social-icons icons-left">
+            <a href="https://open.spotify.com/intl-es/album/708rurqxThgsJPR8aClRAD21" target="_blank"><i class="fa-brands fa-spotify"></i></a>
+            <a href="https://music.apple.com/es/artist/tony-vazquez/1497948014" target="_blank"><i class="fa-brands fa-apple"></i></a>
+            <a href="https://music.youtube.com/channel/UCFNdFbrM3s0kznhCGpRJ3GA" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+        <div class="header-center"><h1>TONY VÁZQUEZ</h1><p>VÍDEOS</p></div>
+        <div class="social-icons icons-right">
+            <a href="https://music.amazon.es/artists/B07NFBKRHJ/tony-vazquez" target="_blank"><i class="fa-brands fa-amazon"></i></a>
+            <a href="https://instagram.com/tonykubo" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://www.facebook.com/tonisampler/" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+        </div>
+        <img src="logoTV.png" class="header-logo" id="logo-der" alt="">
+    </header>
 
-<header>
-    <img src="logoTV.png" class="header-logo" id="logo-izq">
-    <div class="social-icons icons-left">
-        <a href="https://open.spotify.com/intl-es/album/708rurqxThgsJPR8aClRAD21" target="_blank"><i class="fa-brands fa-spotify"></i></a>
-        <a href="https://music.apple.com/es/artist/tony-vazquez/1497948014" target="_blank"><i class="fa-brands fa-apple"></i></a>
-        <a href="https://music.youtube.com/channel/UCFNdFbrM3s0kznhCGpRJ3GA" target="_blank"><i class="fa-brands fa-youtube"></i></a>
-    </div>
-    <div class="header-center"><h1>TONY VÁZQUEZ</h1><p>VÍDEOS</p></div>
-    <div class="social-icons icons-right">
-        <a href="https://music.amazon.es/artists/B07NFBKRHJ/tony-vazquez" target="_blank"><i class="fa-brands fa-amazon"></i></a>
-        <a href="https://instagram.com/tonykubo" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-        <a href="https://www.facebook.com/tonisampler/" target="_blank"><i class="fa-brands fa-facebook"></i></a>
-    </div>
-    <img src="logoTV.png" class="header-logo" id="logo-der">
-</header>
+    <nav class="nav-menu">
+        <a href="index.html" class="btn">Inicio</a>
+        <a href="galeria.html" class="btn">Galería</a>
+        <a href="videos.html" class="btn activo">Vídeos</a>
+        <a href="conciertos.html" class="btn">Conciertos</a>
+    </nav>
 
-<nav class="nav-menu">
-    <a href="index.html" class="btn">Inicio</a>
-    <a href="galeria.html" class="btn">Galería</a>
-    <a href="videos.html" class="btn activo">Vídeos</a>
-    <a href="conciertos.html" class="btn">Conciertos</a>
-</nav>
-
-<div class="container">
-    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/jbRyfHEIujA" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
-    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/8-qVdj1VhF0" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
-    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/QTxNLOtnekQ" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
-    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/T9QqKk1GckI" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
-    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/tgPovfSXLq4" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
-    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/DzHDuS5s8BE" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
-    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/G5ELIs5Y_ic" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
-    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/EjwgkDtwJNI" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
-    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/QWkJ0TpyNuY" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
-    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/LbUzsYG0kjw" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
-    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/2yz9kGwK3sg" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
-    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/1leI7UNl2PM" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
-    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/ki7KxsOskz4" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
-    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/sDD30k7cPrE" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
-    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/A7HKU9L8oWs" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
-    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/ol4rdn9OKqo" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
-    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/rT-Xge-hauY" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
-    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/ohLpUUvWu48" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
-    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/3Tts6eJL6uo" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
-    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/c39P7vcHmvE" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
-    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/SLOh-Uf7H7A" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
-    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/Ggnf36obnoE" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
-    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/vj_B8wSrSAA" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
-    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/vgEwErlfZOM" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
-    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/eVdZSx_8P3Y" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
-    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/bxZT2-eyfGQ" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
-</div>
-
-<div class="seccion-comentarios">
-    <h3 style="color: var(--gold); text-align: center; text-transform: uppercase; margin: 0 0 10px 0; font-size: 1.1rem;">¿Qué te parece? ¡Reacciona! 👇</h3>
-    
-    <div class="caja-reacciones">
-        <button class="btn-reaccion" onclick="sumarReaccion('fuego', this)">🔥 <span id="count-fuego">0</span></button>
-        <button class="btn-reaccion" onclick="sumarReaccion('cuernos', this)">🤘 <span id="count-cuernos">0</span></button>
-        <button class="btn-reaccion" onclick="sumarReaccion('corazon', this)">😍 <span id="count-corazon">0</span></button>
+    <div class="container">
+        <!-- TODOS LOS VÍDEOS CON loading="lazy" (Crucial para el rendimiento en móviles) -->
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/jbRyfHEIujA" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/8-qVdj1VhF0" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/QTxNLOtnekQ" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/T9QqKk1GckI" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/tgPovfSXLq4" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/DzHDuS5s8BE" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/G5ELIs5Y_ic" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/EjwgkDtwJNI" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/QWkJ0TpyNuY" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/LbUzsYG0kjw" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/2yz9kGwK3sg" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/1leI7UNl2PM" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/ki7KxsOskz4" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/sDD30k7cPrE" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/A7HKU9L8oWs" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/ol4rdn9OKqo" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/rT-Xge-hauY" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/ohLpUUvWu48" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/3Tts6eJL6uo" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/c39P7vcHmvE" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/SLOh-Uf7H7A" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/Ggnf36obnoE" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/vj_B8wSrSAA" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/vgEwErlfZOM" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/eVdZSx_8P3Y" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
+        <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/bxZT2-eyfGQ" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
     </div>
 
-    <hr style="border: 0.5px solid var(--gold); opacity: 0.2; margin: 15px 0;">
+    <div class="seccion-comentarios">
+        <h3 style="color: var(--gold); text-align: center; text-transform: uppercase; margin: 0 0 10px 0; font-size: 1.1rem;">¿Qué te parece? ¡Reacciona! 👇</h3>
+        
+        <div class="caja-reacciones">
+            <button class="btn-reaccion" onclick="sumarReaccion('fuego', this)">🔥 <span id="count-fuego">0</span></button>
+            <button class="btn-reaccion" onclick="sumarReaccion('cuernos', this)">🤘 <span id="count-cuernos">0</span></button>
+            <button class="btn-reaccion" onclick="sumarReaccion('corazon', this)">😍 <span id="count-corazon">0</span></button>
+        </div>
 
-    <h3 style="color: var(--gold); text-align: center; text-transform: uppercase; margin: 0 0 10px 0; font-size: 1rem; opacity: 0.8;">O deja tu mensaje rockero 🎸</h3>
+        <hr style="border: 0.5px solid var(--gold); opacity: 0.2; margin: 15px 0;">
 
-    <div id="cusdis_thread"
-      data-host="https://cusdis.com"
-      data-app-id="b3a46067-e248-4f1a-8f3b-1d829f5606c3"
-      data-page-id="videos_tony_vazquez" 
-      data-page-url="https://www.tonyvazquez.es/videos.html"
-      data-page-title="Vídeos Tony Vazquez"
-      data-theme="dark">
+        <h3 style="color: var(--gold); text-align: center; text-transform: uppercase; margin: 0 0 10px 0; font-size: 1rem; opacity: 0.8;">O deja tu mensaje rockero 🎸</h3>
+
+        <div id="cusdis_thread"
+          data-host="https://cusdis.com"
+          data-app-id="b3a46067-e248-4f1a-8f3b-1d829f5606c3"
+          data-page-id="videos_tony_vazquez" 
+          data-page-url="https://www.tonyvazquez.es/videos.html"
+          data-page-title="Vídeos Tony Vazquez"
+          data-theme="dark">
+        </div>
     </div>
-</div>
 
-<footer><p>© 2026 Tony Vázquez. Todos los derechos reservados.</p></footer>
+    <footer><p>© 2026 Tony Vázquez. Todos los derechos reservados.</p></footer>
+
+</div> <!-- CIERRE DEL PAGE-WRAPPER -->
 
 <button id="btnSubir" onclick="window.scrollTo({top: 0, behavior: 'smooth'})"><i class="fa-solid fa-arrow-up"></i></button>
 
-<!-- SCRIPTS EXTERNOS MOVIDOS AL FINAL PARA NO BLOQUEAR LA CARGA DE YOUTUBE -->
+<!-- SCRIPTS EXTERNOS RETRASADOS AL MÁXIMO -->
 <script defer src="https://cusdis.com/js/widget/lang/es.js"></script>
-<script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
+<script defer src="https://cusdis.com/js/cusdis.es.js"></script>
 
 <script>
-    // 1. ELIMINACIÓN DE LA CACHÉ
     if ('serviceWorker' in navigator) {
         navigator.serviceWorker.getRegistrations().then(function(registrations) {
             for(let registration of registrations) { registration.unregister(); }
         });
     }
-
-    // 2. ACTIVAR PANTALLA DE CARGA EN LOS BOTONES DEL MENÚ
-    document.addEventListener('DOMContentLoaded', () => {
-        const links = document.querySelectorAll('.nav-menu .btn');
-        links.forEach(link => {
-            link.addEventListener('click', (e) => {
-                if (link.getAttribute('href') && !link.classList.contains('activo')) {
-                    document.getElementById('pantalla-carga').style.display = 'flex';
-                }
-            });
-        });
-        
-        cargarReacciones();
-    });
 
     function cargarReacciones() {
         const api = 'https://abacus.jasoncameron.dev'; const site = 'tonyvazquez.es';
@@ -234,6 +211,8 @@
         let btn = document.getElementById("btnSubir"); 
         if (document.documentElement.scrollTop > 400) { btn.style.display = "flex"; } else { btn.style.display = "none"; } 
     };
+
+    document.addEventListener('DOMContentLoaded', cargarReacciones);
 </script>
 </body>
 </html>

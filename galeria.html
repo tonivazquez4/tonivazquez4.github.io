@@ -27,7 +27,6 @@
             background: url('Alma de Rock.jpg') no-repeat center center;
             background-size: cover;
             z-index: -2;
-            pointer-events: none;
         }
 
         body::after {
@@ -36,31 +35,32 @@
             top: 0; left: 0; right: 0; bottom: 0;
             background: radial-gradient(circle at center, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.6) 100%);
             z-index: -1;
-            pointer-events: none;
         }
 
-        header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--gold); padding: 10px 40px; background: rgba(0,0,0,0.3); position: relative; z-index: 50;}
-        .header-logo { height: 105px; width: auto; filter: brightness(0) saturate(100%) invert(75%) sepia(50%) saturate(600%) hue-rotate(5deg) brightness(90%) contrast(100%); cursor: pointer; transition: 0.3s; position: relative; z-index: 50;}
+        header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--gold); padding: 10px 40px; background: rgba(0,0,0,0.3); position: relative; z-index: 10;}
+        .header-logo { height: 105px; width: auto; filter: brightness(0) saturate(100%) invert(75%) sepia(50%) saturate(600%) hue-rotate(5deg) brightness(90%) contrast(100%); cursor: pointer; transition: 0.3s; }
         #logo-izq { animation: giro-3d 6s linear infinite; }
         #logo-der { animation: giro-3d 6s linear infinite reverse; }
         @keyframes giro-3d { from { transform: perspective(1000px) rotateY(0deg); } to { transform: perspective(1000px) rotateY(360deg); } }
         
-        .header-center { text-align: center; flex-grow: 1; position: relative; z-index: 50;}
+        .header-center { text-align: center; flex-grow: 1; }
         .header-center h1 { font-size: clamp(1.2rem, 3vw, 1.8rem); margin: 0; text-transform: uppercase; text-shadow: 2px 2px 10px black; }
         .header-center p { margin: 5px 0 0 0; color: var(--gold); letter-spacing: 4px; font-weight: 700; font-size: 0.8rem; text-shadow: 1px 1px 5px black;}
         
-        .social-icons { display: flex; gap: 15px; width: 200px; position: relative; z-index: 50;}
+        .social-icons { display: flex; gap: 15px; width: 200px; }
         .icons-left { justify-content: flex-start; }
         .icons-right { justify-content: flex-end; }
         .social-icons a { color: white; font-size: 1.4rem; text-decoration: none; transition: 0.3s; text-shadow: 2px 2px 5px black;}
+        .social-icons a:hover { color: var(--gold); transform: translateY(-3px); }
         
-        .nav-menu { text-align: center; margin: 30px 0; position: relative; z-index: 50;}
-        .btn { background: linear-gradient(45deg, var(--gold), var(--gold-light)); color: black; padding: 10px 22px; text-decoration: none; border-radius: 8px; font-weight: 700; display: inline-block; margin: 5px; transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.5); position: relative; z-index: 50;}
-        .btn.activo { background: white; transform: scale(1.05); color: black; }
+        .nav-menu { text-align: center; margin: 30px 0; position: relative; z-index: 10;}
+        .btn { background: linear-gradient(45deg, var(--gold), var(--gold-light)); color: black; padding: 10px 22px; text-decoration: none; border-radius: 8px; font-weight: 700; display: inline-block; margin: 5px; transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+        .btn:hover, .btn.activo { background: white; transform: scale(1.05); }
         
         .grid-galeria { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; padding: 20px; max-width: 1300px; margin: auto; position: relative; z-index: 10;}
-        .foto-card { position: relative; aspect-ratio: 1 / 1; border-radius: 10px; border: 1px solid #333; background: #111; display: flex; align-items: center; justify-content: center; box-shadow: 0 5px 15px rgba(0,0,0,0.8); z-index: 10; }
+        .foto-card { position: relative; aspect-ratio: 1 / 1; border-radius: 10px; border: 1px solid #333; background: #111; display: flex; align-items: center; justify-content: center; box-shadow: 0 5px 15px rgba(0,0,0,0.8); }
         .foto-card img { width: 100%; height: 100%; object-fit: contain; cursor: pointer; transition: 0.4s; display: block; touch-action: manipulation; }
+        .foto-card img:hover { transform: scale(1.05); filter: brightness(1.2); }
         
         #imageModal { display: none; position: fixed; z-index: 99999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.98); align-items: center; justify-content: center; overflow: hidden; }
         
@@ -77,35 +77,30 @@
         }
         
         .modal-btn { position: absolute; background: rgba(0,0,0,0.5); border: 1px solid var(--gold); color: white; font-size: 2.5rem; cursor: pointer; transition: 0.3s; padding: 10px 20px; z-index: 100000; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; }
+        .modal-btn:hover { background: var(--gold); color: black; }
         #prevBtn { left: 20px; }
         #nextBtn { right: 20px; }
         #closeBtn { top: 20px; right: 20px; font-size: 2rem; width: 50px; height: 50px; }
         #downloadBtn { top: 20px; left: 20px; font-size: 1.5rem; width: 50px; height: 50px; }
 
         .seccion-comentarios { 
-            width: 95%; max-width: 800px; margin: 30px auto; padding: 15px 20px 10px 20px; background: rgba(15, 15, 15, 0.75); 
-            color: white; border-radius: 15px; border: 1px solid var(--gold); box-sizing: border-box; box-shadow: 0 5px 15px rgba(0,0,0,0.8); position: relative; z-index: 10;
+            width: 95%; max-width: 800px; margin: 30px auto; padding: 15px 20px 10px 20px; 
+            background: rgba(15, 15, 15, 0.75); color: white; border-radius: 15px; 
+            border: 1px solid var(--gold); box-sizing: border-box; box-shadow: 0 5px 15px rgba(0,0,0,0.8); 
+            position: relative; z-index: 10;
         }
         .caja-reacciones { display: flex; justify-content: center; gap: 10px; margin-bottom: 10px; flex-wrap: wrap; }
         .btn-reaccion { 
-            background: #222; border: 1px solid var(--gold); border-radius: 10px; padding: 6px 12px; font-size: 1.2rem; 
-            cursor: pointer; transition: 0.3s; color: white; display: flex; align-items: center; gap: 8px; position: relative; z-index: 20;
+            background: #222; border: 1px solid var(--gold); border-radius: 10px; padding: 6px 12px; 
+            font-size: 1.2rem; cursor: pointer; transition: 0.3s; color: white; display: flex; align-items: center; gap: 8px; 
         }
+        .btn-reaccion:hover { transform: scale(1.05); background: rgba(212, 175, 55, 0.1); }
         .btn-reaccion.votado { background: var(--gold); color: black; border-color: black; cursor: default; transform: none; }
         .btn-reaccion span { font-size: 1.1rem; }
         
         #btnSubir { display: none; position: fixed; bottom: 30px; right: 30px; z-index: 9999; background: var(--gold); color: black; border: none; cursor: pointer; width: 55px; height: 55px; border-radius: 50%; box-shadow: 0 4px 15px rgba(0,0,0,0.6); justify-content: center; align-items: center; font-size: 1.5rem; transition: 0.3s; }
         
         footer { text-align:center; padding: 40px; position: relative; z-index: 10; background: rgba(0,0,0,0.85); border-top: 2px solid #222; margin-top: 40px;}
-
-        /* ANIMACIONES HOVER SOLO PARA PC */
-        @media (hover: hover) and (pointer: fine) {
-            .social-icons a:hover { color: var(--gold); transform: translateY(-3px); }
-            .btn:hover { background: white; transform: scale(1.05); color: black; }
-            .foto-card img:hover { transform: scale(1.05); filter: brightness(1.2); }
-            .modal-btn:hover { background: var(--gold); color: black; }
-            .btn-reaccion:hover { transform: scale(1.05); background: rgba(212, 175, 55, 0.1); }
-        }
 
         @media (max-width: 768px) { 
             header { flex-direction: column; padding: 20px; gap: 15px; align-items: center; background: rgba(0, 0, 0, 0.4); border-bottom: 1px solid rgba(212, 175, 55, 0.3); } 
@@ -129,12 +124,6 @@
 </head>
 <body>
 
-<!-- PANTALLA DE CARGA GLOBAL -->
-<div id="pantalla-carga" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:9999999; justify-content:center; align-items:center; flex-direction:column; backdrop-filter:blur(5px);">
-    <i class="fa-solid fa-compact-disc fa-spin" style="color:var(--gold); font-size:4rem; margin-bottom:20px;"></i>
-    <h3 style="color:var(--gold); font-family:'Montserrat', sans-serif; text-transform:uppercase; letter-spacing:3px; margin:0;">Cargando...</h3>
-</div>
-
 <header>
     <img src="logoTV.png" class="header-logo" id="logo-izq" alt="Logo">
     <div class="social-icons icons-left">
@@ -150,6 +139,7 @@
     </div>
     <img src="logoTV.png" class="header-logo" id="logo-der" alt="Logo">
 </header>
+
 <nav class="nav-menu">
     <a href="index.html" class="btn">Inicio</a>
     <a href="galeria.html" class="btn activo">Galería</a>
@@ -157,6 +147,7 @@
     <a href="conciertos.html" class="btn">Conciertos</a>
 </nav>
 
+<!-- CONTENEDOR DONDE SE PINTARÁN LAS FOTOS -->
 <div class="grid-galeria" id="galeria-fotos"></div>
 
 <div class="seccion-comentarios">
@@ -191,57 +182,64 @@
     <button class="modal-btn" id="nextBtn" onclick="cambiarFoto(1)">❯</button>
 </div>
 
-<!-- SCRIPTS EXTERNOS MOVIDOS AL FINAL PARA NO BLOQUEAR LA CARGA -->
+<!-- SCRIPTS EXTERNOS AL FINAL PARA NO MOLESTAR -->
 <script defer src="https://cusdis.com/js/widget/lang/es.js"></script>
-<script defer src="https://cusdis.com/js/cusdis.es.js"></script>
+<script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
 
 <script>
-    // 1. ELIMINACIÓN ABSOLUTA DE LA CACHÉ RESIDUAL
+    // ELIMINACIÓN TOTAL DE CACHÉ ANTIGUA
     if ('serviceWorker' in navigator) {
         navigator.serviceWorker.getRegistrations().then(function(registrations) {
             for(let registration of registrations) { registration.unregister(); }
         });
     }
 
-    // 2. ACTIVAR PANTALLA DE CARGA EN LOS BOTONES DEL MENÚ
-    document.addEventListener('DOMContentLoaded', () => {
-        const links = document.querySelectorAll('.nav-menu .btn');
-        links.forEach(link => {
-            link.addEventListener('click', (e) => {
-                if (link.getAttribute('href') && !link.classList.contains('activo')) {
-                    document.getElementById('pantalla-carga').style.display = 'flex';
-                }
-            });
-        });
-    });
-
     const totalClasicas = 192; 
     const totalNuevas = 237;      
-
     const contenedor = document.getElementById('galeria-fotos'); 
+    
     let fotoActual = 1; 
     let ordenFotos = []; 
 
-    let escalaActual = 1; let posX = 0, posY = 0; let distanciaInicial = 0; let escalaInicialAlPellizcar = 1; let tocando = false; let inicioX = 0, inicioY = 0;
-
+    // --- NUEVO SISTEMA DE CARGA POR LOTES (Evita que el iPhone se congele) ---
     function cargarGaleria() { 
-        let contenido = ""; 
         ordenFotos = []; 
+        let currentNueva = totalNuevas;
+        let currentClasica = 1;
 
-        if (totalNuevas >= 200) { 
-            for (let i = totalNuevas; i >= 200; i--) { 
-                ordenFotos.push(i); 
-                contenido += `<div class="foto-card"><img src="Fotos/Foto ${i}.jpg" loading="lazy" onclick="abrirImagen(${i})"></div>`; 
-            } 
+        function procesarLote() {
+            let htmlFragment = "";
+            let iteraciones = 0;
+            
+            // Procesa 20 fotos y luego se detiene a respirar
+            while(iteraciones < 20) {
+                if (currentNueva >= 200) {
+                    ordenFotos.push(currentNueva);
+                    htmlFragment += `<div class="foto-card"><img src="Fotos/Foto ${currentNueva}.jpg" loading="lazy" onclick="abrirImagen(${currentNueva})"></div>`;
+                    currentNueva--;
+                } else if (currentClasica <= totalClasicas) {
+                    ordenFotos.push(currentClasica);
+                    htmlFragment += `<div class="foto-card"><img src="Fotos/Foto ${currentClasica}.jpg" loading="lazy" onclick="abrirImagen(${currentClasica})"></div>`;
+                    currentClasica++;
+                } else {
+                    break; // Ya no hay más fotos
+                }
+                iteraciones++;
+            }
+
+            if (htmlFragment !== "") {
+                contenedor.insertAdjacentHTML('beforeend', htmlFragment);
+                // Le damos 50 milisegundos de descanso al procesador del móvil antes de inyectar las siguientes 20 fotos
+                setTimeout(procesarLote, 50); 
+            }
         }
 
-        for (let i = 1; i <= totalClasicas; i++) { 
-            ordenFotos.push(i); 
-            contenido += `<div class="foto-card"><img src="Fotos/Foto ${i}.jpg" loading="lazy" onclick="abrirImagen(${i})"></div>`; 
-        } 
-
-        contenedor.innerHTML = contenido; 
+        // Arrancamos el primer lote
+        procesarLote();
     }
+
+    // --- LÓGICA DEL MODAL Y ZOOM TÁCTIL ---
+    let escalaActual = 1; let posX = 0, posY = 0; let distanciaInicial = 0; let escalaInicialAlPellizcar = 1; let tocando = false; let inicioX = 0, inicioY = 0;
 
     function abrirImagen(indice) { 
         fotoActual = indice; 
@@ -259,10 +257,8 @@
     function cambiarFoto(direccion) { 
         let index = ordenFotos.indexOf(fotoActual); 
         index += direccion; 
-        
         if (index >= ordenFotos.length) index = 0; 
         if (index < 0) index = ordenFotos.length - 1; 
-        
         fotoActual = ordenFotos[index]; 
         resetZoom();
         actualizarImagenModal(); 
@@ -271,7 +267,6 @@
     function actualizarImagenModal() { 
         const rutaFoto = `Fotos/Foto ${fotoActual}.jpg`;
         document.getElementById("imgFull").src = rutaFoto; 
-        
         const btnDescarga = document.getElementById("downloadBtn");
         btnDescarga.href = rutaFoto;
         btnDescarga.download = `Tony_Vazquez_Foto_${fotoActual}.jpg`;
@@ -338,7 +333,7 @@
             fetch(`${api}/get/${site}/react_${tipo}`)
                 .then(r => r.json())
                 .then(d => { document.getElementById(`count-${tipo}`).innerText = d.value || 0; })
-                .catch(e => console.log('Error carga reacciones'));
+                .catch(e => {});
             if(localStorage.getItem(`voto_${tipo}`)) { document.getElementById(`count-${tipo}`).parentElement.classList.add('votado'); }
         });
     }
@@ -346,7 +341,7 @@
     function sumarReaccion(tipo, btn) {
         if(localStorage.getItem(`voto_${tipo}`)) return; localStorage.setItem(`voto_${tipo}`, 'true'); btn.classList.add('votado');
         let span = document.getElementById(`count-${tipo}`); span.innerText = (parseInt(span.innerText) || 0) + 1;
-        fetch(`https://abacus.jasoncameron.dev/hit/tonyvazquez.es/react_${tipo}`).catch(e => console.log('Error envío reacción'));
+        fetch(`https://abacus.jasoncameron.dev/hit/tonyvazquez.es/react_${tipo}`).catch(e => {});
     }
 
     window.onscroll = function() { 
@@ -354,10 +349,9 @@
         if (document.documentElement.scrollTop > 400) { btn.style.display = "flex"; } else { btn.style.display = "none"; } 
     };
 
-    // Aseguramos que la galería se carga primero que nada
-    cargarGaleria(); 
-    
+    // INICIAMOS LA CARGA DE FOTOS POR LOTES AL ABRIR LA PÁGINA
     document.addEventListener('DOMContentLoaded', () => { 
+        cargarGaleria(); 
         cargarReacciones(); 
     });
 </script>
