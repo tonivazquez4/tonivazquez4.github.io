@@ -14,30 +14,27 @@
         * { box-sizing: border-box; }
         :root { --gold: #d4af37; --gold-light: #f9d976; }
         
+        /* 1. RESET BÁSICO Y TÁCTIL SEGURO */
         body { 
             font-family: 'Montserrat', sans-serif; margin: 0; padding: 0; color: white; 
-            background-color: #000;
-            overflow-x: hidden; touch-action: pan-y; 
+            background-color: #000; overflow-x: hidden; 
         }
         
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: url('Alma de Rock.jpg') no-repeat center center;
-            background-size: cover;
-            z-index: -2;
+        a, button, .foto-card, .btn { touch-action: manipulation; }
+
+        /* 2. FONDO SEGURO AISLADO (Sin pseudo-elementos que bloquean iOS) */
+        .bg-fijo {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background: radial-gradient(circle at center, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.6) 100%), url('Alma de Rock.jpg') no-repeat center center;
+            background-size: cover; z-index: -1; pointer-events: none;
         }
 
-        body::after {
-            content: "";
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: radial-gradient(circle at center, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.6) 100%);
-            z-index: -1;
+        /* 3. ENVOLTORIO PROTECTOR */
+        .page-wrapper {
+            width: 100%; min-height: 100vh; overflow-x: hidden; position: relative;
         }
 
-        header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--gold); padding: 10px 40px; background: rgba(0,0,0,0.3); position: relative; z-index: 10;}
+        header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--gold); padding: 10px 40px; background: rgba(0,0,0,0.3); }
         .header-logo { height: 105px; width: auto; filter: brightness(0) saturate(100%) invert(75%) sepia(50%) saturate(600%) hue-rotate(5deg) brightness(90%) contrast(100%); cursor: pointer; transition: 0.3s; }
         #logo-izq { animation: giro-3d 6s linear infinite; }
         #logo-der { animation: giro-3d 6s linear infinite reverse; }
@@ -51,33 +48,24 @@
         .icons-left { justify-content: flex-start; }
         .icons-right { justify-content: flex-end; }
         .social-icons a { color: white; font-size: 1.4rem; text-decoration: none; transition: 0.3s; text-shadow: 2px 2px 5px black;}
-        .social-icons a:hover { color: var(--gold); transform: translateY(-3px); }
         
-        .nav-menu { text-align: center; margin: 30px 0; position: relative; z-index: 10;}
+        .nav-menu { text-align: center; margin: 30px 0; }
         .btn { background: linear-gradient(45deg, var(--gold), var(--gold-light)); color: black; padding: 10px 22px; text-decoration: none; border-radius: 8px; font-weight: 700; display: inline-block; margin: 5px; transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
-        .btn:hover, .btn.activo { background: white; transform: scale(1.05); }
+        .btn.activo { background: white; transform: scale(1.05); color: black; }
         
-        .grid-galeria { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; padding: 20px; max-width: 1300px; margin: auto; position: relative; z-index: 10;}
+        .grid-galeria { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; padding: 20px; max-width: 1300px; margin: auto; }
         .foto-card { position: relative; aspect-ratio: 1 / 1; border-radius: 10px; border: 1px solid #333; background: #111; display: flex; align-items: center; justify-content: center; box-shadow: 0 5px 15px rgba(0,0,0,0.8); }
         .foto-card img { width: 100%; height: 100%; object-fit: contain; cursor: pointer; transition: 0.4s; display: block; touch-action: manipulation; }
-        .foto-card img:hover { transform: scale(1.05); filter: brightness(1.2); }
         
         #imageModal { display: none; position: fixed; z-index: 99999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.98); align-items: center; justify-content: center; overflow: hidden; }
         
         #imgFull { 
-            max-width: 100%; 
-            max-height: 85vh; 
-            border: 2px solid var(--gold); 
-            border-radius: 5px; 
-            box-shadow: 0 0 30px rgba(212, 175, 55, 0.3); 
-            object-fit: contain; 
-            touch-action: none; 
-            transform-origin: center center; 
-            transition: transform 0.1s ease-out;
+            max-width: 100%; max-height: 85vh; border: 2px solid var(--gold); border-radius: 5px; 
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.3); object-fit: contain; touch-action: none; 
+            transform-origin: center center; transition: transform 0.1s ease-out;
         }
         
         .modal-btn { position: absolute; background: rgba(0,0,0,0.5); border: 1px solid var(--gold); color: white; font-size: 2.5rem; cursor: pointer; transition: 0.3s; padding: 10px 20px; z-index: 100000; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; }
-        .modal-btn:hover { background: var(--gold); color: black; }
         #prevBtn { left: 20px; }
         #nextBtn { right: 20px; }
         #closeBtn { top: 20px; right: 20px; font-size: 2rem; width: 50px; height: 50px; }
@@ -85,22 +73,27 @@
 
         .seccion-comentarios { 
             width: 95%; max-width: 800px; margin: 30px auto; padding: 15px 20px 10px 20px; 
-            background: rgba(15, 15, 15, 0.75); color: white; border-radius: 15px; 
-            border: 1px solid var(--gold); box-sizing: border-box; box-shadow: 0 5px 15px rgba(0,0,0,0.8); 
-            position: relative; z-index: 10;
+            background: rgba(15, 15, 15, 0.75); color: white; border-radius: 15px; border: 1px solid var(--gold); 
+            box-sizing: border-box; box-shadow: 0 5px 15px rgba(0,0,0,0.8); 
         }
         .caja-reacciones { display: flex; justify-content: center; gap: 10px; margin-bottom: 10px; flex-wrap: wrap; }
         .btn-reaccion { 
-            background: #222; border: 1px solid var(--gold); border-radius: 10px; padding: 6px 12px; 
-            font-size: 1.2rem; cursor: pointer; transition: 0.3s; color: white; display: flex; align-items: center; gap: 8px; 
+            background: #222; border: 1px solid var(--gold); border-radius: 10px; padding: 6px 12px; font-size: 1.2rem; cursor: pointer; transition: 0.3s; color: white; display: flex; align-items: center; gap: 8px; 
         }
-        .btn-reaccion:hover { transform: scale(1.05); background: rgba(212, 175, 55, 0.1); }
         .btn-reaccion.votado { background: var(--gold); color: black; border-color: black; cursor: default; transform: none; }
         .btn-reaccion span { font-size: 1.1rem; }
         
         #btnSubir { display: none; position: fixed; bottom: 30px; right: 30px; z-index: 9999; background: var(--gold); color: black; border: none; cursor: pointer; width: 55px; height: 55px; border-radius: 50%; box-shadow: 0 4px 15px rgba(0,0,0,0.6); justify-content: center; align-items: center; font-size: 1.5rem; transition: 0.3s; }
         
-        footer { text-align:center; padding: 40px; position: relative; z-index: 10; background: rgba(0,0,0,0.85); border-top: 2px solid #222; margin-top: 40px;}
+        footer { text-align:center; padding: 40px; background: rgba(0,0,0,0.85); border-top: 2px solid #222; margin-top: 40px;}
+
+        @media (hover: hover) and (pointer: fine) {
+            .social-icons a:hover { color: var(--gold); transform: translateY(-3px); }
+            .btn:hover { background: white; transform: scale(1.05); color: black; }
+            .foto-card img:hover { transform: scale(1.05); filter: brightness(1.2); }
+            .modal-btn:hover { background: var(--gold); color: black; }
+            .btn-reaccion:hover { transform: scale(1.05); background: rgba(212, 175, 55, 0.1); }
+        }
 
         @media (max-width: 768px) { 
             header { flex-direction: column; padding: 20px; gap: 15px; align-items: center; background: rgba(0, 0, 0, 0.4); border-bottom: 1px solid rgba(212, 175, 55, 0.3); } 
@@ -109,10 +102,6 @@
             .btn { font-size: 0.7rem; padding: 8px 10px; } 
             .modal-btn { font-size: 1.8rem; padding: 10px; width: 45px; height: 45px; background: rgba(0,0,0,0.7); } 
             #imgFull { max-height: 70vh; } 
-            
-            body::after {
-                background: radial-gradient(circle at center, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 100%);
-            }
         }
     </style>
     <link rel="manifest" href="manifest.json">
@@ -124,51 +113,48 @@
 </head>
 <body>
 
-<header>
-    <img src="logoTV.png" class="header-logo" id="logo-izq" alt="Logo">
-    <div class="social-icons icons-left">
-        <a href="https://open.spotify.com/intl-es/album/4rs6iGjMuaWskxs9FkEEt7?si=uMJbYA6jRkmj1zg70XF8vw" target="_blank"><i class="fa-brands fa-spotify"></i></a>
-        <a href="https://music.apple.com/es/artist/tony-vazquez/1497948014" target="_blank"><i class="fa-brands fa-apple"></i></a>
-        <a href="https://music.youtube.com/channel/UCFNdFbrM3s0kznhCGpRJ3GA" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+<div class="bg-fijo"></div>
+
+<div class="page-wrapper">
+    <header>
+        <img src="logoTV.png" class="header-logo" id="logo-izq" alt="Logo">
+        <div class="social-icons icons-left">
+            <a href="https://open.spotify.com/intl-es/album/4rs6iGjMuaWskxs9FkEEt7?si=uMJbYA6jRkmj1zg70XF8vw" target="_blank"><i class="fa-brands fa-spotify"></i></a>
+            <a href="https://music.apple.com/es/artist/tony-vazquez/1497948014" target="_blank"><i class="fa-brands fa-apple"></i></a>
+            <a href="https://music.youtube.com/channel/UCFNdFbrM3s0kznhCGpRJ3GA" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+        <div class="header-center"><h1>TONY VÁZQUEZ</h1><p>GALERÍA</p></div>
+        <div class="social-icons icons-right">
+            <a href="https://music.amazon.es/artists/B07NFBKRHJ/tony-vazquez" target="_blank"><i class="fa-brands fa-amazon"></i></a>
+            <a href="https://instagram.com/tonykubo" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://www.facebook.com/tonisampler/" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+        </div>
+        <img src="logoTV.png" class="header-logo" id="logo-der" alt="Logo">
+    </header>
+
+    <nav class="nav-menu">
+        <a href="index.html" class="btn">Inicio</a>
+        <a href="galeria.html" class="btn activo">Galería</a>
+        <a href="videos.html" class="btn">Vídeos</a>
+        <a href="conciertos.html" class="btn">Conciertos</a>
+    </nav>
+
+    <div class="grid-galeria" id="galeria-fotos"></div>
+
+    <div class="seccion-comentarios">
+        <h3 style="color: var(--gold); text-align: center; text-transform: uppercase; margin: 0 0 10px 0; font-size: 1.1rem;">¿Qué te parece la galería? ¡Reacciona! 👇</h3>
+        <div class="caja-reacciones">
+            <button class="btn-reaccion" onclick="sumarReaccion('fuego', this)">🔥 <span id="count-fuego">0</span></button>
+            <button class="btn-reaccion" onclick="sumarReaccion('cuernos', this)">🤘 <span id="count-cuernos">0</span></button>
+            <button class="btn-reaccion" onclick="sumarReaccion('corazon', this)">😍 <span id="count-corazon">0</span></button>
+        </div>
+        <hr style="border: 0.5px solid var(--gold); opacity: 0.2; margin: 15px 0;">
+        <h3 style="color: var(--gold); text-align: center; text-transform: uppercase; margin: 0 0 10px 0; font-size: 1rem; opacity: 0.8;">O deja tu mensaje rockero 🎸</h3>
+        <div id="cusdis_thread" data-host="https://cusdis.com" data-app-id="b3a46067-e248-4f1a-8f3b-1d829f5606c3" data-page-id="galeria_tony_vazquez" data-page-url="https://www.tonyvazquez.es/galeria.html" data-page-title="Galeria Tony Vazquez" data-theme="dark"></div>
     </div>
-    <div class="header-center"><h1>TONY VÁZQUEZ</h1><p>GALERÍA</p></div>
-    <div class="social-icons icons-right">
-        <a href="https://music.amazon.es/artists/B07NFBKRHJ/tony-vazquez" target="_blank"><i class="fa-brands fa-amazon"></i></a>
-        <a href="https://instagram.com/tonykubo" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-        <a href="https://www.facebook.com/tonisampler/" target="_blank"><i class="fa-brands fa-facebook"></i></a>
-    </div>
-    <img src="logoTV.png" class="header-logo" id="logo-der" alt="Logo">
-</header>
 
-<nav class="nav-menu">
-    <a href="index.html" class="btn">Inicio</a>
-    <a href="galeria.html" class="btn activo">Galería</a>
-    <a href="videos.html" class="btn">Vídeos</a>
-    <a href="conciertos.html" class="btn">Conciertos</a>
-</nav>
-
-<!-- CONTENEDOR DONDE SE PINTARÁN LAS FOTOS -->
-<div class="grid-galeria" id="galeria-fotos"></div>
-
-<div class="seccion-comentarios">
-    <h3 style="color: var(--gold); text-align: center; text-transform: uppercase; margin: 0 0 10px 0; font-size: 1.1rem;">¿Qué te parece la galería? ¡Reacciona! 👇</h3>
-    <div class="caja-reacciones">
-        <button class="btn-reaccion" onclick="sumarReaccion('fuego', this)">🔥 <span id="count-fuego">0</span></button>
-        <button class="btn-reaccion" onclick="sumarReaccion('cuernos', this)">🤘 <span id="count-cuernos">0</span></button>
-        <button class="btn-reaccion" onclick="sumarReaccion('corazon', this)">😍 <span id="count-corazon">0</span></button>
-    </div>
-    <hr style="border: 0.5px solid var(--gold); opacity: 0.2; margin: 15px 0;">
-    <h3 style="color: var(--gold); text-align: center; text-transform: uppercase; margin: 0 0 10px 0; font-size: 1rem; opacity: 0.8;">O deja tu mensaje rockero 🎸</h3>
-    <div id="cusdis_thread" 
-         data-host="https://cusdis.com" 
-         data-app-id="b3a46067-e248-4f1a-8f3b-1d829f5606c3" 
-         data-page-id="galeria_tony_vazquez" 
-         data-page-url="https://www.tonyvazquez.es/galeria.html" 
-         data-page-title="Galeria Tony Vazquez"
-         data-theme="dark"></div>
-</div>
-
-<footer><p>© 2026 Tony Vázquez. Todos los derechos reservados.</p></footer>
+    <footer><p>© 2026 Tony Vázquez. Todos los derechos reservados.</p></footer>
+</div> <!-- Fin del wrapper -->
 
 <button id="btnSubir" onclick="window.scrollTo({top: 0, behavior: 'smooth'})"><i class="fa-solid fa-arrow-up"></i></button>
 
@@ -182,12 +168,10 @@
     <button class="modal-btn" id="nextBtn" onclick="cambiarFoto(1)">❯</button>
 </div>
 
-<!-- SCRIPTS EXTERNOS AL FINAL PARA NO MOLESTAR -->
 <script defer src="https://cusdis.com/js/widget/lang/es.js"></script>
-<script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
+<script defer src="https://cusdis.com/js/cusdis.es.js"></script>
 
 <script>
-    // ELIMINACIÓN TOTAL DE CACHÉ ANTIGUA
     if ('serviceWorker' in navigator) {
         navigator.serviceWorker.getRegistrations().then(function(registrations) {
             for(let registration of registrations) { registration.unregister(); }
@@ -197,54 +181,34 @@
     const totalClasicas = 192; 
     const totalNuevas = 237;      
     const contenedor = document.getElementById('galeria-fotos'); 
-    
     let fotoActual = 1; 
     let ordenFotos = []; 
 
-    // --- NUEVO SISTEMA DE CARGA POR LOTES (Evita que el iPhone se congele) ---
+    // Carga original súper rápida de un solo golpe
     function cargarGaleria() { 
+        let contenido = ""; 
         ordenFotos = []; 
-        let currentNueva = totalNuevas;
-        let currentClasica = 1;
 
-        function procesarLote() {
-            let htmlFragment = "";
-            let iteraciones = 0;
-            
-            // Procesa 20 fotos y luego se detiene a respirar
-            while(iteraciones < 20) {
-                if (currentNueva >= 200) {
-                    ordenFotos.push(currentNueva);
-                    htmlFragment += `<div class="foto-card"><img src="Fotos/Foto ${currentNueva}.jpg" loading="lazy" onclick="abrirImagen(${currentNueva})"></div>`;
-                    currentNueva--;
-                } else if (currentClasica <= totalClasicas) {
-                    ordenFotos.push(currentClasica);
-                    htmlFragment += `<div class="foto-card"><img src="Fotos/Foto ${currentClasica}.jpg" loading="lazy" onclick="abrirImagen(${currentClasica})"></div>`;
-                    currentClasica++;
-                } else {
-                    break; // Ya no hay más fotos
-                }
-                iteraciones++;
-            }
-
-            if (htmlFragment !== "") {
-                contenedor.insertAdjacentHTML('beforeend', htmlFragment);
-                // Le damos 50 milisegundos de descanso al procesador del móvil antes de inyectar las siguientes 20 fotos
-                setTimeout(procesarLote, 50); 
-            }
+        if (totalNuevas >= 200) { 
+            for (let i = totalNuevas; i >= 200; i--) { 
+                ordenFotos.push(i); 
+                contenido += `<div class="foto-card"><img src="Fotos/Foto ${i}.jpg" loading="lazy" onclick="abrirImagen(${i})"></div>`; 
+            } 
         }
 
-        // Arrancamos el primer lote
-        procesarLote();
+        for (let i = 1; i <= totalClasicas; i++) { 
+            ordenFotos.push(i); 
+            contenido += `<div class="foto-card"><img src="Fotos/Foto ${i}.jpg" loading="lazy" onclick="abrirImagen(${i})"></div>`; 
+        } 
+
+        contenedor.innerHTML = contenido; 
     }
 
-    // --- LÓGICA DEL MODAL Y ZOOM TÁCTIL ---
-    let escalaActual = 1; let posX = 0, posY = 0; let distanciaInicial = 0; let escalaInicialAlPellizcar = 1; let tocando = false; let inicioX = 0, inicioY = 0;
+    // Modal y Zoom
+    let escalaActual = 1; let posX = 0; let posY = 0; let distanciaInicial = 0; let escalaInicialAlPellizcar = 1; let tocando = false; let inicioX = 0, inicioY = 0;
 
     function abrirImagen(indice) { 
-        fotoActual = indice; 
-        resetZoom();
-        actualizarImagenModal(); 
+        fotoActual = indice; resetZoom(); actualizarImagenModal(); 
         document.getElementById("imageModal").style.display = "flex"; 
         document.body.style.overflow = "hidden"; 
     }
@@ -260,52 +224,38 @@
         if (index >= ordenFotos.length) index = 0; 
         if (index < 0) index = ordenFotos.length - 1; 
         fotoActual = ordenFotos[index]; 
-        resetZoom();
-        actualizarImagenModal(); 
+        resetZoom(); actualizarImagenModal(); 
     }
 
     function actualizarImagenModal() { 
         const rutaFoto = `Fotos/Foto ${fotoActual}.jpg`;
         document.getElementById("imgFull").src = rutaFoto; 
-        const btnDescarga = document.getElementById("downloadBtn");
-        btnDescarga.href = rutaFoto;
-        btnDescarga.download = `Tony_Vazquez_Foto_${fotoActual}.jpg`;
+        document.getElementById("downloadBtn").href = rutaFoto;
+        document.getElementById("downloadBtn").download = `Tony_Vazquez_Foto_${fotoActual}.jpg`;
     }
 
-    function resetZoom() {
-        escalaActual = 1; posX = 0; posY = 0;
-        aplicarTransformacion();
-    }
-
-    function aplicarTransformacion() {
-        const img = document.getElementById("imgFull");
-        img.style.transform = `translate(${posX}px, ${posY}px) scale(${escalaActual})`;
-    }
+    function resetZoom() { escalaActual = 1; posX = 0; posY = 0; aplicarTransformacion(); }
+    function aplicarTransformacion() { document.getElementById("imgFull").style.transform = `translate(${posX}px, ${posY}px) scale(${escalaActual})`; }
 
     const imgModal = document.getElementById("imgFull");
-
     imgModal.addEventListener('touchstart', (e) => {
         if (e.touches.length === 2) {
             distanciaInicial = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
             escalaInicialAlPellizcar = escalaActual;
         } else if (e.touches.length === 1 && escalaActual > 1) {
-            tocando = true;
-            inicioX = e.touches[0].clientX - posX;
-            inicioY = e.touches[0].clientY - posY;
+            tocando = true; inicioX = e.touches[0].clientX - posX; inicioY = e.touches[0].clientY - posY;
         }
     });
 
     imgModal.addEventListener('touchmove', (e) => {
         if (e.touches.length === 2) {
-            const distanciaActual = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
+            const distActual = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
             if (distanciaInicial > 0) {
-                let factor = distanciaActual / distanciaInicial;
-                escalaActual = Math.min(Math.max(1, escalaInicialAlPellizcar * factor), 4);
+                escalaActual = Math.min(Math.max(1, escalaInicialAlPellizcar * (distActual / distanciaInicial)), 4);
                 aplicarTransformacion();
             }
         } else if (e.touches.length === 1 && tocando && escalaActual > 1) {
-            posX = e.touches[0].clientX - inicioX;
-            posY = e.touches[0].clientY - inicioY;
+            posX = e.touches[0].clientX - inicioX; posY = e.touches[0].clientY - inicioY;
             aplicarTransformacion();
         }
     });
@@ -313,46 +263,42 @@
     imgModal.addEventListener('touchend', (e) => {
         if (e.touches.length < 2) distanciaInicial = 0;
         if (e.touches.length === 0) tocando = false;
-        if (escalaActual < 1) { resetZoom(); }
+        if (escalaActual < 1) resetZoom();
     });
 
     let ultimoToke = 0;
     imgModal.addEventListener('touchend', (e) => {
-        let tiempoActual = new Date().getTime();
-        let tiempoTranscurrido = tiempoActual - ultimoToke;
-        if (tiempoTranscurrido < 300 && tiempoTranscurrido > 0) {
-            if (escalaActual === 1) { escalaActual = 2.5; } else { resetZoom(); }
+        let tActual = new Date().getTime();
+        if (tActual - ultimoToke < 300 && tActual - ultimoToke > 0) {
+            if (escalaActual === 1) escalaActual = 2.5; else resetZoom();
             aplicarTransformacion();
         }
-        ultimoToke = tiempoActual;
+        ultimoToke = tActual;
     });
 
     function cargarReacciones() {
         const api = 'https://abacus.jasoncameron.dev'; const site = 'tonyvazquez.es';
         ['fuego', 'cuernos', 'corazon'].forEach(tipo => {
             fetch(`${api}/get/${site}/react_${tipo}`)
-                .then(r => r.json())
-                .then(d => { document.getElementById(`count-${tipo}`).innerText = d.value || 0; })
-                .catch(e => {});
-            if(localStorage.getItem(`voto_${tipo}`)) { document.getElementById(`count-${tipo}`).parentElement.classList.add('votado'); }
+                .then(r => r.json()).then(d => { document.getElementById(`count-${tipo}`).innerText = d.value || 0; }).catch(() => {});
+            if(localStorage.getItem(`voto_${tipo}`)) document.getElementById(`count-${tipo}`).parentElement.classList.add('votado');
         });
     }
 
     function sumarReaccion(tipo, btn) {
         if(localStorage.getItem(`voto_${tipo}`)) return; localStorage.setItem(`voto_${tipo}`, 'true'); btn.classList.add('votado');
         let span = document.getElementById(`count-${tipo}`); span.innerText = (parseInt(span.innerText) || 0) + 1;
-        fetch(`https://abacus.jasoncameron.dev/hit/tonyvazquez.es/react_${tipo}`).catch(e => {});
+        fetch(`https://abacus.jasoncameron.dev/hit/tonyvazquez.es/react_${tipo}`).catch(() => {});
     }
 
     window.onscroll = function() { 
         let btn = document.getElementById("btnSubir"); 
-        if (document.documentElement.scrollTop > 400) { btn.style.display = "flex"; } else { btn.style.display = "none"; } 
+        if (document.documentElement.scrollTop > 400) btn.style.display = "flex"; else btn.style.display = "none"; 
     };
 
-    // INICIAMOS LA CARGA DE FOTOS POR LOTES AL ABRIR LA PÁGINA
     document.addEventListener('DOMContentLoaded', () => { 
         cargarGaleria(); 
-        cargarReacciones(); 
+        setTimeout(cargarReacciones, 1000); // Retrasamos el contador externo para que no bloquee nada
     });
 </script>
 </body>
