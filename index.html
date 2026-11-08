@@ -27,48 +27,45 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     
     <style>
-        :root { 
-            --gold: #d4af37; 
-            --gold-light: #f9d976; 
-            --alert-red: #ff4444;
-            --alert-blue: #3498db;
-        }
+        /* 1. RESET BÁSICO (Cero restricciones táctiles) */
+        :root { --gold: #d4af37; --gold-light: #f9d976; --alert-red: #ff4444; --alert-blue: #3498db; }
         
         body { 
-            font-family: 'Montserrat', sans-serif; margin: 0; padding: 0; color: white; 
-            background-color: #000; overflow-x: hidden; 
+            font-family: 'Montserrat', sans-serif; margin: 0; padding: 0; color: white; background-color: #000; 
         }
         
-        /* CAJA BLINDADA 1: EL FONDO (Nivel 1, Intocable) */
-        #fondo-seguro {
+        /* ORDEN TÁCTIL DIRECTA (Anula el lag del iPhone) */
+        a, button, .album-card, .btn, .album-img, .link-aviso { 
+            touch-action: manipulation; 
+        }
+
+        /* 2. EL FONDO (Limpio y aislado, imposible que tape los botones) */
+        .bg-fijo {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            z-index: 1; pointer-events: none;
-        }
-        #fondo-seguro img {
-            width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0;
-        }
-        #fondo-seguro .sombra {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at center, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.8) 100%);
+            background: radial-gradient(circle at center, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.8) 100%), url('alma-de-rock.jpg') no-repeat center center;
+            background-size: cover;
+            z-index: -1; 
+            pointer-events: none;
         }
 
-        /* CAJA BLINDADA 2: TODO EL CONTENIDO (Nivel 10, Siempre arriba) */
-        #contenido-real {
-            position: relative; z-index: 10; width: 100%;
+        /* 3. ENVOLTORIO ANTI-BLOQUEO (Soluciona el bug de desbordamiento en iOS) */
+        .page-wrapper {
+            width: 100%; min-height: 100vh; overflow-x: hidden; position: relative;
         }
-
-        #contenedor-avisos { position: relative; width: 100%; overflow: hidden; }
         
+        /* 4. AVISOS SUPERIORES */
+        #contenedor-avisos { width: 100%; }
         .barra-flash {
             background: linear-gradient(90deg, #1a1a1a, #2a2a2a, #1a1a1a); border-bottom: 1px solid var(--gold);
             color: white; text-align: center; padding: 12px; font-weight: 600; font-size: 0.85rem;
             display: none; justify-content: center; align-items: center; gap: 12px; letter-spacing: 1px;
-            transition: transform 0.3s ease-out, opacity 0.3s ease-out; user-select: none;
+            user-select: none;
         }
         .punto-flash { width: 8px; height: 8px; background-color: var(--alert-red); border-radius: 50%; box-shadow: 0 0 10px var(--alert-red); animation: pulse-red 1.2s infinite; }
         @keyframes pulse-red { 0% { transform: scale(0.9); opacity: 0.7; } 50% { transform: scale(1.2); opacity: 1; box-shadow: 0 0 15px var(--alert-red); } 100% { transform: scale(0.9); opacity: 0.7; } }
         .link-aviso { color: var(--gold); text-decoration: underline; cursor: pointer; margin-left: 5px; font-weight: 700; }
 
+        /* 5. CABECERA Y NAVEGACIÓN */
         h1, h2, h3 { font-family: 'Arial Black', sans-serif; }
 
         header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--gold); padding: 10px 40px; background: rgba(0,0,0,0.5); }
@@ -80,7 +77,7 @@
 
         .wrapper-botones-accion { display: grid; grid-template-columns: 50px 1fr 50px; align-items: center; justify-content: center; margin: 15px auto 0; width: 100%; max-width: 350px;}
         
-        .btn-share { grid-column: 2; justify-self: center; background: linear-gradient(45deg, var(--gold), var(--gold-light)); color: black; border: none; padding: 8px 18px; border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 0.75rem; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.5); transition: 0.3s; text-transform: uppercase; white-space: nowrap; }
+        .btn-share { grid-column: 2; justify-self: center; background: linear-gradient(45deg, var(--gold), var(--gold-light)); color: black; border: none; padding: 8px 18px; border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 0.75rem; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.5); transition: 0.3s; text-transform: uppercase; white-space: nowrap;}
         .btn-tienda { grid-column: 3; justify-self: start; margin-left: 20px; background: #1DB954; color: white; width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.5); transition: 0.3s; text-decoration: none; font-size: 1.15rem; }
 
         .social-icons { display: flex; gap: 15px; width: 200px; }
@@ -92,12 +89,13 @@
         .btn { background: linear-gradient(45deg, var(--gold), var(--gold-light)); color: black; padding: 10px 22px; text-decoration: none; border-radius: 8px; font-weight: 700; display: inline-block; margin: 5px; transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
         .btn.activo { background: white; transform: scale(1.05); color: black; }
 
+        /* 6. DISCOGRAFÍA Y SPOTIFY */
         .container { padding: 0 20px 40px; max-width: 1200px; margin: auto; }
         .spotify-container { max-width: 400px; margin: 0 auto 40px; border-radius: 12px; overflow: hidden; border: 1px solid var(--gold); height: 80px; background: black; }
 
         .discografia { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; max-width: 900px; margin: 0 auto; }
         
-        .album-card { background: rgba(15, 15, 15, 0.85); border: 1px solid #333; border-radius: 15px; overflow: hidden; text-align: center; padding-bottom: 20px; transition: 0.4s; box-shadow: 0 5px 15px rgba(0,0,0,0.8); position: relative; }
+        .album-card { background: rgba(15, 15, 15, 0.85); border: 1px solid #333; border-radius: 15px; overflow: hidden; text-align: center; padding-bottom: 20px; transition: 0.4s; box-shadow: 0 5px 15px rgba(0,0,0,0.8); }
         
         .album-img-wrapper {
             position: relative; width: 100%; aspect-ratio: 1 / 1; background: #000; 
@@ -105,20 +103,20 @@
         }
 
         .album-img { 
-            width: 100%; height: 100%; object-fit: contain; display: block; 
-            cursor: pointer; position: relative; z-index: 20;
+            width: 100%; height: 100%; object-fit: contain; display: block; cursor: pointer; 
         }
 
         .cinta-proximamente { 
             position: absolute; top: 50%; left: 50%; width: 150%; 
             background: var(--gold); color: black; text-align: center; padding: 12px 0; font-size: 1.2rem; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; 
             transform: translate(-50%, -50%) rotate(-35deg); 
-            z-index: 30; pointer-events: none; box-shadow: 0 5px 20px rgba(0,0,0,0.9); 
+            pointer-events: none; box-shadow: 0 5px 20px rgba(0,0,0,0.9); 
             animation: parpadeo-cinta 0.8s infinite alternate;
         }
 
         @keyframes parpadeo-cinta { 0% { opacity: 0.95; filter: brightness(1.2); } 100% { opacity: 0.5; filter: brightness(0.6); } }
 
+        /* 7. TEXTOS Y COMENTARIOS */
         .bio { background: rgba(15, 15, 15, 0.85); padding: 60px 20px; text-align: center; border-top: 1px solid #333; border-bottom: 1px solid #333; margin-top: 50px; box-shadow: 0 5px 15px rgba(0,0,0,0.8); backdrop-filter: blur(5px); }
         .bio-content { max-width: 950px; margin: auto; font-size: 1.15rem; line-height: 1.8; color: #ddd; text-shadow: 1px 1px 3px black;}
 
@@ -130,10 +128,11 @@
         .backstage-input { padding: 12px 20px; border-radius: 8px; border: 1px solid #444; background: rgba(0,0,0,0.8); color: white; width: 300px; font-family: 'Montserrat', sans-serif;}
         .btn-subscribe { background: var(--gold); color: black; border: none; padding: 12px 25px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s; text-transform: uppercase; }
 
-        #btnSubir { display: none; position: fixed; bottom: 30px; right: 30px; z-index: 9999; background: var(--gold); color: black; border: none; width: 55px; height: 55px; border-radius: 50%; box-shadow: 0 4px 15px rgba(0,0,0,0.6); justify-content: center; align-items: center; font-size: 1.5rem; transition: 0.3s; cursor: pointer; }
         footer { padding: 25px; text-align: center; background: rgba(0,0,0,0.85); border-top: 2px solid #222; cursor: pointer; }
 
-        #imageModal { display: none; position: fixed; z-index: 100000; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); justify-content: center; align-items: center; backdrop-filter: blur(5px); }
+        /* 8. FLOTANTES Y MODALES */
+        #btnSubir { display: none; position: fixed; bottom: 30px; right: 30px; z-index: 999; background: var(--gold); color: black; border: none; width: 55px; height: 55px; border-radius: 50%; box-shadow: 0 4px 15px rgba(0,0,0,0.6); justify-content: center; align-items: center; font-size: 1.5rem; transition: 0.3s; cursor: pointer; }
+        #imageModal { display: none; position: fixed; z-index: 1000; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); justify-content: center; align-items: center; backdrop-filter: blur(5px); }
         #imageModal img { max-width: 90%; max-height: 90%; border-radius: 10px; box-shadow: 0 0 20px var(--gold); }
 
         /* HOVERS AISLADOS PARA ORDENADOR */
@@ -146,13 +145,13 @@
             #btnSubir:hover { transform: scale(1.1); background: white; }
         }
 
-        /* VERSIÓN MÓVIL */
+        /* VERSIÓN MÓVIL (Con tamaños adaptados y sin romper nada) */
         @media (max-width: 768px) {
             header { flex-direction: column; padding: 10px; gap: 8px; align-items: center; background: rgba(0, 0, 0, 0.4); border-bottom: 1px solid rgba(212, 175, 55, 0.3); }
             .header-logo { display: none; }
             .header-center h1 { font-size: 1.15rem; }
             .header-center p { font-size: 0.7rem; margin-top: 3px; }
-            .social-icons { width: 100%; justify-content: center !important; gap: 12px; }
+            .social-icons { width: 100%; justify-content: center; gap: 12px; }
             .social-icons a { font-size: 1.2rem; }
             .wrapper-botones-accion { margin: 8px auto 0; gap: 10px; max-width: 250px; }
             .btn-share { padding: 6px 12px; font-size: 0.7rem; }
@@ -161,41 +160,37 @@
             .btn { font-size: 0.75rem; padding: 7px 10px; margin: 2px; }
             .spotify-container { margin: 0 auto 15px; height: 80px;} 
             
-            .discografia { grid-template-columns: 1fr !important; gap: 25px !important; }
-            .album-card { padding-bottom: 0 !important; }
-            .cinta-proximamente { font-size: 1rem !important; padding: 10px 0 !important; }
+            .discografia { grid-template-columns: 1fr; gap: 25px; }
+            .album-card { padding-bottom: 0; }
+            .cinta-proximamente { font-size: 1rem; padding: 10px 0; }
         }
 
-        #cajaContador { display:none; position:fixed; bottom:20px; left:20px; background:#000; border:2px solid var(--gold); color:var(--gold); padding:10px 15px; border-radius:8px; font-weight:bold; z-index:999999; box-shadow:0 4px 10px rgba(0,0,0,0.8); cursor:pointer; }
+        #cajaContador { display:none; position:fixed; bottom:20px; left:20px; background:#000; border:2px solid var(--gold); color:var(--gold); padding:10px 15px; border-radius:8px; font-weight:bold; z-index: 999; box-shadow:0 4px 10px rgba(0,0,0,0.8); cursor:pointer; }
     </style>
 </head>
 <body>
 
-<!-- CAJA 1: EL FONDO BLINDADO QUE NUNCA PODRÁ TAPAR LOS BOTONES -->
-<div id="fondo-seguro">
-    <img src="alma-de-rock.jpg" alt="">
-    <div class="sombra"></div>
-</div>
+<!-- EL FONDO SÚPER LIMPIO -->
+<div class="bg-fijo"></div>
 
-<!-- CAJA 2: EL CONTENIDO REAL DE TU WEB -->
-<div id="contenido-real">
+<!-- EL ENVOLTORIO PROTECTOR DE APPLE -->
+<div class="page-wrapper">
 
     <div id="contenedor-avisos">
         <div id="aviso-fotos" class="barra-flash" data-tipo="fotos">
             <div class="punto-flash"></div>
             <span>¡HAY NUEVAS FOTOS DISPONIBLES!</span>
-            <!-- EL TRUCO MAESTRO: ?v=1 engaña al móvil para saltarse el bloqueo -->
-            <a href="galeria.html?v=1" class="link-aviso" onclick="marcarVisto('fotos');">IR A GALERÍA 🤘</a>
+            <a href="galeria.html?v=2" class="link-aviso" onclick="marcarVisto('fotos');">IR A GALERÍA 🤘</a>
         </div>
         <div id="aviso-videos" class="barra-flash" data-tipo="videos">
             <div class="punto-flash"></div>
             <span>¡NUEVOS VÍDEOS EN EL CANAL!</span>
-            <a href="videos.html?v=1" class="link-aviso" onclick="marcarVisto('videos');">VER VÍDEOS 🎸</a>
+            <a href="videos.html?v=2" class="link-aviso" onclick="marcarVisto('videos');">VER VÍDEOS 🎸</a>
         </div>
         <div id="aviso-conciertos" class="barra-flash" data-tipo="conciertos">
             <div class="punto-flash" style="background-color: var(--alert-blue); box-shadow: 0 0 10px var(--alert-blue);"></div>
             <span>¡NUEVA FECHA DE CONCIERTO CONFIRMADA!</span>
-            <a href="conciertos.html?v=1" class="link-aviso" onclick="marcarVisto('conciertos');">VER CITAS 📅</a>
+            <a href="conciertos.html?v=2" class="link-aviso" onclick="marcarVisto('conciertos');">VER CITAS 📅</a>
         </div>
     </div>
 
@@ -230,10 +225,10 @@
     </header>
 
     <nav class="nav-menu">
-        <a href="index.html?v=1" class="btn activo">Inicio</a>
-        <a href="galeria.html?v=1" class="btn">Galería</a>
-        <a href="videos.html?v=1" class="btn">Vídeos</a>
-        <a href="conciertos.html?v=1" class="btn">Conciertos</a>
+        <a href="index.html?v=2" class="btn activo">Inicio</a>
+        <a href="galeria.html?v=2" class="btn">Galería</a>
+        <a href="videos.html?v=2" class="btn">Vídeos</a>
+        <a href="conciertos.html?v=2" class="btn">Conciertos</a>
     </nav>
 
     <div class="container">
@@ -244,10 +239,11 @@
         <div class="discografia" id="discografia">
             
             <div class="album-card">
-                <a href="nuevo-album.html?v=1" style="display: block; text-decoration: none; color: inherit; padding-bottom: 15px; position: relative;">
+                <a href="nuevo-album.html?v=2" style="display: block; text-decoration: none; color: inherit; padding-bottom: 15px;">
                     <div class="album-img-wrapper">
-                        <div class="cinta-proximamente">Próximamente</div>
+                        <!-- LA FOTO PRIMERO, LA CINTA DESPUÉS. Así la cinta se pone encima sin forzar z-index -->
                         <img src="Cuando despierte la ciudad.jpg" alt="Disco Cuando despierte la ciudad" class="album-img">
+                        <div class="cinta-proximamente">Próximamente</div>
                     </div>
                     <h3 style="margin: 15px 0 5px;">Cuando despierte la ciudad</h3>
                     <p style="color: var(--gold); font-size: 0.85rem; font-weight: bold; text-transform: uppercase; margin: 0;"><i class="fa-solid fa-door-open"></i> Entrar al estudio</p>
@@ -313,9 +309,9 @@
 
     <footer onclick="revelarContador()"><p>© 2026 Tony Vázquez. Todos los derechos reservados.</p></footer>
 
-    <button id="btnSubir" onclick="window.scrollTo({top: 0, behavior: 'smooth'})"><i class="fa-solid fa-arrow-up"></i></button>
+</div> <!-- FIN DEL ENVOLTORIO PROTECTOR -->
 
-</div> <!-- FIN DEL CONTENIDO REAL -->
+<button id="btnSubir" onclick="window.scrollTo({top: 0, behavior: 'smooth'})"><i class="fa-solid fa-arrow-up"></i></button>
 
 <div id="imageModal" onclick="this.style.display='none'"><img id="imgFull"></div>
 <div id="cajaContador" onclick="this.style.display='none'">👀 Visitas totales: <span id="numeroVisitas">...</span></div>
