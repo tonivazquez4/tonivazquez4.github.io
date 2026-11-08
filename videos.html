@@ -4,7 +4,7 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-1YS8QY8TXN"></script>
     <script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-1YS8QY8TXN');</script>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vídeos | Tony Vázquez</title>
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -18,7 +18,7 @@
             overflow-x: hidden; 
         }
         
-        a, button, .video-wrapper, .btn { touch-action: manipulation; }
+        a, button, .btn { touch-action: manipulation; }
 
         body::before {
             content: "";
@@ -58,10 +58,8 @@
         .btn:hover, .btn.activo { background: white; transform: scale(1.05); }
         
         .container { padding: 0 15px 20px; max-width: 900px; margin: auto; display: flex; flex-direction: column; gap: 40px; position: relative; z-index: 10;}
-        
-        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border: 2px solid #444; border-radius: 12px; background: black; transition: 0.4s; box-shadow: 0 5px 15px rgba(0,0,0,0.8); cursor: pointer; }
-        .video-wrapper img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.8; transition: 0.3s; }
-        .video-wrapper .play-btn { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 2; color: #ff0000; font-size: 4rem; filter: drop-shadow(0 0 15px rgba(0,0,0,0.9)); transition: 0.3s; }
+        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border: 2px solid #444; border-radius: 12px; background: black; transition: 0.4s; box-shadow: 0 5px 15px rgba(0,0,0,0.8);}
+        .video-wrapper:hover { transform: translateY(-5px); border-color: var(--gold); }
         .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
         .seccion-comentarios { 
@@ -80,11 +78,6 @@
         #btnSubir { display: none; position: fixed; bottom: 30px; right: 30px; z-index: 9999; background: var(--gold); color: black; border: none; cursor: pointer; width: 55px; height: 55px; border-radius: 50%; box-shadow: 0 4px 15px rgba(0,0,0,0.6); justify-content: center; align-items: center; font-size: 1.5rem; transition: 0.3s; }
         
         footer { text-align:center; padding: 40px; position: relative; z-index: 10; background: rgba(0,0,0,0.85); border-top: 2px solid #222; margin-top: 40px;}
-
-        @media (hover: hover) and (pointer: fine) {
-            .video-wrapper:hover img { opacity: 1; }
-            .video-wrapper:hover .play-btn { transform: translate(-50%, -50%) scale(1.1); color: white; }
-        }
 
         @media (max-width: 768px) { 
             header { flex-direction: column; padding: 20px; gap: 15px; background: rgba(0, 0, 0, 0.3); border-bottom: 1px solid rgba(212, 175, 55, 0.3);} 
@@ -117,30 +110,45 @@
     <a href="conciertos.html" class="btn">Conciertos</a>
 </nav>
 
-<div class="container" id="lista-videos"></div>
+<div class="container">
+    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/jbRyfHEIujA" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
+    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/8-qVdj1VhF0" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
+    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/QTxNLOtnekQ" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
+    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/T9QqKk1GckI" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
+    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/tgPovfSXLq4" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
+    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/DzHDuS5s8BE" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
+    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/G5ELIs5Y_ic" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
+    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/EjwgkDtwJNI" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
+    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/QWkJ0TpyNuY" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
+    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/LbUzsYG0kjw" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
+    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/2yz9kGwK3sg" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
+    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/1leI7UNl2PM" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
+    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/ki7KxsOskz4" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
+    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/sDD30k7cPrE" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
+    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/A7HKU9L8oWs" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
+    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/ol4rdn9OKqo" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
+    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/rT-Xge-hauY" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
+    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/ohLpUUvWu48" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
+    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/3Tts6eJL6uo" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
+    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/c39P7vcHmvE" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
+    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/SLOh-Uf7H7A" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
+    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/Ggnf36obnoE" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
+    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/vj_B8wSrSAA" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
+    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/vgEwErlfZOM" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
+    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/eVdZSx_8P3Y" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
+    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/bxZT2-eyfGQ" frameborder="0" allowfullscreen loading="lazy"></iframe></div>
+</div>
 
 <div class="seccion-comentarios">
     <h3 style="color: var(--gold); text-align: center; text-transform: uppercase; margin: 0 0 10px 0; font-size: 1.1rem;">¿Qué te parece? ¡Reacciona! 👇</h3>
-    
     <div class="caja-reacciones">
         <button class="btn-reaccion" onclick="sumarReaccion('fuego', this)">🔥 <span id="count-fuego">0</span></button>
         <button class="btn-reaccion" onclick="sumarReaccion('cuernos', this)">🤘 <span id="count-cuernos">0</span></button>
         <button class="btn-reaccion" onclick="sumarReaccion('corazon', this)">😍 <span id="count-corazon">0</span></button>
     </div>
-
     <hr style="border: 0.5px solid var(--gold); opacity: 0.2; margin: 15px 0;">
-
     <h3 style="color: var(--gold); text-align: center; text-transform: uppercase; margin: 0 0 10px 0; font-size: 1rem; opacity: 0.8;">O deja tu mensaje rockero 🎸</h3>
-
-    <div id="cusdis_thread"
-      data-host="https://cusdis.com"
-      data-app-id="b3a46067-e248-4f1a-8f3b-1d829f5606c3"
-      data-page-id="videos_tony_vazquez" 
-      data-page-url="https://www.tonyvazquez.es/videos.html"
-      data-page-title="Vídeos Tony Vazquez"
-      data-theme="dark">
-    </div>
-
+    <div id="cusdis_thread" data-host="https://cusdis.com" data-app-id="b3a46067-e248-4f1a-8f3b-1d829f5606c3" data-page-id="videos_tony_vazquez" data-page-url="https://www.tonyvazquez.es/videos.html" data-page-title="Vídeos Tony Vazquez" data-theme="dark"></div>
     <script defer src="https://cusdis.com/js/widget/lang/es.js"></script>
     <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
 </div>
@@ -150,37 +158,6 @@
 <button id="btnSubir" onclick="window.scrollTo({top: 0, behavior: 'smooth'})"><i class="fa-solid fa-arrow-up"></i></button>
 
 <script>
-    const idsVideos = [
-        "jbRyfHEIujA", "8-qVdj1VhF0", "QTxNLOtnekQ", "T9QqKk1GckI", "tgPovfSXLq4", 
-        "DzHDuS5s8BE", "G5ELIs5Y_ic", "EjwgkDtwJNI", "QWkJ0TpyNuY", "LbUzsYG0kjw", 
-        "2yz9kGwK3sg", "1leI7UNl2PM", "ki7KxsOskz4", "sDD30k7cPrE", "A7HKU9L8oWs", 
-        "ol4rdn9OKqo", "rT-Xge-hauY", "ohLpUUvWu48", "3Tts6eJL6uo", "c39P7vcHmvE", 
-        "SLOh-Uf7H7A", "Ggnf36obnoE", "vj_B8wSrSAA", "vgEwErlfZOM", "eVdZSx_8P3Y", "bxZT2-eyfGQ"
-    ];
-
-    function cargarVideos() {
-        const contenedor = document.getElementById('lista-videos');
-        let contenido = "";
-        
-        idsVideos.forEach(id => {
-            contenido += `
-                <div class="video-wrapper" onclick="reproducirVideo(this, '${id}')">
-                    <img src="https://img.youtube.com/vi/${id}/hqdefault.jpg" alt="Miniatura Vídeo" loading="lazy">
-                    <i class="fa-brands fa-youtube play-btn"></i>
-                </div>
-            `;
-        });
-        
-        contenedor.innerHTML = contenido;
-    }
-
-    function reproducirVideo(elemento, id) {
-        elemento.innerHTML = `<iframe src="https://www.youtube.com/embed/${id}?autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
-        elemento.style.cursor = "default";
-    }
-
-    cargarVideos();
-
     function cargarReacciones() {
         const api = 'https://abacus.jasoncameron.dev'; const site = 'tonyvazquez.es';
         ['fuego', 'cuernos', 'corazon'].forEach(tipo => {
@@ -188,18 +165,15 @@
             if(localStorage.getItem(`voto_${tipo}`)) { document.getElementById(`count-${tipo}`).parentElement.classList.add('votado'); }
         });
     }
-
     function sumarReaccion(tipo, btn) {
-        if(localStorage.getItem(`voto_${tipo}`)) return; localStorage.setItem(`voto_${tipo}`, 'true'); btn.classList.add('votado');
+        if(localStorage.getItem(`voto_${tipo}`)) return; localStorage.getItem(`voto_${tipo}`, 'true'); btn.classList.add('votado');
         let span = document.getElementById(`count-${tipo}`); span.innerText = (parseInt(span.innerText) || 0) + 1;
         fetch(`https://abacus.jasoncameron.dev/hit/tonyvazquez.es/react_${tipo}`).catch(() => {});
     }
-
     window.onscroll = function() { 
         let btn = document.getElementById("btnSubir"); 
         if (document.documentElement.scrollTop > 400) { btn.style.display = "flex"; } else { btn.style.display = "none"; } 
     };
-
     document.addEventListener('DOMContentLoaded', cargarReacciones);
 </script>
 </body>
