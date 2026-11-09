@@ -85,13 +85,19 @@
         /* CINTA NUEVA TOTALMENTE REESCRITA */
        .cinta-abajo { 
             position: absolute; 
-            top: 75%; /* Ajusta esto (ej. 80% o 85%) para bajarla más hacia el texto */
-            left: 25%; /* Ajusta esto (ej. 15% o 20%) para pegarla más a la izquierda */
-            width: 150%; 
+            top: 55%; /* La baja justo a la altura del borde inferior de la foto */
+            left: -15%; /* La pega a la izquierda */
+            width: 130%; 
             background: var(--gold); color: black; text-align: center; padding: 12px 0; 
             font-size: 1.2rem; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; 
             z-index: 10; pointer-events: none; box-shadow: 0 5px 20px rgba(0,0,0,0.9);
-            animation: destello-abajo 0.7s infinite alternate ease-in-out;
+            transform: rotate(-35deg); /* Inclinación fija, no se mueve de aquí */
+            animation: destello-seguro 0.8s infinite alternate ease-in-out;
+        }
+
+        @keyframes destello-seguro {
+            0% { opacity: 1; }
+            100% { opacity: 0.3; }
         }
 
         @keyframes destello-abajo {
