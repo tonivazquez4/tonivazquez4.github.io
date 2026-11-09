@@ -83,15 +83,20 @@
         .album-img { width: 100%; height: auto; display: block; cursor: pointer; border-bottom: 1px solid #333; }
         
         /* CINTA NUEVA TOTALMENTE REESCRITA */
-       .cinta-fresca { 
+       .cinta-abajo { 
             position: absolute; 
-            top: 75%; /* Antes estaba en 35%. Aumenta o reduce este número para afinar la altura exacta */
-            left: -35%; /* Ajustado hacia la izquierda para que cruce la esquina perfectamente */
+            bottom: 30px; /* Anclado a la parte inferior (borde izquierdo) */
+            left: -20%; /* Ajuste para que el texto cruce bien la esquina */
             width: 140%; 
             background: var(--gold); color: black; text-align: center; padding: 12px 0; 
             font-size: 1.2rem; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; 
             z-index: 10; pointer-events: none; box-shadow: 0 5px 20px rgba(0,0,0,0.9);
-            animation: destello-cinta 0.7s infinite alternate ease-in-out;
+            animation: destello-abajo 0.7s infinite alternate ease-in-out;
+        }
+
+        @keyframes destello-abajo {
+            0% { opacity: 1; transform: rotate(-35deg) scale(1); background: var(--gold); }
+            100% { opacity: 0.3; transform: rotate(-35deg) scale(1.05); background: white; }
         }
 
         @keyframes destello-cinta {
