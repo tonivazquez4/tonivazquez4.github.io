@@ -59,7 +59,6 @@
 
         .nav-menu { text-align: center; margin: 30px 0; position: relative; z-index: 10;}
         
-        /* BOTONES DEL MENÚ */
         .btn { 
             background: linear-gradient(45deg, var(--gold), var(--gold-light)); color: black; 
             padding: 10px 22px; text-decoration: none; border-radius: 8px; font-weight: 700; 
@@ -67,7 +66,6 @@
             touch-action: manipulation;
         }
         
-        /* Efecto de pulsación táctil (Sin javascript) */
         .btn.activo, .btn:active { background: white; transform: scale(1.05); color: black; }
         
         @media (hover: hover) {
@@ -84,17 +82,18 @@
         .album-card { background: rgba(15, 15, 15, 0.85); border: 1px solid #333; border-radius: 15px; text-align: center; padding-bottom: 20px; transition: 0.4s; box-shadow: 0 5px 15px rgba(0,0,0,0.8); position: relative; overflow: hidden; }
         .album-img { width: 100%; height: auto; display: block; cursor: pointer; border-bottom: 1px solid #333; }
         
-        .cinta-proximamente { 
-            position: absolute; top: 40%; left: 50%; width: 150%; 
-            background: var(--gold); color: black; text-align: center; padding: 12px 0; font-size: 1.2rem; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; 
-            transform: translate(-50%, -50%) rotate(-35deg); z-index: 10; pointer-events: none; 
-            box-shadow: 0 5px 20px rgba(0,0,0,0.9); 
-            animation: latido-cinta 0.7s infinite alternate !important;
+        /* CINTA NUEVA TOTALMENTE REESCRITA */
+        .cinta-fresca { 
+            position: absolute; top: 35%; left: -20%; width: 140%; 
+            background: var(--gold); color: black; text-align: center; padding: 12px 0; 
+            font-size: 1.2rem; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; 
+            z-index: 10; pointer-events: none; box-shadow: 0 5px 20px rgba(0,0,0,0.9);
+            animation: destello-cinta 0.7s infinite alternate ease-in-out;
         }
 
-        @keyframes latido-cinta {
-            0% { opacity: 1; }
-            100% { opacity: 0.2; }
+        @keyframes destello-cinta {
+            0% { opacity: 1; transform: rotate(-35deg) scale(1); background: var(--gold); }
+            100% { opacity: 0.3; transform: rotate(-35deg) scale(1.05); background: white; }
         }
 
         .bio { background: rgba(15, 15, 15, 0.85); padding: 60px 20px; text-align: center; border-top: 1px solid #333; border-bottom: 1px solid #333; margin-top: 50px; }
@@ -150,9 +149,8 @@
 
 <nav class="nav-menu">
     <a href="index.html" class="btn activo">Inicio</a>
-    <!-- ENLACES LIMPIOS Y DIRECTOS SIN TRUCOS QUE BLOQUEEN LA CACHÉ -->
     <a href="galeria.html" class="btn">Galería</a>
-    <a href="videos.html" class="btn">videos</a>
+    <a href="videos.html" class="btn">Vídeos</a>
     <a href="conciertos.html" class="btn">Conciertos</a>
 </nav>
 
@@ -163,7 +161,8 @@
     <div class="discografia" id="discografia">
         <div class="album-card">
             <a href="nuevo-album.html" style="display: block; text-decoration: none; color: inherit; padding-bottom: 15px;">
-                <div class="cinta-proximamente">Próximamente</div>
+                <!-- AQUÍ SE APLICA LA NUEVA CLASE CINTA-FRESCA -->
+                <div class="cinta-fresca">Próximamente</div>
                 <img src="Cuando despierte la ciudad.jpg" alt="Disco" class="album-img">
                 <h3 style="margin: 15px 0 5px;">Cuando despierte la ciudad</h3>
                 <p style="color: var(--gold); font-size: 0.85rem; font-weight: bold; text-transform: uppercase; margin: 0;"><i class="fa-solid fa-door-open"></i> Entrar al estudio</p>
