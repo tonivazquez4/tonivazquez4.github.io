@@ -88,13 +88,13 @@
             position: absolute; top: 40%; left: 50%; width: 150%; 
             background: var(--gold); color: black; text-align: center; padding: 12px 0; font-size: 1.2rem; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; 
             transform: translate(-50%, -50%) rotate(-35deg); z-index: 10; pointer-events: none; 
-            box-shadow: 0 5px 20px rgba(0,0,0,0.9); animation: parpadeo-cinta 0.8s infinite alternate;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.9); 
+            animation: latido-cinta 0.7s infinite alternate !important;
         }
 
-        /* AQUÍ ESTÁN LAS INSTRUCCIONES DEL PARPADEO QUE FALTABAN */
-        @keyframes parpadeo-cinta {
-            0% { opacity: 1; filter: brightness(1.2); }
-            100% { opacity: 0.6; filter: brightness(0.8); }
+        @keyframes latido-cinta {
+            0% { opacity: 1; }
+            100% { opacity: 0.2; }
         }
 
         .bio { background: rgba(15, 15, 15, 0.85); padding: 60px 20px; text-align: center; border-top: 1px solid #333; border-bottom: 1px solid #333; margin-top: 50px; }
@@ -152,7 +152,7 @@
     <a href="index.html" class="btn activo">Inicio</a>
     <!-- ENLACES LIMPIOS Y DIRECTOS SIN TRUCOS QUE BLOQUEEN LA CACHÉ -->
     <a href="galeria.html" class="btn">Galería</a>
-    <a href="videos.html" class="btn">Vídeos</a>
+    <a href="videos.html" class="btn">videos</a>
     <a href="conciertos.html" class="btn">Conciertos</a>
 </nav>
 
