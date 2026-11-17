@@ -207,7 +207,14 @@
     <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
 </div>
 
-<footer><p>© 2026 Tony Vázquez. Todos los derechos reservados.</p></footer>
+<footer ondblclick="mostrarContador()" style="user-select: none;">
+    <p>© 2026 Tony Vázquez. Todos los derechos reservados.</p>
+    <div id="caja-visitas" style="display: none; margin-top: 15px;">
+        <span style="background: #222; border: 1px solid var(--gold); padding: 5px 15px; border-radius: 8px; color: var(--gold); font-size: 0.9rem;">
+            Visitas totales: <strong id="num-visitas" style="color: white;">...</strong>
+        </span>
+    </div>
+</footer>
 
 <div id="imageModal" onclick="this.style.display='none'"><img id="imgFull"></div>
 
@@ -236,6 +243,23 @@
         if(localStorage.getItem(`voto_${tipo}`)) return; localStorage.setItem(`voto_${tipo}`, 'true'); btn.classList.add('votado');
         let span = document.getElementById(`count-${tipo}`); span.innerText = (parseInt(span.innerText) || 0) + 1;
         fetch(`https://abacus.jasoncameron.dev/hit/tonyvazquez.es/react_${tipo}`).catch(e => {});
+    }
+    
+    // Registro silencioso de visita
+    fetch('https://abacus.jasoncameron.dev/hit/tonyvazquez.es/visitas_totales').catch(e => {});
+
+    // Función para revelar el contador
+    function mostrarContador() {
+        let caja = document.getElementById('caja-visitas');
+        if (caja.style.display === 'none') {
+            caja.style.display = 'block';
+            fetch('https://abacus.jasoncameron.dev/get/tonyvazquez.es/visitas_totales')
+                .then(r => r.json())
+                .then(d => { document.getElementById('num-visitas').innerText = d.value || 0; })
+                .catch(e => { document.getElementById('num-visitas').innerText = 'Error'; });
+        } else {
+            caja.style.display = 'none';
+        }
     }
 
     document.addEventListener('DOMContentLoaded', cargarReacciones);
