@@ -98,8 +98,10 @@
         .bio { background: rgba(15, 15, 15, 0.85); padding: 60px 20px; text-align: center; border-top: 1px solid #333; border-bottom: 1px solid #333; margin-top: 50px; }
         .bio-content { max-width: 950px; margin: auto; font-size: 1.15rem; line-height: 1.8; color: #ddd; text-shadow: 1px 1px 3px black;}
 
-        /* CSS ARREGLADO PARA LA CAJA Y LOS BOTONES DE REACCIONES */
+        /* CSS ARREGLADO CON Z-INDEX PARA BLOQUEAR BARRERAS INVISIBLES */
         .seccion-comentarios { 
+            position: relative; 
+            z-index: 999; 
             width: 92%; 
             max-width: 800px; 
             margin: 40px auto; 
@@ -108,7 +110,7 @@
             color: white; 
             border-radius: 15px; 
             border: 1px solid var(--gold); 
-            box-sizing: border-box; /* Evita que el relleno expulse la caja fuera de la pantalla */
+            box-sizing: border-box; 
         }
         .caja-reacciones { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-bottom: 15px; }
         .btn-reaccion { background: rgba(0,0,0,0.7); color: white; border: 1px solid var(--gold); padding: 8px 18px; border-radius: 20px; font-size: 1.1rem; cursor: pointer; transition: 0.3s; }
@@ -118,7 +120,7 @@
         .backstage-input { padding: 12px 20px; border-radius: 8px; border: 1px solid #444; background: rgba(0,0,0,0.8); color: white; width: 300px; font-family: 'Montserrat', sans-serif;}
         .btn-subscribe { background: var(--gold); color: black; border: none; padding: 12px 25px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s; text-transform: uppercase; }
 
-        footer { padding: 25px; text-align: center; background: rgba(0,0,0,0.85); border-top: 2px solid #222; cursor: pointer; }
+        footer { position: relative; z-index: 10; padding: 25px; text-align: center; background: rgba(0,0,0,0.85); border-top: 2px solid #222; cursor: pointer; }
         
         #imageModal { display: none; position: fixed; z-index: 100000; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); justify-content: center; align-items: center; }
         #imageModal img { max-width: 90%; max-height: 90%; border-radius: 10px; box-shadow: 0 0 20px var(--gold); }
@@ -200,15 +202,16 @@
 </div>
 
 <div class="trayectoria-container">
-        <div style="max-width: 900px; margin: 0 auto; padding: 0 5%; text-align: center;">
-    <h2 style="color: #f2a900; margin-bottom: 30px; text-align: center; font-size: 28px;">Trayectoria Profesional</h2>
-    
-    <p style="font-size: 20px; line-height: 1.6; color: #ffffff; margin-bottom: 20px;">Con una carrera de más de 35 años como pilar de la mítica banda de rock Astarot, Tony Vázquez ha recorrido los escenarios más exigentes del país. Su veteranía se ha consolidado también en formaciones de gran prestigio como el Grupo América y el Grupo Limón.</p>
-    
-    <p style="font-size: 20px; line-height: 1.6; color: #ffffff; margin-bottom: 20px;">Su maestría técnica le ha llevado a trabajar en la vanguardia de los medios de comunicación como técnico de sampler y compositor en televisiones nacionales como Telecinco, Antena 3 y Telemadrid, además de formar parte del musical "Kalowa, el 5º valor" en Madrid.</p>
+    <div style="max-width: 900px; margin: 0 auto; padding: 0 5%; text-align: center;">
+        <h2 style="color: #f2a900; margin-bottom: 30px; text-align: center; font-size: 28px;">Trayectoria Profesional</h2>
+        
+        <p style="font-size: 20px; line-height: 1.6; color: #ffffff; margin-bottom: 20px;">Con una carrera de más de 35 años como pilar de la mítica banda de rock Astarot, Tony Vázquez ha recorrido los escenarios más exigentes del país. Su veteranía se ha consolidado también en formaciones de gran prestigio como el Grupo América y el Grupo Limón.</p>
+        
+        <p style="font-size: 20px; line-height: 1.6; color: #ffffff; margin-bottom: 20px;">Su maestría técnica le ha llevado a trabajar en la vanguardia de los medios de comunicación como técnico de sampler y compositor en televisiones nacionales como Telecinco, Antena 3 y Telemadrid, además de formar parte del musical "Kalowa, el 5º valor" en Madrid.</p>
 
-    <p style="font-size: 20px; line-height: 1.6; color: #ffffff; margin-bottom: 20px;">Actualmente (y desde 2017), es integrante de la Orquesta Kubo, compaginando los escenarios con su sólida carrera en solitario. Desde su estudio All Music compone, graba y produce su propia música, siendo el artífice de su álbum <em>Alma de Rock</em> y encontrándose inmerso en su próximo disco, <em>Cuando despierte la ciudad</em>.</p>
-</div>
+        <p style="font-size: 20px; line-height: 1.6; color: #ffffff; margin-bottom: 20px;">Actualmente (y desde 2017), es integrante de la Orquesta Kubo, compaginando los escenarios con su sólida carrera en solitario. Desde su estudio All Music compone, graba y produce su propia música, siendo el artífice de su álbum <em>Alma de Rock</em> y encontrándose inmerso en su próximo disco, <em>Cuando despierte la ciudad</em>.</p>
+    </div>
+</div> <!-- ETIQUETA DE CIERRE QUE FALTABA -->
 
 <div class="seccion-comentarios">
     <h3 style="color: var(--gold); text-align: center; text-transform: uppercase; margin: 0 0 10px 0; font-size: 1.1rem;">¿Qué te parece la web? ¡Reacciona! 🤘</h3>
@@ -219,7 +222,6 @@
     </div>
     <hr style="border: 0.5px solid var(--gold); opacity: 0.2; margin: 15px 0;">
     
-    <!-- CONTENEDOR DE CUSDIS CON ESPACIO GARANTIZADO -->
     <div id="cusdis_thread" data-host="https://cusdis.com" data-app-id="b3a46067-e248-4f1a-8f3b-1d829f5606c3" data-page-id="inicio_tony_vazquez" data-page-url="https://www.tonyvazquez.es/index.html" data-page-title="Inicio Tony Vazquez" data-theme="dark" style="min-height: 250px; width: 100%;"></div>
     <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
 </div>
@@ -257,7 +259,13 @@
     }
 
     function sumarReaccion(tipo, btn) {
-        if(localStorage.getItem(`voto_${tipo}`)) return; localStorage.setItem(`voto_${tipo}`, 'true'); btn.classList.add('votado');
+        // Añadido aviso visual para que sepas por qué el botón no suma más de 1 vez.
+        if(localStorage.getItem(`voto_${tipo}`)) {
+            alert('¡Ya has reaccionado a este botón! Solo se permite un voto por persona. 🤘');
+            return; 
+        }
+        localStorage.setItem(`voto_${tipo}`, 'true'); 
+        btn.classList.add('votado');
         let span = document.getElementById(`count-${tipo}`); span.innerText = (parseInt(span.innerText) || 0) + 1;
         fetch(`https://abacus.jasoncameron.dev/hit/tonyvazquez.es/react_${tipo}`).catch(e => {});
     }
