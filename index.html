@@ -69,7 +69,7 @@
         .btn.activo, .btn:active { background: white; transform: scale(1.05); color: black; }
         
         @media (hover: hover) {
-            .btn:hover, .btn-share:hover, .btn-subscribe:hover { background: white; transform: scale(1.05); color: black; }
+            .btn:hover, .btn-share:hover, .btn-enviar-comentario:hover { background: white; transform: scale(1.03); color: black; }
             .social-icons a:hover { color: var(--gold); }
             .album-card:hover { transform: translateY(-10px); border-color: var(--gold); background: rgba(30, 30, 30, 0.95); }
         }
@@ -95,17 +95,14 @@
             100% { opacity: 0.3; transform: rotate(-35deg) scale(1.05); background: white; }
         }
 
-        .bio { background: rgba(15, 15, 15, 0.85); padding: 60px 20px; text-align: center; border-top: 1px solid #333; border-bottom: 1px solid #333; margin-top: 50px; }
-        .bio-content { max-width: 950px; margin: auto; font-size: 1.15rem; line-height: 1.8; color: #ddd; text-shadow: 1px 1px 3px black;}
-
         .seccion-comentarios { 
             position: relative; 
             z-index: 999; 
             width: 92%; 
             max-width: 800px; 
             margin: 40px auto; 
-            padding: 20px 15px; 
-            background: rgba(15, 15, 15, 0.85); 
+            padding: 25px 20px; 
+            background: rgba(15, 15, 15, 0.9); 
             color: white; 
             border-radius: 15px; 
             border: 1px solid var(--gold); 
@@ -115,9 +112,32 @@
         .btn-reaccion { background: rgba(0,0,0,0.7); color: white; border: 1px solid var(--gold); padding: 8px 18px; border-radius: 20px; font-size: 1.1rem; cursor: pointer; transition: 0.3s; }
         .btn-reaccion.votado { background: var(--gold); color: black; }
 
-        .backstage-box { background: linear-gradient(45deg, rgba(17,17,17,0.85), rgba(34,34,34,0.85)); border: 2px solid var(--gold); padding: 40px 20px; text-align: center; border-radius: 15px; margin: 50px auto; max-width: 800px; }
-        .backstage-input { padding: 12px 20px; border-radius: 8px; border: 1px solid #444; background: rgba(0,0,0,0.8); color: white; width: 300px; font-family: 'Montserrat', sans-serif;}
-        .btn-subscribe { background: var(--gold); color: black; border: none; padding: 12px 25px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s; text-transform: uppercase; }
+        /* ESTILOS DEL MURO DE COMENTARIOS PROPIO */
+        .form-comentarios { display: flex; flex-direction: column; gap: 12px; margin-top: 15px; }
+        .input-comentario {
+            width: 100%; box-sizing: border-box; padding: 12px 15px;
+            background: rgba(0, 0, 0, 0.8); border: 1px solid #444; border-radius: 8px;
+            color: white; font-family: 'Montserrat', sans-serif; font-size: 0.95rem;
+            outline: none; transition: border-color 0.3s;
+        }
+        .input-comentario:focus { border-color: var(--gold); }
+        .btn-enviar-comentario {
+            align-self: flex-end; background: linear-gradient(45deg, var(--gold), var(--gold-light));
+            color: black; border: none; padding: 10px 25px; border-radius: 8px;
+            font-weight: 700; font-family: 'Montserrat', sans-serif; text-transform: uppercase;
+            cursor: pointer; transition: 0.3s; font-size: 0.85rem;
+        }
+        .btn-enviar-comentario:disabled { opacity: 0.6; cursor: not-allowed; }
+        
+        .lista-comentarios { margin-top: 25px; display: flex; flex-direction: column; gap: 15px; }
+        .tarjeta-comentario {
+            background: rgba(25, 25, 25, 0.9); border-left: 3px solid var(--gold);
+            padding: 15px; border-radius: 8px; text-align: left;
+        }
+        .comentario-cabecera { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; gap: 10px; flex-wrap: wrap; }
+        .comentario-autor { color: var(--gold); font-weight: 700; font-size: 0.95rem; }
+        .comentario-fecha { color: #888; font-size: 0.75rem; }
+        .comentario-texto { margin: 0; color: #f0f0f0; font-size: 0.95rem; line-height: 1.5; white-space: pre-wrap; word-break: break-word; }
 
         footer { position: relative; z-index: 10; padding: 25px; text-align: center; background: rgba(0,0,0,0.85); border-top: 2px solid #222; cursor: pointer; }
         
@@ -133,6 +153,7 @@
             .btn { font-size: 0.75rem; padding: 7px 10px; margin: 2px; }
             .discografia { grid-template-columns: 1fr; gap: 25px; }
             .album-card { padding-bottom: 15px; }
+            .btn-enviar-comentario { width: 100%; }
         }
     </style>
 </head>
@@ -219,17 +240,18 @@
         <button class="btn-reaccion" onclick="sumarReaccion('cuernos', this)">🤘 <span id="count-cuernos">0</span></button>
         <button class="btn-reaccion" onclick="sumarReaccion('corazon', this)">😍 <span id="count-corazon">0</span></button>
     </div>
-    <hr style="border: 0.5px solid var(--gold); opacity: 0.2; margin: 15px 0;">
+    <hr style="border: 0.5px solid var(--gold); opacity: 0.2; margin: 20px 0;">
     
-    <div class="commentbox" style="margin-top: 15px;"></div>
-    <script src="https://unpkg.com/commentbox.io/dist/commentBox.min.js"></script>
-    <script>
-        commentBox('5705743797846016-proj', {
-            backgroundColor: '#111111',
-            textColor: '#ffffff',
-            subtextColor: '#d4af37'
-        });
-    </script>
+    <h3 style="color: var(--gold); text-align: center; text-transform: uppercase; margin: 0 0 10px 0; font-size: 1.05rem;">Deja tu comentario</h3>
+    <form class="form-comentarios" id="form-comentarios" onsubmit="enviarComentario(event)">
+        <input type="text" id="com-nombre" class="input-comentario" placeholder="Tu nombre..." required maxlength="50">
+        <textarea id="com-mensaje" class="input-comentario" rows="3" placeholder="Escribe aquí tu mensaje..." required maxlength="500"></textarea>
+        <button type="submit" id="btn-enviar-com" class="btn-enviar-comentario">Publicar comentario</button>
+    </form>
+
+    <div class="lista-comentarios" id="lista-comentarios">
+        <p style="text-align: center; color: #aaa; font-size: 0.9rem;">Cargando comentarios...</p>
+    </div>
 </div>
 
 <footer ondblclick="mostrarContador()" style="user-select: none;">
@@ -244,6 +266,8 @@
 <div id="imageModal" onclick="this.style.display='none'"><img id="imgFull"></div>
 
 <script>
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyNRz1Ql_r8eZX5cPuwKnaxVYJr_WrbxQZLJkUtRF3LFJB3fliQgwJTrJS-p3zYWREzYQ/exec';
+
     if ('serviceWorker' in navigator) {
         navigator.serviceWorker.getRegistrations().then(function(registrations) {
             for(let registration of registrations) { registration.unregister(); }
@@ -274,6 +298,63 @@
         let span = document.getElementById(`count-${tipo}`); span.innerText = (parseInt(span.innerText) || 0) + 1;
         fetch(`https://abacus.jasoncameron.dev/hit/tonyvazquez.es/react_${tipo}`).catch(e => {});
     }
+
+    function escaparHTML(texto) {
+        return String(texto).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+    }
+
+    async function cargarComentarios() {
+        const contenedor = document.getElementById('lista-comentarios');
+        try {
+            const res = await fetch(SCRIPT_URL);
+            const comentarios = await res.json();
+            if (!comentarios.length) {
+                contenedor.innerHTML = '<p style="text-align: center; color: #aaa; font-size: 0.9rem;">Sé el primero en dejar un comentario. 🤘</p>';
+                return;
+            }
+            contenedor.innerHTML = comentarios.map(c => `
+                <div class="tarjeta-comentario">
+                    <div class="comentario-cabecera">
+                        <span class="comentario-autor">${escaparHTML(c.nombre)}</span>
+                        <span class="comentario-fecha">${escaparHTML(c.fecha)}</span>
+                    </div>
+                    <p class="comentario-texto">${escaparHTML(c.mensaje)}</p>
+                </div>
+            `).join('');
+        } catch (err) {
+            contenedor.innerHTML = '<p style="text-align: center; color: #aaa; font-size: 0.9rem;">No se pudieron cargar los comentarios ahora mismo.</p>';
+        }
+    }
+
+    async function enviarComentario(e) {
+        e.preventDefault();
+        const inputNombre = document.getElementById('com-nombre');
+        const inputMensaje = document.getElementById('com-mensaje');
+        const btn = document.getElementById('btn-enviar-com');
+
+        const nombre = inputNombre.value.trim();
+        const mensaje = inputMensaje.value.trim();
+        if (!nombre || !mensaje) return;
+
+        btn.disabled = true;
+        btn.innerText = 'Publicando...';
+
+        try {
+            await fetch(SCRIPT_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                body: JSON.stringify({ nombre, mensaje })
+            });
+            inputNombre.value = '';
+            inputMensaje.value = '';
+            await cargarComentarios();
+        } catch (err) {
+            alert('Hubo un error al publicar el comentario. Inténtalo de nuevo.');
+        } finally {
+            btn.disabled = false;
+            btn.innerText = 'Publicar comentario';
+        }
+    }
     
     // Registro silencioso de visita
     fetch('https://abacus.jasoncameron.dev/hit/tonyvazquez.es/visitas_totales').catch(e => {});
@@ -292,7 +373,10 @@
         }
     }
 
-    document.addEventListener('DOMContentLoaded', cargarReacciones);
+    document.addEventListener('DOMContentLoaded', () => {
+        cargarReacciones();
+        cargarComentarios();
+    });
 </script>
 </body>
 </html>
