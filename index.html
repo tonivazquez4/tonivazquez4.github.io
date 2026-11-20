@@ -98,7 +98,7 @@
         .bio { background: rgba(15, 15, 15, 0.85); padding: 60px 20px; text-align: center; border-top: 1px solid #333; border-bottom: 1px solid #333; margin-top: 50px; }
         .bio-content { max-width: 950px; margin: auto; font-size: 1.15rem; line-height: 1.8; color: #ddd; text-shadow: 1px 1px 3px black;}
 
-        /* CSS ARREGLADO CON Z-INDEX PARA BLOQUEAR BARRERAS INVISIBLES */
+        /* CSS ARREGLADO CON Z-INDEX Y ALTURA FORZADA PARA CUSDIS */
         .seccion-comentarios { 
             position: relative; 
             z-index: 999; 
@@ -112,6 +112,18 @@
             border: 1px solid var(--gold); 
             box-sizing: border-box; 
         }
+        #cusdis_thread {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+        #cusdis_thread iframe {
+            width: 100% !important;
+            min-height: 450px !important;
+            border: none !important;
+        }
+
         .caja-reacciones { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-bottom: 15px; }
         .btn-reaccion { background: rgba(0,0,0,0.7); color: white; border: 1px solid var(--gold); padding: 8px 18px; border-radius: 20px; font-size: 1.1rem; cursor: pointer; transition: 0.3s; }
         .btn-reaccion.votado { background: var(--gold); color: black; }
@@ -211,7 +223,7 @@
 
         <p style="font-size: 20px; line-height: 1.6; color: #ffffff; margin-bottom: 20px;">Actualmente (y desde 2017), es integrante de la Orquesta Kubo, compaginando los escenarios con su sólida carrera en solitario. Desde su estudio All Music compone, graba y produce su propia música, siendo el artífice de su álbum <em>Alma de Rock</em> y encontrándose inmerso en su próximo disco, <em>Cuando despierte la ciudad</em>.</p>
     </div>
-</div> <!-- ETIQUETA DE CIERRE QUE FALTABA -->
+</div>
 
 <div class="seccion-comentarios">
     <h3 style="color: var(--gold); text-align: center; text-transform: uppercase; margin: 0 0 10px 0; font-size: 1.1rem;">¿Qué te parece la web? ¡Reacciona! 🤘</h3>
@@ -222,7 +234,15 @@
     </div>
     <hr style="border: 0.5px solid var(--gold); opacity: 0.2; margin: 15px 0;">
     
-    <div id="cusdis_thread" data-host="https://cusdis.com" data-app-id="b3a46067-e248-4f1a-8f3b-1d829f5606c3" data-page-id="inicio_tony_vazquez" data-page-url="https://www.tonyvazquez.es/index.html" data-page-title="Inicio Tony Vazquez" data-theme="dark" style="min-height: 250px; width: 100%;"></div>
+    <div id="cusdis_thread"
+        data-host="https://cusdis.com"
+        data-app-id="b3a46067-e248-4f1a-8f3b-1d829f5606c3"
+        data-page-id="inicio_tony_vazquez"
+        data-page-url="https://www.tonyvazquez.es/index.html"
+        data-page-title="Inicio Tony Vazquez"
+        data-theme="light">
+    </div>
+    <script defer src="https://cusdis.com/js/widget/lang/es.js"></script>
     <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
 </div>
 
@@ -259,7 +279,6 @@
     }
 
     function sumarReaccion(tipo, btn) {
-        // Añadido aviso visual para que sepas por qué el botón no suma más de 1 vez.
         if(localStorage.getItem(`voto_${tipo}`)) {
             alert('¡Ya has reaccionado a este botón! Solo se permite un voto por persona. 🤘');
             return; 
