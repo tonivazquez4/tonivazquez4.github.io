@@ -98,7 +98,6 @@
         .bio { background: rgba(15, 15, 15, 0.85); padding: 60px 20px; text-align: center; border-top: 1px solid #333; border-bottom: 1px solid #333; margin-top: 50px; }
         .bio-content { max-width: 950px; margin: auto; font-size: 1.15rem; line-height: 1.8; color: #ddd; text-shadow: 1px 1px 3px black;}
 
-        /* CSS ARREGLADO CON Z-INDEX Y ALTURA FORZADA PARA CUSDIS */
         .seccion-comentarios { 
             position: relative; 
             z-index: 999; 
@@ -112,18 +111,6 @@
             border: 1px solid var(--gold); 
             box-sizing: border-box; 
         }
-        #cusdis_thread {
-            background: #ffffff;
-            padding: 20px;
-            border-radius: 10px;
-            margin-top: 15px;
-        }
-        #cusdis_thread iframe {
-            width: 100% !important;
-            min-height: 450px !important;
-            border: none !important;
-        }
-
         .caja-reacciones { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-bottom: 15px; }
         .btn-reaccion { background: rgba(0,0,0,0.7); color: white; border: 1px solid var(--gold); padding: 8px 18px; border-radius: 20px; font-size: 1.1rem; cursor: pointer; transition: 0.3s; }
         .btn-reaccion.votado { background: var(--gold); color: black; }
@@ -234,16 +221,11 @@
     </div>
     <hr style="border: 0.5px solid var(--gold); opacity: 0.2; margin: 15px 0;">
     
-    <div id="cusdis_thread"
-        data-host="https://cusdis.com"
-        data-app-id="b3a46067-e248-4f1a-8f3b-1d829f5606c3"
-        data-page-id="inicio_tony_vazquez"
-        data-page-url="https://www.tonyvazquez.es/index.html"
-        data-page-title="Inicio Tony Vazquez"
-        data-theme="light">
-    </div>
-    <script defer src="https://cusdis.com/js/widget/lang/es.js"></script>
-    <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
+    <div class="commentbox" style="background: #ffffff; padding: 15px; border-radius: 10px; margin-top: 15px;"></div>
+    <script src="https://unpkg.com/commentbox.io/dist/commentBox.min.js"></script>
+    <script>
+        commentBox('5705743797846016-proj');
+    </script>
 </div>
 
 <footer ondblclick="mostrarContador()" style="user-select: none;">
